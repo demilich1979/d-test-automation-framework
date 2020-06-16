@@ -1,4 +1,4 @@
-package diaceutics.cucumber.utilities;
+package diaceutics.selenium.utilities;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
