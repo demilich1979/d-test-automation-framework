@@ -2,18 +2,31 @@ package diaceutics.selenium.forms.pages;
 
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.forms.Form;
+import diaceutics.selenium.forms.AddPlatformForm;
 import org.openqa.selenium.By;
 
 public class LabProfilePage extends Form {
 
-    private final IButton btnCreateLab = getElementFactory().getButton(By.xpath("//button[text()='Create a Lab']"), "Create a Lab");
+    private final IButton btnAddPlatform = getElementFactory().getButton(
+            By.xpath("//div[contains(@class,'titleArea')]//button[.='Add platform']"), "Add platform");
 
-    public void clickCreateLab(){
-        btnCreateLab.clickAndWait();
+    private final IButton btnSortColumnPlatformManufactured = getElementFactory().getButton(
+            By.id("icons/icon-chevron-up"), "Add platform");
+
+    public LabProfilePage() {
+        super(By.id("viewLabContainer"), "LabProfile");
     }
 
-    public LabProfilePage(){
-        super(By.xpath("//h1[text()='Labs']"), "Labs");
+    public AddPlatformForm getAddPlatformForm() {
+        return new AddPlatformForm();
+    }
+
+    public void clickAddPlatform() {
+        btnAddPlatform.clickAndWait();
+    }
+
+    public void clickSortColumnPlatformManufactured() {
+        btnSortColumnPlatformManufactured.clickAndWait();
     }
 
 }

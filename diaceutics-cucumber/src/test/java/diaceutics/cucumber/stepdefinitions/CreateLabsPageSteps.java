@@ -9,7 +9,6 @@ import io.cucumber.java.en.When;
 import static org.testng.Assert.assertTrue;
 
 public class CreateLabsPageSteps {
-
     private final CreateLabPage createLabPage;
 
     public CreateLabsPageSteps() {
@@ -23,7 +22,7 @@ public class CreateLabsPageSteps {
 
     @When("I fill first Create a Lab form using following data:")
      public void fillCreateLabPage(@Transpose CreateLabInfo createLabInfo) {
-        createLabPage.setName(createLabInfo.getName());
+//        createLabPage.setName(createLabInfo.getName());
 
     }
 
