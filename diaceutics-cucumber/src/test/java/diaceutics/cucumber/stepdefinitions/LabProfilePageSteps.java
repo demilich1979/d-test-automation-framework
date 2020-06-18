@@ -1,6 +1,7 @@
 package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.ScenarioContext;
+import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
 import diaceutics.selenium.forms.pages.LabProfilePage;
 import diaceutics.selenium.models.Platform;
@@ -42,8 +43,8 @@ public class LabProfilePageSteps {
     public void iFillFollowingFieldsOnAddPlatformFormAndSaveAsNewPlatform(String key, Map<String, String> data) {
         Platform platform = new Platform();
         data.forEach((field, value) -> {
-            labProfilePage.getAddPlatformForm().setFieldValue(AddPlatformFormFields.getEnumValue(field), value);
-            platform.setReflectionFieldValue(AddPlatformFormFields.getEnumValue(field).getModelField(), value);
+            String selectedValue = labProfilePage.getAddPlatformForm().setFieldValue(AddPlatformFormFields.getEnumValue(field), value);
+            platform.setReflectionFieldValue(AddPlatformFormFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
         labProfilePage.getAddPlatformForm().clickAddPlatform();
@@ -59,8 +60,40 @@ public class LabProfilePageSteps {
 
     }
 
-    @Then("I sort data by alphabet in Platform manufactured column in Platforms table on Lab Profile Page")
-    public void iSortDataByAlphabetOnPlatformsTableOnLabProfilePage() {
-        labProfilePage.clickSortColumnPlatformManufactured();
+    @Then("{string} added in Platforms table")
+    public void platformAddedInPlatformsTable(String key) {
+        Platform platform = scenarioContext.get(key);
+
+        Assert.assertTrue(labProfilePage.isPlatformAdded(platform),
+                String.format("Platform with values %s, %s should be added in Platforms table",
+                        platform.getPlatformManufacturer(), platform.getPlatform()));
+
     }
+
+    @When("I sort data by alphabet in {string} column")
+    public void iSortDataByAlphabetInPlatformManufacturedColumn(String column) {
+        labProfilePage.clickSortColumn(column);
+    }
+
+    @Then("Data in {string} column sorted according to alphabet")
+    public void dataInPlatformManufacturedColumnSortedAccordingToAlphabet(String column) {
+        SoftAssert.getInstance().assertTrue(labProfilePage.isDataInColumnInPlatformGridSorted(column),
+                String.format("Data in %s column should be sorted according to alphabet", column));
+    }
+
+    @Then("On Lab Profile page check numbers of platforms in the grid")
+    public void onLabProfilePageCheckNumbersOfPlatformsInTheGrid() {
+        Assert.assertEquals(labProfilePage.getNumberOfPlatformsFromGrid(),
+                labProfilePage.getNumberOfPlatformsFromHead(),
+                "The number of rows in Platform grid must be the same as a number stated in the Platforms grid title");
+
+    }
+
+    @When("On Lab Profile Page click on Edit button for the {string} platform")
+    public void onLabProfilePageClickOnEditButtonForTheNewPlatformPlatform(String key) {
+        Platform platform = scenarioContext.get(key);
+        labProfilePage.clickEditButton(platform);
+    }
+
+
 }

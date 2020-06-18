@@ -27,7 +27,6 @@ public enum AddPlatformFormFields {
         return modelField;
     }
 
-
     public static AddPlatformFormFields getEnumValue(String friendlyName) {
         AddPlatformFormFields addPlatformFormFields = null;
         for (AddPlatformFormFields constant : AddPlatformFormFields.values()) {

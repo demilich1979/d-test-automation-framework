@@ -1,7 +1,6 @@
 package diaceutics.selenium.forms;
 
 import aquality.selenium.browser.AqualityServices;
-import aquality.selenium.elements.Attributes;
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.forms.Form;
 import diaceutics.selenium.elements.ComboboxJs;
@@ -22,11 +21,11 @@ public class AddPlatformForm extends Form {
         btnAddPlatform.clickAndWait();
     }
 
-    public void setFieldValue(AddPlatformFormFields field, String value) {
+    public String setFieldValue(AddPlatformFormFields field, String value) {
         ComboboxJs comboboxJs = getElementFactory().getCustomElement(
                 ComboboxJs.class, By.xpath(String.format(FIELD_TEMPLATE, field.getLocator())), "comboboxJs");
 
-        comboboxJs.selectByText(value);
+        return comboboxJs.selectByText(value);
     }
 
     public boolean isFieldContainsValue(AddPlatformFormFields field, String value) {

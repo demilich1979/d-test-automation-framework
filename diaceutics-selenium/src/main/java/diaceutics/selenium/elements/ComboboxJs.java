@@ -21,16 +21,17 @@ public class ComboboxJs extends Element implements IElement {
         return this.getLocalizationManager().getLocalizedMessage("loc.comboboxJs");
     }
 
-    public void selectByText(String value) {
+    public String selectByText(String value) {
         this.clickAndWait();
         if (value.equals("random")) {
             value = getRandomValue();
         }
 
         ILink optionLink = getElementFactory().getLink(
-                By.xpath(String.format("%s[.='%s']/parent::div", getLocator(), value)), value);
+                By.xpath(String.format("//div[@role='option']//span[text()='%s']", value)), value);
 
         optionLink.clickAndWait();
+        return value;
     }
 
     public String getRandomValue() {
@@ -40,10 +41,12 @@ public class ComboboxJs extends Element implements IElement {
     }
 
     public List<String> getStringListOptions() {
-        this.clickAndWait();
-        List<String> options = new ArrayList<>();
         List<IElement> optionLinks = getElementFactory().findElements(
-                By.xpath(String.format("%s[contains(@class,'ng-option-label')]", getLocator())), ElementType.LINK);
+                By.xpath("//span[contains(@class,'ng-option')]"), ElementType.LINK);
+        if (!(optionLinks.size() > 0)) {
+            this.clickAndWait();
+        }
+        List<String> options = new ArrayList<>();
 
         if (optionLinks.size() > 0) {
             optionLinks.forEach(option -> {
