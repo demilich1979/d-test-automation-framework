@@ -13,8 +13,9 @@ import org.openqa.selenium.By;
 
 public class LabProfilePage extends Form {
     private static final String SORT_COLUMN_BUTTON_TEMPLATE = "//th[.//span[.='%s']]//ui-icon";
-    private static final String EDIT_BUTTON_TEMPLATE = "//tr[.//span[.='%s']]//td[./span[.='Edit']]//span";
-    private static final String DELETE_BUTTON_TEMPLATE = "//tr[.//span[.='%s']]//td[./span[.='Delete']]//span";
+    private static final String EDIT_BUTTON_TEMPLATE = "//tr[.//span[.='%s']and .//span[.='%s']]//td[./span[.='Edit']]//span";
+    private static final String DELETE_BUTTON_TEMPLATE = "//tr[.//span[.='%s']and .//span[.='%s']]//td[./span[.='Delete']]//span";
+    private static final String PLATFORM_TEMPLATE = "//tr[.//span[.='%s']and .//span[.='%s']]";
 
     private final IButton btnAddPlatform = getElementFactory().getButton(
             By.xpath("//div[contains(@class,'titleArea')]//button[.='Add platform']"), "Add platform");
@@ -56,7 +57,7 @@ public class LabProfilePage extends Form {
 
     public void clickEditPlatform(Platform platform) {
         IButton btnEdit = getElementFactory().getButton(
-                By.xpath(String.format(EDIT_BUTTON_TEMPLATE, platform.getPlatform())),
+                By.xpath(String.format(EDIT_BUTTON_TEMPLATE, platform.getPlatform(), platform.getPlatformManufacturer())),
                 String.format("Edit %s", "platform.getPlatform()"));
 
         btnEdit.clickAndWait();
@@ -64,7 +65,7 @@ public class LabProfilePage extends Form {
 
     public void clickDeletePlatform(Platform platform) {
         IButton btnEdit = getElementFactory().getButton(
-                By.xpath(String.format(DELETE_BUTTON_TEMPLATE, platform.getPlatform())),
+                By.xpath(String.format(DELETE_BUTTON_TEMPLATE, platform.getPlatform(), platform.getPlatformManufacturer())),
                 String.format("Delete %s", platform.getPlatform()));
 
         btnEdit.clickAndWait();
@@ -78,6 +79,14 @@ public class LabProfilePage extends Form {
         }
 
         return isPlatformAdded;
+    }
+
+    public boolean isPlatformExist(Platform platform) {
+        ILink platformLink = getElementFactory().getLink(
+                By.xpath(String.format(PLATFORM_TEMPLATE, platform.getPlatform(), platform.getPlatformManufacturer())),
+                String.format("Platform %s", platform.getPlatform()));
+
+        return platformLink.state().waitForDisplayed();
     }
 
     public boolean isDataInColumnInPlatformGridSorted(String column) {

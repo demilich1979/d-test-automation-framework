@@ -22,7 +22,7 @@ public class CreateLabsPageSteps {
 
     @When("I fill first Create a Lab form using following data:")
      public void fillCreateLabPage(@Transpose CreateLabInfo createLabInfo) {
-//        createLabPage.setName(createLabInfo.getName());
+        createLabPage.setName(createLabInfo.getName());
 
     }
 
