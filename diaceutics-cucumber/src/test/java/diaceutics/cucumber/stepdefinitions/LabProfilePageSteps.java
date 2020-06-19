@@ -2,6 +2,7 @@ package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.SoftAssert;
+import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
 import diaceutics.selenium.forms.pages.LabProfilePage;
 import diaceutics.selenium.models.Platform;
@@ -49,21 +50,21 @@ public class LabProfilePageSteps {
 
         labProfilePage.getAddPlatformForm().clickAddPlatform();
         scenarioContext.add(key, platform);
+        XmlFileStore.store(key,platform);
     }
 
     @And("Field {string} does not contains value from {string}")
     public void fieldPlatformDoesNotContainsValueFromNewPlatform(String field, String key) {
-        Platform platform = scenarioContext.get(key);
+        Platform platform = XmlFileStore.get(key);
         String value = platform.getReflectionFieldValue(AddPlatformFormFields.getEnumValue(field).getModelField());
         Assert.assertFalse(labProfilePage.getAddPlatformForm().isFieldContainsValue(AddPlatformFormFields.getEnumValue(field), value),
-                String.format("value %S should not be in the %s field", value, field));
+                String.format("Value %S should not be in the %s field", value, field));
 
     }
 
-    @Then("{string} added in Platforms table")
+    @Then("Platform {string} added in Platforms table")
     public void platformAddedInPlatformsTable(String key) {
         Platform platform = scenarioContext.get(key);
-
         Assert.assertTrue(labProfilePage.isPlatformAdded(platform),
                 String.format("Platform with values %s, %s should be added in Platforms table",
                         platform.getPlatformManufacturer(), platform.getPlatform()));
@@ -89,11 +90,48 @@ public class LabProfilePageSteps {
 
     }
 
-    @When("On Lab Profile Page click on Edit button for the {string} platform")
+    @When("I click on Edit button for the {string} platform on Lab Profile Page")
     public void onLabProfilePageClickOnEditButtonForTheNewPlatformPlatform(String key) {
-        Platform platform = scenarioContext.get(key);
-        labProfilePage.clickEditButton(platform);
+        Platform platform = XmlFileStore.get(key);
+        labProfilePage.clickEditPlatform(platform);
     }
 
 
+    @And("I set {string} value for platform {string} and save changes")
+    public void modifyPlatformAndSaveChanges(String value, String key) {
+        Platform platform = XmlFileStore.get(key);
+        String newValue = labProfilePage.getEditPlatformForm().setFieldValue(value);
+        platform.setPlatform(newValue);
+        XmlFileStore.store(key, platform);
+        labProfilePage.getEditPlatformForm().clickSaveChanges();
+    }
+
+    @When("On the Lab Profile page click on Delete button for the {string} platform")
+    public void onTheLabProfilePageClickOnDeleteButtonForTheNewPlatformPlatform(String key) {
+        Platform platform = XmlFileStore.get(key);
+        labProfilePage.clickDeletePlatform(platform);
+    }
+
+    @And("Click Confirm")
+    public void clickConfirm() {
+        labProfilePage.getConfirmForm().clickConfirm();
+    }
+
+    @Then("Edit platform form is opened")
+    public void editPlatformFormIsOpened() {
+        Assert.assertTrue(labProfilePage.getEditPlatformForm().isDisplayed(), "Edit platform form should be opened");
+    }
+
+    @Then("Confirm form is opened")
+    public void confirmFormIsOpened() {
+        Assert.assertTrue(labProfilePage.getConfirmForm().isDisplayed(), "Confirm form should be opened");
+    }
+
+    @Then("Platform {string} is not present on the Lab Profile page")
+    public void platformNewPlatformIsNotPresentOnTheLabProfilePage(String key) {
+        Platform platform = XmlFileStore.get(key);
+        Assert.assertFalse(labProfilePage.isPlatformAdded(platform),
+                String.format("Platform with values %s, %s should not present on the Lab Profile page",
+                        platform.getPlatformManufacturer(), platform.getPlatform()));
+    }
 }

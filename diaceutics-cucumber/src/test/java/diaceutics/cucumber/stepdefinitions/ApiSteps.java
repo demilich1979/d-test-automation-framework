@@ -3,7 +3,6 @@ package diaceutics.cucumber.stepdefinitions;
 import diaceutics.restassured.tests.DemoTest;
 import io.cucumber.java.en.Given;
 
-
 public class ApiSteps {
 
     private final DemoTest demoTest;
@@ -26,4 +25,5 @@ public class ApiSteps {
     public void startSetHeadersTest() {
         demoTest.setHeaders();
     }
+
 }

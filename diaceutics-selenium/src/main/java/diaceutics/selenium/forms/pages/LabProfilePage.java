@@ -3,6 +3,8 @@ package diaceutics.selenium.forms.pages;
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.ILink;
 import aquality.selenium.forms.Form;
+import diaceutics.selenium.forms.ConfirmForm;
+import diaceutics.selenium.forms.EditPlatformForm;
 import diaceutics.selenium.grids.Grid;
 import diaceutics.selenium.forms.AddPlatformForm;
 import diaceutics.selenium.models.Platform;
@@ -11,8 +13,8 @@ import org.openqa.selenium.By;
 
 public class LabProfilePage extends Form {
     private static final String SORT_COLUMN_BUTTON_TEMPLATE = "//th[.//span[.='%s']]//ui-icon";
-    private static final String EDIT_BUTTON_TEMPLATE = "//tr[.//span[.='%s']]//td[./span[.='Edit']]";
-    private static final String DELETE_BUTTON_TEMPLATE = "//tr[.//span[.='%s']]//td[./span[.='Delete']]";
+    private static final String EDIT_BUTTON_TEMPLATE = "//tr[.//span[.='%s']]//td[./span[.='Edit']]//span";
+    private static final String DELETE_BUTTON_TEMPLATE = "//tr[.//span[.='%s']]//td[./span[.='Delete']]//span";
 
     private final IButton btnAddPlatform = getElementFactory().getButton(
             By.xpath("//div[contains(@class,'titleArea')]//button[.='Add platform']"), "Add platform");
@@ -33,6 +35,14 @@ public class LabProfilePage extends Form {
         return new AddPlatformForm();
     }
 
+    public EditPlatformForm getEditPlatformForm() {
+        return new EditPlatformForm();
+    }
+
+    public ConfirmForm getConfirmForm() {
+        return new ConfirmForm();
+    }
+
     public void clickAddPlatform() {
         btnAddPlatform.clickAndWait();
     }
@@ -44,10 +54,18 @@ public class LabProfilePage extends Form {
         btnSortColumn.clickAndWait();
     }
 
-    public void clickEditButton(Platform platform) {
+    public void clickEditPlatform(Platform platform) {
         IButton btnEdit = getElementFactory().getButton(
                 By.xpath(String.format(EDIT_BUTTON_TEMPLATE, platform.getPlatform())),
-                String.format("Edit %s", platform.getPlatform()));
+                String.format("Edit %s", "platform.getPlatform()"));
+
+        btnEdit.clickAndWait();
+    }
+
+    public void clickDeletePlatform(Platform platform) {
+        IButton btnEdit = getElementFactory().getButton(
+                By.xpath(String.format(DELETE_BUTTON_TEMPLATE, platform.getPlatform())),
+                String.format("Delete %s", platform.getPlatform()));
 
         btnEdit.clickAndWait();
     }

@@ -49,5 +49,4 @@ public class Grid {
         Collections.sort(tmp);
         return getValuesFromColumn(columnName).equals(tmp);
     }
-
 }

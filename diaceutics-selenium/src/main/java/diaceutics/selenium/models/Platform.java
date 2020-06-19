@@ -12,4 +12,12 @@ public class Platform extends BaseModel{
     public String getPlatform() {
         return platform;
     }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
+    public void setPlatformManufacturer(String platformManufacturer) {
+        this.platformManufacturer = platformManufacturer;
+    }
 }
