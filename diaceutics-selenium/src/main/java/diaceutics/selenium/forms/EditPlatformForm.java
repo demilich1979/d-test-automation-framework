@@ -12,7 +12,7 @@ public class EditPlatformForm extends Form {
 
     private final ComboboxJs platformCombobox = getElementFactory().getCustomElement(
             ComboboxJs.class,
-            By.xpath("//div[./label[text()='Platform']]//div[@class='selectContainer']//ng-select[@role='listbox']//span[@class='ng-arrow']"),
+            By.xpath("//div[./label[text()='Platform']]//div[@class='selectContainer']//ng-select[@role='listbox']//span[@class='ng-arrow-wrapper']"),
             "Platform");
 
     public EditPlatformForm() {

@@ -17,11 +17,9 @@ import java.util.Map;
 
 public class LabProfilePageSteps {
     private final LabProfilePage labProfilePage;
-    private final ScenarioContext scenarioContext;
 
     @Inject
-    public LabProfilePageSteps(ScenarioContext scenarioContext) {
-        this.scenarioContext = scenarioContext;
+    public LabProfilePageSteps() {
         labProfilePage = new LabProfilePage();
     }
 
@@ -49,8 +47,7 @@ public class LabProfilePageSteps {
         });
 
         labProfilePage.getAddPlatformForm().clickAddPlatform();
-        scenarioContext.add(key, platform);
-        XmlFileStore.store(key,platform);
+        XmlFileStore.store(key, platform);
     }
 
     @And("Field {string} does not contains value from {string}")
@@ -64,7 +61,7 @@ public class LabProfilePageSteps {
 
     @Then("Platform {string} added in Platforms table")
     public void platformAddedInPlatformsTable(String key) {
-        Platform platform = scenarioContext.get(key);
+        Platform platform = XmlFileStore.get(key);
         Assert.assertTrue(labProfilePage.isPlatformAdded(platform),
                 String.format("Platform with values %s, %s should be added in Platforms table",
                         platform.getPlatformManufacturer(), platform.getPlatform()));

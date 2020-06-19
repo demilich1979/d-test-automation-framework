@@ -10,7 +10,7 @@ import org.openqa.selenium.By;
 import java.util.List;
 
 public class AddPlatformForm extends Form {
-    private static final String FIELD_TEMPLATE = "//div[./label[text()='%s']]//div[@class='selectContainer']//ng-select[@role='listbox']//span[@class='ng-arrow']";
+    private static final String FIELD_TEMPLATE = "//div[./label[text()='%s']]//div[@class='selectContainer']//ng-select[@role='listbox']//span[@class='ng-arrow-wrapper']";
 
     private final IButton btnAddPlatform = getElementFactory().getButton(
             By.xpath("//form//button[.='Add platform']"), "Add platform");
