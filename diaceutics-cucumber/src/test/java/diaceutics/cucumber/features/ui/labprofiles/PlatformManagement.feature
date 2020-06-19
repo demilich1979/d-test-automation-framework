@@ -7,7 +7,7 @@ Feature: Platform Management
     When I select 'Test lab' lab on Filters Labs page
     Then LabProfile page is opened
 
-  @PlatformManagement1
+  @PlatformManagement
   Scenario: DIAFE:0009 Possibility to add a platform to the existing lab
     When I click on Add Platform on Lab Profile Page
     Then Add Platform form is opened
@@ -50,7 +50,7 @@ Feature: Platform Management
   Scenario: DIAFE:0013 Check number of platforms
     Then On Lab Profile page check numbers of platforms in the grid
 
-  @PlatformManagement1
+  @PlatformManagement
   Scenario: DIAFE:0014 Possibility to delete a platform
     When On the Lab Profile page click on Delete button for the 'newPlatform' platform
     Then Confirm form is opened
