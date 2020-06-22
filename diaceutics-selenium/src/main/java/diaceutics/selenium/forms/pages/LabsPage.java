@@ -2,10 +2,10 @@ package diaceutics.selenium.forms.pages;
 
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.ILink;
-import aquality.selenium.forms.Form;
+import diaceutics.selenium.forms.BaseForm;
 import org.openqa.selenium.By;
 
-public class LabsPage extends Form {
+public class LabsPage extends BaseForm {
 
     private static final String COUNTRY_TEMPLATE = "//div[contains(@class,'byCountry')]//span/a[.='%s']";
 

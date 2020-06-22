@@ -2,14 +2,13 @@ package diaceutics.selenium.forms;
 
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.interfaces.IButton;
-import aquality.selenium.forms.Form;
 import diaceutics.selenium.elements.ComboboxJs;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
 import org.openqa.selenium.By;
 
 import java.util.List;
 
-public class AddPlatformForm extends Form {
+public class AddPlatformForm extends BaseForm {
     private static final String FIELD_TEMPLATE = "//div[./label[text()='%s']]//div[@class='selectContainer']//ng-select[@role='listbox']//span[@class='ng-arrow-wrapper']";
 
     private final IButton btnAddPlatform = getElementFactory().getButton(

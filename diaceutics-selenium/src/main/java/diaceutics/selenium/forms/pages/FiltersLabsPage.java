@@ -1,10 +1,10 @@
 package diaceutics.selenium.forms.pages;
 
 import aquality.selenium.elements.interfaces.ILink;
-import aquality.selenium.forms.Form;
+import diaceutics.selenium.forms.BaseForm;
 import org.openqa.selenium.By;
 
-public class FiltersLabsPage extends Form {
+public class FiltersLabsPage extends BaseForm {
 
     private static final String LAB_TEMPLATE = "//div[contains(@class,'result')]//div//a[.='%s']";
 

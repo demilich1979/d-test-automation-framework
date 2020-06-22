@@ -1,8 +1,11 @@
 package diaceutics.selenium.forms.pages;
 
+import aquality.selenium.browser.AqualityServices;
+import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.interfaces.IButton;
+import aquality.selenium.elements.interfaces.IElement;
 import aquality.selenium.elements.interfaces.ILink;
-import aquality.selenium.forms.Form;
+import diaceutics.selenium.forms.BaseForm;
 import diaceutics.selenium.forms.ConfirmForm;
 import diaceutics.selenium.forms.EditPlatformForm;
 import diaceutics.selenium.grids.Grid;
@@ -11,7 +14,9 @@ import diaceutics.selenium.models.Platform;
 import diaceutics.selenium.utilities.RegExUtil;
 import org.openqa.selenium.By;
 
-public class LabProfilePage extends Form {
+import java.util.List;
+
+public class LabProfilePage extends BaseForm {
     private static final String SORT_COLUMN_BUTTON_TEMPLATE = "//th[.//span[.='%s']]//ui-icon";
     private static final String EDIT_BUTTON_TEMPLATE = "//tr[.//span[.='%s']and .//span[.='%s']]//td[./span[.='Edit']]//span";
     private static final String DELETE_BUTTON_TEMPLATE = "//tr[.//span[.='%s']and .//span[.='%s']]//td[./span[.='Delete']]//span";
@@ -72,21 +77,10 @@ public class LabProfilePage extends Form {
     }
 
     public boolean isPlatformAdded(Platform platform) {
-        boolean isPlatformAdded = false;
-        if (platformsGrid.isValueExistInColumn(platform.getPlatformManufacturer(), platformsGrid.getColumns().get(0))
-                && platformsGrid.isValueExistInColumn(platform.getPlatform(), platformsGrid.getColumns().get(1))) {
-            isPlatformAdded = true;
-        }
+        List<IElement> platformLink = getElementFactory().findElements(By.xpath
+                (String.format(PLATFORM_TEMPLATE, platform.getPlatform(), platform.getPlatformManufacturer())), ElementType.LINK);
 
-        return isPlatformAdded;
-    }
-
-    public boolean isPlatformExist(Platform platform) {
-        ILink platformLink = getElementFactory().getLink(
-                By.xpath(String.format(PLATFORM_TEMPLATE, platform.getPlatform(), platform.getPlatformManufacturer())),
-                String.format("Platform %s", platform.getPlatform()));
-
-        return platformLink.state().waitForDisplayed();
+        return  platformLink.size() > 0;
     }
 
     public boolean isDataInColumnInPlatformGridSorted(String column) {
