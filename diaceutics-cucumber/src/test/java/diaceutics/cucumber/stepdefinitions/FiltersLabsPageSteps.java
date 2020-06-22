@@ -3,9 +3,8 @@ package diaceutics.cucumber.stepdefinitions;
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.cucumber.utilities.XmlFileStore;
-import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
 import diaceutics.selenium.forms.pages.FiltersLabsPage;
-import diaceutics.selenium.models.CreateLabInfo;
+import diaceutics.selenium.models.Lab;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -38,7 +37,7 @@ public class FiltersLabsPageSteps {
     @Then("All of the following labs for the specific country are displayed:")
     public void allOfTheLabsForTheCountryCountryNameAreDisplayed(List<String> keys) {
         keys.forEach((labKey) -> {
-            CreateLabInfo createLabInfo = XmlFileStore.get(labKey);
+            Lab createLabInfo = XmlFileStore.get(labKey);
             SoftAssert.getInstance().assertTrue(filtersLabsPage.isLabDisplayedIndFilterResults(createLabInfo.getName()),
                     String.format("Lab %s should be displayed in filter results", createLabInfo.getName()));
         });

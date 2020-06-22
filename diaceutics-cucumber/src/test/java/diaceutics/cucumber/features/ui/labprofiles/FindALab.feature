@@ -1,6 +1,6 @@
 Feature: Find a Lab
 
-  @CreateALab
+  @FindLab
   Scenario: DIAFE:0005 Filter a lab by country and type
     Given Labs page is opened
     When I choose a Country under Find Lab in which labs 'labOne' were created and press Search icon
@@ -14,7 +14,7 @@ Feature: Find a Lab
     When I Set radiobutton to 'Private Lab' and press Search icon
       Then 'Private' lab are filtered
 
-  @CreateALab
+  @FindLab
   Scenario: DIAFE:0006 Filter a lab by keyword
     When I put a Lab 'Test lab' an Search textBox and press Search icon
       Then Filters Labs page is opened

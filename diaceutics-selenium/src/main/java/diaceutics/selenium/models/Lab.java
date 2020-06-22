@@ -3,7 +3,7 @@ package diaceutics.selenium.models;
 import lombok.Data;
 
 @Data
-public class CreateLabInfo {
+public class Lab extends BaseModel {
     private String name;
     private String country;
 }

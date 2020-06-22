@@ -3,7 +3,7 @@ package diaceutics.cucumber.stepdefinitions;
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.forms.pages.LabsPage;
-import diaceutics.selenium.models.CreateLabInfo;
+import diaceutics.selenium.models.Lab;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -39,7 +39,7 @@ public class LabsPageSteps {
 
     @When("I choose a Country under Find Lab in which labs {string} were created and press Search icon")
     public void iChooseACountryUnderFindLabForLabsLabNameAndPressSearchIcon(String labKey) {
-        CreateLabInfo lab = XmlFileStore.get(labKey);
+        Lab lab = XmlFileStore.get(labKey);
         String country = lab.getCountry();
         labsPage.chooseCountry(country);
         labsPage.clickSearch();
@@ -50,4 +50,5 @@ public class LabsPageSteps {
         labsPage.putTextInSearchField(labName);
         labsPage.clickSearch();
     }
+
 }
