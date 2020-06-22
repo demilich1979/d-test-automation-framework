@@ -11,29 +11,29 @@ Feature: Platform Management
   Scenario: DIAFE:0009 Possibility to add a platform to the existing lab
     When I click on Add Platform on Lab Profile Page
       Then Add Platform form is opened
-    When I fill following fields on Add Platform form and save as 'newPlatform':
+    When I fill following fields on Add Platform form and save as 'newPlatformOne':
       | Platform manufacturer | random |
       | Platform              | random |
       Then Lab Profile page is opened
-      And Platform 'newPlatform' added to Platforms grid
+      And Platform 'newPlatformOne' added to Platforms grid
 
   @PlatformManagement
   Scenario: DIAFE:0010 Platform duplication impossibility
     When I click on Add Platform on Lab Profile Page
       Then Add Platform form is opened
-      And Field 'Platform' does not contains value from 'newPlatform'
+      And Field 'Platform' does not contains value from 'newPlatformOne'
 
   @PlatformManagement
   Scenario: DIAFE:0011 Possibility to sort platforms
     When I click on Add Platform on Lab Profile Page
       Then Add Platform form is opened
-    When I fill following fields on Add Platform form and save as 'newPlatformOne':
+    When I fill following fields on Add Platform form and save as 'newPlatformTwo':
       | Platform manufacturer | random |
       | Platform              | random |
       Then Lab Profile page is opened
     When I click on Add Platform on Lab Profile Page
       Then Add Platform form is opened
-    When I fill following fields on Add Platform form and save as 'newPlatformTwo':
+    When I fill following fields on Add Platform form and save as 'newPlatformThree':
       | Platform manufacturer | random |
       | Platform              | random |
       Then Lab Profile page is opened
@@ -44,20 +44,27 @@ Feature: Platform Management
 
   @PlatformManagement
   Scenario: DIAFE:0012 Possibility to edit platforms
-    When I click on Edit button for the 'newPlatform' platform on Lab Profile Page
+    When I click on Edit button for the 'newPlatformOne' platform on Lab Profile Page
       Then Edit platform form is opened
-    When I set 'random' value for platform 'newPlatform' and save changes
+    When I set 'random' value for platform 'newPlatformOne' and save changes
       Then Lab Profile page is opened
-      And Platform 'newPlatform' added to Platforms grid
+      And Platform 'newPlatformOne' added to Platforms grid
 
   @PlatformManagement
   Scenario: DIAFE:0013 Check number of platforms
-    Then On Lab Profile page check numbers of platforms in the grid
+    When I count the number of platforms in the Platforms grid and save as 'numberOfPlatforms'
+      Then 'numberOfPlatforms' in Platform grid must be the same as a number stated in the Platforms grid title
 
   @PlatformManagement
-  Scenario: DIAFE:0014 Possibility to delete a platform
-    When On the Lab Profile page I click on Delete button for the 'newPlatform' platform
+  Scenario Outline: DIAFE:0014 Possibility to delete a platform
+    When On the Lab Profile page I click on Delete button for the '<Platform>' platform
       Then Confirm form is opened
     When I click Confirm
       Then Lab Profile page is opened
-      And Platform 'newPlatform' is not present on the Lab Profile page
+      And Platform '<Platform>' is not present on the Lab Profile page
+
+    Examples:
+      | Platform         |
+      | newPlatformOne   |
+      | newPlatformTwo   |
+      | newPlatformThree |
