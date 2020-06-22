@@ -1,11 +1,10 @@
 package diaceutics.selenium.forms;
 
 import aquality.selenium.elements.interfaces.IButton;
-import aquality.selenium.forms.Form;
 import diaceutics.selenium.elements.ComboboxJs;
 import org.openqa.selenium.By;
 
-public class EditPlatformForm extends Form {
+public class EditPlatformForm extends BaseForm {
 
     private final IButton btnSaveChanges = getElementFactory().getButton(
             By.xpath("//form//button[.='Save changes']"), "Save changes");

@@ -14,7 +14,8 @@ Feature: Platform Management
     When I fill following fields on Add Platform Form and save as 'newPlatform':
       | Platform manufacturer | random |
       | Platform              | random |
-    Then Platform 'newPlatform' added in Platforms table
+      Then LabProfile page is opened
+      And Platform 'newPlatform' added in Platforms table
 
   @PlatformManagement
   Scenario: DIAFE:0010 Platform duplication impossibility
@@ -46,7 +47,8 @@ Feature: Platform Management
     When I click on Edit button for the 'newPlatform' platform on Lab Profile Page
       Then Edit platform form is opened
     When I set 'random' value for platform 'newPlatform' and save changes
-      Then Platform 'newPlatform' added in Platforms table
+      Then LabProfile page is opened
+      And Platform 'newPlatform' added in Platforms table
 
   @PlatformManagement
   Scenario: DIAFE:0013 Check number of platforms
@@ -57,4 +59,5 @@ Feature: Platform Management
     When On the Lab Profile page click on Delete button for the 'newPlatform' platform
       Then Confirm form is opened
     When Click Confirm
-      Then Platform 'newPlatform' is not present on the Lab Profile page
+      Then LabProfile page is opened
+      And Platform 'newPlatform' is not present on the Lab Profile page

@@ -5,15 +5,10 @@ import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.Link;
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.ILink;
-import aquality.selenium.elements.interfaces.IRadioButton;
-import aquality.selenium.forms.Form;
+import diaceutics.selenium.forms.BaseForm;
 import org.openqa.selenium.By;
 
-import java.util.List;
-
-import static aquality.selenium.browser.AqualityServices.getElementFactory;
-
-public class FiltersLabsPage extends Form {
+public class FiltersLabsPage extends BaseForm {
 
     private static final String LAB_TEMPLATE = "//div[contains(@class,'result')]//div//a[.='%s']";
     private static final String RADIO_BUTTON_TEMPLATE = "//label[contains(@class,'radioOptionContainer')][.//span[text()='%s']]";

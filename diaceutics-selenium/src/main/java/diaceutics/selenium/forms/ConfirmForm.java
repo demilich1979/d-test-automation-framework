@@ -1,10 +1,9 @@
 package diaceutics.selenium.forms;
 
 import aquality.selenium.elements.interfaces.IButton;
-import aquality.selenium.forms.Form;
 import org.openqa.selenium.By;
 
-public class ConfirmForm extends Form {
+public class ConfirmForm extends BaseForm {
 
     private final IButton btnConfirm = getElementFactory().getButton(
             By.xpath("//button[.='Confirm']"), "Confirm");
