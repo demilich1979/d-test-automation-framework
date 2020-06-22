@@ -13,6 +13,9 @@ import java.util.Random;
 
 public class ComboboxJs extends Element implements IElement {
 
+    private final List<IElement> optionLinks = getElementFactory().findElements(
+            By.xpath("//span[contains(@class,'ng-option')]"), ElementType.LINK);
+
     public ComboboxJs(By locator, String name, ElementState state) {
         super(locator, name, state);
     }
@@ -23,10 +26,6 @@ public class ComboboxJs extends Element implements IElement {
 
     public String selectByText(String value) {
         this.clickAndWait();
-        if (value.equals("random")) {
-            value = getRandomValue();
-        }
-
         ILink optionLink = getElementFactory().getLink(
                 By.xpath(String.format("//div[@role='option']//span[text()='%s']", value)), value);
 
@@ -41,18 +40,14 @@ public class ComboboxJs extends Element implements IElement {
     }
 
     public List<String> getStringListOptions() {
-        List<IElement> optionLinks = getElementFactory().findElements(
-                By.xpath("//span[contains(@class,'ng-option')]"), ElementType.LINK);
-        if (!(optionLinks.size() > 0)) {
-            this.clickAndWait();
-        }
+        this.clickAndWait();
         List<String> options = new ArrayList<>();
-
         if (optionLinks.size() > 0) {
             optionLinks.forEach(option -> {
                 options.add(option.getText());
             });
         }
+        this.clickAndWait();
         return options;
     }
 }

@@ -26,6 +26,10 @@ public class AddPlatformForm extends BaseForm {
         ComboboxJs comboboxJs = getElementFactory().getCustomElement(
                 ComboboxJs.class, By.xpath(String.format(COMBOBOX_TEMPLATE, field.getLocator())), "comboboxJs");
 
+        if (value.equals("random")) {
+            value = comboboxJs.getRandomValue();
+        }
+
         return comboboxJs.selectByText(value);
     }
 
