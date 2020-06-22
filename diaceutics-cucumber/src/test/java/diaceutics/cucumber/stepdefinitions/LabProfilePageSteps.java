@@ -23,7 +23,7 @@ public class LabProfilePageSteps {
         labProfilePage = new LabProfilePage();
     }
 
-    @Given("LabProfile page is opened")
+    @Given("Lab Profile page is opened")
     public void labProfilesPageIsOpened() {
         Assert.assertTrue(labProfilePage.isDisplayed(), "LabProfile page should be opened");
     }
@@ -38,7 +38,7 @@ public class LabProfilePageSteps {
         Assert.assertTrue(labProfilePage.getAddPlatformForm().isDisplayed(), "Add Platform form should be opened");
     }
 
-    @When("I fill following fields on Add Platform Form and save as {string}:")
+    @When("I fill following fields on Add Platform form and save as {string}:")
     public void iFillFollowingFieldsOnAddPlatformFormAndSaveAsNewPlatform(String key, Map<String, String> data) {
         Platform platform = new Platform();
         data.forEach((field, value) -> {
@@ -59,7 +59,7 @@ public class LabProfilePageSteps {
 
     }
 
-    @Then("Platform {string} added in Platforms table")
+    @Then("Platform {string} added to Platforms grid")
     public void platformAddedInPlatformsTable(String key) {
         Platform platform = XmlFileStore.get(key);
         Assert.assertTrue(labProfilePage.isPlatformAdded(platform),
@@ -103,13 +103,13 @@ public class LabProfilePageSteps {
         labProfilePage.getEditPlatformForm().clickSaveChanges();
     }
 
-    @When("On the Lab Profile page click on Delete button for the {string} platform")
+    @When("On the Lab Profile page I click on Delete button for the {string} platform")
     public void onTheLabProfilePageClickOnDeleteButtonForTheNewPlatformPlatform(String key) {
         Platform platform = XmlFileStore.get(key);
         labProfilePage.clickDeletePlatform(platform);
     }
 
-    @And("Click Confirm")
+    @And("I click Confirm")
     public void clickConfirm() {
         labProfilePage.getConfirmForm().clickConfirm();
     }
