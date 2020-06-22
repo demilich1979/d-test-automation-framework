@@ -3,15 +3,19 @@ package diaceutics.cucumber.stepdefinitions;
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.selenium.forms.pages.FiltersLabsPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
+import javax.inject.Inject;
+
 public class FiltersLabsPageSteps {
     private final FiltersLabsPage filtersLabsPage;
     private final ScenarioContext scenarioContext;
 
+    @Inject
     public FiltersLabsPageSteps(ScenarioContext scenarioContext) {
         this.scenarioContext = scenarioContext;
         filtersLabsPage = new FiltersLabsPage();
@@ -44,5 +48,11 @@ public class FiltersLabsPageSteps {
         SoftAssert.getInstance().assertTrue(filtersLabsPage.isLabAreFiltered(filter),
                 String.format("Labs should be filtered by %s", filter));
 
+    }
+
+    @And("Lab {string} is displayed in filter results")
+    public void labTestLabIsDisplayedInFilterResults(String labName) {
+        Assert.assertTrue(filtersLabsPage.isLabDisplayedIndFilterResults(labName),
+                String.format("Lab %s should be displayed in filter results",labName));
     }
 }

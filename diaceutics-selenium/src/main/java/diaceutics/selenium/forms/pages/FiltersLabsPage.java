@@ -4,16 +4,20 @@ import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.Link;
 import aquality.selenium.elements.interfaces.IButton;
+import aquality.selenium.elements.interfaces.IElement;
 import aquality.selenium.elements.interfaces.ILink;
+import aquality.selenium.elements.interfaces.IRadioButton;
 import diaceutics.selenium.forms.BaseForm;
 import org.openqa.selenium.By;
+
+import java.util.List;
 
 public class FiltersLabsPage extends BaseForm {
 
     private static final String LAB_TEMPLATE = "//div[contains(@class,'result')]//div//a[.='%s']";
     private static final String RADIO_BUTTON_TEMPLATE = "//label[contains(@class,'radioOptionContainer')][.//span[text()='%s']]";
     private static final String LAB_TYPE_TEMPLATE = "//div[contains(@class,'result')]//div//span[..//a]";
-    private final IButton btnSearch = getElementFactory().getButton(By.id("icons/icon-search"), "Search");
+    private final IButton btnSearch = getElementFactory().getButton(By.name("search"), "Search");
 
     public FiltersLabsPage() {
         super(By.xpath("//h3[.='Filters']"), "CountryLabProfile");
@@ -39,10 +43,16 @@ public class FiltersLabsPage extends BaseForm {
     }
 
     public boolean isLabAreFiltered(String filter) {
-        List<Link> labs = getElementFactory().findElements(By.xpath
+        List<Link> labTypeLinks = getElementFactory().findElements(By.xpath
                 (LAB_TYPE_TEMPLATE), ElementType.LINK);
         return AqualityServices.getConditionalWait()
-                .waitFor(() -> labs.stream().allMatch(lab -> lab.getText().equals(filter)));
+                .waitFor(() -> labTypeLinks.stream().allMatch(lab -> lab.getText().equals(filter)));
+    }
+
+    public boolean isLabDisplayedIndFilterResults(String labName) {
+        List<IElement> labLink = getElementFactory().findElements(By.xpath
+                (String.format(LAB_TEMPLATE, labName)), ElementType.LINK);
+        return labLink.size() > 0;
     }
 
 }

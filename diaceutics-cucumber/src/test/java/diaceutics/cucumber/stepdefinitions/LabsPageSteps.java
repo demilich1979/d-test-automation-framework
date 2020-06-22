@@ -17,7 +17,7 @@ public class LabsPageSteps {
 
     @Inject
     public LabsPageSteps(ScenarioContext scenarioContext) {
-        this.scenarioContext=scenarioContext;
+        this.scenarioContext = scenarioContext;
         labsPage = new LabsPage();
     }
 
@@ -39,14 +39,17 @@ public class LabsPageSteps {
 
     @When("I choose a {string} under Find Lab for labs {string} and press Search icon")
     public void iChooseACountryUnderFindLabForLabsLabNameAndPressSearchIcon(String countryKey, String labKey) {
-        CreateLabInfo lab = XmlFileStore.get(labKey);
-        String country = lab.getCountry();
+//        CreateLabInfo lab = XmlFileStore.get(labKey);
+//        String country = lab.getCountry();
+        String country = "Albania";
         labsPage.chooseCountry(country);
-        scenarioContext.add(countryKey,country);
+        scenarioContext.add(countryKey, country);
         labsPage.clickSearch();
     }
 
-    @When("I put a Lab {string} an Search textbox and press Search icon")
-    public void iPutALabLabNameAnSearchTextboxAndPressSearchIcon() {
+    @When("I put a Lab {string} an Search textBox and press Search icon")
+    public void iPutALabLabNameAnSearchTextboxAndPressSearchIcon(String labName) {
+        labsPage.putTextInSearchField(labName);
+        labsPage.clickSearch();
     }
 }
