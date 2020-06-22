@@ -13,9 +13,6 @@ import java.util.Random;
 
 public class ComboboxJs extends Element implements IElement {
 
-    private final List<IElement> optionLinks = getElementFactory().findElements(
-            By.xpath("//span[contains(@class,'ng-option')]"), ElementType.LINK);
-
     public ComboboxJs(By locator, String name, ElementState state) {
         super(locator, name, state);
     }
@@ -41,6 +38,8 @@ public class ComboboxJs extends Element implements IElement {
 
     public List<String> getStringListOptions() {
         this.clickAndWait();
+        List<IElement> optionLinks = getElementFactory().findElements(
+                By.xpath("//span[contains(@class,'ng-option')]"), ElementType.LINK);
         List<String> options = new ArrayList<>();
         if (optionLinks.size() > 0) {
             optionLinks.forEach(option -> {
