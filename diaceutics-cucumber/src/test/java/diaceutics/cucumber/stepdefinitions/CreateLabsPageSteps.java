@@ -9,7 +9,6 @@ import io.cucumber.java.en.When;
 import static org.testng.Assert.assertTrue;
 
 public class CreateLabsPageSteps {
-
     private final CreateLabPage createLabPage;
 
     public CreateLabsPageSteps() {

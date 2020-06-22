@@ -13,14 +13,14 @@ import org.testng.annotations.DataProvider;
                 "diaceutics.cucumber.stepdefinitions"
         },
         plugin = {"io.qameta.allure.cucumber5jvm.AllureCucumber5Jvm", "json:target/cucumber-reports/cucumber.json"},
-        tags = {"@smoke"},
+        tags = {"@PlatformManagement"},
         strict = true,
         objectFactory = CustomObjectFactory.class
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 
     @Override
-    @DataProvider(parallel = true)
+    @DataProvider(parallel = false)
     public Object[][] scenarios() {
         return super.scenarios();
     }
