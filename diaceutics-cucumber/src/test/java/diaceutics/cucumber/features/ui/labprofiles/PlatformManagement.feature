@@ -3,40 +3,40 @@ Feature: Platform Management
   Background:
     Given Labs page is opened
     When I select 'Albania' country on Labs page
-    Then Filters Labs page is opened
+      Then Filters Labs page is opened
     When I select 'Test lab' lab on Filters Labs page
-    Then LabProfile page is opened
+      Then Lab Profile page is opened
 
   @PlatformManagement
   Scenario: DIAFE:0009 Possibility to add a platform to the existing lab
     When I click on Add Platform on Lab Profile Page
-    Then Add Platform form is opened
-    When I fill following fields on Add Platform Form and save as 'newPlatform':
+      Then Add Platform form is opened
+    When I fill following fields on Add Platform form and save as 'newPlatform':
       | Platform manufacturer | random |
       | Platform              | random |
-      Then LabProfile page is opened
-      And Platform 'newPlatform' added in Platforms table
+      Then Lab Profile page is opened
+      And Platform 'newPlatform' added to Platforms grid
 
   @PlatformManagement
   Scenario: DIAFE:0010 Platform duplication impossibility
     When I click on Add Platform on Lab Profile Page
-    Then Add Platform form is opened
-    And Field 'Platform' does not contains value from 'newPlatform'
+      Then Add Platform form is opened
+      And Field 'Platform' does not contains value from 'newPlatform'
 
   @PlatformManagement
   Scenario: DIAFE:0011 Possibility to sort platforms
     When I click on Add Platform on Lab Profile Page
       Then Add Platform form is opened
-    When I fill following fields on Add Platform Form and save as 'newPlatformOne':
+    When I fill following fields on Add Platform form and save as 'newPlatformOne':
       | Platform manufacturer | random |
       | Platform              | random |
-      Then LabProfile page is opened
+      Then Lab Profile page is opened
     When I click on Add Platform on Lab Profile Page
       Then Add Platform form is opened
-    When I fill following fields on Add Platform Form and save as 'newPlatformTwo':
+    When I fill following fields on Add Platform form and save as 'newPlatformTwo':
       | Platform manufacturer | random |
       | Platform              | random |
-      Then LabProfile page is opened
+      Then Lab Profile page is opened
     When I sort data by alphabet in 'Platform manufacturer' column
       Then Data in 'Platform manufacturer' column sorted according to alphabet
     When I sort data by alphabet in 'Platform equipment' column
@@ -47,8 +47,8 @@ Feature: Platform Management
     When I click on Edit button for the 'newPlatform' platform on Lab Profile Page
       Then Edit platform form is opened
     When I set 'random' value for platform 'newPlatform' and save changes
-      Then LabProfile page is opened
-      And Platform 'newPlatform' added in Platforms table
+      Then Lab Profile page is opened
+      And Platform 'newPlatform' added to Platforms grid
 
   @PlatformManagement
   Scenario: DIAFE:0013 Check number of platforms
@@ -56,8 +56,8 @@ Feature: Platform Management
 
   @PlatformManagement
   Scenario: DIAFE:0014 Possibility to delete a platform
-    When On the Lab Profile page click on Delete button for the 'newPlatform' platform
+    When On the Lab Profile page I click on Delete button for the 'newPlatform' platform
       Then Confirm form is opened
-    When Click Confirm
-      Then LabProfile page is opened
+    When I click Confirm
+      Then Lab Profile page is opened
       And Platform 'newPlatform' is not present on the Lab Profile page
