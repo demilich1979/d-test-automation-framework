@@ -1,11 +1,14 @@
-Feature: Create a Lab
+Feature: Find a Lab
 
-  @CreateALab1
+  @CreateALab
   Scenario: DIAFE:0005 Filter a lab by country and type
     Given Labs page is opened
-    When I choose a 'CountryName' under Find Lab for labs 'LabName' and press Search icon
+    When I choose a Country under Find Lab in which labs 'labOne' were created and press Search icon
       Then Filters Labs page is opened
-#      And All of the labs for the country 'CountryName' are displayed
+      And All of the following labs for the specific country are displayed:
+        | labOne   |
+        | labTwo   |
+        | labThree |
     When I Set radiobutton to 'Academic Lab' and press Search icon
       Then 'Academic' lab are filtered
     When I Set radiobutton to 'Private Lab' and press Search icon

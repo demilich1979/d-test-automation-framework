@@ -37,18 +37,16 @@ public class LabsPageSteps {
     }
 
 
-    @When("I choose a {string} under Find Lab for labs {string} and press Search icon")
-    public void iChooseACountryUnderFindLabForLabsLabNameAndPressSearchIcon(String countryKey, String labKey) {
-//        CreateLabInfo lab = XmlFileStore.get(labKey);
-//        String country = lab.getCountry();
-        String country = "Albania";
+    @When("I choose a Country under Find Lab in which labs {string} were created and press Search icon")
+    public void iChooseACountryUnderFindLabForLabsLabNameAndPressSearchIcon(String labKey) {
+        CreateLabInfo lab = XmlFileStore.get(labKey);
+        String country = lab.getCountry();
         labsPage.chooseCountry(country);
-        scenarioContext.add(countryKey, country);
         labsPage.clickSearch();
     }
 
     @When("I put a Lab {string} an Search textBox and press Search icon")
-    public void iPutALabLabNameAnSearchTextboxAndPressSearchIcon(String labName) {
+    public void iPutALabLabNameAnSearchTextBoxAndPressSearchIcon(String labName) {
         labsPage.putTextInSearchField(labName);
         labsPage.clickSearch();
     }

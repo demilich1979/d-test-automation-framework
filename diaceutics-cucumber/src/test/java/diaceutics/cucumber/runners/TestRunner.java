@@ -13,7 +13,7 @@ import org.testng.annotations.DataProvider;
                 "diaceutics.cucumber.stepdefinitions"
         },
         plugin = {"io.qameta.allure.cucumber5jvm.AllureCucumber5Jvm", "json:target/cucumber-reports/cucumber.json"},
-        tags = {"@CreateALab1"},
+        tags = {"@CreateALab"},
         strict = true,
         objectFactory = CustomObjectFactory.class
 )

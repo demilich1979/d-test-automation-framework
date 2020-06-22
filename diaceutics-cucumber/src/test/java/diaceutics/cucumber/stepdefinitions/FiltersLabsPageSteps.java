@@ -2,7 +2,10 @@ package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.SoftAssert;
+import diaceutics.cucumber.utilities.XmlFileStore;
+import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
 import diaceutics.selenium.forms.pages.FiltersLabsPage;
+import diaceutics.selenium.models.CreateLabInfo;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,6 +13,7 @@ import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import javax.inject.Inject;
+import java.util.List;
 
 public class FiltersLabsPageSteps {
     private final FiltersLabsPage filtersLabsPage;
@@ -31,10 +35,13 @@ public class FiltersLabsPageSteps {
         filtersLabsPage.clickByLabLink(labName);
     }
 
-    @Then("All of the labs for the country {string} are displayed")
-    public void allOfTheLabsForTheCountryCountryNameAreDisplayed(String key) {
-        String country = scenarioContext.get(key);
-//to do
+    @Then("All of the following labs for the specific country are displayed:")
+    public void allOfTheLabsForTheCountryCountryNameAreDisplayed(List<String> keys) {
+        keys.forEach((labKey) -> {
+            CreateLabInfo createLabInfo = XmlFileStore.get(labKey);
+            SoftAssert.getInstance().assertTrue(filtersLabsPage.isLabDisplayedIndFilterResults(createLabInfo.getName()),
+                    String.format("Lab %s should be displayed in filter results", createLabInfo.getName()));
+        });
     }
 
     @When("I Set radiobutton to {string} and press Search icon")
@@ -53,6 +60,6 @@ public class FiltersLabsPageSteps {
     @And("Lab {string} is displayed in filter results")
     public void labTestLabIsDisplayedInFilterResults(String labName) {
         Assert.assertTrue(filtersLabsPage.isLabDisplayedIndFilterResults(labName),
-                String.format("Lab %s should be displayed in filter results",labName));
+                String.format("Lab %s should be displayed in filter results", labName));
     }
 }
