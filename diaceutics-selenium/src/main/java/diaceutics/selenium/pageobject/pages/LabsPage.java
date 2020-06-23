@@ -1,10 +1,10 @@
-package diaceutics.selenium.forms.pages;
+package diaceutics.selenium.pageobject.pages;
 
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.ILink;
 import aquality.selenium.elements.interfaces.ITextBox;
 import diaceutics.selenium.elements.ComboboxJs;
-import diaceutics.selenium.forms.BaseForm;
+import diaceutics.selenium.pageobject.BaseForm;
 import org.openqa.selenium.By;
 
 public class LabsPage extends BaseForm {
@@ -12,9 +12,7 @@ public class LabsPage extends BaseForm {
     private static final String COUNTRY_TEMPLATE = "//div[contains(@class,'byCountry')]//span/a[.='%s']";
 
     private final IButton btnCreateLab = getElementFactory().getButton(By.xpath("//button[text()='Create a Lab']"), "Create a Lab");
-
     private final IButton btnSearch = getElementFactory().getButton(By.name("search"), "Search");
-
     private final ITextBox searchField = getElementFactory().getTextBox(
             By.xpath("//ui-search/input[contains(@placeholder,'Enter keywords')]"), "Search field");
 
@@ -47,7 +45,7 @@ public class LabsPage extends BaseForm {
         btnSearch.clickAndWait();
     }
 
-    public void putTextInSearchField(String text){
+    public void putTextInSearchField(String text) {
         searchField.clearAndType(text);
     }
 

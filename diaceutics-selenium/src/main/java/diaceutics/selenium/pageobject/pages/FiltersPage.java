@@ -1,4 +1,4 @@
-package diaceutics.selenium.forms.pages;
+package diaceutics.selenium.pageobject.pages;
 
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.ElementType;
@@ -6,20 +6,18 @@ import aquality.selenium.elements.Link;
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.IElement;
 import aquality.selenium.elements.interfaces.ILink;
-import aquality.selenium.elements.interfaces.IRadioButton;
-import diaceutics.selenium.forms.BaseForm;
+import diaceutics.selenium.pageobject.BaseForm;
 import org.openqa.selenium.By;
 
 import java.util.List;
 
-public class FiltersLabsPage extends BaseForm {
+public class FiltersPage extends BaseForm {
 
     private static final String LAB_TEMPLATE = "//div[contains(@class,'result')]//div//a[.='%s']";
-    private static final String RADIO_BUTTON_TEMPLATE = "//label[contains(@class,'radioOptionContainer')][.//span[text()='%s']]";
-    private static final String LAB_TYPE_TEMPLATE = "//div[contains(@class,'result')]//div//span[..//a]";
+    private static final String LAB_TYPE_TEMPLATE = "//div[contains(@class,'result')]//div//span[..//a]/span[1]";
     private final IButton btnSearch = getElementFactory().getButton(By.name("search"), "Search");
 
-    public FiltersLabsPage() {
+    public FiltersPage() {
         super(By.xpath("//h3[.='Filters']"), "CountryLabProfile");
     }
 
@@ -29,13 +27,6 @@ public class FiltersLabsPage extends BaseForm {
                 labName);
 
         countryLink.clickAndWait();
-    }
-
-    public void clickRadioButton(String value) {
-        IRadioButton radioButton = getElementFactory().getRadioButton(
-                By.xpath(String.format(RADIO_BUTTON_TEMPLATE, value)),
-                String.format("RadioButton %s", value));
-        radioButton.click();
     }
 
     public void clickSearch() {

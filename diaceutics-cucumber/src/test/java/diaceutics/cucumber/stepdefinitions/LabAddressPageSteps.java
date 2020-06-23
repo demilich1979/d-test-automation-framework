@@ -1,9 +1,8 @@
 package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.ScenarioContext;
-import diaceutics.selenium.enums.pageFields.CreateLabPageFields;
 import diaceutics.selenium.enums.pageFields.LabAddressPageFields;
-import diaceutics.selenium.forms.pages.LabAddressPage;
+import diaceutics.selenium.pageobject.pages.LabAddressPage;
 import diaceutics.selenium.models.Lab;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -43,5 +42,17 @@ public class LabAddressPageSteps {
     @And("I click Finish on Lab Address page")
     public void iClickFinishOnLabAddressPage() {
         labAddressPage.clickFinish();
+    }
+
+    @Then("Message {string} displayed on Lab Address page")
+    public void messageSomeItemsBelowNeedYourAttentionDisplayedOnLabAddressPage(String message) {
+        assertTrue(labAddressPage.isAlertMessageDisplayed(message),
+                String.format("Message %s should be displayed on Lab Address page", message));
+    }
+
+    @And("Message {string} displayed on required fields on Lab Address page")
+    public void messagePleaseEnterAValueDisplayedOnRequiredFieldsOnLabAddressPage(String message) {
+        assertTrue(labAddressPage.isMessageDisplayedOnRequiredFields(message),
+                String.format("Message %s should be displayed on required fields on Lab Address page", message));
     }
 }

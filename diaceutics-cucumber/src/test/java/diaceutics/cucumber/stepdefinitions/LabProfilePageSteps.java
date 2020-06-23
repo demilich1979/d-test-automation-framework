@@ -4,7 +4,7 @@ import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
-import diaceutics.selenium.forms.pages.LabProfilePage;
+import diaceutics.selenium.pageobject.pages.LabProfilePage;
 import diaceutics.selenium.models.Platform;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

@@ -2,7 +2,7 @@ package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.XmlFileStore;
-import diaceutics.selenium.forms.pages.LabsPage;
+import diaceutics.selenium.pageobject.pages.LabsPage;
 import diaceutics.selenium.models.Lab;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -37,10 +37,8 @@ public class LabsPageSteps {
     }
 
 
-    @When("I choose a Country under Find Lab in which labs {string} were created and press Search icon")
-    public void iChooseACountryUnderFindLabForLabsLabNameAndPressSearchIcon(String labKey) {
-        Lab lab = XmlFileStore.get(labKey);
-        String country = lab.getCountry();
+    @When("I choose a {string} and press Search icon")
+    public void iChooseACountryAndPressSearchIcon(String country) {
         labsPage.chooseCountry(country);
         labsPage.clickSearch();
     }

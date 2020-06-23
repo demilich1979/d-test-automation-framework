@@ -1,7 +1,7 @@
-package diaceutics.selenium.forms.pages;
+package diaceutics.selenium.pageobject.pages;
 
 import aquality.selenium.elements.interfaces.IButton;
-import diaceutics.selenium.forms.BaseForm;
+import diaceutics.selenium.pageobject.BaseForm;
 import org.openqa.selenium.By;
 
 public class CreateLabPage extends BaseForm {

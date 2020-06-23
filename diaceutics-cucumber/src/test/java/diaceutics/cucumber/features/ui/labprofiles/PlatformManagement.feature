@@ -3,7 +3,7 @@ Feature: Platform Management
   Background:
     Given Labs page is opened
     When I select 'Albania' country on Labs page
-      Then Filters Labs page is opened
+      Then Filters page is opened
     When I select 'Test lab' lab on Filters Labs page
       Then Lab Profile page is opened
 

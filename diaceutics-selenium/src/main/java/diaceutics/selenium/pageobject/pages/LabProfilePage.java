@@ -1,15 +1,14 @@
-package diaceutics.selenium.forms.pages;
+package diaceutics.selenium.pageobject.pages;
 
-import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.IElement;
 import aquality.selenium.elements.interfaces.ILink;
-import diaceutics.selenium.forms.BaseForm;
-import diaceutics.selenium.forms.ConfirmForm;
-import diaceutics.selenium.forms.EditPlatformForm;
-import diaceutics.selenium.grids.Grid;
-import diaceutics.selenium.forms.AddPlatformForm;
+import diaceutics.selenium.pageobject.BaseForm;
+import diaceutics.selenium.pageobject.forms.ConfirmForm;
+import diaceutics.selenium.pageobject.forms.EditPlatformForm;
+import diaceutics.selenium.pageobject.grids.Grid;
+import diaceutics.selenium.pageobject.forms.AddPlatformForm;
 import diaceutics.selenium.models.Platform;
 import diaceutics.selenium.utilities.RegExUtil;
 import org.openqa.selenium.By;
@@ -17,6 +16,7 @@ import org.openqa.selenium.By;
 import java.util.List;
 
 public class LabProfilePage extends BaseForm {
+
     private static final String SORT_COLUMN_BUTTON_TEMPLATE = "//th[.//span[.='%s']]//ui-icon";
     private static final String EDIT_BUTTON_TEMPLATE = "//tr[.//span[.='%s']and .//span[.='%s']]//td[./span[.='Edit']]//span";
     private static final String DELETE_BUTTON_TEMPLATE = "//tr[.//span[.='%s']and .//span[.='%s']]//td[./span[.='Delete']]//span";

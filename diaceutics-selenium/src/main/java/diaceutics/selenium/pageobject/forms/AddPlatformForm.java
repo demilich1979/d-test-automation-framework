@@ -1,15 +1,15 @@
-package diaceutics.selenium.forms;
+package diaceutics.selenium.pageobject.forms;
 
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.interfaces.IButton;
 import diaceutics.selenium.elements.ComboboxJs;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
+import diaceutics.selenium.pageobject.BaseForm;
 import org.openqa.selenium.By;
 
 import java.util.List;
 
 public class AddPlatformForm extends BaseForm {
-    private static final String COMBOBOX_TEMPLATE = "//div[./label[text()='%s']]//div[@class='selectContainer']//ng-select[@role='listbox']//span[@class='ng-arrow-wrapper']";
 
     private final IButton btnAddPlatform = getElementFactory().getButton(
             By.xpath("//form//button[.='Add platform']"), "Add platform");
@@ -22,20 +22,9 @@ public class AddPlatformForm extends BaseForm {
         btnAddPlatform.clickAndWait();
     }
 
-    public String setFieldValue(AddPlatformFormFields field, String value) {
-        ComboboxJs comboboxJs = getElementFactory().getCustomElement(
-                ComboboxJs.class, By.xpath(String.format(COMBOBOX_TEMPLATE, field.getLocator())), "comboboxJs");
-
-        if (value.equals("random")) {
-            value = comboboxJs.getRandomValue();
-        }
-
-        return comboboxJs.selectByText(value);
-    }
-
     public boolean isFieldContainsValue(AddPlatformFormFields field, String value) {
         ComboboxJs comboboxJs = getElementFactory().getCustomElement(
-                ComboboxJs.class, By.xpath(String.format(COMBOBOX_TEMPLATE, field.getLocator())), "comboboxJs");
+                ComboboxJs.class, By.xpath(String.format(BaseForm.COMBOBOX_TEMPLATE, field.getLocator())), "comboboxJs");
         List<String> options = comboboxJs.getStringListOptions();
 
         return AqualityServices.getConditionalWait()

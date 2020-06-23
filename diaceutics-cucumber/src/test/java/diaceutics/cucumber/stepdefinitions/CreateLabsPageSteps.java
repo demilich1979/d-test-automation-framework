@@ -2,8 +2,9 @@ package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.selenium.enums.pageFields.CreateLabPageFields;
-import diaceutics.selenium.forms.pages.CreateLabPage;
+import diaceutics.selenium.pageobject.pages.CreateLabPage;
 import diaceutics.selenium.models.Lab;
+import diaceutics.selenium.utilities.TimeUtil;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -32,6 +33,9 @@ public class CreateLabsPageSteps {
     public void fillCreateLabPage(String key, Map<String, String> data) {
         Lab lab = new Lab();
         data.forEach((field, value) -> {
+            if (field.equals("Name")) {
+                value = value + TimeUtil.getTimestamp();
+            }
             createLabPage.setFieldValue(CreateLabPageFields.getEnumValue(field), value);
             lab.setReflectionFieldValue(CreateLabPageFields.getEnumValue(field).getModelField(), value);
         });
@@ -42,5 +46,17 @@ public class CreateLabsPageSteps {
     @And("I click Next on Create a Lab page")
     public void iClickNextOnCreateALabPage() {
         createLabPage.clickNext();
+    }
+
+    @Then("Message {string} displayed on Create a Lab page")
+    public void someItemsBelowNeedYourAttentionMessageAppearsOnCreateALabPage(String message) {
+        assertTrue(createLabPage.isAlertMessageDisplayed(message),
+                String.format("Message %s should be displayed on Create a Lab page",message));
+    }
+
+    @And("Message {string} displayed on required fields on Create a Lab page")
+    public void messagePleaseInputACountryDisplayedOnRequiredFieldsOnCreateALabPage(String message) {
+        assertTrue(createLabPage.isMessageDisplayedOnRequiredFields(message),
+                String.format("Message %s should be displayed on required fields on Create a Lab page",message));
     }
 }

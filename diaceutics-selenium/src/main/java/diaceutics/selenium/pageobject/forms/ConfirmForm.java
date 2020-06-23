@@ -1,6 +1,7 @@
-package diaceutics.selenium.forms;
+package diaceutics.selenium.pageobject.forms;
 
 import aquality.selenium.elements.interfaces.IButton;
+import diaceutics.selenium.pageobject.BaseForm;
 import org.openqa.selenium.By;
 
 public class ConfirmForm extends BaseForm {

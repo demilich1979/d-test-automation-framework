@@ -1,4 +1,4 @@
-package diaceutics.selenium.grids;
+package diaceutics.selenium.pageobject.grids;
 
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.ElementType;
