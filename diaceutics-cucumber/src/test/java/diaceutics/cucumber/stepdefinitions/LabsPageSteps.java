@@ -1,15 +1,23 @@
 package diaceutics.cucumber.stepdefinitions;
 
-import diaceutics.selenium.forms.pages.LabsPage;
+import diaceutics.cucumber.utilities.ScenarioContext;
+import diaceutics.cucumber.utilities.XmlFileStore;
+import diaceutics.selenium.pageobject.pages.LabsPage;
+import diaceutics.selenium.models.Lab;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
+import javax.inject.Inject;
+
 public class LabsPageSteps {
     private final LabsPage labsPage;
+    private final ScenarioContext scenarioContext;
 
-    public LabsPageSteps() {
+    @Inject
+    public LabsPageSteps(ScenarioContext scenarioContext) {
+        this.scenarioContext = scenarioContext;
         labsPage = new LabsPage();
     }
 
@@ -27,4 +35,18 @@ public class LabsPageSteps {
     public void iSelectCountryOnLabsPage(String countryName) {
         labsPage.clickByCountryLink(countryName);
     }
+
+
+    @When("I choose a {string} and press Search icon")
+    public void iChooseACountryAndPressSearchIcon(String country) {
+        labsPage.chooseCountry(country);
+        labsPage.clickSearch();
+    }
+
+    @When("I put a Lab {string} an Search textBox and press Search icon")
+    public void iPutALabLabNameAnSearchTextBoxAndPressSearchIcon(String labName) {
+        labsPage.putTextInSearchField(labName);
+        labsPage.clickSearch();
+    }
+
 }

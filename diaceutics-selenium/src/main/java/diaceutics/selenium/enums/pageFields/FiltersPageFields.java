@@ -1,12 +1,8 @@
 package diaceutics.selenium.enums.pageFields;
 
-public enum AddPlatformFormFields implements FormFieldInterface {
-    PLATFORM_MANUFACTURER("Platform manufacturer",
-            "Platform manufacturer",
-            "platformManufacturer",
-            FieldType.COMBOBOX),
-
-    PLATFORM("Platform", "Platform", "platform", FieldType.COMBOBOX);
+public enum FiltersPageFields implements FormFieldInterface{
+    COUNTRY("Country", "Country", "country", FieldType.COMBOBOX),
+    LAB_TYPE("Lab type", "Lab type", "labType", FieldType.RADIO);
 
     private final String friendlyName;
     private final String locator;
@@ -14,7 +10,7 @@ public enum AddPlatformFormFields implements FormFieldInterface {
     private final FieldType fieldType;
 
 
-    AddPlatformFormFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
+    FiltersPageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;
         this.modelField = modelField;
@@ -37,14 +33,14 @@ public enum AddPlatformFormFields implements FormFieldInterface {
         return fieldType;
     }
 
-    public static AddPlatformFormFields getEnumValue(String friendlyName) {
-        AddPlatformFormFields addPlatformFormFields = null;
-        for (AddPlatformFormFields constant : AddPlatformFormFields.values()) {
+    public static FiltersPageFields getEnumValue(String friendlyName) {
+        FiltersPageFields filtersPageFields = null;
+        for (FiltersPageFields constant : FiltersPageFields.values()) {
             if (constant.getFriendlyName().equals(friendlyName)) {
-                addPlatformFormFields = constant;
+                filtersPageFields = constant;
                 break;
             }
         }
-        return addPlatformFormFields;
+        return filtersPageFields;
     }
 }

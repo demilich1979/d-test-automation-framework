@@ -1,7 +1,8 @@
-package diaceutics.selenium.forms;
+package diaceutics.selenium.pageobject.forms;
 
 import aquality.selenium.elements.interfaces.IButton;
 import diaceutics.selenium.elements.ComboboxJs;
+import diaceutics.selenium.pageobject.BaseForm;
 import org.openqa.selenium.By;
 
 public class EditPlatformForm extends BaseForm {
