@@ -16,10 +16,13 @@ import javax.inject.Inject;
 import java.util.Map;
 
 public class LabProfilePageSteps {
+
     private final LabProfilePage labProfilePage;
+    private final ScenarioContext scenarioContext;
 
     @Inject
-    public LabProfilePageSteps() {
+    public LabProfilePageSteps(ScenarioContext scenarioContext) {
+        this.scenarioContext = scenarioContext;
         labProfilePage = new LabProfilePage();
     }
 
@@ -79,20 +82,11 @@ public class LabProfilePageSteps {
                 String.format("Data in %s column should be sorted according to alphabet", column));
     }
 
-    @Then("On Lab Profile page check numbers of platforms in the grid")
-    public void onLabProfilePageCheckNumbersOfPlatformsInTheGrid() {
-        Assert.assertEquals(labProfilePage.getNumberOfPlatformsFromGrid(),
-                labProfilePage.getNumberOfPlatformsFromHead(),
-                "The number of rows in Platform grid must be the same as a number stated in the Platforms grid title");
-
-    }
-
     @When("I click on Edit button for the {string} platform on Lab Profile Page")
     public void onLabProfilePageClickOnEditButtonForTheNewPlatformPlatform(String key) {
         Platform platform = XmlFileStore.get(key);
         labProfilePage.clickEditPlatform(platform);
     }
-
 
     @And("I set {string} value for platform {string} and save changes")
     public void modifyPlatformAndSaveChanges(String value, String key) {
@@ -131,4 +125,19 @@ public class LabProfilePageSteps {
                 String.format("Platform with values %s, %s should not present on the Lab Profile page",
                         platform.getPlatformManufacturer(), platform.getPlatform()));
     }
+
+    @When("I count the number of platforms in the Platforms grid and save as {string}")
+    public void iCountTheNumberOfPlatformsInThePlatformsGridAndSaveAsNumberOfPlatforms(String key) {
+        String numberOfPlatformsFromGrid = labProfilePage.getNumberOfPlatformsFromGrid();
+        scenarioContext.add(key, numberOfPlatformsFromGrid);
+    }
+
+    @Then("{string} in Platform grid must be the same as a number stated in the Platforms grid title")
+    public void numberOfPlatformsInPlatformGridMustBeTheSameAsANumberStatedInThePlatformsGridTitle(String key) {
+        String numberOfPlatformsFromGrid = scenarioContext.get(key);
+        Assert.assertEquals(numberOfPlatformsFromGrid,
+                labProfilePage.getNumberOfPlatformsFromHead(),
+                "The number of rows in Platform grid must be the same as a number stated in the Platforms grid title");
+    }
+
 }

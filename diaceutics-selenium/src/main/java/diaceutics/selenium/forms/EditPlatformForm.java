@@ -23,6 +23,9 @@ public class EditPlatformForm extends BaseForm {
     }
 
     public String setFieldValue(String value) {
+        if (value.equals("random")) {
+            value = platformCombobox.getRandomValue();
+        }
         return platformCombobox.selectByText(value);
     }
 }
