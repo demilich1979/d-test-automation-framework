@@ -140,4 +140,8 @@ public class LabProfilePageSteps {
                 "The number of rows in Platform grid must be the same as a number stated in the Platforms grid title");
     }
 
+    @When("I click on Edit Details on Lab Profile Page")
+    public void iClickOnEditDetailsOnLabProfilePage() {
+        labProfilePage.clickEditDetails();
+    }
 }

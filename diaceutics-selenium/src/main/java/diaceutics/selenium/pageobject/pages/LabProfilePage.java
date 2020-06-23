@@ -28,6 +28,9 @@ public class LabProfilePage extends BaseForm {
     private final ILink linkPlatformCount = getElementFactory().getLink(
             By.xpath("//h3[.='Platforms']/parent::div/span"), "Platform Count");
 
+    private final ILink linkEditDetails = getElementFactory().getLink(
+            By.xpath("//a//span[.='Edit Details']"), "Edit Details");
+
     private final Grid platformsGrid = new Grid(
             "//div[@class='dataTable'][.//h3[.='Platforms']]//ui-table//table[2]",
             "Platform manufacturer",
@@ -93,5 +96,9 @@ public class LabProfilePage extends BaseForm {
 
     public String getNumberOfPlatformsFromGrid() {
         return String.valueOf(platformsGrid.getNumberOfRowsInColumns(platformsGrid.getColumns().get(0)));
+    }
+
+    public void clickEditDetails() {
+        linkEditDetails.clickAndWait();
     }
 }

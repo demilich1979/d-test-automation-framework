@@ -1,0 +1,52 @@
+package diaceutics.cucumber.stepdefinitions;
+
+import diaceutics.cucumber.utilities.ScenarioContext;
+import diaceutics.selenium.enums.pageFields.CreateLabPageFields;
+import diaceutics.selenium.models.Lab;
+import diaceutics.selenium.pageobject.pages.EditProfilePage;
+import diaceutics.selenium.utilities.TimeUtil;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+import org.testng.Assert;
+
+import javax.inject.Inject;
+import java.util.Map;
+
+public class EditProfilePageSteps {
+
+    private final EditProfilePage editProfilePage;
+    private final ScenarioContext scenarioContext;
+
+    @Inject
+    public EditProfilePageSteps(ScenarioContext scenarioContext) {
+        this.scenarioContext = scenarioContext;
+        editProfilePage = new EditProfilePage();
+    }
+
+    @Given("Edit Profile page is opened")
+    public void labProfilesPageIsOpened() {
+        Assert.assertTrue(editProfilePage.isDisplayed(), "EditProfile page should be opened");
+    }
+
+
+    @When("I change Lab Details form using following data and sava as {string}:")
+    public void iChangeLabDetailsFormUsingFollowingDataAndSavaAsLab(String key, Map<String, String> data) {
+        Lab lab = new Lab();
+        data.forEach((field, value) -> {
+            if (field.equals("Name")) {
+                value = value + TimeUtil.getTimestamp();
+            }
+            editProfilePage.setFieldValue(CreateLabPageFields.getEnumValue(field), value);
+            lab.setReflectionFieldValue(CreateLabPageFields.getEnumValue(field).getModelField(), value);
+        });
+
+        scenarioContext.add(key, lab);
+
+    }
+
+    @And("I click Save on Edit Profile page")
+    public void iClickSaveEditProfilePage() {
+        editProfilePage.clickSave();
+    }
+}
