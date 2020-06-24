@@ -1,9 +1,6 @@
 package diaceutics.cucumber.stepdefinitions;
 
-import diaceutics.cucumber.utilities.ScenarioContext;
-import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.pageobject.pages.LabsPage;
-import diaceutics.selenium.models.Lab;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,11 +10,9 @@ import javax.inject.Inject;
 
 public class LabsPageSteps {
     private final LabsPage labsPage;
-    private final ScenarioContext scenarioContext;
 
     @Inject
-    public LabsPageSteps(ScenarioContext scenarioContext) {
-        this.scenarioContext = scenarioContext;
+    public LabsPageSteps() {
         labsPage = new LabsPage();
     }
 

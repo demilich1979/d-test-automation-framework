@@ -4,14 +4,14 @@ Feature: Create a Lab
   Scenario Outline: DIAFE:<test count> Possibility to successfully create an <Lab type>
     Given Labs page is opened
     When I open Create a Lab page
-    Then Create a Lab page is opened
+      Then Create a Lab page is opened
     When I fill first Create a Lab form using following data and sava as 'lab':
       | Country  | Albania    |
       | Name     | TestLab    |
-      | URL      | TestLab    |
+#      | URL      | TestLab    |
       | Lab type | <Lab type> |
     And I click Next on Create a Lab page
-    Then Lab Address page is opened
+      Then Lab Address page is opened
     When I fill Lab Address form using following data and sava as 'lab':
       | Location name | Test data |
       | Address 1     | Test data |
@@ -21,7 +21,8 @@ Feature: Create a Lab
       | Country       | Albania   |
       | Postal code   | Test data |
     And I click Finish on Lab Address page
-#    Then Page with lab 'lab' is opened
+      Then Lab Profile page is opened
+      And Lab 'lab' is displayed on Lab Profile page
 
     Examples:
       | Lab type     | test count |
@@ -41,7 +42,7 @@ Feature: Create a Lab
     When I fill first Create a Lab form using following data and sava as 'lab':
       | Country  | Albania     |
       | Name     | TestLab     |
-      | URL      | TestLab     |
+#      | URL      | TestLab     |
       | Lab type | Unspecified |
     And I click Next on Create a Lab page
       Then Lab Address page is opened
@@ -59,4 +60,5 @@ Feature: Create a Lab
       | Country       | Albania   |
       | Postal code   | Test data |
     And I click Finish on Lab Address page
-#      Then Page with lab 'lab' is opened
+      Then Lab Profile page is opened
+      And Lab 'lab' is displayed on Lab Profile page

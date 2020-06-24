@@ -8,11 +8,11 @@ import diaceutics.selenium.utilities.TimeUtil;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.Assert;
 
 import javax.inject.Inject;
 import java.util.Map;
 
-import static org.testng.Assert.assertTrue;
 
 public class CreateLabsPageSteps {
     private final CreateLabPage createLabPage;
@@ -26,7 +26,7 @@ public class CreateLabsPageSteps {
 
     @Then("Create a Lab page is opened")
     public void checkCreateLabPageIsOpened() {
-        assertTrue(createLabPage.isDisplayed(), "Create a Lab page should be opened");
+        Assert.assertTrue(createLabPage.isDisplayed(), "Create a Lab page should be opened");
     }
 
     @When("I fill first Create a Lab form using following data and sava as {string}:")
@@ -50,13 +50,13 @@ public class CreateLabsPageSteps {
 
     @Then("Message {string} displayed on Create a Lab page")
     public void someItemsBelowNeedYourAttentionMessageAppearsOnCreateALabPage(String message) {
-        assertTrue(createLabPage.isAlertMessageDisplayed(message),
+        Assert.assertTrue(createLabPage.isAlertMessageDisplayed(message),
                 String.format("Message %s should be displayed on Create a Lab page",message));
     }
 
     @And("Message {string} displayed on required fields on Create a Lab page")
     public void messagePleaseInputACountryDisplayedOnRequiredFieldsOnCreateALabPage(String message) {
-        assertTrue(createLabPage.isMessageDisplayedOnRequiredFields(message),
+        Assert.assertTrue(createLabPage.isMessageDisplayedOnRequiredFields(message),
                 String.format("Message %s should be displayed on required fields on Create a Lab page",message));
     }
 }

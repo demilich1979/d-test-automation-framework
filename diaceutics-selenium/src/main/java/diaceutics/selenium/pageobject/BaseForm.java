@@ -3,6 +3,7 @@ package diaceutics.selenium.pageobject;
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.Link;
+import aquality.selenium.elements.interfaces.ILabel;
 import aquality.selenium.elements.interfaces.IRadioButton;
 import aquality.selenium.elements.interfaces.ITextBox;
 import aquality.selenium.forms.Form;
@@ -10,6 +11,7 @@ import diaceutics.selenium.elements.ComboboxJs;
 import diaceutics.selenium.enums.pageFields.FormFieldInterface;
 import diaceutics.selenium.utilities.JavaScriptUtil;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 import java.util.List;
 
@@ -72,9 +74,9 @@ public abstract class BaseForm extends Form {
     }
 
     public boolean isAlertMessageDisplayed(String message) {
-        List<Link> alertLink = getElementFactory().findElements(
-                By.xpath(String.format(ALERT_MESSAGE_TEMPLATE, message)), ElementType.LINK);
-        return alertLink.size() > 0;
+        ILabel alertLink = getElementFactory().getLabel(
+                By.xpath(String.format(ALERT_MESSAGE_TEMPLATE, message)), message);
+        return alertLink.state().waitForDisplayed();
     }
 
     public boolean isMessageDisplayedOnRequiredFields(String message) {
