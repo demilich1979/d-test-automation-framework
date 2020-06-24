@@ -7,11 +7,11 @@ import diaceutics.selenium.models.Lab;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.Assert;
 
 import javax.inject.Inject;
 import java.util.Map;
 
-import static org.testng.Assert.assertTrue;
 
 public class LabAddressPageSteps {
     private final LabAddressPage labAddressPage;
@@ -25,7 +25,7 @@ public class LabAddressPageSteps {
 
     @Then("Lab Address page is opened")
     public void checkCreateLabPageIsOpened() {
-        assertTrue(labAddressPage.isDisplayed(), "Lab Address page page should be opened");
+        Assert.assertTrue(labAddressPage.isDisplayed(), "Lab Address page page should be opened");
     }
 
     @When("I fill Lab Address form using following data and sava as {string}:")
@@ -46,13 +46,13 @@ public class LabAddressPageSteps {
 
     @Then("Message {string} displayed on Lab Address page")
     public void messageSomeItemsBelowNeedYourAttentionDisplayedOnLabAddressPage(String message) {
-        assertTrue(labAddressPage.isAlertMessageDisplayed(message),
+        Assert.assertTrue(labAddressPage.isAlertMessageDisplayed(message),
                 String.format("Message %s should be displayed on Lab Address page", message));
     }
 
     @And("Message {string} displayed on required fields on Lab Address page")
     public void messagePleaseEnterAValueDisplayedOnRequiredFieldsOnLabAddressPage(String message) {
-        assertTrue(labAddressPage.isMessageDisplayedOnRequiredFields(message),
+        Assert.assertTrue(labAddressPage.isMessageDisplayedOnRequiredFields(message),
                 String.format("Message %s should be displayed on required fields on Lab Address page", message));
     }
 }

@@ -2,16 +2,19 @@ package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.selenium.enums.pageFields.CreateLabPageFields;
+import diaceutics.selenium.enums.pageFields.EditProfilePageFields;
 import diaceutics.selenium.models.Lab;
 import diaceutics.selenium.pageobject.pages.EditProfilePage;
 import diaceutics.selenium.utilities.TimeUtil;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import javax.inject.Inject;
 import java.util.Map;
+
 
 public class EditProfilePageSteps {
 
@@ -30,15 +33,15 @@ public class EditProfilePageSteps {
     }
 
 
-    @When("I change Lab Details form using following data and sava as {string}:")
+    @When("I change Edit Profile form using following data and sava as {string}:")
     public void iChangeLabDetailsFormUsingFollowingDataAndSavaAsLab(String key, Map<String, String> data) {
         Lab lab = new Lab();
         data.forEach((field, value) -> {
             if (field.equals("Name")) {
                 value = value + TimeUtil.getTimestamp();
             }
-            editProfilePage.setFieldValue(CreateLabPageFields.getEnumValue(field), value);
-            lab.setReflectionFieldValue(CreateLabPageFields.getEnumValue(field).getModelField(), value);
+            editProfilePage.setFieldValue(EditProfilePageFields.getEnumValue(field), value);
+            lab.setReflectionFieldValue(EditProfilePageFields.getEnumValue(field).getModelField(), value);
         });
 
         scenarioContext.add(key, lab);
@@ -48,5 +51,34 @@ public class EditProfilePageSteps {
     @And("I click Save on Edit Profile page")
     public void iClickSaveEditProfilePage() {
         editProfilePage.clickSave();
+    }
+
+    @And("I click Return to profile on Edit Profile page")
+    public void iClickReturnToProfileOnEditProfilePage() {
+        editProfilePage.clickReturnToProfile();
+    }
+
+    @Then("{string} message is displayed on Edit Profile page")
+    public void labUpdatedMessageIsDisplayedOnEditProfilePage(String message) {
+        Assert.assertTrue(editProfilePage.isAlertMessageDisplayed(message),
+                String.format("Message %s should be displayed on Edit Profile page", message));
+    }
+
+    @And("Message {string} displayed on required fields on Edit Profile page")
+    public void messagePleaseInputACountryDisplayedOnRequiredFieldsOnEditProfilePage(String message) {
+        Assert.assertTrue(editProfilePage.isMessageDisplayedOnRequiredFields(message),
+                String.format("Message %s should be displayed on required fields on Edit Profile page", message));
+    }
+
+    @When("I clear {string} field on Lab Profile Page")
+    public void iClearNameFieldOnLabProfilePage(String field) {
+        editProfilePage.setFieldValue(EditProfilePageFields.getEnumValue(field), "");
+    }
+
+    @When("I change Edit Profile form using following data:")
+    public void iChangeEditProfileFormUsingFollowingData(Map<String, String> data) {
+        data.forEach((field, value) -> {
+            editProfilePage.setFieldValue(EditProfilePageFields.getEnumValue(field), value);
+        });
     }
 }

@@ -4,6 +4,7 @@ import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
+import diaceutics.selenium.models.Lab;
 import diaceutics.selenium.pageobject.pages.LabProfilePage;
 import diaceutics.selenium.models.Platform;
 import io.cucumber.java.en.And;
@@ -143,5 +144,12 @@ public class LabProfilePageSteps {
     @When("I click on Edit Details on Lab Profile Page")
     public void iClickOnEditDetailsOnLabProfilePage() {
         labProfilePage.clickEditDetails();
+    }
+
+    @And("Lab {string} is displayed on Lab Profile page")
+    public void labLabIsDisplayedOnLabProfilePage(String key) {
+        Lab lab = scenarioContext.get(key);
+        Assert.assertTrue(labProfilePage.isLabDisplayedOnPage(lab),
+                String.format("Lab %s should be displayed on Lab Profile page", lab.getName()));
     }
 }
