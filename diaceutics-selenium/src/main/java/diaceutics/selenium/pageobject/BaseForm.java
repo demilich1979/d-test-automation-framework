@@ -85,4 +85,10 @@ public abstract class BaseForm extends Form {
         return alertLink.size() > 0;
     }
 
+    public void sendKeys(FormFieldInterface field, Keys key) {
+        ITextBox textBox = getElementFactory().getTextBox(
+                By.xpath(String.format(TEXT_TEMPLATE, field.getLocator())), field.getFriendlyName());
+        textBox.sendKeys(key);
+    }
+
 }
