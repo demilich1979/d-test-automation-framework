@@ -2,20 +2,13 @@ package diaceutics.selenium.models;
 
 import lombok.Data;
 
-import java.util.List;
-
 @Data
-public class Lab extends BaseModel {
-    private String name;
-    private String country;
-    private String url;
-    private String labType;
+public class Location extends BaseModel {
     private String locationName;
     private String addressOne;
     private String addressTwo;
     private String cityTown;
     private String region;
-    private String countryTwo;
+    private String country;
     private String postalCode;
-    private List<Location> locations;
 }

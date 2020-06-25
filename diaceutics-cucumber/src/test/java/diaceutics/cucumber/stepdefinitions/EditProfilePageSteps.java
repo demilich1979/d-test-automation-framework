@@ -1,7 +1,6 @@
 package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.ScenarioContext;
-import diaceutics.selenium.enums.pageFields.CreateLabPageFields;
 import diaceutics.selenium.enums.pageFields.EditProfilePageFields;
 import diaceutics.selenium.models.Lab;
 import diaceutics.selenium.pageobject.pages.EditProfilePage;
@@ -82,5 +81,10 @@ public class EditProfilePageSteps {
         data.forEach((field, value) -> {
             editProfilePage.setFieldValue(EditProfilePageFields.getEnumValue(field), value);
         });
+    }
+
+    @Then("I click Add new location on Edit Profile page")
+    public void iClickAddNewLocationOnEditProfilePage() {
+        editProfilePage.clickAddNewLocation();
     }
 }

@@ -5,6 +5,7 @@ import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
 import diaceutics.selenium.models.Lab;
+import diaceutics.selenium.models.Location;
 import diaceutics.selenium.pageobject.pages.LabProfilePage;
 import diaceutics.selenium.models.Platform;
 import io.cucumber.java.en.And;
@@ -151,5 +152,23 @@ public class LabProfilePageSteps {
         Lab lab = scenarioContext.get(key);
         Assert.assertTrue(labProfilePage.isLabDisplayedOnPage(lab),
                 String.format("Lab %s should be displayed on Lab Profile page", lab.getName()));
+    }
+
+    @When("I click Add a location On Lab Profile page")
+    public void iClickAddALocationOnLabProfilePage() {
+        labProfilePage.clickAddLocation();
+    }
+
+    @Then("{string} message is displayed on Lab Profile page")
+    public void newLocationAddedMessageIsDisplayedOnLabProfilePage(String message) {
+        Assert.assertTrue(labProfilePage.isAlertMessageDisplayed(message),
+                String.format("Message %s should be displayed on Lab Profile page", message));
+    }
+
+    @And("Location {string} is displayed on Locations form on on Lab Profile page")
+    public void locationLocationIsDisplayedOnLocationsFormOnOnLabProfilePage(String key) {
+        Location location = scenarioContext.get(key);
+        Assert.assertTrue(labProfilePage.getLocationsForm().isLocationDisplayed(location),
+                String.format("Location %s should be displayed on Lab Profile page", location.getLocationName()));
     }
 }

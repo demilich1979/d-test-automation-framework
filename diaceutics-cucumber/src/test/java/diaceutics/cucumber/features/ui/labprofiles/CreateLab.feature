@@ -12,7 +12,7 @@ Feature: Create a Lab
       | Lab type | <Lab type> |
     And I click Next on Create a Lab page
       Then Lab Address page is opened
-    When I fill Lab Address form using following data and sava as 'lab':
+    When I fill Lab Address form on Lab Address page using following data and save as 'lab':
       | Location name | Test data |
       | Address 1     | Test data |
       | Address 2     | Test data |
@@ -51,7 +51,7 @@ Feature: Create a Lab
       And Message 'Please enter a value' displayed on required fields on Lab Address page
       And Message 'Please input a city or town name' displayed on required fields on Lab Address page
       And Message 'Please input a country' displayed on required fields on Lab Address page
-    When I fill Lab Address form using following data and sava as 'lab':
+    When I fill Lab Address form on Lab Address page using following data and save as 'lab':
       | Location name | Test data |
       | Address 1     | Test data |
       | Address 2     | Test data |

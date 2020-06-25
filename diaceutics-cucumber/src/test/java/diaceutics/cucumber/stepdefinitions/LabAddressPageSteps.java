@@ -28,7 +28,7 @@ public class LabAddressPageSteps {
         Assert.assertTrue(labAddressPage.isDisplayed(), "Lab Address page page should be opened");
     }
 
-    @When("I fill Lab Address form using following data and sava as {string}:")
+    @When("I fill Lab Address form on Lab Address page using following data and save as {string}:")
     public void fillCreateLabPage(String key, Map<String, String> data) {
         Lab lab = scenarioContext.get(key);
         data.forEach((field, value) -> {
