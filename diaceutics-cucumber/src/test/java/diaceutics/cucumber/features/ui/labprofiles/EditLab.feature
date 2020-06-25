@@ -47,4 +47,4 @@ Feature: Edit a Lab
     When I clear 'Name' field on Lab Profile Page
     And I click Save on Edit Profile page
       Then 'Some items below need your attention.' message is displayed on Edit Profile page
-      And Message 'Please input a country' displayed on required fields on Edit Profile page
+      And Message 'Please input a name for the lab' displayed on required fields on Edit Profile page

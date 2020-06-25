@@ -10,6 +10,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.Keys;
 import org.testng.Assert;
 
 import javax.inject.Inject;
@@ -72,7 +73,8 @@ public class EditProfilePageSteps {
 
     @When("I clear {string} field on Lab Profile Page")
     public void iClearNameFieldOnLabProfilePage(String field) {
-        editProfilePage.setFieldValue(EditProfilePageFields.getEnumValue(field), "");
+        editProfilePage.setFieldValue(EditProfilePageFields.getEnumValue(field), "1");
+        editProfilePage.sendKeys(EditProfilePageFields.getEnumValue(field), Keys.BACK_SPACE);
     }
 
     @When("I change Edit Profile form using following data:")
