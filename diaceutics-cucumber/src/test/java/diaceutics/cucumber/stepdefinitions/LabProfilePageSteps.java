@@ -15,6 +15,7 @@ import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Map;
 
 public class LabProfilePageSteps {
@@ -142,7 +143,7 @@ public class LabProfilePageSteps {
                 "The number of rows in Platform grid must be the same as a number stated in the Platforms grid title");
     }
 
-    @When("I click on Edit Details on Lab Profile Page")
+    @When("I click Edit Details on Lab Profile Page")
     public void iClickOnEditDetailsOnLabProfilePage() {
         labProfilePage.clickEditDetails();
     }
@@ -167,8 +168,15 @@ public class LabProfilePageSteps {
 
     @And("Location {string} is displayed on Locations form on on Lab Profile page")
     public void locationLocationIsDisplayedOnLocationsFormOnOnLabProfilePage(String key) {
-        Location location = scenarioContext.get(key);
+        Location location = XmlFileStore.get(key);
         Assert.assertTrue(labProfilePage.getLocationsForm().isLocationDisplayed(location),
                 String.format("Location %s should be displayed on Lab Profile page", location.getLocationName()));
     }
+
+    @When("I click Edit location {string} on Lab Profile Page")
+    public void iClickEditLocationLocationOnLabProfilePage(String key) {
+        Location location = XmlFileStore.get(key);
+        labProfilePage.getLocationsForm().clickEditLocation(location);
+    }
+
 }

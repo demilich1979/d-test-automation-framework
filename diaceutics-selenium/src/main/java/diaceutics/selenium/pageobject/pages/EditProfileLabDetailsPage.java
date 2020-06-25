@@ -6,7 +6,7 @@ import diaceutics.selenium.pageobject.BaseForm;
 import org.openqa.selenium.By;
 
 
-public class EditProfilePage extends BaseForm {
+public class EditProfileLabDetailsPage extends BaseForm {
 
     private final IButton btnSave = getElementFactory().getButton(
             By.xpath("//form[.//app-lab-details-form]//button[.='Save']"), "Save");
@@ -17,8 +17,8 @@ public class EditProfilePage extends BaseForm {
     private final IButton btnAddNewLocation = getElementFactory().getButton(
             By.xpath("//div[contains(@class,'buttons')]//ul[contains(@class,'tabButtons')]"), "Add new location");
 
-    public EditProfilePage() {
-        super(By.xpath("//h1[.='Edit Profile']"), "Edit Profile");
+    public EditProfileLabDetailsPage() {
+        super(By.xpath("//div/h2[.='Lab Details']"), "Edit Profile Lab Details");
     }
 
     public void clickSave() {
