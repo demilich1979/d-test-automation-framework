@@ -230,4 +230,20 @@ public class LabProfilePageSteps {
                         volume.getBiomarker(),
                         volume.getVolume()));
     }
+
+    @When("I fill following fields on Log patient volume form using data from {string}:")
+    public void iFillFollowingFieldsOnLogPatientVolumeFormUsingDataFromVolume(String key, List<String> fields) {
+        Volume volume = XmlFileStore.get(key);
+        fields.forEach(field -> {
+            labProfilePage.getLogPatientVolumeForm().setFieldValue(
+                    LogPatientVolumeFields.getEnumValue(field),
+                    volume.getReflectionFieldValue(LogPatientVolumeFields.getEnumValue(field).getModelField()));
+        });
+    }
+
+    @Then("Message {string} is displayed on Log patient volume form")
+    public void messageAVolumeAlreadyExistsForThisCriteriaAndTimePeriodIsDisplayedOnLogPatientVolumeForm(String message) {
+        Assert.assertTrue(labProfilePage.getLogPatientVolumeForm().isAlertMessageDisplayed(message),
+                String.format("Message %s should be displayed on Log patient volume form", message));
+    }
 }
