@@ -27,7 +27,19 @@ Feature: Edit a Lab
       | Country  | Albania     |
       | Name     | TestLab     |
 #      | URL      | TestLab     |
-      | Lab type | Private Lab |
+      | Lab type | Commercial Lab |
+    And I click Save on Edit Profile Lab Details page
+      Then Message 'Lab updated!' is displayed on Edit Profile Lab Details page
+    When I click Return to profile on Edit Profile Lab Details page
+      Then Lab Profile page is opened
+      And Lab 'lab' is displayed on Lab Profile page
+    When I click Edit Details on Lab Profile Page
+      Then Edit Profile Lab Details page is opened
+    When I fill following fields on Edit Profile Lab Details page and save as 'lab':
+      | Country  | Albania     |
+      | Name     | TestLab     |
+#      | URL      | TestLab     |
+      | Lab type | Hospital Lab |
     And I click Save on Edit Profile Lab Details page
       Then Message 'Lab updated!' is displayed on Edit Profile Lab Details page
     When I click Return to profile on Edit Profile Lab Details page
