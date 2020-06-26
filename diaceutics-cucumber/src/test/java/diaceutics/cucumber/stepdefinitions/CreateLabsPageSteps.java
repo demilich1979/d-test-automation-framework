@@ -29,7 +29,7 @@ public class CreateLabsPageSteps {
         Assert.assertTrue(createLabPage.isDisplayed(), "Create a Lab page should be opened");
     }
 
-    @When("I fill first Create a Lab form using following data and sava as {string}:")
+    @When("I fill following fields on Create a Lab page and save as {string}:")
     public void fillCreateLabPage(String key, Map<String, String> data) {
         Lab lab = new Lab();
         data.forEach((field, value) -> {
@@ -48,13 +48,13 @@ public class CreateLabsPageSteps {
         createLabPage.clickNext();
     }
 
-    @Then("Message {string} displayed on Create a Lab page")
+    @Then("Message {string} is displayed on Create a Lab page")
     public void someItemsBelowNeedYourAttentionMessageAppearsOnCreateALabPage(String message) {
         Assert.assertTrue(createLabPage.isAlertMessageDisplayed(message),
                 String.format("Message %s should be displayed on Create a Lab page",message));
     }
 
-    @And("Message {string} displayed on required fields on Create a Lab page")
+    @And("Message {string} is displayed on required fields on Create a Lab page")
     public void messagePleaseInputACountryDisplayedOnRequiredFieldsOnCreateALabPage(String message) {
         Assert.assertTrue(createLabPage.isMessageDisplayedOnRequiredFields(message),
                 String.format("Message %s should be displayed on required fields on Create a Lab page",message));

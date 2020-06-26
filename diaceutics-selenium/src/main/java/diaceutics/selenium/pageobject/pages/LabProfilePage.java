@@ -5,9 +5,11 @@ import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.IElement;
 import aquality.selenium.elements.interfaces.ILink;
 import diaceutics.selenium.models.Lab;
+import diaceutics.selenium.models.Location;
 import diaceutics.selenium.pageobject.BaseForm;
 import diaceutics.selenium.pageobject.forms.ConfirmForm;
 import diaceutics.selenium.pageobject.forms.EditPlatformForm;
+import diaceutics.selenium.pageobject.forms.LocationsForm;
 import diaceutics.selenium.pageobject.grids.Grid;
 import diaceutics.selenium.pageobject.forms.AddPlatformForm;
 import diaceutics.selenium.models.Platform;
@@ -35,8 +37,8 @@ public class LabProfilePage extends BaseForm {
     private final ILink linkLabName = getElementFactory().getLink(
             By.xpath("//div[contains(@class,'titleArea')]//h1"), "Lab name");
 
-    private final ILink linkLabType = getElementFactory().getLink(
-            By.xpath("//div[contains(@class,'details')]//span[contains(@class,'ng-star-inserted')][1]"), "Lab type");
+    private final IButton btnAddLocation = getElementFactory().getButton(
+            By.xpath("//div[contains(@class,'titleArea')]//button[.='Add a location']"), "Add a location");
 
     List<IElement> linksLabType = getElementFactory().findElements(By.xpath
             ("//div[contains(@class,'details')]//span[contains(@class,'ng-star-inserted')]"), ElementType.LINK);
@@ -60,6 +62,10 @@ public class LabProfilePage extends BaseForm {
 
     public ConfirmForm getConfirmForm() {
         return new ConfirmForm();
+    }
+
+    public LocationsForm getLocationsForm() {
+        return new LocationsForm();
     }
 
     public void clickAddPlatform() {
@@ -113,8 +119,7 @@ public class LabProfilePage extends BaseForm {
     }
 
     public String getLabNameFromPage() {
-        String name=linkLabName.getText();
-        return name;
+        return linkLabName.getText();
     }
 
     public String getLabTypeFromPage() {
@@ -125,7 +130,6 @@ public class LabProfilePage extends BaseForm {
         return labType;
     }
 
-
     public boolean isLabDisplayedOnPage(Lab lab) {
         boolean isLabDisplayed = false;
         if (lab.getName().equals(getLabNameFromPage()) &&
@@ -134,5 +138,9 @@ public class LabProfilePage extends BaseForm {
         }
 
         return isLabDisplayed;
+    }
+
+    public void clickAddLocation() {
+        btnAddLocation.clickAndWait();
     }
 }

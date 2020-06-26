@@ -5,6 +5,7 @@ import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
 import diaceutics.selenium.models.Lab;
+import diaceutics.selenium.models.Location;
 import diaceutics.selenium.pageobject.pages.LabProfilePage;
 import diaceutics.selenium.models.Platform;
 import io.cucumber.java.en.And;
@@ -14,6 +15,7 @@ import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Map;
 
 public class LabProfilePageSteps {
@@ -141,7 +143,7 @@ public class LabProfilePageSteps {
                 "The number of rows in Platform grid must be the same as a number stated in the Platforms grid title");
     }
 
-    @When("I click on Edit Details on Lab Profile Page")
+    @When("I click Edit Details on Lab Profile Page")
     public void iClickOnEditDetailsOnLabProfilePage() {
         labProfilePage.clickEditDetails();
     }
@@ -152,4 +154,37 @@ public class LabProfilePageSteps {
         Assert.assertTrue(labProfilePage.isLabDisplayedOnPage(lab),
                 String.format("Lab %s should be displayed on Lab Profile page", lab.getName()));
     }
+
+    @When("I click Add a location On Lab Profile page")
+    public void iClickAddALocationOnLabProfilePage() {
+        labProfilePage.clickAddLocation();
+    }
+
+    @Then("{string} message is displayed on Lab Profile page")
+    public void newLocationAddedMessageIsDisplayedOnLabProfilePage(String message) {
+        Assert.assertTrue(labProfilePage.isAlertMessageDisplayed(message),
+                String.format("Message %s should be displayed on Lab Profile page", message));
+    }
+
+    @And("Location {string} is displayed on Locations form on on Lab Profile page")
+    public void locationLocationIsDisplayedOnLocationsFormOnOnLabProfilePage(String key) {
+        Location location = XmlFileStore.get(key);
+        List<String> locationFieldValues = labProfilePage.getLocationsForm().getLocationFieldValues(location);
+
+        for (int i = 0; i < locationFieldValues.size(); i++) {
+            String actualValue = locationFieldValues.get(i);
+            String expectedValue = location.getReflectionFieldValue(location.getFields()[i]);
+            SoftAssert.getInstance().assertEquals(
+                    actualValue,
+                    expectedValue,
+                    String.format("Value %s for %s is not correct on Lab Profile page", expectedValue, location.getLocationName()));
+        }
+    }
+
+    @When("I click Edit location {string} on Lab Profile Page")
+    public void iClickEditLocationLocationOnLabProfilePage(String key) {
+        Location location = XmlFileStore.get(key);
+        labProfilePage.getLocationsForm().clickEditLocation(location);
+    }
+
 }

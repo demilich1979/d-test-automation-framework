@@ -2,6 +2,7 @@ package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.selenium.enums.pageFields.LabAddressPageFields;
+import diaceutics.selenium.models.Location;
 import diaceutics.selenium.pageobject.pages.LabAddressPage;
 import diaceutics.selenium.models.Lab;
 import io.cucumber.java.en.And;
@@ -28,14 +29,16 @@ public class LabAddressPageSteps {
         Assert.assertTrue(labAddressPage.isDisplayed(), "Lab Address page page should be opened");
     }
 
-    @When("I fill Lab Address form using following data and sava as {string}:")
+    @When("I fill following fields on Lab Address page and save as {string}:")
     public void fillCreateLabPage(String key, Map<String, String> data) {
         Lab lab = scenarioContext.get(key);
+        Location location = new Location();
         data.forEach((field, value) -> {
             labAddressPage.setFieldValue(LabAddressPageFields.getEnumValue(field), value);
-            lab.setReflectionFieldValue(LabAddressPageFields.getEnumValue(field).getModelField(), value);
+            location.setReflectionFieldValue(LabAddressPageFields.getEnumValue(field).getModelField(), value);
         });
 
+        lab.addLocation(location);
         scenarioContext.add(key, lab);
     }
 
@@ -44,13 +47,13 @@ public class LabAddressPageSteps {
         labAddressPage.clickFinish();
     }
 
-    @Then("Message {string} displayed on Lab Address page")
+    @Then("Message {string} is displayed on Lab Address page")
     public void messageSomeItemsBelowNeedYourAttentionDisplayedOnLabAddressPage(String message) {
         Assert.assertTrue(labAddressPage.isAlertMessageDisplayed(message),
                 String.format("Message %s should be displayed on Lab Address page", message));
     }
 
-    @And("Message {string} displayed on required fields on Lab Address page")
+    @And("Message {string} is displayed on required fields on Lab Address page")
     public void messagePleaseEnterAValueDisplayedOnRequiredFieldsOnLabAddressPage(String message) {
         Assert.assertTrue(labAddressPage.isMessageDisplayedOnRequiredFields(message),
                 String.format("Message %s should be displayed on required fields on Lab Address page", message));

@@ -1,6 +1,6 @@
 package diaceutics.selenium.enums.pageFields;
 
-public enum LabAddressPageFields implements FormFieldInterface {
+public enum AddALocationPageFields implements FormFieldInterface {
     LOCATION_NAME("Location name", "Location name", "locationName", FieldType.TEXT),
     ADDRESS_ONE("Address 1", "Address 1", "addressOne", FieldType.TEXT),
     ADDRESS_TWO("Address 2", "Address 2", "addressTwo", FieldType.TEXT),
@@ -15,7 +15,7 @@ public enum LabAddressPageFields implements FormFieldInterface {
     private final FieldType fieldType;
 
 
-    LabAddressPageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
+    AddALocationPageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;
         this.modelField = modelField;
@@ -38,14 +38,14 @@ public enum LabAddressPageFields implements FormFieldInterface {
         return fieldType;
     }
 
-    public static LabAddressPageFields getEnumValue(String friendlyName) {
-        LabAddressPageFields labAddressPageFields = null;
-        for (LabAddressPageFields constant : LabAddressPageFields.values()) {
+    public static AddALocationPageFields getEnumValue(String friendlyName) {
+        AddALocationPageFields addALocationPageFields = null;
+        for (AddALocationPageFields constant : AddALocationPageFields.values()) {
             if (constant.getFriendlyName().equals(friendlyName)) {
-                labAddressPageFields = constant;
+                addALocationPageFields = constant;
                 break;
             }
         }
-        return labAddressPageFields;
+        return addALocationPageFields;
     }
 }

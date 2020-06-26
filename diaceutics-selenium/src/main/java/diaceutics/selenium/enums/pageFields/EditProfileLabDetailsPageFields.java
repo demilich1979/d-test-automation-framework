@@ -1,6 +1,6 @@
 package diaceutics.selenium.enums.pageFields;
 
-public enum EditProfilePageFields implements FormFieldInterface{
+public enum EditProfileLabDetailsPageFields implements FormFieldInterface{
     COUNTRY("Country", "Country", "country", FieldType.COMBOBOX),
     NAME("Name", "Name", "name", FieldType.TEXT),
     URL("URL", "URL", "url", FieldType.TEXT),
@@ -12,7 +12,7 @@ public enum EditProfilePageFields implements FormFieldInterface{
     private final FieldType fieldType;
 
 
-    EditProfilePageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
+    EditProfileLabDetailsPageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;
         this.modelField = modelField;
@@ -35,14 +35,14 @@ public enum EditProfilePageFields implements FormFieldInterface{
         return fieldType;
     }
 
-    public static EditProfilePageFields getEnumValue(String friendlyName) {
-        EditProfilePageFields editProfilePageFields = null;
-        for (EditProfilePageFields constant : EditProfilePageFields.values()) {
+    public static EditProfileLabDetailsPageFields getEnumValue(String friendlyName) {
+        EditProfileLabDetailsPageFields editProfileLabDetailsPageFields = null;
+        for (EditProfileLabDetailsPageFields constant : EditProfileLabDetailsPageFields.values()) {
             if (constant.getFriendlyName().equals(friendlyName)) {
-                editProfilePageFields = constant;
+                editProfileLabDetailsPageFields = constant;
                 break;
             }
         }
-        return editProfilePageFields;
+        return editProfileLabDetailsPageFields;
     }
 }
