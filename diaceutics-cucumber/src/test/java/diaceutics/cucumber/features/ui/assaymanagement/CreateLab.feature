@@ -13,22 +13,23 @@ Feature: Create a Lab
     And I click Next on Create a Lab page
       Then Lab Address page is opened
     When I fill following fields on Lab Address page and save as 'lab':
-      | Location name | Test data |
-      | Address 1     | Test data |
-      | Address 2     | Test data |
-      | City / Town   | Test data |
-      | Region        | Test data |
-      | Country       | Albania   |
-      | Postal code   | Test data |
+      | Location name | Test Location name |
+      | Address 1     | Test Address 1     |
+      | Address 2     | Test Address 2     |
+      | City / Town   | Test City          |
+      | Region        | Test Region        |
+      | Country       | Albania            |
+      | Postal code   | Test Postal code   |
     And I click Finish on Lab Address page
       Then Lab Profile page is opened
       And Lab 'lab' is displayed on Lab Profile page
 
     Examples:
-      | Lab type     | test count |
-      | Unspecified  | 0001       |
-      | Academic Lab | 0002       |
-      | Private Lab  | 0003       |
+      | Lab type       | test count |
+      | Unspecified    | 0001       |
+      | Academic Lab   | 0002       |
+      | Commercial Lab | 0003       |
+      | Hospital Lab   | 0004       |
 
   @CreateALab
   Scenario: DIAFE:0004 Create a Lab: Required fields validation
@@ -52,13 +53,13 @@ Feature: Create a Lab
       And Message 'Please input a city or town name' is displayed on required fields on Lab Address page
       And Message 'Please input a country' is displayed on required fields on Lab Address page
     When I fill following fields on Lab Address page and save as 'lab':
-      | Location name | Test data |
-      | Address 1     | Test data |
-      | Address 2     | Test data |
-      | City / Town   | Test data |
-      | Region        | Test data |
-      | Country       | Albania   |
-      | Postal code   | Test data |
+      | Location name | Test Location name |
+      | Address 1     | Test Address 1     |
+      | Address 2     | Test Address 2     |
+      | City / Town   | Test City          |
+      | Region        | Test Region        |
+      | Country       | Albania            |
+      | Postal code   | Test Postal code   |
     And I click Finish on Lab Address page
       Then Lab Profile page is opened
       And Lab 'lab' is displayed on Lab Profile page
