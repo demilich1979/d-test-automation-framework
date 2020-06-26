@@ -9,7 +9,7 @@ Feature: Platform Management
 
   @PlatformManagement
   Scenario: DIAFE:0009 Possibility to add a platform to the existing lab
-    When I click on Add Platform on Lab Profile Page
+    When I click on 'Add platform' on Lab Profile Page
       Then Add Platform form is opened
     When I fill following fields on Add Platform form and save as 'newPlatformOne':
       | Platform manufacturer | random |
@@ -19,19 +19,19 @@ Feature: Platform Management
 
   @PlatformManagement
   Scenario: DIAFE:0010 Platform duplication impossibility
-    When I click on Add Platform on Lab Profile Page
+    When I click on 'Add platform' on Lab Profile Page
       Then Add Platform form is opened
       And Field 'Platform' does not contains value from 'newPlatformOne'
 
   @PlatformManagement
   Scenario: DIAFE:0011 Possibility to sort platforms
-    When I click on Add Platform on Lab Profile Page
+    When I click on 'Add platform' on Lab Profile Page
       Then Add Platform form is opened
     When I fill following fields on Add Platform form and save as 'newPlatformTwo':
       | Platform manufacturer | random |
       | Platform              | random |
       Then Lab Profile page is opened
-    When I click on Add Platform on Lab Profile Page
+    When I click on 'Add platform' on Lab Profile Page
       Then Add Platform form is opened
     When I fill following fields on Add Platform form and save as 'newPlatformThree':
       | Platform manufacturer | random |

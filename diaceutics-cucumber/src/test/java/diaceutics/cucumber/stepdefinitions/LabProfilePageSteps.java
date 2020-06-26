@@ -4,8 +4,10 @@ import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
+import diaceutics.selenium.enums.pageFields.LogPatientVolumeFields;
 import diaceutics.selenium.models.Lab;
 import diaceutics.selenium.models.Location;
+import diaceutics.selenium.models.Volume;
 import diaceutics.selenium.pageobject.pages.LabProfilePage;
 import diaceutics.selenium.models.Platform;
 import io.cucumber.java.en.And;
@@ -32,11 +34,6 @@ public class LabProfilePageSteps {
     @Given("Lab Profile page is opened")
     public void labProfilesPageIsOpened() {
         Assert.assertTrue(labProfilePage.isDisplayed(), "LabProfile page should be opened");
-    }
-
-    @When("I click on Add Platform on Lab Profile Page")
-    public void iClickOnAddPlatformOnLabProfilePage() {
-        labProfilePage.clickAddPlatform();
     }
 
     @Then("Add Platform form is opened")
@@ -155,11 +152,6 @@ public class LabProfilePageSteps {
                 String.format("Lab %s should be displayed on Lab Profile page", lab.getName()));
     }
 
-    @When("I click Add a location On Lab Profile page")
-    public void iClickAddALocationOnLabProfilePage() {
-        labProfilePage.clickAddLocation();
-    }
-
     @Then("{string} message is displayed on Lab Profile page")
     public void newLocationAddedMessageIsDisplayedOnLabProfilePage(String message) {
         Assert.assertTrue(labProfilePage.isAlertMessageDisplayed(message),
@@ -187,4 +179,55 @@ public class LabProfilePageSteps {
         labProfilePage.getLocationsForm().clickEditLocation(location);
     }
 
+
+    @When("I click on {string} on Lab Profile Page")
+    public void iClickOnAddVolumeOnLabProfilePage(String buttonName) {
+        labProfilePage.clickAdd(buttonName);
+    }
+
+    @Then("Log patient volume form is opened")
+    public void logPatientVolumeFormIsOpenedOnLabProfilePage() {
+        Assert.assertTrue(labProfilePage.getLogPatientVolumeForm().isDisplayed(), "Log patient volume form should be opened");
+    }
+
+    @When("I fill following fields on Log patient volume form and save as {string}:")
+    public void iFillFollowingFieldsOnLogPatientVolumeFormAndSaveAsVolume(String key, Map<String, String> data) {
+        Volume volume = new Volume();
+        data.forEach((field, value) -> {
+            String selectedValue = labProfilePage.getAddPlatformForm().setFieldValue(LogPatientVolumeFields.getEnumValue(field), value);
+            volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(field).getModelField(), selectedValue);
+        });
+        XmlFileStore.store(key, volume);
+    }
+
+    @And("I click Log volume on Log patient volume form")
+    public void iClickLogVolumeOnLogPatientVolumeForm() {
+        labProfilePage.getLogPatientVolumeForm().clickLogVolume();
+
+    }
+
+    @Then("Message {string} for {string} is displayed on Log patient volume form")
+    public void messageYourVolumeHasBeenAddedForDiseaseAndBiomarkerForVolumeIsDisplayedOnLogPatientVolumeForm(String messageTemplate, String key) {
+        Volume volume = XmlFileStore.get(key);
+        String message = String.format(messageTemplate, volume.getDisease(), volume.getBiomarker());
+        Assert.assertTrue(labProfilePage.getLogPatientVolumeForm().isMessageForVolumeDisplayed(message, volume),
+                String.format("Message %s should be displayed on Log patient volume form",
+                        message));
+    }
+
+    @When("I click Done on Log patient volume form")
+    public void iClickDoneOnLogPatientVolumeForm() {
+        labProfilePage.getLogPatientVolumeForm().clickDone();
+    }
+
+    @And("Volume {string} is added to Volumes grid on Lab Profile page")
+    public void volumeVolumeIsAddedToVolumesGridOnLabProfilePage(String key) {
+        Volume volume = XmlFileStore.get(key);
+        Assert.assertTrue(labProfilePage.isVolumeAdded(volume),
+                String.format("Volume with values %s, %s, %s, %s should be added in Volumes table",
+                        volume.getTimePeriod(),
+                        volume.getDisease(),
+                        volume.getBiomarker(),
+                        volume.getVolume()));
+    }
 }

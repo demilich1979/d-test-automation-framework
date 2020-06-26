@@ -18,11 +18,11 @@ import java.util.List;
 public abstract class BaseForm extends Form {
 
     public static final String COMBOBOX_TEMPLATE =
-            "//div[./label[text()='%s']]//div[@class='selectContainer']//ng-select[@role='listbox']//span[@class='ng-arrow-wrapper']";
+            "%s//div[@class='selectContainer']//ng-select[@role='listbox']//span[@class='ng-arrow-wrapper']";
 
     private static final String TEXT_TEMPLATE = "//input[..//label[text()='%s']]";
     private static final String RADIO_BUTTON_TEMPLATE =
-            "//ui-radio-group[./label[.='%s']]//label[contains(@class,'radioOptionContainer')][.//span[text()='%s']]";
+            "%s//label[contains(@class,'radioOptionContainer')][.//span[text()='%s']]";
 
     private static final String ALERT_MESSAGE_TEMPLATE = "//ui-alert//span[contains(text(),'%s')]";
     private static final String REQUIRED_FIELD_ALERT_MESSAGE_TEMPLATE = "//ui-validation-container//li[contains(text(),'%s')]";
@@ -64,6 +64,13 @@ public abstract class BaseForm extends Form {
                         field.getFriendlyName());
 
                 radioButton.click();
+                break;
+
+            case NUMBER:
+                ITextBox numberBox = getElementFactory().getTextBox(
+                        By.xpath(field.getLocator()), field.getFriendlyName());
+
+                numberBox.clearAndType(value);
                 break;
 
             default:

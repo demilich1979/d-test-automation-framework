@@ -9,7 +9,7 @@ Feature: Location management
 
   @LocationManagement
   Scenario: DIAFE:0015 Possibility of adding a location from Lab Profile page
-    When I click Add a location On Lab Profile page
+    When I click on 'Add a location' on Lab Profile Page
       Then Add a location page is opened
     When I fill following fields on Add a location page and save as 'location':
       | Location name | Test Location name |
@@ -45,7 +45,7 @@ Feature: Location management
 
   @LocationManagement
   Scenario: DIAFE:0017 Required fields validation
-    When I click Add a location On Lab Profile page
+    When I click on 'Add a location' on Lab Profile Page
       Then Add a location page is opened
     When I click Add a location on Add a location page
       Then Message 'Some items below need your attention.' is displayed on Add a location page
