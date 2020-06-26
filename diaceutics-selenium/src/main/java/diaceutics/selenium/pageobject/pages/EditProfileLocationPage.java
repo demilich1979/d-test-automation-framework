@@ -13,9 +13,6 @@ public class EditProfileLocationPage extends BaseForm {
     private final ILink linkReturnToProfile = getElementFactory().getLink(
             By.xpath("//ui-alert//span/a[.='Return to profile']"), "Return to profile");
 
-    private final IButton btnAddNewLocation = getElementFactory().getButton(
-            By.xpath("//div[contains(@class,'buttons')]//ul[contains(@class,'tabButtons')]"), "Add new location");
-
     public EditProfileLocationPage() {
         super(By.xpath("//ui-tab//div[not(@hidden)]//app-edit-address/h2[.='Location']"), "Edit Profile Location");
     }
@@ -26,10 +23,6 @@ public class EditProfileLocationPage extends BaseForm {
 
     public void clickReturnToProfile() {
         linkReturnToProfile.clickAndWait();
-    }
-
-    public void clickAddNewLocation() {
-        btnAddNewLocation.clickAndWait();
     }
 
 }

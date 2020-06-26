@@ -169,8 +169,16 @@ public class LabProfilePageSteps {
     @And("Location {string} is displayed on Locations form on on Lab Profile page")
     public void locationLocationIsDisplayedOnLocationsFormOnOnLabProfilePage(String key) {
         Location location = XmlFileStore.get(key);
-        Assert.assertTrue(labProfilePage.getLocationsForm().isLocationDisplayed(location),
-                String.format("Location %s should be displayed on Lab Profile page", location.getLocationName()));
+        List<String> locationFieldValues = labProfilePage.getLocationsForm().getLocationFieldValues(location);
+
+        for (int i = 0; i < locationFieldValues.size(); i++) {
+            String actualValue = locationFieldValues.get(i);
+            String expectedValue = location.getReflectionFieldValue(location.getFields()[i]);
+            SoftAssert.getInstance().assertEquals(
+                    actualValue,
+                    expectedValue,
+                    String.format("Value %s for %s is not correct on Lab Profile page", expectedValue, location.getLocationName()));
+        }
     }
 
     @When("I click Edit location {string} on Lab Profile Page")

@@ -11,7 +11,7 @@ public class LabsPage extends BaseForm {
 
     private static final String COUNTRY_TEMPLATE = "//div[contains(@class,'byCountry')]//span/a[.='%s']";
 
-    private final IButton btnCreateLab = getElementFactory().getButton(By.xpath("//button[text()='Create a Lab']"), "Create a Lab");
+    private final IButton btnCreateLab = getElementFactory().getButton(By.xpath("//button//div[text()='Create a Lab']"), "Create a Lab");
     private final IButton btnSearch = getElementFactory().getButton(By.name("search"), "Search");
     private final ITextBox searchField = getElementFactory().getTextBox(
             By.xpath("//ui-search/input[contains(@placeholder,'Enter keywords')]"), "Search field");

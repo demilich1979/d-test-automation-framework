@@ -11,4 +11,5 @@ public class Location extends BaseModel {
     private String region;
     private String country;
     private String postalCode;
+    private String[] fields = new String[]{"locationName", "addressOne", "addressTwo", "cityTown", "region", "country", "postalCode"};
 }

@@ -2,6 +2,7 @@ package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.selenium.enums.pageFields.LabAddressPageFields;
+import diaceutics.selenium.models.Location;
 import diaceutics.selenium.pageobject.pages.LabAddressPage;
 import diaceutics.selenium.models.Lab;
 import io.cucumber.java.en.And;
@@ -31,11 +32,13 @@ public class LabAddressPageSteps {
     @When("I fill following fields on Lab Address page and save as {string}:")
     public void fillCreateLabPage(String key, Map<String, String> data) {
         Lab lab = scenarioContext.get(key);
+        Location location = new Location();
         data.forEach((field, value) -> {
             labAddressPage.setFieldValue(LabAddressPageFields.getEnumValue(field), value);
-            lab.setReflectionFieldValue(LabAddressPageFields.getEnumValue(field).getModelField(), value);
+            location.setReflectionFieldValue(LabAddressPageFields.getEnumValue(field).getModelField(), value);
         });
 
+        lab.addLocation(location);
         scenarioContext.add(key, lab);
     }
 

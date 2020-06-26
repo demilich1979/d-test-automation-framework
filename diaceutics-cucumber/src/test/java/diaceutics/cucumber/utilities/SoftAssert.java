@@ -8,6 +8,7 @@ import java.util.List;
 public class SoftAssert {
     private static final ThreadLocal<SoftAssert> SOFT_ASSERT_HOLDER = new ThreadLocal<>();
     private final List<String> results = new ArrayList<>();
+    private static final String RESULT_EQUALS_MESSAGE_TEMPLATE = "%s%nActual value: %s%nExpected value: %s";
 
     public static SoftAssert getInstance() {
         if (SOFT_ASSERT_HOLDER.get() == null) {
@@ -26,6 +27,15 @@ public class SoftAssert {
         performAssert(
                 () -> Assert.assertTrue(condition),
                 message
+        );
+    }
+
+    public void assertEquals(Object actual,
+                             Object expected,
+                             String message) {
+        performAssert(
+                () -> Assert.assertEquals(expected, actual),
+                String.format(RESULT_EQUALS_MESSAGE_TEMPLATE, message, actual, expected)
         );
     }
 
