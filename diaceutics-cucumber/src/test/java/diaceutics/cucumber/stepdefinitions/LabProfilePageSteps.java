@@ -4,6 +4,7 @@ import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
+import diaceutics.selenium.enums.pageFields.EditPatientVolumeFields;
 import diaceutics.selenium.enums.pageFields.LogPatientVolumeFields;
 import diaceutics.selenium.models.Lab;
 import diaceutics.selenium.models.Location;
@@ -76,9 +77,9 @@ public class LabProfilePageSteps {
         labProfilePage.clickSortColumn(column);
     }
 
-    @Then("Data in {string} column sorted according to alphabet")
-    public void dataInPlatformManufacturedColumnSortedAccordingToAlphabet(String column) {
-        SoftAssert.getInstance().assertTrue(labProfilePage.isDataInColumnInPlatformGridSorted(column),
+    @Then("Data in {string} column on {string} Grid sorted according to alphabet")
+    public void dataInPlatformManufacturedColumnSortedAccordingToAlphabet(String column, String gridName) {
+        SoftAssert.getInstance().assertTrue(labProfilePage.isDataInColumnInGridSorted(column, gridName),
                 String.format("Data in %s column should be sorted according to alphabet", column));
     }
 
@@ -126,9 +127,9 @@ public class LabProfilePageSteps {
                         platform.getPlatformManufacturer(), platform.getPlatform()));
     }
 
-    @When("I count the number of platforms in the Platforms grid and save as {string}")
-    public void iCountTheNumberOfPlatformsInThePlatformsGridAndSaveAsNumberOfPlatforms(String key) {
-        String numberOfPlatformsFromGrid = labProfilePage.getNumberOfPlatformsFromGrid();
+    @When("I count the number of platforms in the {string} grid and save as {string}")
+    public void iCountTheNumberOfPlatformsInThePlatformsGridAndSaveAsNumberOfPlatforms( String gridName, String key) {
+        String numberOfPlatformsFromGrid = labProfilePage.getNumberOfRowsInGrid(gridName);
         scenarioContext.add(key, numberOfPlatformsFromGrid);
     }
 
@@ -194,9 +195,10 @@ public class LabProfilePageSteps {
     public void iFillFollowingFieldsOnLogPatientVolumeFormAndSaveAsVolume(String key, Map<String, String> data) {
         Volume volume = new Volume();
         data.forEach((field, value) -> {
-            String selectedValue = labProfilePage.getAddPlatformForm().setFieldValue(LogPatientVolumeFields.getEnumValue(field), value);
+            String selectedValue = labProfilePage.getLogPatientVolumeForm().setFieldValue(LogPatientVolumeFields.getEnumValue(field), value);
             volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(field).getModelField(), selectedValue);
         });
+
         XmlFileStore.store(key, volume);
     }
 
@@ -235,8 +237,7 @@ public class LabProfilePageSteps {
     public void iFillFollowingFieldsOnLogPatientVolumeFormUsingDataFromVolume(String key, List<String> fields) {
         Volume volume = XmlFileStore.get(key);
         fields.forEach(field -> {
-            labProfilePage.getLogPatientVolumeForm().setFieldValue(
-                    LogPatientVolumeFields.getEnumValue(field),
+            labProfilePage.getLogPatientVolumeForm().setFieldValue(LogPatientVolumeFields.getEnumValue(field),
                     volume.getReflectionFieldValue(LogPatientVolumeFields.getEnumValue(field).getModelField()));
         });
     }
@@ -246,4 +247,46 @@ public class LabProfilePageSteps {
         Assert.assertTrue(labProfilePage.getLogPatientVolumeForm().isAlertMessageDisplayed(message),
                 String.format("Message %s should be displayed on Log patient volume form", message));
     }
+
+    @When("I click on Edit button for the {string} volume on Lab Profile Page")
+    public void iClickOnEditButtonForTheVolumeVolumeOnLabProfilePage(String key) {
+        Volume volume = XmlFileStore.get(key);
+        labProfilePage.clickEditVolume(volume);
+    }
+
+    @Then("Edit patient volume form is opened")
+    public void editPatientVolumeFormIsOpened() {
+        Assert.assertTrue(labProfilePage.getEditPatientVolumeForm().isDisplayed(), "Edit patient volume form should be opened");
+    }
+
+    @When("I fill following fields on Edit patient volume form and save as {string}:")
+    public void iFillFollowingFieldsOnEditPatientVolumeFormAndSaveAsVolume(String key, Map<String, String> data) {
+        Volume volume = XmlFileStore.get(key);
+        data.forEach((field, value) -> {
+            String selectedValue = labProfilePage.getEditPatientVolumeForm().setFieldValue(EditPatientVolumeFields.getEnumValue(field), value);
+            volume.setReflectionFieldValue(EditPatientVolumeFields.getEnumValue(field).getModelField(), selectedValue);
+        });
+
+        XmlFileStore.store(key, volume);
+    }
+
+    @And("I click Update volume on Edit patient volume form")
+    public void iClickUpdateVolumeOnEditPatientVolumeForm() {
+        labProfilePage.getEditPatientVolumeForm().clickUpdateVolume();
+    }
+
+    @Then("Message {string} for {string} is displayed on Edit patient volume form")
+    public void messageVolumeHasBeenAddedForDiseaseAndBiomarkerForVolumeIsDisplayedOnEditPatientVolumeForm(String messageTemplate, String key) {
+        Volume volume = XmlFileStore.get(key);
+        String message = String.format(messageTemplate, volume.getDisease(), volume.getBiomarker());
+        Assert.assertTrue(labProfilePage.getEditPatientVolumeForm().isMessageForVolumeDisplayed(message, volume),
+                String.format("Message %s should be displayed on Log patient volume form",
+                        message));
+    }
+
+    @When("I click Done on Edit patient volume form")
+    public void iClickDoneOnEditPatientVolumeForm() {
+        labProfilePage.getEditPatientVolumeForm().clickDone();
+    }
+
 }

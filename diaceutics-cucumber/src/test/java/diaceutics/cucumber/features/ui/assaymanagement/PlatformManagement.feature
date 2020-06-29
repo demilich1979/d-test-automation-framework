@@ -38,9 +38,9 @@ Feature: Platform Management
       | Platform              | random |
       Then Lab Profile page is opened
     When I sort data by alphabet in 'Platform manufacturer' column
-      Then Data in 'Platform manufacturer' column sorted according to alphabet
+      Then Data in 'Platform manufacturer' column on 'Platforms' Grid sorted according to alphabet
     When I sort data by alphabet in 'Platform equipment' column
-      Then Data in 'Platform equipment' column sorted according to alphabet
+      Then Data in 'Platform equipment' column on 'Platforms' Grid sorted according to alphabet
 
   @PlatformManagement
   Scenario: DIAFE:0012 Possibility to edit platforms
@@ -52,7 +52,7 @@ Feature: Platform Management
 
   @PlatformManagement
   Scenario: DIAFE:0013 Check number of platforms
-    When I count the number of platforms in the Platforms grid and save as 'numberOfPlatforms'
+    When I count the number of platforms in the 'Platforms' grid and save as 'numberOfPlatforms'
       Then 'numberOfPlatforms' in Platform grid must be the same as a number stated in the Platforms grid title
 
   @PlatformManagement

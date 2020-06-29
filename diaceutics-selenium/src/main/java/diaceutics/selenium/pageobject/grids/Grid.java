@@ -6,7 +6,6 @@ import aquality.selenium.elements.interfaces.IElement;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,14 +13,18 @@ import static aquality.selenium.browser.AqualityServices.getElementFactory;
 
 public class Grid {
     private final String locator;
-    private final List<String> columns;
 
-    public Grid(String locator, String... columns) {
+    public Grid(String locator) {
         this.locator = locator;
-        this.columns = Arrays.asList(columns);
     }
 
     public List<String> getColumns() {
+        List<IElement> columnLinks = getElementFactory().findElements(By.xpath
+                (String.format("%s//th", locator)), ElementType.LINK);
+        List<String> columns = new ArrayList<>();
+        columnLinks.forEach(option -> {
+            columns.add(option.getText());
+        });
         return columns;
     }
 
@@ -40,8 +43,10 @@ public class Grid {
                 .waitFor(() -> getValuesFromColumn(columnName).stream().anyMatch(option -> option.equals(value)));
     }
 
-    public int getNumberOfRowsInColumns(String columnName) {
-        return getValuesFromColumn(columnName).size();
+    public int getNumberOfRowsInGrid() {
+        List<IElement> rowLinks = getElementFactory().findElements(By.xpath
+                (String.format("%s//tr[not(th)]", locator)), ElementType.LINK);
+        return rowLinks.size();
     }
 
     public boolean isDataInColumnSorted(String columnName) {
