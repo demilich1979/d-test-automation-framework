@@ -6,6 +6,7 @@ import diaceutics.selenium.enums.pageFields.AddAnAssayPageFields;
 import diaceutics.selenium.models.Assay;
 import diaceutics.selenium.pageobject.pages.AddAnAssayPage;
 import diaceutics.selenium.utilities.TimeUtil;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
@@ -45,4 +46,8 @@ public class AddAnAssayPageSteps {
         XmlFileStore.store(key, assay);
     }
 
+    @And("I click {string} on Add an Assay page")
+    public void iClickAddAssayOnAddAnAssayPage(String buttonName) {
+        addAnAssayPage.clickAdd(buttonName);
+    }
 }

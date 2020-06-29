@@ -6,15 +6,16 @@ import org.openqa.selenium.By;
 
 public class AddAnAssayPage extends BaseForm {
 
-    private final IButton btnAddBiomarker = getElementFactory().getButton(
-            By.xpath("//form//button[.='Add Biomarker']"), "Add Biomarker");
+    private static final String ADD_BUTTON_TEMPLATE = "//form//button[.='Add Assay']";
 
     public AddAnAssayPage() {
         super(By.xpath("//h1[.='Add an assay']"), "Add a location");
     }
+    public void clickAdd(String buttonName) {
+        IButton btnAdd = getElementFactory().getButton(
+                By.xpath(String.format(ADD_BUTTON_TEMPLATE, buttonName)), buttonName);
 
-    public void clickAddBiomarker() {
-        btnAddBiomarker.clickAndWait();
+        btnAdd.clickAndWait();
     }
 
 }

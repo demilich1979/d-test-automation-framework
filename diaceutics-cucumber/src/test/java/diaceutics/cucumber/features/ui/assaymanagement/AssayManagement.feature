@@ -26,11 +26,11 @@ Feature: Assay Management
       | Associated diseases                   | random                  |
       | Method                                | random                  |
       | Method description                    | Test Method description |
-      | Commercial Assays                     | random                  |
+#      | Commercial Assays                     | random                  |
       | Result Format                         | random                  |
       | Report sample URL                     | Test Report sample URL  |
       | Send-out or inhouse?                  | Inhouse                 |
-      | Send-out Lab                          | random                  |
+#      | Send-out Lab                          | random                  |
       | Panel name radio                      | Yes                     |
       | Panel name                            | Test Panel name         |
       | Accuracy                              | 55                      |
@@ -38,4 +38,11 @@ Feature: Assay Management
       | Sensitivity                           | 55                      |
       | Batch or Individual?                  | Batch                   |
       | Variants included?                    | Yes                     |
+    And I click 'Add Biomarker' on Add an Assay page
+    When I fill following fields on Add Biomarker and save as 'assay':
+
+      | Biomarker | random |
+    And I click 'Add Assay' on Add an Assay page
+      Then Lab Profile page is opened
+    And 'New lab assay added.' message is displayed on Lab Profile page
 

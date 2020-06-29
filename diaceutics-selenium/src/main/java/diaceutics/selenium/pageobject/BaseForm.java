@@ -78,7 +78,7 @@ public abstract class BaseForm extends Form {
 
             case CHECKBOX:
                 ICheckBox checkBox = getElementFactory().getCheckBox(
-                        By.xpath(String.format(RADIO_BUTTON_TEMPLATE, field.getLocator(), value)),
+                        By.xpath(String.format(CHECKBOX_TEMPLATE, field.getLocator())),
                         field.getFriendlyName());
 
                 boolean shouldBeChecked = Boolean.parseBoolean(value);
