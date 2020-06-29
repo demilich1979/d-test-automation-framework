@@ -1,10 +1,10 @@
 package diaceutics.selenium.enums.pageFields;
 
 public enum CreateLabPageFields implements FormFieldInterface{
-    COUNTRY("Country", "Country", "country", FieldType.COMBOBOX),
+    COUNTRY("Country", "//div[./label[text()='Country']]", "country", FieldType.COMBOBOX),
     NAME("Name", "Name", "name", FieldType.TEXT),
     URL("URL", "URL", "url", FieldType.TEXT),
-    LAB_TYPE("Lab type", "Lab type", "labType", FieldType.RADIO);
+    LAB_TYPE("Lab type", "//ui-radio-group[./label[.='Lab type']]", "labType", FieldType.RADIO);
 
     private final String friendlyName;
     private final String locator;

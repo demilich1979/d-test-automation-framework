@@ -2,11 +2,11 @@ package diaceutics.selenium.enums.pageFields;
 
 public enum AddPlatformFormFields implements FormFieldInterface {
     PLATFORM_MANUFACTURER("Platform manufacturer",
-            "Platform manufacturer",
+            "//div[./label[text()='Platform manufacturer']]",
             "platformManufacturer",
             FieldType.COMBOBOX),
 
-    PLATFORM("Platform", "Platform", "platform", FieldType.COMBOBOX);
+    PLATFORM("Platform", "//div[./label[text()='Platform']]", "platform", FieldType.COMBOBOX);
 
     private final String friendlyName;
     private final String locator;

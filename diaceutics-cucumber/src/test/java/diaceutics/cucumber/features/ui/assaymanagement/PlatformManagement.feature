@@ -9,7 +9,7 @@ Feature: Platform Management
 
   @PlatformManagement
   Scenario: DIAFE:0009 Possibility to add a platform to the existing lab
-    When I click on Add Platform on Lab Profile Page
+    When I click on 'Add platform' on Lab Profile Page
       Then Add Platform form is opened
     When I fill following fields on Add Platform form and save as 'newPlatformOne':
       | Platform manufacturer | random |
@@ -19,28 +19,28 @@ Feature: Platform Management
 
   @PlatformManagement
   Scenario: DIAFE:0010 Platform duplication impossibility
-    When I click on Add Platform on Lab Profile Page
+    When I click on 'Add platform' on Lab Profile Page
       Then Add Platform form is opened
       And Field 'Platform' does not contains value from 'newPlatformOne'
 
   @PlatformManagement
   Scenario: DIAFE:0011 Possibility to sort platforms
-    When I click on Add Platform on Lab Profile Page
+    When I click on 'Add platform' on Lab Profile Page
       Then Add Platform form is opened
     When I fill following fields on Add Platform form and save as 'newPlatformTwo':
       | Platform manufacturer | random |
       | Platform              | random |
       Then Lab Profile page is opened
-    When I click on Add Platform on Lab Profile Page
+    When I click on 'Add platform' on Lab Profile Page
       Then Add Platform form is opened
     When I fill following fields on Add Platform form and save as 'newPlatformThree':
       | Platform manufacturer | random |
       | Platform              | random |
       Then Lab Profile page is opened
     When I sort data by alphabet in 'Platform manufacturer' column
-      Then Data in 'Platform manufacturer' column sorted according to alphabet
+      Then Data in 'Platform manufacturer' column on 'Platforms' Grid sorted according to alphabet
     When I sort data by alphabet in 'Platform equipment' column
-      Then Data in 'Platform equipment' column sorted according to alphabet
+      Then Data in 'Platform equipment' column on 'Platforms' Grid sorted according to alphabet
 
   @PlatformManagement
   Scenario: DIAFE:0012 Possibility to edit platforms
@@ -52,7 +52,7 @@ Feature: Platform Management
 
   @PlatformManagement
   Scenario: DIAFE:0013 Check number of platforms
-    When I count the number of platforms in the Platforms grid and save as 'numberOfPlatforms'
+    When I count the number of platforms in the 'Platforms' grid and save as 'numberOfPlatforms'
       Then 'numberOfPlatforms' in Platform grid must be the same as a number stated in the Platforms grid title
 
   @PlatformManagement
