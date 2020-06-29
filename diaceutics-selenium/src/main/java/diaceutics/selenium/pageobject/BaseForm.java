@@ -3,6 +3,7 @@ package diaceutics.selenium.pageobject;
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.Link;
+import aquality.selenium.elements.interfaces.ICheckBox;
 import aquality.selenium.elements.interfaces.ILabel;
 import aquality.selenium.elements.interfaces.IRadioButton;
 import aquality.selenium.elements.interfaces.ITextBox;
@@ -26,6 +27,8 @@ public abstract class BaseForm extends Form {
 
     private static final String ALERT_MESSAGE_TEMPLATE = "//ui-alert//span[contains(text(),'%s')]";
     private static final String REQUIRED_FIELD_ALERT_MESSAGE_TEMPLATE = "//ui-validation-container//li[contains(text(),'%s')]";
+    private static final String TEXT_AREA_TEMPLATE = "//ui-text-area[.//label[text()='%s']]//textarea";
+    private static final String CHECKBOX_TEMPLATE = "//ui-checkbox-group//label[contains(text(),'%s')]";
 
     protected BaseForm(By locator, String name) {
         super(locator, name);
@@ -46,6 +49,13 @@ public abstract class BaseForm extends Form {
                 textBox.clearAndType(value);
                 break;
 
+            case TEXT_AREA:
+                ITextBox textBoxArea = getElementFactory().getTextBox(
+                        By.xpath(String.format(TEXT_AREA_TEMPLATE, field.getLocator())), field.getFriendlyName());
+
+                textBoxArea.clearAndType(value);
+                break;
+
             case COMBOBOX:
                 ComboboxJs comboboxJs = getElementFactory().getCustomElement(
                         ComboboxJs.class, By.xpath(String.format(COMBOBOX_TEMPLATE, field.getLocator())),
@@ -64,6 +74,18 @@ public abstract class BaseForm extends Form {
                         field.getFriendlyName());
 
                 radioButton.click();
+                break;
+
+            case CHECKBOX:
+                ICheckBox checkBox = getElementFactory().getCheckBox(
+                        By.xpath(String.format(RADIO_BUTTON_TEMPLATE, field.getLocator(), value)),
+                        field.getFriendlyName());
+
+                boolean shouldBeChecked = Boolean.parseBoolean(value);
+                if (shouldBeChecked != checkBox.isChecked()) {
+                    checkBox.click();
+                }
+
                 break;
 
             case NUMBER:

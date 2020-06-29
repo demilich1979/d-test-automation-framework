@@ -128,7 +128,7 @@ public class LabProfilePageSteps {
     }
 
     @When("I count the number of platforms in the {string} grid and save as {string}")
-    public void iCountTheNumberOfPlatformsInThePlatformsGridAndSaveAsNumberOfPlatforms( String gridName, String key) {
+    public void iCountTheNumberOfPlatformsInThePlatformsGridAndSaveAsNumberOfPlatforms(String gridName, String key) {
         String numberOfPlatformsFromGrid = labProfilePage.getNumberOfRowsInGrid(gridName);
         scenarioContext.add(key, numberOfPlatformsFromGrid);
     }
