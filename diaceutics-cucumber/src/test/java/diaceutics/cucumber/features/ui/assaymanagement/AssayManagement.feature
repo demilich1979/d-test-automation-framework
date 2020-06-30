@@ -18,10 +18,10 @@ Feature: Assay Management
       | Specimens Tested                      | random                  |
       | Detects Germline/Somatic alterations  | random                  |
       | FDA 510K Approved Kit                 | true                    |
-      | Laboratory Developed Test (LDT)       | true                    |
+      | Laboratory Developed Test (LDT)       | false                   |
       | FDA PMA Approved Kit                  | true                    |
       | IVD-CE                                | true                    |
-      | RUO/IUO                               | true                    |
+      | RUO/IUO                               | false                   |
       | Turn around time (days)               | 55555                   |
       | Associated diseases                   | random                  |
       | Method                                | random                  |
@@ -39,10 +39,12 @@ Feature: Assay Management
       | Batch or Individual?                  | Batch                   |
       | Variants included?                    | Yes                     |
     And I click 'Add Biomarker' on Add an Assay page
-    When I fill following fields on Add Biomarker and save as 'assay':
-
+      Then Add Biomarker form is opened
+    When I fill following fields on Add Biomarker form and save as 'assay':
       | Biomarker | random |
+    And I click Save changes on Add Biomarker form
     And I click 'Add Assay' on Add an Assay page
       Then Lab Profile page is opened
-    And 'New lab assay added.' message is displayed on Lab Profile page
+      And 'New lab assay added.' message is displayed on Lab Profile page
+      And Assay 'assay' is added to Assays grid on Lab Profile page
 

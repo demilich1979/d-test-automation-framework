@@ -4,6 +4,7 @@ import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.IElement;
 import aquality.selenium.elements.interfaces.ILink;
+import diaceutics.selenium.models.Assay;
 import diaceutics.selenium.models.Lab;
 import diaceutics.selenium.models.Volume;
 import diaceutics.selenium.pageobject.BaseForm;
@@ -26,6 +27,7 @@ public class LabProfilePage extends BaseForm {
     private static final String VOLUME_TEMPLATE = "//tr[.//span[.='%s'] and .//span[.='%s'] and .//span[.='%s'] and .//span[.='%s']]";
     private static final String EDIT_VOLUME_BUTTON_TEMPLATE = VOLUME_TEMPLATE + EDIT_BUTTON_TEMPLATE;
     private static final String GRID_TEMPLATE = "//div[contains(@class,'dataTable')][.//h3[.='%s']]//ui-table//table[2]";
+    private static final String ASSAY_TEMPLATE = "//tr[.//span[.='%s'] and .//span[.='%s'] and .//span[.='%s']]";
 
     private final ILink linkPlatformCount = getElementFactory().getLink(
             By.xpath("//h3[.='Platforms']/parent::div/span"), "Platform Count");
@@ -167,5 +169,17 @@ public class LabProfilePage extends BaseForm {
                 "Edit volume");
 
         btnEditVolume.clickAndWait();
+    }
+
+    public boolean isAssayAdded(Assay assay) {
+        List<IElement> volumeLink = getElementFactory().findElements(By.xpath
+                        (String.format(
+                                ASSAY_TEMPLATE,
+                                assay.getAssayName(),
+                                assay.getClassifications(),
+                                assay.getMethod())),
+                ElementType.LINK);
+
+        return volumeLink.size() > 0;
     }
 }

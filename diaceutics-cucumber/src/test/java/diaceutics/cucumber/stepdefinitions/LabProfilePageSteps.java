@@ -6,11 +6,8 @@ import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
 import diaceutics.selenium.enums.pageFields.EditPatientVolumeFields;
 import diaceutics.selenium.enums.pageFields.LogPatientVolumeFields;
-import diaceutics.selenium.models.Lab;
-import diaceutics.selenium.models.Location;
-import diaceutics.selenium.models.Volume;
+import diaceutics.selenium.models.*;
 import diaceutics.selenium.pageobject.pages.LabProfilePage;
-import diaceutics.selenium.models.Platform;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -226,7 +223,7 @@ public class LabProfilePageSteps {
     public void volumeVolumeIsAddedToVolumesGridOnLabProfilePage(String key) {
         Volume volume = XmlFileStore.get(key);
         Assert.assertTrue(labProfilePage.isVolumeAdded(volume),
-                String.format("Volume with values %s, %s, %s, %s should be added in Volumes table",
+                String.format("Volume with values %s, %s, %s, %s should be added in Volumes grid",
                         volume.getTimePeriod(),
                         volume.getDisease(),
                         volume.getBiomarker(),
@@ -289,4 +286,11 @@ public class LabProfilePageSteps {
         labProfilePage.getEditPatientVolumeForm().clickDone();
     }
 
+    @And("Assay {string} is added to Assays grid on Lab Profile page")
+    public void assayAssayIsAddedToAssaysGridOnLabProfilePage(String key) {
+        Assay assay = XmlFileStore.get(key);
+        Assert.assertTrue(labProfilePage.isAssayAdded(assay),
+                String.format("Assay %s should be added in Assay grid", assay.getAssayName()));
+
+    }
 }
