@@ -6,7 +6,6 @@ import diaceutics.selenium.enums.pageFields.AddAnAssayPageFields;
 import diaceutics.selenium.enums.pageFields.AddBiomarkerFormFields;
 import diaceutics.selenium.models.Assay;
 import diaceutics.selenium.models.Biomarker;
-import diaceutics.selenium.pageobject.forms.AddBiomarkerForm;
 import diaceutics.selenium.pageobject.pages.AddAnAssayPage;
 import diaceutics.selenium.utilities.TimeUtil;
 import io.cucumber.java.en.And;
@@ -62,19 +61,25 @@ public class AddAnAssayPageSteps {
 
     @When("I fill following fields on Add Biomarker form and save as {string}:")
     public void iFillFollowingFieldsOnAddBiomarkerAndSaveAsAssay(String key, Map<String, String> data) {
-        Assay assay = XmlFileStore.get(key);
         Biomarker biomarker = new Biomarker();
         data.forEach((field, value) -> {
-            addAnAssayPage.getAddBiomarkerForm().setFieldValue(AddBiomarkerFormFields.getEnumValue(field), value);
-            biomarker.setReflectionFieldValue(AddBiomarkerFormFields.getEnumValue(field).getModelField(), value);
+            String selectedValue = addAnAssayPage.getAddBiomarkerForm().setFieldValue(AddBiomarkerFormFields.getEnumValue(field), value);
+            biomarker.setReflectionFieldValue(AddBiomarkerFormFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
-        assay.addBiomarker(biomarker);
-        XmlFileStore.store(key, assay);
+        scenarioContext.add(key, biomarker);
     }
 
     @And("I click Save changes on Add Biomarker form")
     public void iClickSaveChangesOnAddBiomarkerForm() {
         addAnAssayPage.getAddBiomarkerForm().clickSaveChanges();
+    }
+
+    @And("Biomarker {string} is added to Biomarker & disease grid on Add an Assay page")
+    public void biomarkerBiomarkerIsAddedToBiomarkerDiseaseGridOnAddAnAssayPage(String key) {
+        Biomarker biomarker = scenarioContext.get(key);
+        Assert.assertTrue(addAnAssayPage.isBiomarkerAdded(biomarker),
+                String.format("Biomarker %s should be added added to Biomarker & disease grid on Add an Assay page",
+                        biomarker.getBiomarker()));
     }
 }

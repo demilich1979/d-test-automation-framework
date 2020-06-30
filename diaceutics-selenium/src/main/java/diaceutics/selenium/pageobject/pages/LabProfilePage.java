@@ -28,6 +28,7 @@ public class LabProfilePage extends BaseForm {
     private static final String EDIT_VOLUME_BUTTON_TEMPLATE = VOLUME_TEMPLATE + EDIT_BUTTON_TEMPLATE;
     private static final String GRID_TEMPLATE = "//div[contains(@class,'dataTable')][.//h3[.='%s']]//ui-table//table[2]";
     private static final String ASSAY_TEMPLATE = "//tr[.//span[.='%s'] and .//span[.='%s'] and .//span[.='%s']]";
+    private static final String ASSAY_NAME_TEMPLATE = "//tr[.//span[.='%s']]//td[count(//th[.='Assay name']/preceding-sibling::*)+1]/span";
 
     private final ILink linkPlatformCount = getElementFactory().getLink(
             By.xpath("//h3[.='Platforms']/parent::div/span"), "Platform Count");
@@ -182,4 +183,12 @@ public class LabProfilePage extends BaseForm {
 
         return volumeLink.size() > 0;
     }
+
+    public void clickByAssay(Assay assay) {
+        ILink linkAssay = getElementFactory().getLink(
+                By.xpath(String.format(ASSAY_NAME_TEMPLATE, assay.getAssayName())), assay.getAssayName());
+
+        linkAssay.clickAndWait();
+    }
+
 }

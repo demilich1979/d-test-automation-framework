@@ -15,6 +15,7 @@ import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import javax.inject.Inject;
+import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.Map;
 
@@ -292,5 +293,11 @@ public class LabProfilePageSteps {
         Assert.assertTrue(labProfilePage.isAssayAdded(assay),
                 String.format("Assay %s should be added in Assay grid", assay.getAssayName()));
 
+    }
+
+    @When("I click on Assay {string} in Assays grid on Lab Profile Page")
+    public void iClickOnAssayAssayInAssaysGridOnLabProfilePage(String key) {
+        Assay assay = XmlFileStore.get(key);
+        labProfilePage.clickByAssay(assay);
     }
 }

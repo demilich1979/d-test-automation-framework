@@ -1,6 +1,7 @@
 package diaceutics.selenium.pageobject;
 
 import aquality.selenium.browser.AqualityServices;
+import aquality.selenium.core.elements.ElementState;
 import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.Link;
 import aquality.selenium.elements.interfaces.ICheckBox;
@@ -11,9 +12,11 @@ import aquality.selenium.forms.Form;
 import diaceutics.selenium.elements.ComboboxJs;
 import diaceutics.selenium.enums.pageFields.FormFieldInterface;
 import diaceutics.selenium.utilities.JavaScriptUtil;
+import diaceutics.selenium.utilities.ResourceUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
+import java.io.File;
 import java.util.List;
 
 public abstract class BaseForm extends Form {
@@ -28,7 +31,7 @@ public abstract class BaseForm extends Form {
     private static final String ALERT_MESSAGE_TEMPLATE = "//ui-alert//span[contains(text(),'%s')]";
     private static final String REQUIRED_FIELD_ALERT_MESSAGE_TEMPLATE = "//ui-validation-container//li[contains(text(),'%s')]";
     private static final String TEXT_AREA_TEMPLATE = "//ui-text-area[.//label[text()='%s']]//textarea";
-    private static final String CHECKBOX_TEMPLATE = "//ui-checkbox-group//label[contains(text(),'%s')]";
+    private static final String CHECKBOX_TEMPLATE = "//ui-checkbox-group//label[contains(text(),'%s')]/span";
 
     protected BaseForm(By locator, String name) {
         super(locator, name);
@@ -79,11 +82,12 @@ public abstract class BaseForm extends Form {
             case CHECKBOX:
                 ICheckBox checkBox = getElementFactory().getCheckBox(
                         By.xpath(String.format(CHECKBOX_TEMPLATE, field.getLocator())),
-                        field.getFriendlyName());
+                        field.getFriendlyName(), ElementState.DISPLAYED);
+                String atr = checkBox.getAttribute("class");
 
                 boolean shouldBeChecked = Boolean.parseBoolean(value);
                 if (shouldBeChecked != checkBox.isChecked()) {
-                    checkBox.click();
+                    checkBox.check();
                 }
 
                 break;
