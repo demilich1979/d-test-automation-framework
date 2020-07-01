@@ -7,7 +7,6 @@ import java.util.List;
 
 @Data
 public class Assay extends BaseModel {
-
     private String assayName;
     private String assayDescription;
     private String ontologies;

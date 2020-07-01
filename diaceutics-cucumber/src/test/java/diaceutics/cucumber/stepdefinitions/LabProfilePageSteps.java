@@ -15,7 +15,6 @@ import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import javax.inject.Inject;
-import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.Map;
 
@@ -287,7 +286,7 @@ public class LabProfilePageSteps {
         labProfilePage.getEditPatientVolumeForm().clickDone();
     }
 
-    @And("Assay {string} is added to Assays grid on Lab Profile page")
+    @And("Assay {string} is displayed in Assays grid on Lab Profile page")
     public void assayAssayIsAddedToAssaysGridOnLabProfilePage(String key) {
         Assay assay = XmlFileStore.get(key);
         Assert.assertTrue(labProfilePage.isAssayAdded(assay),
@@ -299,5 +298,12 @@ public class LabProfilePageSteps {
     public void iClickOnAssayAssayInAssaysGridOnLabProfilePage(String key) {
         Assay assay = XmlFileStore.get(key);
         labProfilePage.clickByAssay(assay);
+    }
+
+    @When("I put a Assay {string} on search field {string} and press Search icon on Lab Profile page")
+    public void iPutAAssayAssayOnSearchFieldEnterKeywordsAndPressSearchIconOnLabProfilePage(String key, String searchFieldName) {
+        Assay assay = XmlFileStore.get(key);
+        labProfilePage.putTextInSearchField(assay.getAssayName(), searchFieldName);
+        labProfilePage.clickSearch();
     }
 }

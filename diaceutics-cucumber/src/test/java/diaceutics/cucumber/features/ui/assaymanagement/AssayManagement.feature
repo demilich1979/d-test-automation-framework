@@ -47,7 +47,7 @@ Feature: Assay Management
     When I click 'Add Assay' on Add an Assay page
       Then Lab Profile page is opened
       And 'New lab assay added.' message is displayed on Lab Profile page
-      And Assay 'assay' is added to Assays grid on Lab Profile page
+      And Assay 'assay' is displayed in Assays grid on Lab Profile page
 
   @AssayManagement
   Scenario: DIAFE:0021 Possibility to edit assays
@@ -66,7 +66,7 @@ Feature: Assay Management
     And I click Save on Edit Assay page
       Then Lab Profile page is opened
       And 'Lab assay updated.' message is displayed on Lab Profile page
-      And Assay 'assay' is added to Assays grid on Lab Profile page
+      And Assay 'assay' is displayed in Assays grid on Lab Profile page
 
   @AssayManagement
   Scenario: DIAFE:0022 Required fields validation
@@ -124,3 +124,5 @@ Feature: Assay Management
 
   @AssayManagement
   Scenario: DIAFE:0024 Filter an assay by keyword
+    When I put a Assay 'assay' on search field 'Search assays' and press Search icon on Lab Profile page
+      Then Assay 'assay' is displayed in Assays grid on Lab Profile page

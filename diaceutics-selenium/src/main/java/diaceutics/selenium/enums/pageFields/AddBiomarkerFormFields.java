@@ -6,22 +6,15 @@ public enum AddBiomarkerFormFields implements FormFieldInterface {
             "biomarker",
             FieldType.COMBOBOX),
 
-    SCORING_METHODOLOGIES("Scoring methodologies",
-            "//div[./label[text()='Scoring methodologies']]",
-            "scoringMethodologies",
-            FieldType.COMBOBOX),
-
     VARIANTS("Variants",
             "//div[./label[text()='Variants']]",
             "variants",
             FieldType.COMBOBOX);
 
-
     private final String friendlyName;
     private final String locator;
     private final String modelField;
     private final FieldType fieldType;
-
 
     AddBiomarkerFormFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;

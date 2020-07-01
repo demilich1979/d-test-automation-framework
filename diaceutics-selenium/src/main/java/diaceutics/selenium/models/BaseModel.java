@@ -6,8 +6,7 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 
 public class BaseModel {
-
-    private int depth = 3;
+    private final int depth = 3;
 
     public void setReflectionFieldValue(String modelField, String value) {
         Class updatedClass = this.getClass();
