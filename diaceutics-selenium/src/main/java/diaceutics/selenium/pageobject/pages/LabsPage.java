@@ -11,13 +11,13 @@ import org.openqa.selenium.By;
 
 import java.util.List;
 
-public class FiltersPage extends BaseForm {
+public class LabsPage extends BaseForm {
 
     private static final String LAB_TEMPLATE = "//div[contains(@class,'result')]//div//a[.='%s']";
     private static final String LAB_TYPE_TEMPLATE = "//div[contains(@class,'result')]//div//span[..//a]/span[1]";
     private final IButton btnSearch = getElementFactory().getButton(By.name("search"), "Search");
 
-    public FiltersPage() {
+    public LabsPage() {
         super(By.xpath("//h3[.='Filters']"), "CountryLabProfile");
     }
 

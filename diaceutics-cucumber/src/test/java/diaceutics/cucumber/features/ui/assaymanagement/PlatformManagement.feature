@@ -3,8 +3,8 @@ Feature: Platform Management
   Background:
     Given Assay Management page is opened
     When I select 'Albania' country on Assay Management page
-      Then Filters page is opened
-    When I select 'Test lab' lab on Filters Labs page
+      Then Labs page is opened
+    When I select 'Test lab' lab on Labs page
       Then Lab Profile page is opened
 
   @PlatformManagement

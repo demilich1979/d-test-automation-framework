@@ -1,6 +1,6 @@
 package diaceutics.selenium.enums.pageFields;
 
-public enum FiltersPageFields implements FormFieldInterface{
+public enum LabsPageFields implements FormFieldInterface{
     COUNTRY("Country", "//div[./label[text()='Country']]", "country", FieldType.COMBOBOX),
     LAB_TYPE("Lab type", "//ui-radio-group[./label[.='Lab type']]", "labType", FieldType.RADIO);
 
@@ -10,7 +10,7 @@ public enum FiltersPageFields implements FormFieldInterface{
     private final FieldType fieldType;
 
 
-    FiltersPageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
+    LabsPageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;
         this.modelField = modelField;
@@ -33,14 +33,14 @@ public enum FiltersPageFields implements FormFieldInterface{
         return fieldType;
     }
 
-    public static FiltersPageFields getEnumValue(String friendlyName) {
-        FiltersPageFields filtersPageFields = null;
-        for (FiltersPageFields constant : FiltersPageFields.values()) {
+    public static LabsPageFields getEnumValue(String friendlyName) {
+        LabsPageFields labsPageFields = null;
+        for (LabsPageFields constant : LabsPageFields.values()) {
             if (constant.getFriendlyName().equals(friendlyName)) {
-                filtersPageFields = constant;
+                labsPageFields = constant;
                 break;
             }
         }
-        return filtersPageFields;
+        return labsPageFields;
     }
 }
