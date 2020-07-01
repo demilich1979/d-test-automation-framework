@@ -2,8 +2,8 @@ Feature: Find a Lab
 
   @FindLab
   Scenario: DIAFE:0005 Filter a lab by country and type
-    Given Labs page is opened
-    When I choose a 'Albania' and press Search icon
+    Given Assay Management page is opened
+    When I choose a 'Albania' and press Search icon on Assay Management page
       Then Filters page is opened
       And All of the following labs for the specific country are displayed:
         | Test lab    |
@@ -18,6 +18,6 @@ Feature: Find a Lab
 
   @FindLab
   Scenario: DIAFE:0006 Filter a lab by keyword
-    When I put a Lab 'Test lab' an Search textBox and press Search icon
+    When I put a Lab 'Test lab' on search field 'Enter keywords' and press Search icon on Assay Management page
       Then Filters page is opened
       And Lab 'Test lab' is displayed in filter results

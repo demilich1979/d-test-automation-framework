@@ -1,8 +1,8 @@
 Feature: Location management
 
   Background:
-    Given Labs page is opened
-    When I select 'Albania' country on Labs page
+    Given Assay Management page is opened
+    When I select 'Albania' country on Assay Management page
       Then Filters page is opened
     When I select 'Test lab' lab on Filters Labs page
       Then Lab Profile page is opened

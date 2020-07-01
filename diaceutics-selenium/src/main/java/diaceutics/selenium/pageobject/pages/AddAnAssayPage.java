@@ -3,6 +3,8 @@ package diaceutics.selenium.pageobject.pages;
 import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.IElement;
+import aquality.selenium.elements.interfaces.ITextBox;
+import diaceutics.selenium.enums.pageFields.FormFieldInterface;
 import diaceutics.selenium.models.Biomarker;
 import diaceutics.selenium.pageobject.BaseForm;
 import diaceutics.selenium.pageobject.forms.AddBiomarkerForm;

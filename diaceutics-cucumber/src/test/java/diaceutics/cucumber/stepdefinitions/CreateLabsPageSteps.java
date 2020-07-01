@@ -13,7 +13,6 @@ import org.testng.Assert;
 import javax.inject.Inject;
 import java.util.Map;
 
-
 public class CreateLabsPageSteps {
     private final CreateLabPage createLabPage;
     private final ScenarioContext scenarioContext;
@@ -51,12 +50,12 @@ public class CreateLabsPageSteps {
     @Then("Message {string} is displayed on Create a Lab page")
     public void someItemsBelowNeedYourAttentionMessageAppearsOnCreateALabPage(String message) {
         Assert.assertTrue(createLabPage.isAlertMessageDisplayed(message),
-                String.format("Message %s should be displayed on Create a Lab page",message));
+                String.format("Message %s should be displayed on Create a Lab page", message));
     }
 
     @And("Message {string} is displayed on required fields on Create a Lab page")
     public void messagePleaseInputACountryDisplayedOnRequiredFieldsOnCreateALabPage(String message) {
         Assert.assertTrue(createLabPage.isMessageDisplayedOnRequiredFields(message),
-                String.format("Message %s should be displayed on required fields on Create a Lab page",message));
+                String.format("Message %s should be displayed on required fields on Create a Lab page", message));
     }
 }

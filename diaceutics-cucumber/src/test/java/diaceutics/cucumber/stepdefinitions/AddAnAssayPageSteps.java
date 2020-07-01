@@ -82,4 +82,28 @@ public class AddAnAssayPageSteps {
                 String.format("Biomarker %s should be added added to Biomarker & disease grid on Add an Assay page",
                         biomarker.getBiomarker()));
     }
+
+    @Then("Message {string} is displayed on Add an Assay page")
+    public void messageSomeItemsBelowNeedYourAttentionIsDisplayedOnAddAnAssayPage(String message) {
+        Assert.assertTrue(addAnAssayPage.isAlertMessageDisplayed(message),
+                String.format("Message %s should be displayed on Add an Assay page", message));
+    }
+
+    @And("Message {string} is displayed on required fields on Add an Assay page")
+    public void messageOnRequiredFieldsOnAddAnAssayPage(String message) {
+        Assert.assertTrue(addAnAssayPage.isMessageDisplayedOnRequiredFields(message),
+                String.format("Message %s should be displayed on required fields on Add an Assay page", message));
+    }
+
+    @Then("Field {string} should be disabled on Add an Assay page")
+    public void fieldSendOutLabShouldBeDisabledOnAddAnAssayPage(String field) {
+        Assert.assertFalse(addAnAssayPage.isFieldEnabled(AddAnAssayPageFields.getEnumValue(field)),
+                String.format("Field %s should be disabled on Add an Assay page", field));
+    }
+
+    @Then("Field {string} should be enabled on Add an Assay page")
+    public void fieldPanelNameShouldBeEnabledOnAddAnAssayPage(String field) {
+        Assert.assertTrue(addAnAssayPage.isFieldEnabled(AddAnAssayPageFields.getEnumValue(field)),
+                String.format("Field %s should be enabled on Add an Assay page", field));
+    }
 }

@@ -7,6 +7,7 @@ import diaceutics.selenium.pageobject.pages.EditAssayPage;
 import diaceutics.selenium.utilities.TimeUtil;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
@@ -43,5 +44,11 @@ public class EditAssayPageSteps {
     @And("I click Save on Edit Assay page")
     public void iClickSaveOnEditAssayPage() {
         editAssayPage.clickSave();
+    }
+
+    @Then("Message {string} is displayed on required fields on Edit Assay page")
+    public void messagePleaseEnterAnAssayNameIsDisplayedOnRequiredFieldsOnEditAssayPage(String message) {
+        Assert.assertTrue(editAssayPage.isMessageDisplayedOnRequiredFields(message),
+                String.format("Message %s should be displayed on required fields on Edit Assay page", message));
     }
 }

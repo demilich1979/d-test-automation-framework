@@ -1,22 +1,16 @@
 package diaceutics.selenium.pageobject;
 
 import aquality.selenium.browser.AqualityServices;
-import aquality.selenium.core.elements.ElementState;
 import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.Link;
-import aquality.selenium.elements.interfaces.ICheckBox;
-import aquality.selenium.elements.interfaces.ILabel;
-import aquality.selenium.elements.interfaces.IRadioButton;
-import aquality.selenium.elements.interfaces.ITextBox;
+import aquality.selenium.elements.interfaces.*;
 import aquality.selenium.forms.Form;
 import diaceutics.selenium.elements.ComboboxJs;
 import diaceutics.selenium.enums.pageFields.FormFieldInterface;
 import diaceutics.selenium.utilities.JavaScriptUtil;
-import diaceutics.selenium.utilities.ResourceUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-import java.io.File;
 import java.util.List;
 
 public abstract class BaseForm extends Form {
@@ -31,7 +25,12 @@ public abstract class BaseForm extends Form {
     private static final String ALERT_MESSAGE_TEMPLATE = "//ui-alert//span[contains(text(),'%s')]";
     private static final String REQUIRED_FIELD_ALERT_MESSAGE_TEMPLATE = "//ui-validation-container//li[contains(text(),'%s')]";
     private static final String TEXT_AREA_TEMPLATE = "//ui-text-area[.//label[text()='%s']]//textarea";
-    private static final String CHECKBOX_TEMPLATE = "//ui-checkbox-group//label[contains(text(),'%s')]/span";
+    private static final String CHECKBOX_TEMPLATE = "//ui-checkbox-group//label[contains(text(),'%s')]";
+    private static final String CHECK_CHECKBOX_TEMPLATE = CHECKBOX_TEMPLATE + "/input";
+    private static final String CHECK_COMBOBOX_TEMPLATE = "%s//input";
+    private static final String SEARCH_FIELD_TEMPLATE = "//ui-search/input[contains(@placeholder,'%s')]";
+
+    private final IButton btnSearch = getElementFactory().getButton(By.name("search"), "Search");
 
     protected BaseForm(By locator, String name) {
         super(locator, name);
@@ -82,11 +81,13 @@ public abstract class BaseForm extends Form {
             case CHECKBOX:
                 ICheckBox checkBox = getElementFactory().getCheckBox(
                         By.xpath(String.format(CHECKBOX_TEMPLATE, field.getLocator())),
-                        field.getFriendlyName(), ElementState.DISPLAYED);
-                String atr = checkBox.getAttribute("class");
+                        field.getFriendlyName());
 
                 boolean shouldBeChecked = Boolean.parseBoolean(value);
-                if (shouldBeChecked != checkBox.isChecked()) {
+                boolean isChecked = AqualityServices.getBrowser().getDriver().findElement(
+                        By.xpath(String.format(CHECK_CHECKBOX_TEMPLATE, field.getLocator()))).isSelected();
+
+                if (shouldBeChecked != isChecked) {
                     checkBox.check();
                 }
 
@@ -122,6 +123,41 @@ public abstract class BaseForm extends Form {
         ITextBox textBox = getElementFactory().getTextBox(
                 By.xpath(String.format(TEXT_TEMPLATE, field.getLocator())), field.getFriendlyName());
         textBox.sendKeys(key);
+    }
+
+    public boolean isFieldEnabled(FormFieldInterface field) {
+        boolean value = false;
+        switch (field.getFieldType()) {
+            case TEXT:
+                ITextBox textBox = getElementFactory().getTextBox(
+                        By.xpath(String.format(TEXT_TEMPLATE, field.getLocator())), field.getFriendlyName());
+
+                value = textBox.state().isEnabled();
+                break;
+
+            case COMBOBOX:
+                ComboboxJs comboboxJs = getElementFactory().getCustomElement(
+                        ComboboxJs.class, By.xpath(String.format(CHECK_COMBOBOX_TEMPLATE, field.getLocator())),
+                        field.getFriendlyName());
+
+                value = comboboxJs.state().isEnabled();
+
+                break;
+            default:
+                break;
+        }
+
+        return value;
+    }
+
+    public void putTextInSearchField(String text, String searchFieldName) {
+        ITextBox searchField = getElementFactory().getTextBox(
+                By.xpath(String.format(SEARCH_FIELD_TEMPLATE,searchFieldName)), searchFieldName);
+        searchField.clearAndType(text);
+    }
+
+    public void clickSearch() {
+        btnSearch.clickAndWait();
     }
 
 }
