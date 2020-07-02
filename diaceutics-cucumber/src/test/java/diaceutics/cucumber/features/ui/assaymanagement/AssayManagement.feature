@@ -30,8 +30,8 @@ Feature: Assay Management
 #      | Commercial Assays                     | random                  |
       | Result Format                         | random                  |
       | Report sample URL                     | Test Report sample URL  |
-#      | Send-out or inhouse?                  | Send-out                |
-#      | Send-out Lab                          | random                  |
+      | Send-out or inhouse?                  | Send-out                |
+      | Send-out Lab                          | random                  |
       | Panel name radio                      | Yes                     |
       | Panel name                            | Test Panel name         |
       | Accuracy                              | 55                      |

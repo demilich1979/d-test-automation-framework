@@ -6,13 +6,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
-import javax.inject.Inject;
-
 public class AssayManagementPageSteps {
 
     private final AssayManagementPage assayManagementPage;
 
-    @Inject
     public AssayManagementPageSteps() {
         assayManagementPage = new AssayManagementPage();
     }
@@ -40,7 +37,7 @@ public class AssayManagementPageSteps {
 
     @When("I put a Lab {string} on search field {string} and press Search icon on Assay Management page")
     public void iPutALabLabNameAnSearchTextBoxAndPressSearchIcon(String labName, String searchFieldName) {
-        assayManagementPage.putTextInSearchField(labName,searchFieldName);
+        assayManagementPage.putTextInSearchField(labName, searchFieldName);
         assayManagementPage.clickSearch();
     }
 

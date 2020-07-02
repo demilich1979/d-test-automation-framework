@@ -1,9 +1,7 @@
 package diaceutics.cucumber.stepdefinitions;
 
-import aquality.selenium.browser.AqualityServices;
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.XmlFileStore;
-import diaceutics.selenium.enums.pageFields.EditProfileLabDetailsPageFields;
 import diaceutics.selenium.enums.pageFields.EditProfileLocationPageFields;
 import diaceutics.selenium.models.Location;
 import diaceutics.selenium.pageobject.pages.EditProfileLocationPage;
@@ -22,11 +20,9 @@ import java.util.Map;
 public class EditProfileLocationPageSteps {
 
     private final EditProfileLocationPage editProfileLocationPage;
-    private final ScenarioContext scenarioContext;
 
     @Inject
-    public EditProfileLocationPageSteps(ScenarioContext scenarioContext) {
-        this.scenarioContext = scenarioContext;
+    public EditProfileLocationPageSteps() {
         editProfileLocationPage = new EditProfileLocationPage();
     }
 

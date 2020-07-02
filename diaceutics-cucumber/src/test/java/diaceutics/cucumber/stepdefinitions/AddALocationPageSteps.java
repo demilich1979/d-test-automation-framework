@@ -1,6 +1,5 @@
 package diaceutics.cucumber.stepdefinitions;
 
-import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddALocationPageFields;
 import diaceutics.selenium.models.Location;
@@ -19,11 +18,9 @@ import java.util.Map;
 public class AddALocationPageSteps {
 
     private final AddALocationPage addALocationPage;
-    private final ScenarioContext scenarioContext;
 
     @Inject
-    public AddALocationPageSteps(ScenarioContext scenarioContext) {
-        this.scenarioContext = scenarioContext;
+    public AddALocationPageSteps() {
         addALocationPage = new AddALocationPage();
     }
 

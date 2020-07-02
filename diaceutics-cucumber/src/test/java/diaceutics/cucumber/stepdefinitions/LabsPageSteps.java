@@ -9,13 +9,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
-import javax.inject.Inject;
 import java.util.List;
 
 public class LabsPageSteps {
     private final LabsPage labsPage;
 
-    @Inject
     public LabsPageSteps() {
         labsPage = new LabsPage();
     }
