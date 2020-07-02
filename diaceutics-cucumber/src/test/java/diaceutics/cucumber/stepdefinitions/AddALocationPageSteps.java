@@ -47,9 +47,9 @@ public class AddALocationPageSteps {
         XmlFileStore.store(key, location);
     }
 
-    @And("I click Add a location on Add a location page")
-    public void iClickAddALocationOnAddALocationPage() {
-        addALocationPage.clickAddLocation();
+    @And("I click {string} on Add a location page")
+    public void iClickAddALocationOnAddALocationPage(String buttonName) {
+        addALocationPage.clickByButton(buttonName);
     }
 
     @Then("Message {string} is displayed on Add a location page")

@@ -15,13 +15,9 @@ import java.util.List;
 
 public abstract class BaseForm extends Form {
 
-    public static final String COMBOBOX_TEMPLATE =
-            "%s//div[@class='selectContainer']//ng-select[@role='listbox']//span[@class='ng-arrow-wrapper']";
-
+    public static final String COMBOBOX_TEMPLATE = "%s//span[@class='ng-arrow-wrapper']";
     private static final String TEXT_TEMPLATE = "//input[..//label[text()='%s']]";
-    private static final String RADIO_BUTTON_TEMPLATE =
-            "%s//label[contains(@class,'radioOptionContainer')][.//span[text()='%s']]";
-
+    private static final String RADIO_BUTTON_TEMPLATE = "%s//label[contains(@class,'radioOptionContainer')][.//span[text()='%s']]";
     private static final String ALERT_MESSAGE_TEMPLATE = "//ui-alert//span[contains(text(),'%s')]";
     private static final String REQUIRED_FIELD_ALERT_MESSAGE_TEMPLATE = "//ui-validation-container//li[contains(text(),'%s')]";
     private static final String TEXT_AREA_TEMPLATE = "//ui-text-area[.//label[text()='%s']]//textarea";
@@ -29,6 +25,7 @@ public abstract class BaseForm extends Form {
     private static final String CHECK_CHECKBOX_TEMPLATE = CHECKBOX_TEMPLATE + "/input";
     private static final String CHECK_COMBOBOX_TEMPLATE = "%s//input";
     private static final String SEARCH_FIELD_TEMPLATE = "//ui-search/input[contains(@placeholder,'%s')]";
+    private static final String BUTTON_TEMPLATE = "//button[.='%s']";
 
     private final IButton btnSearch = getElementFactory().getButton(By.name("search"), "Search");
 
@@ -152,12 +149,17 @@ public abstract class BaseForm extends Form {
 
     public void putTextInSearchField(String text, String searchFieldName) {
         ITextBox searchField = getElementFactory().getTextBox(
-                By.xpath(String.format(SEARCH_FIELD_TEMPLATE,searchFieldName)), searchFieldName);
+                By.xpath(String.format(SEARCH_FIELD_TEMPLATE, searchFieldName)), searchFieldName);
         searchField.clearAndType(text);
     }
 
     public void clickSearch() {
         btnSearch.clickAndWait();
+    }
+
+    public void clickByButton(String buttonName) {
+        IButton btn = getElementFactory().getButton(By.xpath(String.format(BUTTON_TEMPLATE, buttonName)), buttonName);
+        btn.clickAndWait();
     }
 
 }

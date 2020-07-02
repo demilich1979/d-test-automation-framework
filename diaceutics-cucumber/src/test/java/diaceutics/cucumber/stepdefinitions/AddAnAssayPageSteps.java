@@ -51,7 +51,7 @@ public class AddAnAssayPageSteps {
 
     @And("I click {string} on Add an Assay page")
     public void iClickAddAssayOnAddAnAssayPage(String buttonName) {
-        addAnAssayPage.clickAdd(buttonName);
+        addAnAssayPage.clickByButton(buttonName);
     }
 
     @Then("Add Biomarker form is opened")

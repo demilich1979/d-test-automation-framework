@@ -10,6 +10,7 @@ public class Assay extends BaseModel {
     private String assayName;
     private String assayDescription;
     private String ontologies;
+    private String scoringMethod;
     private String specimensTested;
     private String detectsGermLineSomaticAlterations;
     private String fda510KApprovedKit;

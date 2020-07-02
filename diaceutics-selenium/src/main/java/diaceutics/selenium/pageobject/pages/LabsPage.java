@@ -3,7 +3,6 @@ package diaceutics.selenium.pageobject.pages;
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.Link;
-import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.IElement;
 import aquality.selenium.elements.interfaces.ILink;
 import diaceutics.selenium.pageobject.BaseForm;
@@ -15,10 +14,9 @@ public class LabsPage extends BaseForm {
 
     private static final String LAB_TEMPLATE = "//div[contains(@class,'result')]//div//a[.='%s']";
     private static final String LAB_TYPE_TEMPLATE = "//div[contains(@class,'result')]//div//span[..//a]/span[1]";
-    private final IButton btnSearch = getElementFactory().getButton(By.name("search"), "Search");
 
     public LabsPage() {
-        super(By.xpath("//h3[.='Filters']"), "CountryLabProfile");
+        super(By.xpath("//h3[.='Filters']"), "Labs");
     }
 
     public void clickByLabLink(String labName) {
@@ -27,10 +25,6 @@ public class LabsPage extends BaseForm {
                 labName);
 
         countryLink.clickAndWait();
-    }
-
-    public void clickSearch() {
-        btnSearch.clickAndWait();
     }
 
     public boolean isLabAreFiltered(String filter) {

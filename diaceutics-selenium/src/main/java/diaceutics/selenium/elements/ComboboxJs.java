@@ -18,13 +18,13 @@ public class ComboboxJs extends Element implements IElement {
     }
 
     protected String getElementType() {
-        return this.getLocalizationManager().getLocalizedMessage("loc.comboboxJs");
+        return this.getLocalizationManager().getLocalizedMessage("loc.combobox");
     }
 
     public String selectByText(String value) {
         this.clickAndWait();
         ILink optionLink = getElementFactory().getLink(
-                By.xpath(String.format("//div[@role='option']//span[text()='%s']", value)), value);
+                By.xpath(String.format("//div[@role='option']//span[normalize-space(text())='%s']", value)), value);
 
         optionLink.clickAndWait();
         return value;

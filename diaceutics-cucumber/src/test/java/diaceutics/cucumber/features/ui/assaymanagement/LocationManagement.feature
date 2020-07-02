@@ -19,7 +19,7 @@ Feature: Location management
       | Region        | Test Region        |
       | Country       | Albania            |
       | Postal code   | Test Postal code   |
-    And I click Add a location on Add a location page
+    And I click 'Add Location' on Add a location page
       Then Lab Profile page is opened
       And 'New location added.' message is displayed on Lab Profile page
       And Location 'location' is displayed on Locations form on on Lab Profile page
@@ -38,7 +38,7 @@ Feature: Location management
       | Region        | Test Region        |
       | Country       | Albania            |
       | Postal code   | Test Postal code   |
-    And I click Add a location on Add a location page
+    And I click 'Add Location' on Add a location page
       Then Lab Profile page is opened
       And 'New location added.' message is displayed on Lab Profile page
       And Location 'locationTwo' is displayed on Locations form on on Lab Profile page
@@ -47,7 +47,7 @@ Feature: Location management
   Scenario: DIAFE:0017 Required fields validation
     When I click on 'Add a location' on Lab Profile Page
       Then Add a location page is opened
-    When I click Add a location on Add a location page
+    When I click 'Add Location' on Add a location page
       Then Message 'Some items below need your attention.' is displayed on Add a location page
       And Message 'Please enter a value' is displayed on required fields on Add a location page
       And Message 'Please input a city or town name' is displayed on required fields on Add a location page

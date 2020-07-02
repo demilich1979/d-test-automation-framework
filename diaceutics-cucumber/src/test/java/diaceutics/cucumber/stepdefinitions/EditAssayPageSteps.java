@@ -41,9 +41,9 @@ public class EditAssayPageSteps {
         XmlFileStore.store(key, assay);
     }
 
-    @And("I click Save on Edit Assay page")
-    public void iClickSaveOnEditAssayPage() {
-        editAssayPage.clickSave();
+    @And("I click {string} on Edit Assay page")
+    public void iClickSaveOnEditAssayPage(String buttonName) {
+        editAssayPage.clickByButton(buttonName);
     }
 
     @Then("Message {string} is displayed on required fields on Edit Assay page")

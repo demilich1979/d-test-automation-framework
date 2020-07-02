@@ -42,9 +42,9 @@ public class LabAddressPageSteps {
         scenarioContext.add(key, lab);
     }
 
-    @And("I click Finish on Lab Address page")
-    public void iClickFinishOnLabAddressPage() {
-        labAddressPage.clickFinish();
+    @And("I click {string} on Lab Address page")
+    public void iClickFinishOnLabAddressPage(String buttonName) {
+        labAddressPage.clickByButton(buttonName);
     }
 
     @Then("Message {string} is displayed on Lab Address page")

@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 public class AssayManagementPage extends BaseForm {
 
     private static final String COUNTRY_TEMPLATE = "//div[contains(@class,'byCountry')]//span/a[.='%s']";
-    private final IButton btnCreateLab = getElementFactory().getButton(By.xpath("//button[.='Create a Lab']"), "Create a Lab");
     private final ComboboxJs allCountriesCombobox = getElementFactory().getCustomElement(
             ComboboxJs.class,
             By.xpath("//ui-select[@placeholder='Country']//span[@class='ng-arrow-wrapper']"),
@@ -17,10 +16,6 @@ public class AssayManagementPage extends BaseForm {
 
     public AssayManagementPage() {
         super(By.id("titleArea"), "Assay Management");
-    }
-
-    public void clickCreateLab() {
-        btnCreateLab.clickAndWait();
     }
 
     public void clickByCountryLink(String countryName) {

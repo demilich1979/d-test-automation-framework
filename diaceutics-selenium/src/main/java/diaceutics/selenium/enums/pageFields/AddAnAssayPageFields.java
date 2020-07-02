@@ -12,6 +12,11 @@ public enum AddAnAssayPageFields implements FormFieldInterface {
             "ontologies",
             FieldType.COMBOBOX),
 
+    ScoringMethod("Scoring method",
+            "//div[./label[text()='Scoring method']]",
+            "scoringMethod",
+            FieldType.COMBOBOX),
+
     SPECIMENS_TESTED("Specimens Tested",
             "//div[./label[text()='Specimens Tested']]",
             "specimensTested",

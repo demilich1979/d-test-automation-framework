@@ -17,9 +17,9 @@ Feature: Volume Management
       | Disease              | random |
       | Biomarker            | random |
       | Volume               | 5      |
-    And I click Log volume on Log patient volume form
+    And I click 'Log volume' on Log patient volume form
       Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volume' is displayed on Log patient volume form
-    When I click Done on Log patient volume form
+    When I click 'Done' on Log patient volume form
       Then Lab Profile page is opened
       And Volume 'volume' is added to Volumes grid on Lab Profile page
 
@@ -33,7 +33,7 @@ Feature: Volume Management
       | Disease              |
       | Biomarker            |
       | Volume               |
-    And I click Log volume on Log patient volume form
+    And I click 'Log volume' on Log patient volume form
       Then Message 'A volume already exists for this criteria and time period.' is displayed on Log patient volume form
 
   @VolumeManagement
@@ -44,9 +44,9 @@ Feature: Volume Management
       | Disease              | random |
       | Biomarker            | random |
       | Volume               | 4      |
-    And I click Update volume on Edit patient volume form
+    And I click 'Update volume' on Edit patient volume form
       Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volume' is displayed on Edit patient volume form
-    When I click Done on Edit patient volume form
+    When I click 'Done' on Edit patient volume form
       Then Lab Profile page is opened
       And Volume 'volume' is added to Volumes grid on Lab Profile page
 
@@ -60,9 +60,9 @@ Feature: Volume Management
       | Disease              | random |
       | Biomarker            | random |
       | Volume               | 5      |
-    And I click Log volume on Log patient volume form
+    And I click 'Log volume' on Log patient volume form
       Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volumeOne' is displayed on Log patient volume form
-    When I click Done on Log patient volume form
+    When I click 'Done' on Log patient volume form
       Then Lab Profile page is opened
       And Volume 'volumeOne' is added to Volumes grid on Lab Profile page
     When I click on 'Add volume' on Lab Profile Page
@@ -73,16 +73,16 @@ Feature: Volume Management
       | Disease              | random |
       | Biomarker            | random |
       | Volume               | 5      |
-    And I click Log volume on Log patient volume form
+    And I click 'Log volume' on Log patient volume form
       Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volumeTwo' is displayed on Log patient volume form
-    When I click Done on Log patient volume form
+    When I click 'Done' on Log patient volume form
       Then Lab Profile page is opened
       And Volume 'volumeTwo' is added to Volumes grid on Lab Profile page
-    When I sort data by alphabet in 'Time period' column
+    When I sort data by alphabet in 'Time period' column on 'Volumes' Grid
       Then Data in 'Time period' column on 'Volumes' Grid sorted according to alphabet
-    When I sort data by alphabet in 'Disease' column
+    When I sort data by alphabet in 'Disease' column on 'Volumes' Grid
       Then Data in 'Disease' column on 'Volumes' Grid sorted according to alphabet
-    When I sort data by alphabet in 'Biomarker' column
+    When I sort data by alphabet in 'Biomarker' column on 'Volumes' Grid
       Then Data in 'Biomarker' column on 'Volumes' Grid sorted according to alphabet
-    When I sort data by alphabet in 'Volume' column
+    When I sort data by alphabet in 'Volume' column on 'Volumes' Grid
       Then Data in 'Volume' column on 'Volumes' Grid sorted according to alphabet

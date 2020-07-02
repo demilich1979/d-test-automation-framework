@@ -22,9 +22,9 @@ public class AssayManagementPageSteps {
         Assert.assertTrue(assayManagementPage.isDisplayed(), "Assay Management page should be opened");
     }
 
-    @When("I click Create a Lab on Assay Management page")
-    public void openCreateLabPage() {
-        assayManagementPage.clickCreateLab();
+    @When("I click {string} on Assay Management page")
+    public void openCreateLabPage(String buttonName) {
+        assayManagementPage.clickByButton(buttonName);
     }
 
     @Then("I select {string} country on Assay Management page")

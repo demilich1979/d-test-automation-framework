@@ -42,9 +42,9 @@ public class CreateLabsPageSteps {
         scenarioContext.add(key, lab);
     }
 
-    @And("I click Next on Create a Lab page")
-    public void iClickNextOnCreateALabPage() {
-        createLabPage.clickNext();
+    @And("I click {string} on Create a Lab page")
+    public void iClickNextOnCreateALabPage(String buttonName) {
+        createLabPage.clickByButton(buttonName);
     }
 
     @Then("Message {string} is displayed on Create a Lab page")
