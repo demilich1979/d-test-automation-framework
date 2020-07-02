@@ -50,7 +50,7 @@ Feature: Assay Management
       And 'New lab assay added.' message is displayed on Lab Profile page
       And Assay 'assay' is displayed in Assays grid on Lab Profile page
 
-#  @AssayManagement
+  @AssayManagement
   Scenario: DIAFE:0021 Possibility to edit assays
     When I click on Assay 'assay' in Assays grid on Lab Profile Page
       Then Assay details page is opened
@@ -69,7 +69,7 @@ Feature: Assay Management
       And 'Lab assay updated.' message is displayed on Lab Profile page
       And Assay 'assay' is displayed in Assays grid on Lab Profile page
 
-#  @AssayManagement
+  @AssayManagement
   Scenario: DIAFE:0022 Required fields validation
     When I click on 'Add assay' on Lab Profile Page
       Then Add an Assay page is opened
@@ -100,7 +100,7 @@ Feature: Assay Management
       | Turn around time (days) | 0 |
       And Message 'Please enter a value greater than 0.' is displayed on required fields on Add an Assay page
 
-#  @AssayManagement
+  @AssayManagement
   Scenario: DIAFE:0023 "Accuracy, precision, sensitivity and specificity" field validation
     When I click on Assay 'assay' in Assays grid on Lab Profile Page
       Then Assay details page is opened
@@ -123,12 +123,12 @@ Feature: Assay Management
       And Message 'Precision: Please enter a value between 0 and 100.' is displayed on required fields on Edit Assay page
       And Message 'Sensitivity: Please enter a value between 0 and 100.' is displayed on required fields on Edit Assay page
 
-#  @AssayManagement
+  @AssayManagement
   Scenario: DIAFE:0024 Filter an assay by keyword
     When I put a Assay 'assay' on search field 'Search assays' and press Search icon on Lab Profile page
       Then Assay 'assay' is displayed in Assays grid on Lab Profile page
 
-#  @AssayManagement
+  @AssayManagement
   Scenario: DIAFE:0025 Possibility to sort assays
     When I click on 'Add assay' on Lab Profile Page
       Then Add an Assay page is opened
@@ -179,7 +179,7 @@ Feature: Assay Management
     When I sort data by alphabet in 'Classifications' column on 'Assays' Grid
       Then Data in 'Classifications' column on 'Assays' Grid sorted according to alphabet
 
-#  @AssayManagement
+  @AssayManagement
   Scenario: DIAFE:0026 Check number of assays
     When I count the number of platforms in the 'Assays' grid and save as 'numberOfAssays'
       Then 'numberOfAssays' must be the same as a number stated in the 'Assays' Grid title
