@@ -136,9 +136,9 @@ Feature: Assay Management
       | Assay name                            | Test Assay name |
       | Ontologies                            | random          |
       | Detects Germline/Somatic alterations  | random          |
-      | FDA 510K Approved Kit                 | true            |
+      | FDA 510K APPROVED KIT                 | true            |
       | Laboratory Developed Test (LDT)       | true            |
-      | FDA PMA Approved Kit                  | true            |
+      | FDA PMA APPROVED KIT                  | true            |
       | IVD-CE                                | true            |
       | RUO/IUO                               | false           |
       | Turn around time (days)               | 555             |
@@ -157,9 +157,9 @@ Feature: Assay Management
       | Assay name                            | Test Assay name |
       | Ontologies                            | random          |
       | Detects Germline/Somatic alterations  | random          |
-      | FDA 510K Approved Kit                 | true            |
+      | FDA 510K APPROVED KIT                 | true            |
       | Laboratory Developed Test (LDT)       | false           |
-      | FDA PMA Approved Kit                  | false           |
+      | FDA PMA APPROVED KIT                  | false           |
       | IVD-CE                                | true            |
       | RUO/IUO                               | false           |
       | Turn around time (days)               | 555             |
