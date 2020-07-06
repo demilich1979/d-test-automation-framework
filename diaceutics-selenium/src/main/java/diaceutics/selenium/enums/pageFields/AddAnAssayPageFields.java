@@ -27,8 +27,8 @@ public enum AddAnAssayPageFields implements FormFieldInterface {
             "detectsGermLineSomaticAlterations",
             FieldType.COMBOBOX),
 
-    FDA_510K_APPROVED_KIT("FDA 510K Approved Kit",
-            "FDA 510K Approved Kit",
+    FDA_510K_APPROVED_KIT("FDA 510K APPROVED KIT",
+            "FDA 510K APPROVED KIT",
             "fda510KApprovedKit",
             FieldType.CHECKBOX),
 
@@ -37,8 +37,8 @@ public enum AddAnAssayPageFields implements FormFieldInterface {
             "laboratoryDevelopedTest",
             FieldType.CHECKBOX),
 
-    FDA_PMA_APPROVED_KIT("FDA PMA Approved Kit",
-            "FDA PMA Approved Kit",
+    FDA_PMA_APPROVED_KIT("FDA PMA APPROVED KIT",
+            "FDA PMA APPROVED KIT",
             "fdaPmaApprovedKit",
             FieldType.CHECKBOX),
 

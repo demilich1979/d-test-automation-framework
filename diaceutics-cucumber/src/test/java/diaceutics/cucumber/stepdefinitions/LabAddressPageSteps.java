@@ -34,8 +34,8 @@ public class LabAddressPageSteps {
         Lab lab = scenarioContext.get(key);
         Location location = new Location();
         data.forEach((field, value) -> {
-            labAddressPage.setFieldValue(LabAddressPageFields.getEnumValue(field), value);
-            location.setReflectionFieldValue(LabAddressPageFields.getEnumValue(field).getModelField(), value);
+            String selectedValue = labAddressPage.setFieldValue(LabAddressPageFields.getEnumValue(field), value);
+            location.setReflectionFieldValue(LabAddressPageFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
         lab.addLocation(location);

@@ -39,8 +39,8 @@ public class EditProfileLabDetailsPageSteps {
             if (field.equals("Name")) {
                 value = value + TimeUtil.getTimestamp();
             }
-            editProfileLabDetailsPage.setFieldValue(EditProfileLabDetailsPageFields.getEnumValue(field), value);
-            lab.setReflectionFieldValue(EditProfileLabDetailsPageFields.getEnumValue(field).getModelField(), value);
+            String selectedValue = editProfileLabDetailsPage.setFieldValue(EditProfileLabDetailsPageFields.getEnumValue(field), value);
+            lab.setReflectionFieldValue(EditProfileLabDetailsPageFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
         scenarioContext.add(key, lab);

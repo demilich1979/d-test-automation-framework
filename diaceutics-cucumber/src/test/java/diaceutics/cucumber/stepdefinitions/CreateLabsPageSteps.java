@@ -35,8 +35,8 @@ public class CreateLabsPageSteps {
             if (field.equals("Name")) {
                 value = value + TimeUtil.getTimestamp();
             }
-            createLabPage.setFieldValue(CreateLabPageFields.getEnumValue(field), value);
-            lab.setReflectionFieldValue(CreateLabPageFields.getEnumValue(field).getModelField(), value);
+            String selectedValue = createLabPage.setFieldValue(CreateLabPageFields.getEnumValue(field), value);
+            lab.setReflectionFieldValue(CreateLabPageFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
         scenarioContext.add(key, lab);

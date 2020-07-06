@@ -36,8 +36,8 @@ public class AddALocationPageSteps {
             if (field.equals("Location name")) {
                 value = value + TimeUtil.getTimestamp();
             }
-            addALocationPage.setFieldValue(AddALocationPageFields.getEnumValue(field), value);
-            location.setReflectionFieldValue(AddALocationPageFields.getEnumValue(field).getModelField(), value);
+            String selectedValue = addALocationPage.setFieldValue(AddALocationPageFields.getEnumValue(field), value);
+            location.setReflectionFieldValue(AddALocationPageFields.getEnumValue(field).getModelField(), selectedValue);
 
         });
 

@@ -18,9 +18,9 @@ Feature: Assay Management
       | Scoring method                        | random                  |
       | Specimens Tested                      | random                  |
       | Detects Germline/Somatic alterations  | random                  |
-      | FDA 510K Approved Kit                 | true                    |
+      | FDA 510K APPROVED KIT                 | true                    |
       | Laboratory Developed Test (LDT)       | true                    |
-      | FDA PMA Approved Kit                  | true                    |
+      | FDA PMA APPROVED KIT                  | true                    |
       | IVD-CE                                | false                   |
       | RUO/IUO                               | false                   |
       | Turn around time (days)               | 55555                   |
@@ -58,9 +58,9 @@ Feature: Assay Management
       Then Edit Assay page is opened
     When I fill following fields on Edit Assay page and save as 'assay':
       | Assay name                      | New Assay name |
-      | FDA 510K Approved Kit           | false          |
+      | FDA 510K APPROVED KIT           | false          |
       | Laboratory Developed Test (LDT) | false          |
-      | FDA PMA Approved Kit            | false          |
+      | FDA PMA APPROVED KIT            | false          |
       | IVD-CE                          | true           |
       | RUO/IUO                         | true           |
       | Method                          | random         |
