@@ -22,7 +22,10 @@ Feature: Create a Lab
       | Postal code   | Test Postal code   |
     And I click 'Finish' on Lab Address page
       Then Lab Profile page is opened
-      And Lab 'lab' is displayed on Lab Profile page
+      And Lab 'lab' with following fields is displayed on Lab Profile page
+        | Name     |
+        | URL      |
+        | Lab type |
 
     Examples:
       | Lab type       | test count |
@@ -62,4 +65,7 @@ Feature: Create a Lab
       | Postal code   | Test Postal code   |
     And I click 'Finish' on Lab Address page
       Then Lab Profile page is opened
-      And Lab 'lab' is displayed on Lab Profile page
+      And Lab 'lab' with following fields is displayed on Lab Profile page
+        | Name     |
+        | URL      |
+        | Lab type |

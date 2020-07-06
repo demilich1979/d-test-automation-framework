@@ -4,6 +4,7 @@ import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
+import diaceutics.selenium.enums.pageFields.CreateLabPageFields;
 import diaceutics.selenium.enums.pageFields.EditPatientVolumeFields;
 import diaceutics.selenium.enums.pageFields.LogPatientVolumeFields;
 import diaceutics.selenium.models.*;
@@ -144,11 +145,19 @@ public class LabProfilePageSteps {
         labProfilePage.clickEditDetails();
     }
 
-    @And("Lab {string} is displayed on Lab Profile page")
-    public void labLabIsDisplayedOnLabProfilePage(String key) {
-        Lab lab = scenarioContext.get(key);
-        Assert.assertTrue(labProfilePage.isLabDisplayedOnPage(lab),
-                String.format("Lab %s should be displayed on Lab Profile page", lab.getName()));
+    @And("Lab {string} with following fields is displayed on Lab Profile page")
+    public void labLabIsDisplayedOnLabProfilePage(String key, List<String> fields) {
+        Lab expectedLab = scenarioContext.get(key);
+        Lab actualLab = labProfilePage.getLabFromPage();
+
+        fields.forEach(field -> {
+            String actualValue = actualLab.getReflectionFieldValue(CreateLabPageFields.getEnumValue(field).getModelField());
+            String expectedValue = expectedLab.getReflectionFieldValue(CreateLabPageFields.getEnumValue(field).getModelField());
+            SoftAssert.getInstance().assertEquals(
+                    actualValue,
+                    expectedValue,
+                    String.format("Value %s for %s is not correct on Lab Profile page", actualValue, expectedLab.getName()));
+        });
     }
 
     @Then("{string} message is displayed on Lab Profile page")

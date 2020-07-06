@@ -35,6 +35,9 @@ public class LabProfilePage extends BaseForm {
     private final ILink linkLabName = getElementFactory().getLink(
             By.xpath("//div[contains(@class,'titleArea')]//h1"), "Lab name");
 
+    private final ILink linkLabUrl = getElementFactory().getLink(
+            By.xpath("//a[.//ui-icon[@name='external-link']]//span"), "Lab url");
+
     private final List<IElement> linksLabType = getElementFactory().findElements(By.xpath
             ("//div[contains(@class,'details')]//span[contains(@class,'ng-star-inserted')]"), ElementType.LINK);
 
@@ -129,14 +132,16 @@ public class LabProfilePage extends BaseForm {
         return labType;
     }
 
-    public boolean isLabDisplayedOnPage(Lab lab) {
-        boolean isLabDisplayed = false;
-        if (lab.getName().equals(getLabNameFromPage()) &&
-                lab.getLabType().equals(getLabTypeFromPage())) {
-            isLabDisplayed = true;
-        }
+    public String getLabUrlFromPage() {
+        return linkLabUrl.getText();
+    }
 
-        return isLabDisplayed;
+    public Lab getLabFromPage() {
+        Lab lab = new Lab();
+        lab.setName(getLabNameFromPage());
+        lab.setLabType(getLabTypeFromPage());
+        lab.setUrl(getLabUrlFromPage());
+        return lab;
     }
 
     public void clickAdd(String buttonName) {
