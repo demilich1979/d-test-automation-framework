@@ -6,11 +6,8 @@ import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
 import diaceutics.selenium.enums.pageFields.EditPatientVolumeFields;
 import diaceutics.selenium.enums.pageFields.LogPatientVolumeFields;
-import diaceutics.selenium.models.Lab;
-import diaceutics.selenium.models.Location;
-import diaceutics.selenium.models.Volume;
+import diaceutics.selenium.models.*;
 import diaceutics.selenium.pageobject.pages.LabProfilePage;
-import diaceutics.selenium.models.Platform;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -43,14 +40,13 @@ public class LabProfilePageSteps {
     }
 
     @When("I fill following fields on Add Platform form and save as {string}:")
-    public void iFillFollowingFieldsOnAddPlatformFormAndSaveAsNewPlatform(String key, Map<String, String> data) {
+    public void iFillFollowingFieldsOnAddPlatformFormAndSave(String key, Map<String, String> data) {
         Platform platform = new Platform();
         data.forEach((field, value) -> {
             String selectedValue = labProfilePage.getAddPlatformForm().setFieldValue(AddPlatformFormFields.getEnumValue(field), value);
             platform.setReflectionFieldValue(AddPlatformFormFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
-        labProfilePage.getAddPlatformForm().clickAddPlatform();
         XmlFileStore.store(key, platform);
     }
 
@@ -72,9 +68,9 @@ public class LabProfilePageSteps {
 
     }
 
-    @When("I sort data by alphabet in {string} column")
-    public void iSortDataByAlphabetInPlatformManufacturedColumn(String column) {
-        labProfilePage.clickSortColumn(column);
+    @When("I sort data by alphabet in {string} column on {string} Grid")
+    public void iSortDataByAlphabetInPlatformManufacturedColumn(String column, String gridName) {
+        labProfilePage.clickSortColumnInGrid(column, gridName);
     }
 
     @Then("Data in {string} column on {string} Grid sorted according to alphabet")
@@ -89,13 +85,15 @@ public class LabProfilePageSteps {
         labProfilePage.clickEditPlatform(platform);
     }
 
-    @And("I set {string} value for platform {string} and save changes")
-    public void modifyPlatformAndSaveChanges(String value, String key) {
+    @And("I fill following fields on Edit Platform form and save as {string}:")
+    public void iFillFollowingFieldsOnEditPlatformFormAndSave(String key, Map<String, String> data) {
         Platform platform = XmlFileStore.get(key);
-        String newValue = labProfilePage.getEditPlatformForm().setFieldValue(value);
-        platform.setPlatform(newValue);
+        data.forEach((field, value) -> {
+            String selectedValue = labProfilePage.getEditPlatformForm().setFieldValue(AddPlatformFormFields.getEnumValue(field), value);
+            platform.setReflectionFieldValue(AddPlatformFormFields.getEnumValue(field).getModelField(), selectedValue);
+        });
+
         XmlFileStore.store(key, platform);
-        labProfilePage.getEditPlatformForm().clickSaveChanges();
     }
 
     @When("On the Lab Profile page I click on Delete button for the {string} platform")
@@ -104,9 +102,9 @@ public class LabProfilePageSteps {
         labProfilePage.clickDeletePlatform(platform);
     }
 
-    @And("I click Confirm")
-    public void clickConfirm() {
-        labProfilePage.getConfirmForm().clickConfirm();
+    @And("I click {string} on Confirm form")
+    public void clickConfirm(String buttonName) {
+        labProfilePage.getConfirmForm().clickByButton(buttonName);
     }
 
     @Then("Edit platform form is opened")
@@ -128,16 +126,16 @@ public class LabProfilePageSteps {
     }
 
     @When("I count the number of platforms in the {string} grid and save as {string}")
-    public void iCountTheNumberOfPlatformsInThePlatformsGridAndSaveAsNumberOfPlatforms( String gridName, String key) {
+    public void iCountTheNumberOfPlatformsInThePlatformsGridAndSaveAsNumberOfPlatforms(String gridName, String key) {
         String numberOfPlatformsFromGrid = labProfilePage.getNumberOfRowsInGrid(gridName);
         scenarioContext.add(key, numberOfPlatformsFromGrid);
     }
 
-    @Then("{string} in Platform grid must be the same as a number stated in the Platforms grid title")
-    public void numberOfPlatformsInPlatformGridMustBeTheSameAsANumberStatedInThePlatformsGridTitle(String key) {
+    @Then("{string} must be the same as a number stated in the {string} Grid title")
+    public void numberOfPlatformsInPlatformGridMustBeTheSameAsANumberStatedInThePlatformsGridTitle(String key, String gridName) {
         String numberOfPlatformsFromGrid = scenarioContext.get(key);
         Assert.assertEquals(numberOfPlatformsFromGrid,
-                labProfilePage.getNumberOfPlatformsFromHead(),
+                labProfilePage.getNumberOfRowsFromGridHead(gridName),
                 "The number of rows in Platform grid must be the same as a number stated in the Platforms grid title");
     }
 
@@ -180,7 +178,6 @@ public class LabProfilePageSteps {
         labProfilePage.getLocationsForm().clickEditLocation(location);
     }
 
-
     @When("I click on {string} on Lab Profile Page")
     public void iClickOnAddVolumeOnLabProfilePage(String buttonName) {
         labProfilePage.clickAdd(buttonName);
@@ -202,12 +199,6 @@ public class LabProfilePageSteps {
         XmlFileStore.store(key, volume);
     }
 
-    @And("I click Log volume on Log patient volume form")
-    public void iClickLogVolumeOnLogPatientVolumeForm() {
-        labProfilePage.getLogPatientVolumeForm().clickLogVolume();
-
-    }
-
     @Then("Message {string} for {string} is displayed on Log patient volume form")
     public void messageYourVolumeHasBeenAddedForDiseaseAndBiomarkerForVolumeIsDisplayedOnLogPatientVolumeForm(String messageTemplate, String key) {
         Volume volume = XmlFileStore.get(key);
@@ -217,16 +208,16 @@ public class LabProfilePageSteps {
                         message));
     }
 
-    @When("I click Done on Log patient volume form")
-    public void iClickDoneOnLogPatientVolumeForm() {
-        labProfilePage.getLogPatientVolumeForm().clickDone();
+    @When("I click {string} on Log patient volume form")
+    public void iClickDoneOnLogPatientVolumeForm(String buttonName) {
+        labProfilePage.getLogPatientVolumeForm().clickByButton(buttonName);
     }
 
     @And("Volume {string} is added to Volumes grid on Lab Profile page")
     public void volumeVolumeIsAddedToVolumesGridOnLabProfilePage(String key) {
         Volume volume = XmlFileStore.get(key);
         Assert.assertTrue(labProfilePage.isVolumeAdded(volume),
-                String.format("Volume with values %s, %s, %s, %s should be added in Volumes table",
+                String.format("Volume with values %s, %s, %s, %s should be added in Volumes grid",
                         volume.getTimePeriod(),
                         volume.getDisease(),
                         volume.getBiomarker(),
@@ -270,9 +261,9 @@ public class LabProfilePageSteps {
         XmlFileStore.store(key, volume);
     }
 
-    @And("I click Update volume on Edit patient volume form")
-    public void iClickUpdateVolumeOnEditPatientVolumeForm() {
-        labProfilePage.getEditPatientVolumeForm().clickUpdateVolume();
+    @And("I click {string} on Edit patient volume form")
+    public void iClickUpdateVolumeOnEditPatientVolumeForm(String buttonName) {
+        labProfilePage.getEditPatientVolumeForm().clickByButton(buttonName);
     }
 
     @Then("Message {string} for {string} is displayed on Edit patient volume form")
@@ -284,9 +275,34 @@ public class LabProfilePageSteps {
                         message));
     }
 
-    @When("I click Done on Edit patient volume form")
-    public void iClickDoneOnEditPatientVolumeForm() {
-        labProfilePage.getEditPatientVolumeForm().clickDone();
+    @And("Assay {string} is displayed in Assays grid on Lab Profile page")
+    public void assayAssayIsAddedToAssaysGridOnLabProfilePage(String key) {
+        Assay assay = XmlFileStore.get(key);
+        Assert.assertTrue(labProfilePage.isAssayAdded(assay),
+                String.format("Assay %s should be added in Assay grid", assay.getAssayName()));
+
     }
 
+    @When("I click on Assay {string} in Assays grid on Lab Profile Page")
+    public void iClickOnAssayAssayInAssaysGridOnLabProfilePage(String key) {
+        Assay assay = XmlFileStore.get(key);
+        labProfilePage.clickByAssay(assay);
+    }
+
+    @When("I put a Assay {string} on search field {string} and press Search icon on Lab Profile page")
+    public void iPutAAssayAssayOnSearchFieldEnterKeywordsAndPressSearchIconOnLabProfilePage(String key, String searchFieldName) {
+        Assay assay = XmlFileStore.get(key);
+        labProfilePage.putTextInSearchField(assay.getAssayName(), searchFieldName);
+        labProfilePage.clickSearch();
+    }
+
+    @And("I click {string} on Edit Platform")
+    public void iClickSaveChangesOnEditPlatform(String buttonName) {
+        labProfilePage.getEditPlatformForm().clickByButton(buttonName);
+    }
+
+    @And("I click Add platform on Add Platform")
+    public void iClickAddPlatformOnAddPlatform() {
+        labProfilePage.getAddPlatformForm().clickAddPlatform();
+    }
 }

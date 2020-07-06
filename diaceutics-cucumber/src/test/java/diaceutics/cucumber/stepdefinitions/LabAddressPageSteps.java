@@ -34,17 +34,17 @@ public class LabAddressPageSteps {
         Lab lab = scenarioContext.get(key);
         Location location = new Location();
         data.forEach((field, value) -> {
-            labAddressPage.setFieldValue(LabAddressPageFields.getEnumValue(field), value);
-            location.setReflectionFieldValue(LabAddressPageFields.getEnumValue(field).getModelField(), value);
+            String selectedValue = labAddressPage.setFieldValue(LabAddressPageFields.getEnumValue(field), value);
+            location.setReflectionFieldValue(LabAddressPageFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
         lab.addLocation(location);
         scenarioContext.add(key, lab);
     }
 
-    @And("I click Finish on Lab Address page")
-    public void iClickFinishOnLabAddressPage() {
-        labAddressPage.clickFinish();
+    @And("I click {string} on Lab Address page")
+    public void iClickFinishOnLabAddressPage(String buttonName) {
+        labAddressPage.clickByButton(buttonName);
     }
 
     @Then("Message {string} is displayed on Lab Address page")

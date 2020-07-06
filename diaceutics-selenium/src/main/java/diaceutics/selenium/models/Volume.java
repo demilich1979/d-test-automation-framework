@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class Volume extends BaseModel {
-
     private String timePeriod;
     private String timePeriodCombobox;
     private String timePeriodRadio;
@@ -13,6 +12,6 @@ public class Volume extends BaseModel {
     private String volume;
 
     public String getTimePeriod() {
-        return String.format("%s-%s",timePeriodCombobox,timePeriodRadio);
+        return String.format("%s-%s", timePeriodCombobox, timePeriodRadio);
     }
 }

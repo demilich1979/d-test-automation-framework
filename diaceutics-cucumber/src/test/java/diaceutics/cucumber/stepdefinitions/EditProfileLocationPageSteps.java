@@ -1,9 +1,7 @@
 package diaceutics.cucumber.stepdefinitions;
 
-import aquality.selenium.browser.AqualityServices;
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.XmlFileStore;
-import diaceutics.selenium.enums.pageFields.EditProfileLabDetailsPageFields;
 import diaceutics.selenium.enums.pageFields.EditProfileLocationPageFields;
 import diaceutics.selenium.models.Location;
 import diaceutics.selenium.pageobject.pages.EditProfileLocationPage;
@@ -22,11 +20,9 @@ import java.util.Map;
 public class EditProfileLocationPageSteps {
 
     private final EditProfileLocationPage editProfileLocationPage;
-    private final ScenarioContext scenarioContext;
 
     @Inject
-    public EditProfileLocationPageSteps(ScenarioContext scenarioContext) {
-        this.scenarioContext = scenarioContext;
+    public EditProfileLocationPageSteps() {
         editProfileLocationPage = new EditProfileLocationPage();
     }
 
@@ -36,14 +32,14 @@ public class EditProfileLocationPageSteps {
     }
 
     @When("I fill following fields on Edit Profile Location page and save as {string}:")
-    public void iSetFieldsOnEditProfileLocationPageUsingFollowingDataAndSaveAsLocation(String key, Map<String, String> data ) {
+    public void iSetFieldsOnEditProfileLocationPageUsingFollowingDataAndSaveAsLocation(String key, Map<String, String> data) {
         Location location = new Location();
         data.forEach((field, value) -> {
             if (field.equals("Location name")) {
                 value = value + TimeUtil.getTimestamp();
             }
-            editProfileLocationPage.setFieldValue(EditProfileLocationPageFields.getEnumValue(field), value);
-            location.setReflectionFieldValue(EditProfileLocationPageFields.getEnumValue(field).getModelField(), value);
+            String selectedValue = editProfileLocationPage.setFieldValue(EditProfileLocationPageFields.getEnumValue(field), value);
+            location.setReflectionFieldValue(EditProfileLocationPageFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
         XmlFileStore.store(key, location);

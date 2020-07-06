@@ -16,5 +16,4 @@ public class Lab extends BaseModel {
     public void addLocation(Location location) {
         locations.add(location);
     }
-
 }

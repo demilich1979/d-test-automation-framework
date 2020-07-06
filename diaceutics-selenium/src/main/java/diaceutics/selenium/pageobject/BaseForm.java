@@ -3,9 +3,7 @@ package diaceutics.selenium.pageobject;
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.Link;
-import aquality.selenium.elements.interfaces.ILabel;
-import aquality.selenium.elements.interfaces.IRadioButton;
-import aquality.selenium.elements.interfaces.ITextBox;
+import aquality.selenium.elements.interfaces.*;
 import aquality.selenium.forms.Form;
 import diaceutics.selenium.elements.ComboboxJs;
 import diaceutics.selenium.enums.pageFields.FormFieldInterface;
@@ -17,15 +15,19 @@ import java.util.List;
 
 public abstract class BaseForm extends Form {
 
-    public static final String COMBOBOX_TEMPLATE =
-            "%s//div[@class='selectContainer']//ng-select[@role='listbox']//span[@class='ng-arrow-wrapper']";
-
+    public static final String COMBOBOX_TEMPLATE = "%s//span[@class='ng-arrow-wrapper']";
     private static final String TEXT_TEMPLATE = "//input[..//label[text()='%s']]";
-    private static final String RADIO_BUTTON_TEMPLATE =
-            "%s//label[contains(@class,'radioOptionContainer')][.//span[text()='%s']]";
-
+    private static final String RADIO_BUTTON_TEMPLATE = "%s//label[contains(@class,'radioOptionContainer')][.//span[text()='%s']]";
     private static final String ALERT_MESSAGE_TEMPLATE = "//ui-alert//span[contains(text(),'%s')]";
     private static final String REQUIRED_FIELD_ALERT_MESSAGE_TEMPLATE = "//ui-validation-container//li[contains(text(),'%s')]";
+    private static final String TEXT_AREA_TEMPLATE = "//ui-text-area[.//label[text()='%s']]//textarea";
+    private static final String CHECKBOX_TEMPLATE = "//ui-checkbox-group//label[contains(text(),'%s')]";
+    private static final String CHECK_CHECKBOX_TEMPLATE = CHECKBOX_TEMPLATE + "/input";
+    private static final String CHECK_COMBOBOX_TEMPLATE = "%s//input";
+    private static final String SEARCH_FIELD_TEMPLATE = "//ui-search/input[contains(@placeholder,'%s')]";
+    private static final String BUTTON_TEMPLATE = "//button[.='%s']";
+
+    private final IButton btnSearch = getElementFactory().getButton(By.name("search"), "Search");
 
     protected BaseForm(By locator, String name) {
         super(locator, name);
@@ -46,6 +48,13 @@ public abstract class BaseForm extends Form {
                 textBox.clearAndType(value);
                 break;
 
+            case TEXT_AREA:
+                ITextBox textBoxArea = getElementFactory().getTextBox(
+                        By.xpath(String.format(TEXT_AREA_TEMPLATE, field.getLocator())), field.getFriendlyName());
+
+                textBoxArea.clearAndType(value);
+                break;
+
             case COMBOBOX:
                 ComboboxJs comboboxJs = getElementFactory().getCustomElement(
                         ComboboxJs.class, By.xpath(String.format(COMBOBOX_TEMPLATE, field.getLocator())),
@@ -64,6 +73,21 @@ public abstract class BaseForm extends Form {
                         field.getFriendlyName());
 
                 radioButton.click();
+                break;
+
+            case CHECKBOX:
+                ICheckBox checkBox = getElementFactory().getCheckBox(
+                        By.xpath(String.format(CHECKBOX_TEMPLATE, field.getLocator())),
+                        field.getFriendlyName());
+
+                boolean shouldBeChecked = Boolean.parseBoolean(value);
+                boolean isChecked = AqualityServices.getBrowser().getDriver().findElement(
+                        By.xpath(String.format(CHECK_CHECKBOX_TEMPLATE, field.getLocator()))).isSelected();
+
+                if (shouldBeChecked != isChecked) {
+                    checkBox.check();
+                }
+
                 break;
 
             case NUMBER:
@@ -96,6 +120,46 @@ public abstract class BaseForm extends Form {
         ITextBox textBox = getElementFactory().getTextBox(
                 By.xpath(String.format(TEXT_TEMPLATE, field.getLocator())), field.getFriendlyName());
         textBox.sendKeys(key);
+    }
+
+    public boolean isFieldEnabled(FormFieldInterface field) {
+        boolean value = false;
+        switch (field.getFieldType()) {
+            case TEXT:
+                ITextBox textBox = getElementFactory().getTextBox(
+                        By.xpath(String.format(TEXT_TEMPLATE, field.getLocator())), field.getFriendlyName());
+
+                value = textBox.state().isEnabled();
+                break;
+
+            case COMBOBOX:
+                ComboboxJs comboboxJs = getElementFactory().getCustomElement(
+                        ComboboxJs.class, By.xpath(String.format(CHECK_COMBOBOX_TEMPLATE, field.getLocator())),
+                        field.getFriendlyName());
+
+                value = comboboxJs.state().isEnabled();
+
+                break;
+            default:
+                break;
+        }
+
+        return value;
+    }
+
+    public void putTextInSearchField(String text, String searchFieldName) {
+        ITextBox searchField = getElementFactory().getTextBox(
+                By.xpath(String.format(SEARCH_FIELD_TEMPLATE, searchFieldName)), searchFieldName);
+        searchField.clearAndType(text);
+    }
+
+    public void clickSearch() {
+        btnSearch.clickAndWait();
+    }
+
+    public void clickByButton(String buttonName) {
+        IButton btn = getElementFactory().getButton(By.xpath(String.format(BUTTON_TEMPLATE, buttonName)), buttonName);
+        btn.clickAndWait();
     }
 
 }

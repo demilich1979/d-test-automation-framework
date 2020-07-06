@@ -15,7 +15,6 @@ import org.testng.Assert;
 import javax.inject.Inject;
 import java.util.Map;
 
-
 public class EditProfileLabDetailsPageSteps {
 
     private final EditProfileLabDetailsPage editProfileLabDetailsPage;
@@ -40,8 +39,8 @@ public class EditProfileLabDetailsPageSteps {
             if (field.equals("Name")) {
                 value = value + TimeUtil.getTimestamp();
             }
-            editProfileLabDetailsPage.setFieldValue(EditProfileLabDetailsPageFields.getEnumValue(field), value);
-            lab.setReflectionFieldValue(EditProfileLabDetailsPageFields.getEnumValue(field).getModelField(), value);
+            String selectedValue = editProfileLabDetailsPage.setFieldValue(EditProfileLabDetailsPageFields.getEnumValue(field), value);
+            lab.setReflectionFieldValue(EditProfileLabDetailsPageFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
         scenarioContext.add(key, lab);

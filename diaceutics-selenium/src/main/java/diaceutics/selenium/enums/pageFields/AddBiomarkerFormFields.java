@@ -1,16 +1,22 @@
 package diaceutics.selenium.enums.pageFields;
 
-public enum FiltersPageFields implements FormFieldInterface{
-    COUNTRY("Country", "//div[./label[text()='Country']]", "country", FieldType.COMBOBOX),
-    LAB_TYPE("Lab type", "//ui-radio-group[./label[.='Lab type']]", "labType", FieldType.RADIO);
+public enum AddBiomarkerFormFields implements FormFieldInterface {
+    BIOMARKER("Biomarker",
+            "//div[./label[text()='Biomarker']]",
+            "biomarker",
+            FieldType.COMBOBOX),
+
+    VARIANTS("Variants",
+            "//div[./label[text()='Variants']]",
+            "variants",
+            FieldType.COMBOBOX);
 
     private final String friendlyName;
     private final String locator;
     private final String modelField;
     private final FieldType fieldType;
 
-
-    FiltersPageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
+    AddBiomarkerFormFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;
         this.modelField = modelField;
@@ -33,14 +39,14 @@ public enum FiltersPageFields implements FormFieldInterface{
         return fieldType;
     }
 
-    public static FiltersPageFields getEnumValue(String friendlyName) {
-        FiltersPageFields filtersPageFields = null;
-        for (FiltersPageFields constant : FiltersPageFields.values()) {
+    public static AddBiomarkerFormFields getEnumValue(String friendlyName) {
+        AddBiomarkerFormFields addBiomarkerFormFields = null;
+        for (AddBiomarkerFormFields constant : AddBiomarkerFormFields.values()) {
             if (constant.getFriendlyName().equals(friendlyName)) {
-                filtersPageFields = constant;
+                addBiomarkerFormFields = constant;
                 break;
             }
         }
-        return filtersPageFields;
+        return addBiomarkerFormFields;
     }
 }

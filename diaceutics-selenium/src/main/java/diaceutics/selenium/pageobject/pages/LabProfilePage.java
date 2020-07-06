@@ -1,9 +1,8 @@
 package diaceutics.selenium.pageobject.pages;
 
 import aquality.selenium.elements.ElementType;
-import aquality.selenium.elements.interfaces.IButton;
-import aquality.selenium.elements.interfaces.IElement;
-import aquality.selenium.elements.interfaces.ILink;
+import aquality.selenium.elements.interfaces.*;
+import diaceutics.selenium.models.Assay;
 import diaceutics.selenium.models.Lab;
 import diaceutics.selenium.models.Volume;
 import diaceutics.selenium.pageobject.BaseForm;
@@ -17,7 +16,6 @@ import java.util.List;
 
 public class LabProfilePage extends BaseForm {
 
-    private static final String SORT_COLUMN_BUTTON_TEMPLATE = "//th[.//span[.='%s']]//ui-icon";
     private static final String EDIT_BUTTON_TEMPLATE = "//td[./span[.='Edit']]//span";
     private static final String PLATFORM_TEMPLATE = "//tr[.//span[.='%s']and .//span[.='%s']]";
     private static final String ADD_BUTTON_TEMPLATE = "//div[contains(@class,'titleArea')]//button[.='%s']";
@@ -26,9 +24,10 @@ public class LabProfilePage extends BaseForm {
     private static final String VOLUME_TEMPLATE = "//tr[.//span[.='%s'] and .//span[.='%s'] and .//span[.='%s'] and .//span[.='%s']]";
     private static final String EDIT_VOLUME_BUTTON_TEMPLATE = VOLUME_TEMPLATE + EDIT_BUTTON_TEMPLATE;
     private static final String GRID_TEMPLATE = "//div[contains(@class,'dataTable')][.//h3[.='%s']]//ui-table//table[2]";
-
-    private final ILink linkPlatformCount = getElementFactory().getLink(
-            By.xpath("//h3[.='Platforms']/parent::div/span"), "Platform Count");
+    private static final String ASSAY_TEMPLATE = "//tr[.//span[.='%s'] and .//span[.='%s'] and .//span[.='%s']]";
+    private static final String ASSAY_NAME_TEMPLATE = "//tr[.//span[.='%s']]//td[count(//th[.='Assay name']/preceding-sibling::*)+1]/span";
+    private static final String SORT_COLUMN_BUTTON_TEMPLATE = GRID_TEMPLATE + "//th[.//span[.='%s']]//ui-icon";
+    private static final String ROW_COUNT_TEMPLATE = "//h3[.='%s']/parent::div/span";
 
     private final ILink linkEditDetails = getElementFactory().getLink(
             By.xpath("//a//span[.='Edit Details']"), "Edit Details");
@@ -67,9 +66,9 @@ public class LabProfilePage extends BaseForm {
         return new EditPatientVolumeForm();
     }
 
-    public void clickSortColumn(String column) {
+    public void clickSortColumnInGrid(String column, String gridName) {
         IButton btnSortColumn = getElementFactory().getButton(
-                By.xpath(String.format(SORT_COLUMN_BUTTON_TEMPLATE, column)),
+                By.xpath(String.format(SORT_COLUMN_BUTTON_TEMPLATE, gridName, column)),
                 String.format("Sort %s Column", column));
         btnSortColumn.clickAndWait();
     }
@@ -101,8 +100,12 @@ public class LabProfilePage extends BaseForm {
         return new Grid(String.format(GRID_TEMPLATE, gridName)).isDataInColumnSorted(column);
     }
 
-    public String getNumberOfPlatformsFromHead() {
-        return RegExUtil.regexGetMatchGroup(linkPlatformCount.getText(), "[-]?[0-9]+(.[0-9]+)?", 0);
+    public String getNumberOfRowsFromGridHead(String gridName) {
+        ILink linkRowCount = getElementFactory().getLink(
+                By.xpath(String.format(ROW_COUNT_TEMPLATE, gridName)),
+                String.format("Row count for %s", gridName));
+
+        return RegExUtil.regexGetMatchGroup(linkRowCount.getText(), "[-]?[0-9]+(.[0-9]+)?", 0);
     }
 
     public String getNumberOfRowsInGrid(String gridName) {
@@ -168,4 +171,24 @@ public class LabProfilePage extends BaseForm {
 
         btnEditVolume.clickAndWait();
     }
+
+    public boolean isAssayAdded(Assay assay) {
+        List<IElement> volumeLink = getElementFactory().findElements(By.xpath
+                        (String.format(
+                                ASSAY_TEMPLATE,
+                                assay.getAssayName(),
+                                assay.getClassifications(),
+                                assay.getMethod())),
+                ElementType.LINK);
+
+        return volumeLink.size() > 0;
+    }
+
+    public void clickByAssay(Assay assay) {
+        ILink linkAssay = getElementFactory().getLink(
+                By.xpath(String.format(ASSAY_NAME_TEMPLATE, assay.getAssayName())), assay.getAssayName());
+
+        linkAssay.clickAndWait();
+    }
+
 }

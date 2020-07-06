@@ -1,10 +1,10 @@
 Feature: Edit a Lab
 
   Background:
-    Given Labs page is opened
-    When I select 'Albania' country on Labs page
-      Then Filters page is opened
-    When I select 'Test lab' lab on Filters Labs page
+    Given Assay Management page is opened
+    When I select 'Albania' country on Assay Management page
+      Then Labs page is opened
+    When I select 'Test lab' lab on Labs page
       Then Lab Profile page is opened
     When I click Edit Details on Lab Profile Page
       Then Edit Profile Lab Details page is opened
@@ -12,10 +12,10 @@ Feature: Edit a Lab
   @EditALab
   Scenario: DIAFE:0007 Possibility to edit a lab and validate an edited data
     When I fill following fields on Edit Profile Lab Details page and save as 'lab':
-      | Country  | Albania      |
-      | Name     | TestLab      |
-#      | URL      | Test lab     |
-      | Lab type | Academic Lab |
+      | Country  | Albania         |
+      | Name     | TestLab         |
+      | URL      | https://TestLab |
+      | Lab type | Academic Lab    |
     And I click Save on Edit Profile Lab Details page
       Then  Message 'Lab updated!' is displayed on Edit Profile Lab Details page
     When I click Return to profile on Edit Profile Lab Details page
@@ -24,10 +24,10 @@ Feature: Edit a Lab
     When I click Edit Details on Lab Profile Page
       Then Edit Profile Lab Details page is opened
     When I fill following fields on Edit Profile Lab Details page and save as 'lab':
-      | Country  | Albania     |
-      | Name     | TestLab     |
-#      | URL      | TestLab     |
-      | Lab type | Commercial Lab |
+      | Country  | Albania         |
+      | Name     | TestLab         |
+      | URL      | https://TestLab |
+      | Lab type | Commercial Lab  |
     And I click Save on Edit Profile Lab Details page
       Then Message 'Lab updated!' is displayed on Edit Profile Lab Details page
     When I click Return to profile on Edit Profile Lab Details page
@@ -36,10 +36,10 @@ Feature: Edit a Lab
     When I click Edit Details on Lab Profile Page
       Then Edit Profile Lab Details page is opened
     When I fill following fields on Edit Profile Lab Details page and save as 'lab':
-      | Country  | Albania     |
-      | Name     | TestLab     |
-#      | URL      | TestLab     |
-      | Lab type | Hospital Lab |
+      | Country  | Albania         |
+      | Name     | TestLab         |
+      | URL      | https://TestLab |
+      | Lab type | Hospital Lab    |
     And I click Save on Edit Profile Lab Details page
       Then Message 'Lab updated!' is displayed on Edit Profile Lab Details page
     When I click Return to profile on Edit Profile Lab Details page

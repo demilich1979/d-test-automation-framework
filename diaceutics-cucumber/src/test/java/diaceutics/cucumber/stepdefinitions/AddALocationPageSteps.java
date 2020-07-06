@@ -1,6 +1,5 @@
 package diaceutics.cucumber.stepdefinitions;
 
-import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddALocationPageFields;
 import diaceutics.selenium.models.Location;
@@ -19,11 +18,9 @@ import java.util.Map;
 public class AddALocationPageSteps {
 
     private final AddALocationPage addALocationPage;
-    private final ScenarioContext scenarioContext;
 
     @Inject
-    public AddALocationPageSteps(ScenarioContext scenarioContext) {
-        this.scenarioContext = scenarioContext;
+    public AddALocationPageSteps() {
         addALocationPage = new AddALocationPage();
     }
 
@@ -39,17 +36,17 @@ public class AddALocationPageSteps {
             if (field.equals("Location name")) {
                 value = value + TimeUtil.getTimestamp();
             }
-            addALocationPage.setFieldValue(AddALocationPageFields.getEnumValue(field), value);
-            location.setReflectionFieldValue(AddALocationPageFields.getEnumValue(field).getModelField(), value);
+            String selectedValue = addALocationPage.setFieldValue(AddALocationPageFields.getEnumValue(field), value);
+            location.setReflectionFieldValue(AddALocationPageFields.getEnumValue(field).getModelField(), selectedValue);
 
         });
 
         XmlFileStore.store(key, location);
     }
 
-    @And("I click Add a location on Add a location page")
-    public void iClickAddALocationOnAddALocationPage() {
-        addALocationPage.clickAddLocation();
+    @And("I click {string} on Add a location page")
+    public void iClickAddALocationOnAddALocationPage(String buttonName) {
+        addALocationPage.clickByButton(buttonName);
     }
 
     @Then("Message {string} is displayed on Add a location page")

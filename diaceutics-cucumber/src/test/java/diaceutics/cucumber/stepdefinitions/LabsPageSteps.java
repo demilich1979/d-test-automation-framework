@@ -1,47 +1,57 @@
 package diaceutics.cucumber.stepdefinitions;
 
+import diaceutics.cucumber.utilities.SoftAssert;
+import diaceutics.selenium.enums.pageFields.LabsPageFields;
 import diaceutics.selenium.pageobject.pages.LabsPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
-import javax.inject.Inject;
+import java.util.List;
 
 public class LabsPageSteps {
     private final LabsPage labsPage;
 
-    @Inject
     public LabsPageSteps() {
         labsPage = new LabsPage();
     }
 
     @Given("Labs page is opened")
-    public void labsPageIsOpened() {
+    public void filtersPageIsOpened() {
         Assert.assertTrue(labsPage.isDisplayed(), "Labs page should be opened");
     }
 
-    @When("I open Create a Lab page")
-    public void openCreateLabPage() {
-        labsPage.clickCreateLab();
+    @Then("I select {string} lab on Labs page")
+    public void iSelectCountryOnFiltersLabsPage(String labName) {
+        labsPage.clickByLabLink(labName);
     }
 
-    @Then("I select {string} country on Labs page")
-    public void iSelectCountryOnLabsPage(String countryName) {
-        labsPage.clickByCountryLink(countryName);
+    @Then("All of the following labs for the specific country are displayed on Labs page:")
+    public void allOfTheLabsForTheCountryCountryNameAreDisplayed(List<String> labNames) {
+        labNames.forEach((labName) -> {
+            SoftAssert.getInstance().assertTrue(labsPage.isLabDisplayedIndFilterResults(labName),
+                    String.format("Lab %s should be displayed in filter results", labName));
+        });
     }
 
-
-    @When("I choose a {string} and press Search icon")
-    public void iChooseACountryAndPressSearchIcon(String country) {
-        labsPage.chooseCountry(country);
+    @When("I Set {string} to {string} and press Search icon on Labs page")
+    public void iSetRadiobuttonToAcademicLabAndPressSearchIcon(String field, String value) {
+        labsPage.setFieldValue(LabsPageFields.getEnumValue(field), value);
         labsPage.clickSearch();
     }
 
-    @When("I put a Lab {string} an Search textBox and press Search icon")
-    public void iPutALabLabNameAnSearchTextBoxAndPressSearchIcon(String labName) {
-        labsPage.putTextInSearchField(labName);
-        labsPage.clickSearch();
+    @Then("{string} labs are filtered on Labs page")
+    public void academicLabAreFiltered(String filter) {
+        SoftAssert.getInstance().assertTrue(labsPage.isLabAreFiltered(filter),
+                String.format("Labs should be filtered by %s", filter));
+
     }
 
+    @And("Lab {string} is displayed in filter results on Labs page")
+    public void labTestLabIsDisplayedInFilterResults(String labName) {
+        Assert.assertTrue(labsPage.isLabDisplayedIndFilterResults(labName),
+                String.format("Lab %s should be displayed in filter results", labName));
+    }
 }
