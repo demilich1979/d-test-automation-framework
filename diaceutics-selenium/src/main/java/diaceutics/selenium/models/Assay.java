@@ -40,21 +40,21 @@ public class Assay extends BaseModel {
 
     public String getClassifications() {
         List<String> classifications = new ArrayList<>();
-            if (getFdaPmaApprovedKit().equals("true")) {
-                classifications.add("FDA PMA Approved Kit");
-            }
-            if (getFda510KApprovedKit().equals("true")) {
-                classifications.add("FDA 510K Approved Kit");
-            }
-            if (getRuoIuo().equals("true")) {
-                classifications.add("RUO/IUO");
-            }
-            if (getLaboratoryDevelopedTest().equals("true")) {
-                classifications.add("Laboratory Developed Test (LDT)");
-            }
-            if (getIvdCe().equals("true")) {
-                classifications.add("IVD-CE");
-            }
+        if (getLaboratoryDevelopedTest().equals("true")) {
+            classifications.add("Laboratory Developed Test (LDT)");
+        }
+        if (getFda510KApprovedKit().equals("true")) {
+            classifications.add("FDA 510K APPROVED KIT");
+        }
+        if (getRuoIuo().equals("true")) {
+            classifications.add("RUO/IUO");
+        }
+        if (getFdaPmaApprovedKit().equals("true")) {
+            classifications.add("FDA PMA APPROVED KIT");
+        }
+        if (getIvdCe().equals("true")) {
+            classifications.add("IVD-CE");
+        }
 
         return String.join(",", classifications).replaceAll(",", ", ");
     }

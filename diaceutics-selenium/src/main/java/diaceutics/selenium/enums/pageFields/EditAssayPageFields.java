@@ -97,12 +97,12 @@ public enum EditAssayPageFields implements FormFieldInterface {
             "sensitivity",
             FieldType.NUMBER),
 
-    BatchOrIndividual("Batch or Individual?",
+    BATCH_OR_INDIVIDUAL("Batch or Individual?",
             "//ui-radio-group[./label[.='Batch or Individual?']]",
             "batchOrIndividual",
             FieldType.RADIO),
 
-    VariantsIncluded("Variants included?",
+    VARIANTS_INCLUDED("Variants included?",
             "//ui-radio-group[./label[.='Variants included?']]",
             "variantsIncluded",
             FieldType.RADIO);

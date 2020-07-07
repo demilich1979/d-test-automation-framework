@@ -22,7 +22,7 @@ public class EditAssayPageSteps {
     }
 
     @Given("Edit Assay page is opened")
-    public void labProfilesPageIsOpened() {
+    public void editAssayPageIsOpened() {
         Assert.assertTrue(editAssayPage.isDisplayed(), "Edit Assay page should be opened");
     }
 

@@ -27,7 +27,7 @@ public class EditProfileLocationPageSteps {
     }
 
     @Given("Edit Profile Location page is opened")
-    public void labProfilesPageIsOpened() {
+    public void editProfileLocationPageIsOpened() {
         Assert.assertTrue(editProfileLocationPage.isDisplayed(), "EditProfile Location page should be opened");
     }
 

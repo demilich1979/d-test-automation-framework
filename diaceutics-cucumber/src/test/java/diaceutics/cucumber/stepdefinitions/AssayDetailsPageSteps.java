@@ -14,7 +14,7 @@ public class AssayDetailsPageSteps {
     }
 
     @Given("Assay details page is opened")
-    public void labProfilesPageIsOpened() {
+    public void assayDetailsPageIsOpened() {
         Assert.assertTrue(assayDetailsPage.isDisplayed(), "Assay details page should be opened");
     }
 

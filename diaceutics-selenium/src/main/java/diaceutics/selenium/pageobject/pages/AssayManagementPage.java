@@ -1,9 +1,9 @@
 package diaceutics.selenium.pageobject.pages;
 
-import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.ILink;
 import diaceutics.selenium.elements.ComboboxJs;
 import diaceutics.selenium.pageobject.BaseForm;
+import diaceutics.selenium.pageobject.forms.HeaderForm;
 import org.openqa.selenium.By;
 
 public class AssayManagementPage extends BaseForm {
@@ -16,6 +16,10 @@ public class AssayManagementPage extends BaseForm {
 
     public AssayManagementPage() {
         super(By.id("titleArea"), "Assay Management");
+    }
+
+    public HeaderForm getHeaderForm() {
+        return new HeaderForm();
     }
 
     public void clickByCountryLink(String countryName) {

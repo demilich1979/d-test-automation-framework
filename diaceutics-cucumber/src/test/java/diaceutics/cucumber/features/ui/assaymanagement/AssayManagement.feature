@@ -12,7 +12,7 @@ Feature: Assay Management
     When I click on 'Add assay' on Lab Profile Page
       Then Add an Assay page is opened
     When I fill following fields on Add an Assay page and save as 'assay':
-      | Assay name                            | Test Assay name         |
+      | Assay name                            | Test Assay              |
       | Assay description                     | Test Assay description  |
       | Ontologies                            | random                  |
       | Scoring method                        | random                  |
@@ -33,7 +33,7 @@ Feature: Assay Management
 #      | Send-out or inhouse?                  | Send-out                |
 #      | Send-out Lab                          | random                  |
       | Panel name radio                      | Yes                     |
-      | Panel name                            | Test Panel name         |
+      | Panel name                            | Test Panel              |
       | Accuracy                              | 55                      |
       | Precision                             | 55                      |
       | Sensitivity                           | 55                      |
@@ -57,13 +57,13 @@ Feature: Assay Management
     When I click Edit Details on Assay details page
       Then Edit Assay page is opened
     When I fill following fields on Edit Assay page and save as 'assay':
-      | Assay name                      | New Assay name |
-      | FDA 510K APPROVED KIT           | false          |
-      | Laboratory Developed Test (LDT) | false          |
-      | FDA PMA APPROVED KIT            | false          |
-      | IVD-CE                          | true           |
-      | RUO/IUO                         | true           |
-      | Method                          | random         |
+      | Assay name                      | New Assay |
+      | FDA 510K APPROVED KIT           | false     |
+      | Laboratory Developed Test (LDT) | false     |
+      | FDA PMA APPROVED KIT            | false     |
+      | IVD-CE                          | true      |
+      | RUO/IUO                         | true      |
+      | Method                          | random    |
     And I click 'Save' on Edit Assay page
       Then Lab Profile page is opened
       And 'Lab assay updated.' message is displayed on Lab Profile page
@@ -133,16 +133,16 @@ Feature: Assay Management
     When I click on 'Add assay' on Lab Profile Page
       Then Add an Assay page is opened
     When I fill following fields on Add an Assay page and save as 'assayOne':
-      | Assay name                            | Test Assay name |
-      | Ontologies                            | random          |
-      | Detects Germline/Somatic alterations  | random          |
-      | FDA 510K Approved Kit                 | true            |
-      | Laboratory Developed Test (LDT)       | true            |
-      | FDA PMA Approved Kit                  | true            |
-      | IVD-CE                                | true            |
-      | RUO/IUO                               | false           |
-      | Turn around time (days)               | 555             |
-      | Method                                | random          |
+      | Assay name                            | Test Assay |
+      | Ontologies                            | random     |
+      | Detects Germline/Somatic alterations  | random     |
+      | FDA 510K APPROVED KIT                 | true       |
+      | Laboratory Developed Test (LDT)       | true       |
+      | FDA PMA APPROVED KIT                  | true       |
+      | IVD-CE                                | true       |
+      | RUO/IUO                               | false      |
+      | Turn around time (days)               | 555        |
+      | Method                                | random     |
     And I click 'Add Biomarker' on Add an Assay page
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarkerOne':
@@ -154,16 +154,16 @@ Feature: Assay Management
     When I click on 'Add assay' on Lab Profile Page
       Then Add an Assay page is opened
     When I fill following fields on Add an Assay page and save as 'assayTwo':
-      | Assay name                            | Test Assay name |
-      | Ontologies                            | random          |
-      | Detects Germline/Somatic alterations  | random          |
-      | FDA 510K Approved Kit                 | true            |
-      | Laboratory Developed Test (LDT)       | false           |
-      | FDA PMA Approved Kit                  | false           |
-      | IVD-CE                                | true            |
-      | RUO/IUO                               | false           |
-      | Turn around time (days)               | 555             |
-      | Method                                | random          |
+      | Assay name                            | Test Assay |
+      | Ontologies                            | random     |
+      | Detects Germline/Somatic alterations  | random     |
+      | FDA 510K APPROVED KIT                 | true       |
+      | Laboratory Developed Test (LDT)       | false      |
+      | FDA PMA APPROVED KIT                  | false      |
+      | IVD-CE                                | true       |
+      | RUO/IUO                               | false      |
+      | Turn around time (days)               | 555        |
+      | Method                                | random     |
     And I click 'Add Biomarker' on Add an Assay page
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarkerTwo':

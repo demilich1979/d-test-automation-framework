@@ -25,7 +25,7 @@ public class LabAddressPageSteps {
     }
 
     @Then("Lab Address page is opened")
-    public void checkCreateLabPageIsOpened() {
+    public void labAddressPageIsOpened() {
         Assert.assertTrue(labAddressPage.isDisplayed(), "Lab Address page page should be opened");
     }
 

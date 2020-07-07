@@ -15,7 +15,7 @@ public class AssayManagementPageSteps {
     }
 
     @Given("Assay Management page is opened")
-    public void labsPageIsOpened() {
+    public void assayManagementPageIsOpened() {
         Assert.assertTrue(assayManagementPage.isDisplayed(), "Assay Management page should be opened");
     }
 
