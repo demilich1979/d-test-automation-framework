@@ -28,6 +28,8 @@ public abstract class BaseForm extends Form {
     private static final String BUTTON_TEMPLATE = "//button[.='%s']";
 
     private final IButton btnSearch = getElementFactory().getButton(By.name("search"), "Search");
+    public final ILabel labelSmallSpinner = getElementFactory().getLabel(
+            By.xpath("//ui-spinner[contains(@class,'small')]"), "Small Spinner");
 
     protected BaseForm(By locator, String name) {
         super(locator, name);

@@ -14,7 +14,6 @@ public class AgGrid extends BaseForm {
     private final List<IElement> columnLinks = getElementFactory().findElements(By.xpath
             ("//div[contains(@class,'ag-header-cell')]//span[@role='columnheader']"), ElementType.LINK);
 
-
     public AgGrid() {
         super(By.xpath("//div[@class='mainContentContainer']"), "AgGrid");
     }
@@ -28,6 +27,7 @@ public class AgGrid extends BaseForm {
     }
 
     public boolean isLabDisplayed(String labName) {
+        labelSmallSpinner.state().waitForNotDisplayed();
         List<IElement> labLink = getElementFactory().findElements(By.xpath
                 (String.format("//app-lab-name-grouped-cell-renderer/span[.='%s']", labName)), ElementType.LINK);
         return labLink.size() > 0;

@@ -66,10 +66,10 @@ Feature: Data
       | Disease              |
       | Biomarker / Analogue |
     And I fill following fields on Lab Mapping Search page:
-      | Year From            | 2017    |
-      | Month From           | January |
-      | Year To              | 2020    |
-      | Month To             | July    |
+      | Year From  | 2017    |
+      | Month From | January |
+      | Year To    | 2020    |
+      | Month To   | July    |
     And I click 'Start' on Lab Mapping Search page
       Then Lab Mapping Results page is opened
       And Lab 'lab' is displayed in Ag Grid on Lab Mapping Results page
