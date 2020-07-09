@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AddPlatformForm extends BaseForm {
 
-    private final IButton btnAddPlatform = getElementFactory().getButton(
+    private final IButton addPlatformBtn = getElementFactory().getButton(
             By.xpath("//form//button[.='Add platform']"), "Add platform");
 
     public AddPlatformForm() {
@@ -19,7 +19,7 @@ public class AddPlatformForm extends BaseForm {
     }
 
     public void clickAddPlatform() {
-        btnAddPlatform.clickAndWait();
+        addPlatformBtn.clickAndWait();
     }
 
     public boolean isFieldContainsValue(AddPlatformFormFields field, String value) {

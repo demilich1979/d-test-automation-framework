@@ -8,13 +8,13 @@ import org.openqa.selenium.By;
 
 public class EditProfileLabDetailsPage extends BaseForm {
 
-    private final IButton btnSave = getElementFactory().getButton(
+    private final IButton saveBtn = getElementFactory().getButton(
             By.xpath("//form[.//app-lab-details-form]//button[.='Save']"), "Save");
 
-    private final ILink linkReturnToProfile = getElementFactory().getLink(
+    private final ILink returnToProfileLink = getElementFactory().getLink(
             By.xpath("//ui-alert//span/a[.='Return to profile']"), "Return to profile");
 
-    private final IButton btnAddNewLocation = getElementFactory().getButton(
+    private final IButton addNewLocationBtn = getElementFactory().getButton(
             By.xpath("//div[contains(@class,'buttons')]//ul[contains(@class,'tabButtons')]"), "Add new location");
 
     public EditProfileLabDetailsPage() {
@@ -22,15 +22,15 @@ public class EditProfileLabDetailsPage extends BaseForm {
     }
 
     public void clickSave() {
-        btnSave.clickAndWait();
+        saveBtn.clickAndWait();
     }
 
     public void clickReturnToProfile() {
-        linkReturnToProfile.clickAndWait();
+        returnToProfileLink.clickAndWait();
     }
 
     public void clickAddNewLocation() {
-        btnAddNewLocation.clickAndWait();
+        addNewLocationBtn.clickAndWait();
     }
 
 }

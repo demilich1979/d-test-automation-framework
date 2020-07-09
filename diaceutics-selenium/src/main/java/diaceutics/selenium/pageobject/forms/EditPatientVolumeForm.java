@@ -13,11 +13,11 @@ public class EditPatientVolumeForm extends BaseForm {
 
     public boolean isMessageForVolumeDisplayed(String messageTemplate, Volume volume) {
         String message = String.format(messageTemplate, volume.getDisease(), volume.getBiomarker());
-        ILabel labelMessage = getElementFactory().getLabel(
+        ILabel messageLabel = getElementFactory().getLabel(
                 By.xpath(String.format("//span[.='%s']", message)),
                 "message");
 
-        return labelMessage.state().waitForDisplayed();
+        return messageLabel.state().waitForDisplayed();
     }
 
 }
