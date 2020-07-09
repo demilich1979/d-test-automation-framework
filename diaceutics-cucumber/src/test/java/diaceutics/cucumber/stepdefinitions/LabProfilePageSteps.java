@@ -147,7 +147,7 @@ public class LabProfilePageSteps {
 
     @And("Lab {string} with following fields is displayed on Lab Profile page")
     public void labLabIsDisplayedOnLabProfilePage(String key, List<String> fields) {
-        Lab expectedLab = scenarioContext.get(key);
+        Lab expectedLab = XmlFileStore.get(key);
         Lab actualLab = labProfilePage.getLabFromPage();
 
         fields.forEach(field -> {

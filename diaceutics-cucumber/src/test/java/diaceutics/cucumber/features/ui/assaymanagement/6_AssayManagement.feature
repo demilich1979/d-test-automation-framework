@@ -2,17 +2,18 @@ Feature: Assay Management
 
   Background:
     Given Assay Management page is opened
-    When I select 'Albania' country on Assay Management page
+    When I put a Lab 'labOne' on search field 'Enter keywords' and press Search icon on Assay Management page
       Then Labs page is opened
-    When I select 'Test lab' lab on Labs page
+      And Lab 'labOne' is displayed in filter results on Labs page
+    When I select 'labOne' lab on Labs page
       Then Lab Profile page is opened
 
-  @AssayManagement
-  Scenario: DIAFE:0020 Possibility to add an assay
+  @AssayManagement @Assay
+  Scenario: DIAFE:0021 Possibility to add an assay
     When I click on 'Add assay' on Lab Profile Page
       Then Add an Assay page is opened
     When I fill following fields on Add an Assay page and save as 'assay':
-      | Assay name                            | Test Assay name         |
+      | Assay name                            | Test Assay              |
       | Assay description                     | Test Assay description  |
       | Ontologies                            | random                  |
       | Scoring method                        | random                  |
@@ -27,7 +28,6 @@ Feature: Assay Management
       | Associated diseases                   | random                  |
       | Method                                | random                  |
       | Method description                    | Test Method description |
-#      | Commercial Assays                     | random                  |
       | Result Format                         | random                  |
       | Report sample URL                     | Test Report sample URL  |
 #      | Send-out or inhouse?                  | Send-out                |
@@ -50,27 +50,27 @@ Feature: Assay Management
       And 'New lab assay added.' message is displayed on Lab Profile page
       And Assay 'assay' is displayed in Assays grid on Lab Profile page
 
-  @AssayManagement
-  Scenario: DIAFE:0021 Possibility to edit assays
+  @AssayManagement @Assay
+  Scenario: DIAFE:0022 Possibility to edit assays
     When I click on Assay 'assay' in Assays grid on Lab Profile Page
       Then Assay details page is opened
     When I click Edit Details on Assay details page
       Then Edit Assay page is opened
     When I fill following fields on Edit Assay page and save as 'assay':
-      | Assay name                      | New Assay name |
-      | FDA 510K APPROVED KIT           | false          |
-      | Laboratory Developed Test (LDT) | false          |
-      | FDA PMA APPROVED KIT            | false          |
-      | IVD-CE                          | true           |
-      | RUO/IUO                         | true           |
-      | Method                          | random         |
+      | Assay name                      | New Assay |
+      | FDA 510K APPROVED KIT           | false     |
+      | Laboratory Developed Test (LDT) | false     |
+      | FDA PMA APPROVED KIT            | false     |
+      | IVD-CE                          | true      |
+      | RUO/IUO                         | true      |
+      | Method                          | random    |
     And I click 'Save' on Edit Assay page
       Then Lab Profile page is opened
       And 'Lab assay updated.' message is displayed on Lab Profile page
       And Assay 'assay' is displayed in Assays grid on Lab Profile page
 
-  @AssayManagement
-  Scenario: DIAFE:0022 Required fields validation
+  @AssayManagement @Assay
+  Scenario: DIAFE:0023 Required fields validation
     When I click on 'Add assay' on Lab Profile Page
       Then Add an Assay page is opened
     When I click 'Add Assay' on Add an Assay page
@@ -100,8 +100,8 @@ Feature: Assay Management
       | Turn around time (days) | 0 |
       And Message 'Please enter a value greater than 0.' is displayed on required fields on Add an Assay page
 
-  @AssayManagement
-  Scenario: DIAFE:0023 "Accuracy, precision, sensitivity and specificity" field validation
+  @AssayManagement @Assay
+  Scenario: DIAFE:0024 "Accuracy, precision, sensitivity and specificity" field validation
     When I click on Assay 'assay' in Assays grid on Lab Profile Page
       Then Assay details page is opened
     When I click Edit Details on Assay details page
@@ -123,26 +123,26 @@ Feature: Assay Management
       And Message 'Precision: Please enter a value between 0 and 100.' is displayed on required fields on Edit Assay page
       And Message 'Sensitivity: Please enter a value between 0 and 100.' is displayed on required fields on Edit Assay page
 
-  @AssayManagement
-  Scenario: DIAFE:0024 Filter an assay by keyword
+  @AssayManagement @Assay
+  Scenario: DIAFE:0025 Filter an assay by keyword
     When I put a Assay 'assay' on search field 'Search assays' and press Search icon on Lab Profile page
       Then Assay 'assay' is displayed in Assays grid on Lab Profile page
 
-  @AssayManagement
-  Scenario: DIAFE:0025 Possibility to sort assays
+  @AssayManagement @Assay
+  Scenario: DIAFE:0026 Possibility to sort assays
     When I click on 'Add assay' on Lab Profile Page
       Then Add an Assay page is opened
     When I fill following fields on Add an Assay page and save as 'assayOne':
-      | Assay name                            | Test Assay name |
-      | Ontologies                            | random          |
-      | Detects Germline/Somatic alterations  | random          |
-      | FDA 510K APPROVED KIT                 | true            |
-      | Laboratory Developed Test (LDT)       | true            |
-      | FDA PMA APPROVED KIT                  | true            |
-      | IVD-CE                                | true            |
-      | RUO/IUO                               | false           |
-      | Turn around time (days)               | 555             |
-      | Method                                | random          |
+      | Assay name                            | Test Assay |
+      | Ontologies                            | random     |
+      | Detects Germline/Somatic alterations  | random     |
+      | FDA 510K APPROVED KIT                 | true       |
+      | Laboratory Developed Test (LDT)       | true       |
+      | FDA PMA APPROVED KIT                  | true       |
+      | IVD-CE                                | true       |
+      | RUO/IUO                               | false      |
+      | Turn around time (days)               | 555        |
+      | Method                                | random     |
     And I click 'Add Biomarker' on Add an Assay page
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarkerOne':
@@ -154,16 +154,16 @@ Feature: Assay Management
     When I click on 'Add assay' on Lab Profile Page
       Then Add an Assay page is opened
     When I fill following fields on Add an Assay page and save as 'assayTwo':
-      | Assay name                            | Test Assay name |
-      | Ontologies                            | random          |
-      | Detects Germline/Somatic alterations  | random          |
-      | FDA 510K APPROVED KIT                 | true            |
-      | Laboratory Developed Test (LDT)       | false           |
-      | FDA PMA APPROVED KIT                  | false           |
-      | IVD-CE                                | true            |
-      | RUO/IUO                               | false           |
-      | Turn around time (days)               | 555             |
-      | Method                                | random          |
+      | Assay name                            | Test Assay |
+      | Ontologies                            | random     |
+      | Detects Germline/Somatic alterations  | random     |
+      | FDA 510K APPROVED KIT                 | true       |
+      | Laboratory Developed Test (LDT)       | false      |
+      | FDA PMA APPROVED KIT                  | false      |
+      | IVD-CE                                | true       |
+      | RUO/IUO                               | false      |
+      | Turn around time (days)               | 555        |
+      | Method                                | random     |
     And I click 'Add Biomarker' on Add an Assay page
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarkerTwo':
@@ -179,7 +179,7 @@ Feature: Assay Management
     When I sort data by alphabet in 'Classifications' column on 'Assays' Grid
       Then Data in 'Classifications' column on 'Assays' Grid sorted according to alphabet
 
-  @AssayManagement
-  Scenario: DIAFE:0026 Check number of assays
+  @AssayManagement @Assay
+  Scenario: DIAFE:0027 Check number of assays
     When I count the number of platforms in the 'Assays' grid and save as 'numberOfAssays'
       Then 'numberOfAssays' must be the same as a number stated in the 'Assays' Grid title

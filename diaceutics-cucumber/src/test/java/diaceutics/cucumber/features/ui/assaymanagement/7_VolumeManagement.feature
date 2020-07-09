@@ -2,13 +2,14 @@ Feature: Volume Management
 
   Background:
     Given Assay Management page is opened
-    When I select 'Albania' country on Assay Management page
+    When I put a Lab 'labOne' on search field 'Enter keywords' and press Search icon on Assay Management page
       Then Labs page is opened
-    When I select 'Test lab' lab on Labs page
+      And Lab 'labOne' is displayed in filter results on Labs page
+    When I select 'labOne' lab on Labs page
       Then Lab Profile page is opened
 
-  @VolumeManagement
-  Scenario: DIAFE:0026 Possibility to add a volume to the existing lab
+  @AssayManagement @VolumeManagement
+  Scenario: DIAFE:0028 Possibility to add a volume to the existing lab
     When I click on 'Add volume' on Lab Profile Page
       Then Log patient volume form is opened
     When I fill following fields on Log patient volume form and save as 'volume':
@@ -23,8 +24,8 @@ Feature: Volume Management
       Then Lab Profile page is opened
       And Volume 'volume' is added to Volumes grid on Lab Profile page
 
-  @VolumeManagement
-  Scenario: DIAFE:0027 Volume duplication impossibility
+  @AssayManagement @VolumeManagement
+  Scenario: DIAFE:0029 Volume duplication impossibility
     When I click on 'Add volume' on Lab Profile Page
       Then Log patient volume form is opened
     When I fill following fields on Log patient volume form using data from 'volume':
@@ -36,8 +37,8 @@ Feature: Volume Management
     And I click 'Log volume' on Log patient volume form
       Then Message 'A volume already exists for this criteria and time period.' is displayed on Log patient volume form
 
-  @VolumeManagement
-  Scenario: DIAFE:0028 Possibility to edit volumes
+  @AssayManagement @VolumeManagement
+  Scenario: DIAFE:0030 Possibility to edit volumes
     When I click on Edit button for the 'volume' volume on Lab Profile Page
       Then Edit patient volume form is opened
     When I fill following fields on Edit patient volume form and save as 'volume':
@@ -50,8 +51,8 @@ Feature: Volume Management
       Then Lab Profile page is opened
       And Volume 'volume' is added to Volumes grid on Lab Profile page
 
-  @VolumeManagement
-  Scenario: DIAFE:0029 Possibility to sort volumes
+  @AssayManagement @VolumeManagement
+  Scenario: DIAFE:0031 Possibility to sort volumes
     When I click on 'Add volume' on Lab Profile Page
       Then Log patient volume form is opened
     When I fill following fields on Log patient volume form and save as 'volumeOne':

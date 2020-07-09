@@ -1,6 +1,6 @@
 package diaceutics.cucumber.stepdefinitions;
 
-import diaceutics.cucumber.utilities.ScenarioContext;
+import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.LabAddressPageFields;
 import diaceutics.selenium.models.Location;
 import diaceutics.selenium.pageobject.pages.LabAddressPage;
@@ -13,14 +13,11 @@ import org.testng.Assert;
 import javax.inject.Inject;
 import java.util.Map;
 
-
 public class LabAddressPageSteps {
     private final LabAddressPage labAddressPage;
-    private final ScenarioContext scenarioContext;
 
     @Inject
-    public LabAddressPageSteps(ScenarioContext scenarioContext) {
-        this.scenarioContext = scenarioContext;
+    public LabAddressPageSteps() {
         labAddressPage = new LabAddressPage();
     }
 
@@ -31,7 +28,7 @@ public class LabAddressPageSteps {
 
     @When("I fill following fields on Lab Address page and save as {string}:")
     public void fillCreateLabPage(String key, Map<String, String> data) {
-        Lab lab = scenarioContext.get(key);
+        Lab lab = XmlFileStore.get(key);
         Location location = new Location();
         data.forEach((field, value) -> {
             String selectedValue = labAddressPage.setFieldValue(LabAddressPageFields.getEnumValue(field), value);
@@ -39,7 +36,7 @@ public class LabAddressPageSteps {
         });
 
         lab.addLocation(location);
-        scenarioContext.add(key, lab);
+        XmlFileStore.store(key, lab);
     }
 
     @And("I click {string} on Lab Address page")

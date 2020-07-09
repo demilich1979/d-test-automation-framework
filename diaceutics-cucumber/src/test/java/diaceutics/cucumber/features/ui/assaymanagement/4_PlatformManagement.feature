@@ -2,13 +2,14 @@ Feature: Platform Management
 
   Background:
     Given Assay Management page is opened
-    When I select 'Albania' country on Assay Management page
+    When I put a Lab 'labOne' on search field 'Enter keywords' and press Search icon on Assay Management page
       Then Labs page is opened
-    When I select 'Test lab' lab on Labs page
+      And Lab 'labOne' is displayed in filter results on Labs page
+    When I select 'labOne' lab on Labs page
       Then Lab Profile page is opened
 
-  @PlatformManagement
-  Scenario: DIAFE:0009 Possibility to add a platform to the existing lab
+  @AssayManagement @PlatformManagement
+  Scenario: DIAFE:0010 Possibility to add a platform to the existing lab
     When I click on 'Add platform' on Lab Profile Page
       Then Add Platform form is opened
     When I fill following fields on Add Platform form and save as 'newPlatformOne':
@@ -18,14 +19,14 @@ Feature: Platform Management
       Then Lab Profile page is opened
       And Platform 'newPlatformOne' added to Platforms grid
 
-  @PlatformManagement
-  Scenario: DIAFE:0010 Platform duplication impossibility
+  @AssayManagement @PlatformManagement
+  Scenario: DIAFE:0011 Platform duplication impossibility
     When I click on 'Add platform' on Lab Profile Page
       Then Add Platform form is opened
       And Field 'Platform' does not contains value from 'newPlatformOne'
 
-  @PlatformManagement
-  Scenario: DIAFE:0011 Possibility to sort platforms
+  @AssayManagement @PlatformManagement
+  Scenario: DIAFE:0012 Possibility to sort platforms
     When I click on 'Add platform' on Lab Profile Page
       Then Add Platform form is opened
     When I fill following fields on Add Platform form and save as 'newPlatformTwo':
@@ -45,8 +46,8 @@ Feature: Platform Management
     When I sort data by alphabet in 'Platform equipment' column on 'Platforms' Grid
       Then Data in 'Platform equipment' column on 'Platforms' Grid sorted according to alphabet
 
-  @PlatformManagement
-  Scenario: DIAFE:0012 Possibility to edit platforms
+  @AssayManagement @PlatformManagement
+  Scenario: DIAFE:0013 Possibility to edit platforms
     When I click on Edit button for the 'newPlatformOne' platform on Lab Profile Page
       Then Edit platform form is opened
     When I fill following fields on Edit Platform form and save as 'newPlatformOne':
@@ -55,13 +56,13 @@ Feature: Platform Management
       Then Lab Profile page is opened
       And Platform 'newPlatformOne' added to Platforms grid
 
-  @PlatformManagement
-  Scenario: DIAFE:0013 Check number of platforms
+  @AssayManagement @PlatformManagement
+  Scenario: DIAFE:0014 Check number of platforms
     When I count the number of platforms in the 'Platforms' grid and save as 'numberOfPlatforms'
       Then 'numberOfPlatforms' must be the same as a number stated in the 'Platforms' Grid title
 
-  @PlatformManagement
-  Scenario Outline: DIAFE:0014 Possibility to delete a platform
+  @AssayManagement @PlatformManagement
+  Scenario Outline: DIAFE:0015 Possibility to delete a platform
     When On the Lab Profile page I click on Delete button for the '<Platform>' platform
       Then Confirm form is opened
     When I click 'Confirm' on Confirm form

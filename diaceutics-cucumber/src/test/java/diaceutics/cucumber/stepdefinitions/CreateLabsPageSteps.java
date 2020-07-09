@@ -1,6 +1,6 @@
 package diaceutics.cucumber.stepdefinitions;
 
-import diaceutics.cucumber.utilities.ScenarioContext;
+import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.CreateLabPageFields;
 import diaceutics.selenium.pageobject.pages.CreateLabPage;
 import diaceutics.selenium.models.Lab;
@@ -10,16 +10,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
-import javax.inject.Inject;
 import java.util.Map;
 
 public class CreateLabsPageSteps {
     private final CreateLabPage createLabPage;
-    private final ScenarioContext scenarioContext;
 
-    @Inject
-    public CreateLabsPageSteps(ScenarioContext scenarioContext) {
-        this.scenarioContext = scenarioContext;
+    public CreateLabsPageSteps() {
         createLabPage = new CreateLabPage();
     }
 
@@ -39,7 +35,7 @@ public class CreateLabsPageSteps {
             lab.setReflectionFieldValue(CreateLabPageFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
-        scenarioContext.add(key, lab);
+        XmlFileStore.store(key, lab);
     }
 
     @And("I click {string} on Create a Lab page")
