@@ -1,5 +1,5 @@
 {
-  "environment": "stage",
+  "environment": "dev",
   "browserName": "chrome",
   "isRemote": false,
   "remoteConnectionUrl": "http://localhost:4444/wd/hub",

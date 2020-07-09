@@ -13,13 +13,13 @@ Feature: Location management
     When I click on 'Add a location' on Lab Profile Page
       Then Add a location page is opened
     When I fill following fields on Add a location page and save as 'location':
-      | Location name | Test Location name |
-      | Address 1     | Test Address 1     |
-      | Address 2     | Test Address 2     |
-      | City / Town   | Test City          |
-      | Region        | Test Region        |
-      | Country       | random             |
-      | Postal code   | Test Postal code   |
+      | Location name | Test Location    |
+      | Address 1     | Test Address 1   |
+      | Address 2     | Test Address 2   |
+      | City / Town   | Test City        |
+      | Region        | Test Region      |
+      | Country       | random           |
+      | Postal code   | Test Postal code |
     And I click 'Add Location' on Add a location page
       Then Lab Profile page is opened
       And 'New location added.' message is displayed on Lab Profile page
@@ -32,13 +32,13 @@ Feature: Location management
     When I click Add new location on Edit Profile page
       Then Add a location page is opened
     When I fill following fields on Add a location page and save as 'locationTwo':
-      | Location name | Test Location name |
-      | Address 1     | Test Address 1     |
-      | Address 2     | Test Address 2     |
-      | City / Town   | Test City          |
-      | Region        | Test Region        |
-      | Country       | random             |
-      | Postal code   | Test Postal code   |
+      | Location name | Test Location    |
+      | Address 1     | Test Address 1   |
+      | Address 2     | Test Address 2   |
+      | City / Town   | Test City        |
+      | Region        | Test Region      |
+      | Country       | random           |
+      | Postal code   | Test Postal code |
     And I click 'Add Location' on Add a location page
       Then Lab Profile page is opened
       And 'New location added.' message is displayed on Lab Profile page
@@ -59,13 +59,13 @@ Feature: Location management
     When I click Edit location 'location' on Lab Profile Page
       Then Edit Profile Location page is opened
     When I fill following fields on Edit Profile Location page and save as 'location':
-      | Location name | new Location name |
-      | Address 1     | new Address 1     |
-      | Address 2     | new Address 2     |
-      | City / Town   | new City          |
-      | Region        | new Region        |
-      | Country       | random            |
-      | Postal code   | new Postal code   |
+      | Location name | new Location    |
+      | Address 1     | new Address 1   |
+      | Address 2     | new Address 2   |
+      | City / Town   | new City        |
+      | Region        | new Region      |
+      | Country       | random          |
+      | Postal code   | new Postal code |
     And I click Save on Edit Profile Location page
       Then Message 'Location updated!' is displayed on Edit Profile Location page
     When I click Return to profile on Edit Profile Location page
