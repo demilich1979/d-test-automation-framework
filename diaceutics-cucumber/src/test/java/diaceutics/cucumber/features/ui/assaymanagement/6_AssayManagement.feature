@@ -43,6 +43,7 @@ Feature: Assay Management
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarker':
       | Biomarker | random |
+      | Variants  | random |
     And I click Save changes on Add Biomarker form
       Then Biomarker 'biomarker' is added to Biomarker & disease grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
@@ -147,6 +148,7 @@ Feature: Assay Management
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarkerOne':
       | Biomarker | random |
+      | Variants  | random |
     And I click Save changes on Add Biomarker form
       Then Biomarker 'biomarkerOne' is added to Biomarker & disease grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
@@ -168,6 +170,7 @@ Feature: Assay Management
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarkerTwo':
       | Biomarker | random |
+      | Variants  | random |
     And I click Save changes on Add Biomarker form
       Then Biomarker 'biomarkerTwo' is added to Biomarker & disease grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page

@@ -13,6 +13,7 @@ public class Lab extends BaseModel {
     private String labType;
     private List<Location> locations = new ArrayList<>();
     private List<Assay> assays = new ArrayList<>();
+    private List<Volume> volumes = new ArrayList<>();
 
     public void addLocation(Location location) {
         locations.add(location);
@@ -20,6 +21,10 @@ public class Lab extends BaseModel {
 
     public void addAssay(Assay assay) {
         assays.add(assay);
+    }
+
+    public void addVolume(Volume volume) {
+        volumes.add(volume);
     }
 
     public Assay getAssayByName(String assayName) {

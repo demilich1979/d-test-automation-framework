@@ -110,7 +110,7 @@ public class AddAnAssayPageSteps {
 
     @When("I fill following fields on Add an Assay page and save as {string} for {string}:")
     public void iFillFollowingFieldsOnAddAnAssayPageAndSaveAsAssayForLab(String assayKey, String labKey, Map<String, String> data) {
-        Lab lab = scenarioContext.get(labKey);
+        Lab lab = XmlFileStore.get(labKey);
         Assay assay = new Assay();
         data.forEach((field, value) -> {
             if (field.equals("Assay name")) {
@@ -123,7 +123,7 @@ public class AddAnAssayPageSteps {
 
         lab.addAssay(assay);
         XmlFileStore.store(assayKey, assay);
-        scenarioContext.add(labKey, lab);
+        XmlFileStore.store(labKey, lab);
     }
 
     @When("I fill following fields on Add Biomarker form and save as {string} for {string} for {string}:")
@@ -133,7 +133,7 @@ public class AddAnAssayPageSteps {
             String labKey,
             Map<String, String> data) {
 
-        Lab lab = scenarioContext.get(labKey);
+        Lab lab = XmlFileStore.get(labKey);
         Assay assay = lab.getAssays().get(0);
         Biomarker biomarker = new Biomarker();
 
@@ -146,6 +146,6 @@ public class AddAnAssayPageSteps {
         lab.addAssay(assay);
         scenarioContext.add(biomarkerKey, biomarker);
         XmlFileStore.store(assayKey, assay);
-        scenarioContext.add(labKey, lab);
+        XmlFileStore.store(labKey, lab);
     }
 }

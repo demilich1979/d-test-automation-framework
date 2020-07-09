@@ -28,34 +28,42 @@ Feature: Data
     When I click on 'Add assay' on Lab Profile Page
       Then Add an Assay page is opened
     When I fill following fields on Add an Assay page and save as 'assay' for 'lab':
-      | Assay name                            | Test Assay    |
-      | Ontologies                            | random        |
-      | Detects Germline/Somatic alterations  | random        |
-      | FDA 510K APPROVED KIT                 | true          |
-      | Laboratory Developed Test (LDT)       | true          |
-      | FDA PMA APPROVED KIT                  | true          |
-      | IVD-CE                                | false         |
-      | RUO/IUO                               | false         |
-      | Turn around time (days)               | 55555         |
-      | Associated diseases                   | Breast Cancer |
-      | Method                                | random        |
-      | Panel name radio                      | Yes           |
-      | Panel name                            | Test Panel    |
-      | Accuracy                              | 55            |
-      | Precision                             | 55            |
-      | Sensitivity                           | 55            |
-      | Batch or Individual?                  | Batch         |
-      | Variants included?                    | Yes           |
+      | Assay name                            | Test Assay |
+      | Ontologies                            | random     |
+      | Detects Germline/Somatic alterations  | random     |
+      | FDA 510K APPROVED KIT                 | true       |
+      | Laboratory Developed Test (LDT)       | true       |
+      | FDA PMA APPROVED KIT                  | true       |
+      | IVD-CE                                | false      |
+      | RUO/IUO                               | false      |
+      | Turn around time (days)               | 55555      |
+      | Associated diseases                   | random     |
+      | Method                                | random     |
     And I click 'Add Biomarker' on Add an Assay page
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarker' for 'assay' for 'lab':
       | Biomarker | random |
+      | Variants  | random |
     And I click Save changes on Add Biomarker form
       Then Biomarker 'biomarker' is added to Biomarker & disease grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
       Then Lab Profile page is opened
       And 'New lab assay added.' message is displayed on Lab Profile page
       And Assay 'assay' is displayed in Assays grid on Lab Profile page
+    When I click on 'Add volume' on Lab Profile Page
+    Then Log patient volume form is opened
+    When I fill following fields on Log patient volume form and save as 'volume':
+      | Time period combobox | 2018 |
+      | Time period radio    | q2   |
+      | Volume               | 5    |
+    And I fill following fields on Log patient volume form and save as 'volume' using data from 'assay':
+      | Biomarker |
+      | Disease   |
+    And I click 'Log volume' on Log patient volume form
+      Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volume' is displayed on Log patient volume form
+    When I click 'Done' on Log patient volume form
+      Then Lab Profile page is opened
+      And Volume 'volume' is added to Volumes grid on Lab Profile page
 
   @LabMapping
   Scenario: DIAFE:0030 Lab Mapping Search
