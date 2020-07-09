@@ -1,18 +1,18 @@
 Feature: Create a Lab
 
-  @CreateALab
+  @AssayManagement @CreateALab
   Scenario Outline: DIAFE:<test count> Possibility to successfully create an <Lab type>
     Given Assay Management page is opened
     When I click 'Create a Lab' on Assay Management page
       Then Create a Lab page is opened
-    When I fill following fields on Create a Lab page and save as 'lab':
+    When I fill following fields on Create a Lab page and save as '<Lab key>':
       | Country  | Albania         |
       | Name     | TestLab         |
       | URL      | https://TestLab |
       | Lab type | <Lab type>      |
     And I click 'Next' on Create a Lab page
       Then Lab Address page is opened
-    When I fill following fields on Lab Address page and save as 'lab':
+    When I fill following fields on Lab Address page and save as '<Lab key>':
       | Location name | Test Location    |
       | Address 1     | Test Address 1   |
       | Address 2     | Test Address 2   |
@@ -22,20 +22,20 @@ Feature: Create a Lab
       | Postal code   | Test Postal code |
     And I click 'Finish' on Lab Address page
       Then Lab Profile page is opened
-      And Lab 'lab' with following fields is displayed on Lab Profile page
+      And Lab '<Lab key>' with following fields is displayed on Lab Profile page
         | Name     |
         | URL      |
         | Lab type |
 
     Examples:
-      | Lab type       | test count |
-      | Unspecified    | 0001       |
-      | Academic Lab   | 0002       |
-      | Commercial Lab | 0003       |
-      | Hospital Lab   | 0004       |
+      | Lab type       | test count | Lab key  |
+      | Unspecified    | 0001       | labOne   |
+      | Academic Lab   | 0002       | labTwo   |
+      | Commercial Lab | 0003       | labThree |
+      | Hospital Lab   | 0004       | labFour  |
 
-  @CreateALab
-  Scenario: DIAFE:0004 Create a Lab: Required fields validation
+  @AssayManagement @CreateALab
+  Scenario: DIAFE:0005 Create a Lab: Required fields validation
     Given Assay Management page is opened
     When I click 'Create a Lab' on Assay Management page
       Then Create a Lab page is opened
@@ -43,7 +43,7 @@ Feature: Create a Lab
       Then Message 'Some items below need your attention.' is displayed on Create a Lab page
       And Message 'Please input a country' is displayed on required fields on Create a Lab page
       And Message 'Please input a name for the lab' is displayed on required fields on Create a Lab page
-    When I fill following fields on Create a Lab page and save as 'lab':
+    When I fill following fields on Create a Lab page and save as 'labFive':
       | Country  | Albania         |
       | Name     | TestLab         |
       | URL      | https://TestLab |
@@ -55,7 +55,7 @@ Feature: Create a Lab
       And Message 'Please enter a value' is displayed on required fields on Lab Address page
       And Message 'Please input a city or town name' is displayed on required fields on Lab Address page
       And Message 'Please input a country' is displayed on required fields on Lab Address page
-    When I fill following fields on Lab Address page and save as 'lab':
+    When I fill following fields on Lab Address page and save as 'labFive':
       | Location name | Test Location    |
       | Address 1     | Test Address 1   |
       | Address 2     | Test Address 2   |
@@ -65,7 +65,7 @@ Feature: Create a Lab
       | Postal code   | Test Postal code |
     And I click 'Finish' on Lab Address page
       Then Lab Profile page is opened
-      And Lab 'lab' with following fields is displayed on Lab Profile page
+      And Lab 'labFive' with following fields is displayed on Lab Profile page
         | Name     |
         | URL      |
         | Lab type |

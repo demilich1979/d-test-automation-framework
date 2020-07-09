@@ -1,5 +1,7 @@
 package diaceutics.cucumber.stepdefinitions;
 
+import diaceutics.cucumber.utilities.XmlFileStore;
+import diaceutics.selenium.models.Lab;
 import diaceutics.selenium.pageobject.pages.AssayManagementPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -36,7 +38,9 @@ public class AssayManagementPageSteps {
     }
 
     @When("I put a Lab {string} on search field {string} and press Search icon on Assay Management page")
-    public void iPutALabLabNameAnSearchTextBoxAndPressSearchIcon(String labName, String searchFieldName) {
+    public void iPutALabLabNameAnSearchTextBoxAndPressSearchIcon(String key, String searchFieldName) {
+        Lab lab = XmlFileStore.get(key);
+        String labName = lab.getName();
         assayManagementPage.putTextInSearchField(labName, searchFieldName);
         assayManagementPage.clickSearch();
     }

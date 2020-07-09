@@ -1,7 +1,9 @@
 package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.SoftAssert;
+import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.LabsPageFields;
+import diaceutics.selenium.models.Lab;
 import diaceutics.selenium.pageobject.pages.LabsPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -24,13 +26,17 @@ public class LabsPageSteps {
     }
 
     @Then("I select {string} lab on Labs page")
-    public void iSelectCountryOnFiltersLabsPage(String labName) {
+    public void iSelectCountryOnFiltersLabsPage(String key) {
+        Lab lab = XmlFileStore.get(key);
+        String labName = lab.getName();
         labsPage.clickByLabLink(labName);
     }
 
     @Then("All of the following labs for the specific country are displayed on Labs page:")
-    public void allOfTheLabsForTheCountryCountryNameAreDisplayed(List<String> labNames) {
-        labNames.forEach((labName) -> {
+    public void allOfTheLabsForTheCountryCountryNameAreDisplayed(List<String> keys) {
+        keys.forEach((key) -> {
+            Lab lab = XmlFileStore.get(key);
+            String labName = lab.getName();
             SoftAssert.getInstance().assertTrue(labsPage.isLabDisplayedIndFilterResults(labName),
                     String.format("Lab %s should be displayed in filter results", labName));
         });
@@ -50,7 +56,9 @@ public class LabsPageSteps {
     }
 
     @And("Lab {string} is displayed in filter results on Labs page")
-    public void labTestLabIsDisplayedInFilterResults(String labName) {
+    public void labTestLabIsDisplayedInFilterResults(String key) {
+        Lab lab = XmlFileStore.get(key);
+        String labName = lab.getName();
         Assert.assertTrue(labsPage.isLabDisplayedIndFilterResults(labName),
                 String.format("Lab %s should be displayed in filter results", labName));
     }
