@@ -1,20 +1,17 @@
 package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.DataReader;
-import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.selenium.models.User;
 import diaceutics.selenium.pageobject.pages.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
-import javax.inject.Inject;
 
 public class LoginPageSteps {
 
     private final LoginPage loginPage;
 
-    @Inject
     public LoginPageSteps() {
         loginPage = new LoginPage();
     }
