@@ -17,7 +17,7 @@ public class LoginPageSteps {
     }
 
     @Given("Login page is opened")
-    public void assertLoginPageIsOpened() {
+    public void loginPageIsOpened() {
         Assert.assertTrue(loginPage.isDisplayed(), "login page should be opened");
     }
 

@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 public class MarketplaceMainPage extends BaseForm {
 
-    private static final String BUTTON_TEMPLATE = "//a[contains(@class,'btn-primary')][text()='%s']";
+    private static final String BUTTON_TEMPLATE = "//a[contains(@class,'btn-primary')][contains(text(),'%s')]";
 
     public MarketplaceMainPage() {
         super(By.xpath("//div[contains(@class,'jumbotron-holder')]"), "Marketplace");

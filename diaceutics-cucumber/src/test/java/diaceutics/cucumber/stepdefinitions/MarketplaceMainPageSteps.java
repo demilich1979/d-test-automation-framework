@@ -14,7 +14,7 @@ public class MarketplaceMainPageSteps {
     }
 
     @Given("Marketplace Main page is opened")
-    public void labsPageIsOpened() {
+    public void marketplaceMainPageIsOpened() {
         Assert.assertTrue(marketplaceMainPage.isDisplayed(), "Marketplace Main page should be opened");
     }
 

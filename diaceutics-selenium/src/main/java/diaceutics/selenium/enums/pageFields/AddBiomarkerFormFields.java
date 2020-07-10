@@ -4,12 +4,12 @@ public enum AddBiomarkerFormFields implements FormFieldInterface {
     BIOMARKER("Biomarker",
             "//div[./label[text()='Biomarker']]",
             "biomarker",
-            FieldType.COMBOBOX),
+            FieldType.COMBOBOX_JS),
 
     VARIANTS("Variants",
             "//div[./label[text()='Variants']]",
             "variants",
-            FieldType.COMBOBOX);
+            FieldType.COMBOBOX_JS);
 
     private final String friendlyName;
     private final String locator;
