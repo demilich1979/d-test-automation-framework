@@ -1,6 +1,6 @@
 package diaceutics.selenium.enums.pageFields;
 
-public enum RegisterPageFields implements FormFieldInterface {
+public enum PersonalDetailsFormFields implements FormFieldInterface {
     TYPE("Type", "user_registration_type", "type", FieldType.COMBOBOX),
     COMPANY_NAME("COMPANY NAME",
             "user_registration_organizationName",
@@ -17,10 +17,10 @@ public enum RegisterPageFields implements FormFieldInterface {
             "lastNameOfTheLegalRepresentative",
             FieldType.TEXT),
 
-    EMAIL("EMAIL", "user_registration_email", "email", FieldType.TEXT),
+    EMAIL("EMAIL", "user_registration_email", "username", FieldType.TEXT),
     NEW_PASSWORD("NEW PASSWORD",
             "user_registration_plainPassword",
-            "newPassword",
+            "password",
             FieldType.TEXT),
 
     VERIFICATION("VERIFICATION",
@@ -42,7 +42,7 @@ public enum RegisterPageFields implements FormFieldInterface {
     private final FieldType fieldType;
 
 
-    RegisterPageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
+    PersonalDetailsFormFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;
         this.modelField = modelField;
@@ -65,14 +65,14 @@ public enum RegisterPageFields implements FormFieldInterface {
         return fieldType;
     }
 
-    public static RegisterPageFields getEnumValue(String friendlyName) {
-        RegisterPageFields registerPageFields = null;
-        for (RegisterPageFields constant : RegisterPageFields.values()) {
+    public static PersonalDetailsFormFields getEnumValue(String friendlyName) {
+        PersonalDetailsFormFields personalDetailsFormFields = null;
+        for (PersonalDetailsFormFields constant : PersonalDetailsFormFields.values()) {
             if (constant.getFriendlyName().equals(friendlyName)) {
-                registerPageFields = constant;
+                personalDetailsFormFields = constant;
                 break;
             }
         }
-        return registerPageFields;
+        return personalDetailsFormFields;
     }
 }

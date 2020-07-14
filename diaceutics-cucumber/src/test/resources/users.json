@@ -1,6 +1,10 @@
 {
   "testUser": {
-    "username": "v.kalanda",
-    "password": "Test"
+    "username": "viktor.kalanda.test1@gmail.com",
+    "password": "Servercor3R",
+    "type": "Laboratory",
+    "companyName": "Test lab",
+    "firstNameOfTheLegalRepresentative": "viktor",
+    "lastNameOfTheLegalRepresentative": "kalanda"
   }
 }

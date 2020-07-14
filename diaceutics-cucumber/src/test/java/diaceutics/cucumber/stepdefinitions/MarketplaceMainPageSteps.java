@@ -1,7 +1,9 @@
 package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.selenium.pageobject.pages.MarketplaceMainPage;
+import diaceutics.selenium.utilities.MailUtil;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
@@ -22,4 +24,5 @@ public class MarketplaceMainPageSteps {
     public void iClickLoginOnMarketplaceMainPage(String buttonName) {
         marketplaceMainPage.clickByButton(buttonName);
     }
+
 }

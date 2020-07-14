@@ -7,7 +7,7 @@ import io.cucumber.java.Before;
 
 public class BrowserHooks {
 
-    @Before
+    @Before(order = 0)
     public void goToStartUrl() {
         AqualityServices.getBrowser().goTo(Configuration.getStartUrl());
     }
