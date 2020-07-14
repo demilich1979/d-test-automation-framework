@@ -1,6 +1,6 @@
 package diaceutics.selenium.enums.pageFields;
 
-public enum EditProfileLabDetailsPageFields implements FormFieldInterface{
+public enum EditProfileLabDetailsPageFields implements FormFieldInterface {
     COUNTRY("Country", "//div[./label[text()='Country']]", "country", FieldType.COMBOBOX_JS),
     NAME("Name", "Name", "name", FieldType.TEXT),
     URL("URL", "URL", "url", FieldType.TEXT),

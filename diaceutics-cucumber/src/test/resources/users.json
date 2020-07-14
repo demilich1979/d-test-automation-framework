@@ -1,7 +1,7 @@
 {
-  "testUser": {
+  "adminUser": {
     "username": "viktor.kalanda.test1@gmail.com",
-    "password": "Servercor3R",
+    "password": "",
     "type": "Laboratory",
     "companyName": "Test lab",
     "firstNameOfTheLegalRepresentative": "viktor",
