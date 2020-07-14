@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AddPlatformForm extends BaseForm {
 
-    private final IButton btnAddPlatform = getElementFactory().getButton(
+    private final IButton addPlatformBtn = getElementFactory().getButton(
             By.xpath("//form//button[.='Add platform']"), "Add platform");
 
     public AddPlatformForm() {
@@ -19,12 +19,12 @@ public class AddPlatformForm extends BaseForm {
     }
 
     public void clickAddPlatform() {
-        btnAddPlatform.clickAndWait();
+        addPlatformBtn.clickAndWait();
     }
 
     public boolean isFieldContainsValue(AddPlatformFormFields field, String value) {
         ComboboxJs comboboxJs = getElementFactory().getCustomElement(
-                ComboboxJs.class, By.xpath(String.format(BaseForm.COMBOBOX_TEMPLATE, field.getLocator())), "comboboxJs");
+                ComboboxJs.class, By.xpath(String.format(BaseForm.COMBOBOX_JS_TEMPLATE, field.getLocator())), "comboboxJs");
         List<String> options = comboboxJs.getStringListOptions();
 
         return AqualityServices.getConditionalWait()

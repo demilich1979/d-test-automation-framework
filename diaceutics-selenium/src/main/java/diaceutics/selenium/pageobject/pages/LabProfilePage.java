@@ -29,16 +29,16 @@ public class LabProfilePage extends BaseForm {
     private static final String SORT_COLUMN_BUTTON_TEMPLATE = GRID_TEMPLATE + "//th[.//span[.='%s']]//ui-icon";
     private static final String ROW_COUNT_TEMPLATE = "//h3[.='%s']/parent::div/span";
 
-    private final ILink linkEditDetails = getElementFactory().getLink(
+    private final ILink editDetailsLink = getElementFactory().getLink(
             By.xpath("//a//span[.='Edit Details']"), "Edit Details");
 
-    private final ILink linkLabName = getElementFactory().getLink(
+    private final ILink labNameLink = getElementFactory().getLink(
             By.xpath("//div[contains(@class,'titleArea')]//h1"), "Lab name");
 
-    private final ILink linkLabUrl = getElementFactory().getLink(
+    private final ILink labUrlLink = getElementFactory().getLink(
             By.xpath("//a[.//ui-icon[@name='external-link']]//span"), "Lab url");
 
-    private final List<IElement> linksLabType = getElementFactory().findElements(By.xpath
+    private final List<IElement> labTypeLink = getElementFactory().findElements(By.xpath
             ("//div[contains(@class,'details')]//span[contains(@class,'ng-star-inserted')]"), ElementType.LINK);
 
     public LabProfilePage() {
@@ -70,26 +70,26 @@ public class LabProfilePage extends BaseForm {
     }
 
     public void clickSortColumnInGrid(String column, String gridName) {
-        IButton btnSortColumn = getElementFactory().getButton(
+        IButton sortColumnBtn = getElementFactory().getButton(
                 By.xpath(String.format(SORT_COLUMN_BUTTON_TEMPLATE, gridName, column)),
                 String.format("Sort %s Column", column));
-        btnSortColumn.clickAndWait();
+        sortColumnBtn.clickAndWait();
     }
 
     public void clickEditPlatform(Platform platform) {
-        IButton btnEditPlatform = getElementFactory().getButton(
+        IButton editPlatformBtn = getElementFactory().getButton(
                 By.xpath(String.format(EDIT_PLATFORM_BUTTON_TEMPLATE, platform.getPlatform(), platform.getPlatformManufacturer())),
                 String.format("Edit %s", platform.getPlatform()));
 
-        btnEditPlatform.clickAndWait();
+        editPlatformBtn.clickAndWait();
     }
 
     public void clickDeletePlatform(Platform platform) {
-        IButton btnEdit = getElementFactory().getButton(
+        IButton editBtn = getElementFactory().getButton(
                 By.xpath(String.format(DELETE_PLATFORM_BUTTON_TEMPLATE, platform.getPlatform(), platform.getPlatformManufacturer())),
                 String.format("Delete %s", platform.getPlatform()));
 
-        btnEdit.clickAndWait();
+        editBtn.clickAndWait();
     }
 
     public boolean isPlatformAdded(Platform platform) {
@@ -104,11 +104,11 @@ public class LabProfilePage extends BaseForm {
     }
 
     public String getNumberOfRowsFromGridHead(String gridName) {
-        ILink linkRowCount = getElementFactory().getLink(
+        ILink rowCountLink = getElementFactory().getLink(
                 By.xpath(String.format(ROW_COUNT_TEMPLATE, gridName)),
                 String.format("Row count for %s", gridName));
 
-        return RegExUtil.regexGetMatchGroup(linkRowCount.getText(), "[-]?[0-9]+(.[0-9]+)?", 0);
+        return RegExUtil.regexGetMatchGroup(rowCountLink.getText(), "[-]?[0-9]+(.[0-9]+)?", 0);
     }
 
     public String getNumberOfRowsInGrid(String gridName) {
@@ -117,23 +117,23 @@ public class LabProfilePage extends BaseForm {
     }
 
     public void clickEditDetails() {
-        linkEditDetails.clickAndWait();
+        editDetailsLink.clickAndWait();
     }
 
     public String getLabNameFromPage() {
-        return linkLabName.getText();
+        return labNameLink.getText();
     }
 
     public String getLabTypeFromPage() {
         String labType = "Unspecified";
-        if (linksLabType.size() > 1) {
-            labType = RegExUtil.regexGetMatchGroup(linksLabType.get(0).getText(), "\\((.*?)\\)", 1) + " Lab";
+        if (labTypeLink.size() > 1) {
+            labType = RegExUtil.regexGetMatchGroup(labTypeLink.get(0).getText(), "\\((.*?)\\)", 1) + " Lab";
         }
         return labType;
     }
 
     public String getLabUrlFromPage() {
-        return linkLabUrl.getText();
+        return labUrlLink.getText();
     }
 
     public Lab getLabFromPage() {
@@ -145,10 +145,10 @@ public class LabProfilePage extends BaseForm {
     }
 
     public void clickAdd(String buttonName) {
-        IButton btnAdd = getElementFactory().getButton(
+        IButton addBtn = getElementFactory().getButton(
                 By.xpath(String.format(ADD_BUTTON_TEMPLATE, buttonName)), buttonName);
 
-        btnAdd.clickAndWait();
+        addBtn.clickAndWait();
     }
 
     public boolean isVolumeAdded(Volume volume) {
@@ -165,7 +165,7 @@ public class LabProfilePage extends BaseForm {
     }
 
     public void clickEditVolume(Volume volume) {
-        IButton btnEditVolume = getElementFactory().getButton(
+        IButton editVolumeBtn = getElementFactory().getButton(
                 By.xpath(String.format(
                         EDIT_VOLUME_BUTTON_TEMPLATE,
                         volume.getTimePeriod(),
@@ -174,7 +174,7 @@ public class LabProfilePage extends BaseForm {
                         volume.getVolume())),
                 "Edit volume");
 
-        btnEditVolume.clickAndWait();
+        editVolumeBtn.clickAndWait();
     }
 
     public boolean isAssayAdded(Assay assay) {
@@ -190,10 +190,10 @@ public class LabProfilePage extends BaseForm {
     }
 
     public void clickByAssay(Assay assay) {
-        ILink linkAssay = getElementFactory().getLink(
+        ILink assayLink = getElementFactory().getLink(
                 By.xpath(String.format(ASSAY_NAME_TEMPLATE, assay.getAssayName())), assay.getAssayName());
 
-        linkAssay.clickAndWait();
+        assayLink.clickAndWait();
     }
 
 }

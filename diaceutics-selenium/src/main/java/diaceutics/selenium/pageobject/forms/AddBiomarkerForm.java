@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 public class AddBiomarkerForm extends BaseForm {
 
-    private final IButton btnSaveChanges = getElementFactory().getButton(
+    private final IButton saveChangesBtn = getElementFactory().getButton(
             By.xpath("//div[@class='addBiomarkerModal']//button[.='Save changes']"), "Save changes");
 
     public AddBiomarkerForm() {
@@ -14,7 +14,7 @@ public class AddBiomarkerForm extends BaseForm {
     }
 
     public void clickSaveChanges() {
-        btnSaveChanges.clickAndWait();
+        saveChangesBtn.clickAndWait();
     }
 
 }

@@ -1,6 +1,5 @@
 package diaceutics.selenium.pageobject.pages;
 
-import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.ILink;
 import diaceutics.selenium.elements.ComboboxJs;
 import diaceutics.selenium.pageobject.BaseForm;

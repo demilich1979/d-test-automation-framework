@@ -15,7 +15,7 @@ import java.util.List;
 
 public abstract class BaseForm extends Form {
 
-    public static final String COMBOBOX_TEMPLATE = "%s//span[@class='ng-arrow-wrapper']";
+    public static final String COMBOBOX_JS_TEMPLATE = "%s//span[@class='ng-arrow-wrapper']";
     private static final String TEXT_TEMPLATE = "//input[..//label[text()='%s']]";
     private static final String RADIO_BUTTON_TEMPLATE = "%s//label[contains(@class,'radioOptionContainer')][.//span[text()='%s']]";
     private static final String ALERT_MESSAGE_TEMPLATE = "//ui-alert//span[contains(text(),'%s')]";
@@ -27,7 +27,7 @@ public abstract class BaseForm extends Form {
     private static final String SEARCH_FIELD_TEMPLATE = "//ui-search/input[contains(@placeholder,'%s')]";
     private static final String BUTTON_TEMPLATE = "//button[.='%s']";
 
-    private final IButton btnSearch = getElementFactory().getButton(By.name("search"), "Search");
+    private final IButton searchBtn = getElementFactory().getButton(By.name("search"), "Search");
 
     protected BaseForm(By locator, String name) {
         super(locator, name);
@@ -55,9 +55,9 @@ public abstract class BaseForm extends Form {
                 textBoxArea.clearAndType(value);
                 break;
 
-            case COMBOBOX:
+            case COMBOBOX_JS:
                 ComboboxJs comboboxJs = getElementFactory().getCustomElement(
-                        ComboboxJs.class, By.xpath(String.format(COMBOBOX_TEMPLATE, field.getLocator())),
+                        ComboboxJs.class, By.xpath(String.format(COMBOBOX_JS_TEMPLATE, field.getLocator())),
                         field.getFriendlyName());
 
                 if (value.equals("random")) {
@@ -132,7 +132,7 @@ public abstract class BaseForm extends Form {
                 value = textBox.state().isEnabled();
                 break;
 
-            case COMBOBOX:
+            case COMBOBOX_JS:
                 ComboboxJs comboboxJs = getElementFactory().getCustomElement(
                         ComboboxJs.class, By.xpath(String.format(CHECK_COMBOBOX_TEMPLATE, field.getLocator())),
                         field.getFriendlyName());
@@ -154,7 +154,7 @@ public abstract class BaseForm extends Form {
     }
 
     public void clickSearch() {
-        btnSearch.clickAndWait();
+        searchBtn.clickAndWait();
     }
 
     public void clickByButton(String buttonName) {

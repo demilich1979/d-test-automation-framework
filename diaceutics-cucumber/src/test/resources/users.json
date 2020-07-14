@@ -1,0 +1,10 @@
+{
+  "adminUser": {
+    "username": "viktor.kalanda.test1@gmail.com",
+    "password": "",
+    "type": "Laboratory",
+    "companyName": "Test lab",
+    "firstNameOfTheLegalRepresentative": "viktor",
+    "lastNameOfTheLegalRepresentative": "kalanda"
+  }
+}

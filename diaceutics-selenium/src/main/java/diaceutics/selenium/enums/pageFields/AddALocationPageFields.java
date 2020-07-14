@@ -6,7 +6,7 @@ public enum AddALocationPageFields implements FormFieldInterface {
     ADDRESS_TWO("Address 2", "Address 2", "addressTwo", FieldType.TEXT),
     CITY_TOWN("City / Town", "City / Town", "cityTown", FieldType.TEXT),
     REGION("Region", "Region", "region", FieldType.TEXT),
-    COUNTRY("Country", "//div[./label[text()='Country']]", "country", FieldType.COMBOBOX),
+    COUNTRY("Country", "//div[./label[text()='Country']]", "country", FieldType.COMBOBOX_JS),
     POSTAL_CODE("Postal code", "Postal code", "postalCode", FieldType.TEXT);
 
     private final String friendlyName;
