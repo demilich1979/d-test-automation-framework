@@ -7,10 +7,10 @@ import org.openqa.selenium.By;
 
 public class EditProfileLocationPage extends BaseForm {
 
-    private final IButton btnSave = getElementFactory().getButton(
+    private final IButton saveBtn = getElementFactory().getButton(
             By.xpath("//ui-tab//div[not(@hidden)]//app-edit-address//button[.='Save']"), "Save");
 
-    private final ILink linkReturnToProfile = getElementFactory().getLink(
+    private final ILink returnToProfileLink = getElementFactory().getLink(
             By.xpath("//ui-alert//span/a[.='Return to profile']"), "Return to profile");
 
     public EditProfileLocationPage() {
@@ -18,11 +18,11 @@ public class EditProfileLocationPage extends BaseForm {
     }
 
     public void clickSave() {
-        btnSave.clickAndWait();
+        saveBtn.clickAndWait();
     }
 
     public void clickReturnToProfile() {
-        linkReturnToProfile.clickAndWait();
+        returnToProfileLink.clickAndWait();
     }
 
 }

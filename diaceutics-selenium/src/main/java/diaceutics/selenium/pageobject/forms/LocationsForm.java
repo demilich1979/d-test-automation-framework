@@ -23,10 +23,10 @@ public class LocationsForm extends BaseForm {
     }
 
     public void clickEditLocation(Location location) {
-        IButton btnEditLocation = getElementFactory().getButton(
+        IButton editLocationBtn = getElementFactory().getButton(
                 By.xpath(String.format(EDIT_LOCATION_TEMPLATE, location.getLocationName())), location.getLocationName());
 
-        btnEditLocation.clickAndWait();
+        editLocationBtn.clickAndWait();
     }
 
     public List<String> getLocationFieldValues(Location location) {

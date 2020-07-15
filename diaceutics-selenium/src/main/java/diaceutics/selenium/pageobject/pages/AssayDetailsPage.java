@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 public class AssayDetailsPage extends BaseForm {
 
-    private final ILink linkEditDetails = getElementFactory().getLink(
+    private final ILink editDetailsLink = getElementFactory().getLink(
             By.xpath("//a//span[.='Edit Details']"), "Edit Details");
 
     public AssayDetailsPage() {
@@ -14,6 +14,6 @@ public class AssayDetailsPage extends BaseForm {
     }
 
     public void clickEditDetails() {
-        linkEditDetails.clickAndWait();
+        editDetailsLink.clickAndWait();
     }
 }

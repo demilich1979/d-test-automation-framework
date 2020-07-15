@@ -4,9 +4,9 @@ public enum AddPlatformFormFields implements FormFieldInterface {
     PLATFORM_MANUFACTURER("Platform manufacturer",
             "//div[./label[text()='Platform manufacturer']]",
             "platformManufacturer",
-            FieldType.COMBOBOX),
+            FieldType.COMBOBOX_JS),
 
-    PLATFORM("Platform", "//div[./label[text()='Platform']]", "platform", FieldType.COMBOBOX);
+    PLATFORM("Platform", "//div[./label[text()='Platform']]", "platform", FieldType.COMBOBOX_JS);
 
     private final String friendlyName;
     private final String locator;

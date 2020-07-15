@@ -1,6 +1,5 @@
 package diaceutics.cucumber.stepdefinitions;
 
-import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.EditProfileLocationPageFields;
 import diaceutics.selenium.models.Location;

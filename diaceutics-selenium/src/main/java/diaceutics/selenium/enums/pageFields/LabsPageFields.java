@@ -1,7 +1,7 @@
 package diaceutics.selenium.enums.pageFields;
 
-public enum LabsPageFields implements FormFieldInterface{
-    COUNTRY("Country", "//div[./label[text()='Country']]", "country", FieldType.COMBOBOX),
+public enum LabsPageFields implements FormFieldInterface {
+    COUNTRY("Country", "//div[./label[text()='Country']]", "country", FieldType.COMBOBOX_JS),
     LAB_TYPE("Lab type", "//ui-radio-group[./label[.='Lab type']]", "labType", FieldType.RADIO);
 
     private final String friendlyName;

@@ -4,15 +4,15 @@ public enum LogPatientVolumeFields implements FormFieldInterface {
     TIME_PERIOD_COMBOBOX("Time period combobox",
             "//app-volume-form[..//@label]//div[@class='timePeriod']",
             "timePeriodCombobox",
-            FieldType.COMBOBOX),
+            FieldType.COMBOBOX_JS),
 
     TIME_PERIOD_RADIO("Time period radio",
             "//app-volume-form[..//@label]//div[@class='timePeriod']",
             "timePeriodRadio",
             FieldType.RADIO),
 
-    DISEASE("Disease", "//div[./label[text()='Disease']]", "disease", FieldType.COMBOBOX),
-    BIOMARKER("Biomarker", "//div[./label[text()='Biomarker']]", "biomarker", FieldType.COMBOBOX),
+    DISEASE("Disease", "//div[./label[text()='Disease']]", "disease", FieldType.COMBOBOX_JS),
+    BIOMARKER("Biomarker", "//div[./label[text()='Biomarker']]", "biomarker", FieldType.COMBOBOX_JS),
     VOLUME("Volume", "//div[@class='volume']//input[@type='number']", "volume", FieldType.NUMBER);
 
     private final String friendlyName;

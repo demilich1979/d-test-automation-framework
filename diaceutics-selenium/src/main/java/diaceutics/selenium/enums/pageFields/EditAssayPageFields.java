@@ -10,17 +10,17 @@ public enum EditAssayPageFields implements FormFieldInterface {
     ONTOLOGIES("Ontologies",
             "//div[./label[text()='Ontologies']]",
             "ontologies",
-            FieldType.COMBOBOX),
+            FieldType.COMBOBOX_JS),
 
     SPECIMENS_TESTED("Specimens Tested",
             "//div[./label[text()='Specimens Tested']]",
             "specimensTested",
-            FieldType.COMBOBOX),
+            FieldType.COMBOBOX_JS),
 
     DETECTS_GERM_LINE_SOMATIC_ALTERATIONS("Detects Germline/Somatic alterations",
             "//div[./label[text()='Detects Germline/Somatic alterations']]",
             "detectsGermLineSomaticAlterations",
-            FieldType.COMBOBOX),
+            FieldType.COMBOBOX_JS),
 
     FDA_510K_APPROVED_KIT("FDA 510K APPROVED KIT",
             "FDA 510K APPROVED KIT",
@@ -47,9 +47,9 @@ public enum EditAssayPageFields implements FormFieldInterface {
     ASSOCIATED_DISEASES("Associated diseases",
             "//div[./label[text()='Associated diseases']]",
             "associatedDiseases",
-            FieldType.COMBOBOX),
+            FieldType.COMBOBOX_JS),
 
-    METHOD("Method", "//div[./label[text()='Method']]", "method", FieldType.COMBOBOX),
+    METHOD("Method", "//div[./label[text()='Method']]", "method", FieldType.COMBOBOX_JS),
     METHOD_DESCRIPTION("Method description",
             "Method description",
             "methodDescription",
@@ -58,12 +58,12 @@ public enum EditAssayPageFields implements FormFieldInterface {
     COMMERCIAL_ASSAYS("Commercial Assays",
             "//div[./label[text()='Commercial Assays']]",
             "commercialAssays",
-            FieldType.COMBOBOX),
+            FieldType.COMBOBOX_JS),
 
     RESULT_FORMAT("Result Format",
             "//div[./label[text()='Result Format']]",
             "resultFormat",
-            FieldType.COMBOBOX),
+            FieldType.COMBOBOX_JS),
 
     REPORT_SAMPLE_URL("Report sample URL", "Report sample URL", "reportSampleURL", FieldType.TEXT),
     SEND_OUT_OR_IN_HOUSE("Send-out or inhouse?",
@@ -74,7 +74,7 @@ public enum EditAssayPageFields implements FormFieldInterface {
     SEND_OUT_LAB("Send-out Lab",
             "//div[./label[text()='Send-out Lab']]",
             "sendOutLab",
-            FieldType.COMBOBOX),
+            FieldType.COMBOBOX_JS),
 
     PANEL_NAME_RADIO("Panel name radio",
             "//ui-radio-group[@formcontrolname='includedInPanel']",
