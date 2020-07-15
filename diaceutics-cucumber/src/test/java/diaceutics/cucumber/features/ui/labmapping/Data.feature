@@ -73,7 +73,7 @@ Feature: Data
       And Volume 'volume' is added to Volumes grid on Lab Profile page
 
   @LabMapping
-  Scenario: DIAFE:0030 Lab Mapping Search
+  Scenario: DIAFE:0032 Lab Mapping Search
     When I click 'Lab Mapping' on Header form
       Then Lab Mapping Search page is opened
     When I fill following fields on Lab Mapping Search page using data from 'lab':
