@@ -2,6 +2,7 @@ package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.selenium.pageobject.pages.HomePage;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 public class HomePageSteps {
@@ -17,4 +18,8 @@ public class HomePageSteps {
         Assert.assertTrue(homePage.isDisplayed(), "Home page should be opened");
     }
 
+    @When("I open {string} tools")
+    public void iOpenAssayManagementTools(String tool) {
+        homePage.openTool(tool);
+    }
 }

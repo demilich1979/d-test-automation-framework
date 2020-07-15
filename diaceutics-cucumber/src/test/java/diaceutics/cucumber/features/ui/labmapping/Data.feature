@@ -1,7 +1,14 @@
 Feature: Data
 
   Background:
-    Given Assay Management page is opened
+    Given Marketplace Main page is opened
+    When I click 'Login' on Marketplace Main page
+      Then Login page is opened
+    When I login as 'adminUser' user
+      Then Home page is opened
+      And User should be logged in
+    When I open 'Assay Management' tools
+      Then Assay Management page is opened
     When I click 'Create a Lab' on Assay Management page
       Then Create a Lab page is opened
     When I fill following fields on Create a Lab page and save as 'lab':
