@@ -1,6 +1,5 @@
 package diaceutics.cucumber.stepdefinitions;
 
-import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.LabMappingSearchPageFields;
 import diaceutics.selenium.models.Assay;
@@ -11,18 +10,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
-import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
 public class LabMappingSearchPageSteps {
 
     private final LabMappingSearchPage labMappingSearchPage;
-    private final ScenarioContext scenarioContext;
 
-    @Inject
-    public LabMappingSearchPageSteps(ScenarioContext scenarioContext) {
-        this.scenarioContext = scenarioContext;
+    public LabMappingSearchPageSteps() {
         labMappingSearchPage = new LabMappingSearchPage();
     }
 
@@ -45,7 +40,7 @@ public class LabMappingSearchPageSteps {
 
     @When("I fill following fields on Lab Mapping Search page using data from {string}:")
     public void iFillFollowingFieldsOnLabMappingSearchPageUsingDataFromLab(String key, List<String> fields) {
-        Lab lab = scenarioContext.get(key);
+        Lab lab = XmlFileStore.get(key);
         String country = lab.getCountry();
         Assay assay = lab.getAssays().get(0);
         String disease = assay.getAssociatedDiseases();

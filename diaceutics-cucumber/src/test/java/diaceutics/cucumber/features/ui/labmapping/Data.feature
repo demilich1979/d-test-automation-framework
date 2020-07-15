@@ -39,8 +39,8 @@ Feature: Data
       | Ontologies                            | random     |
       | Detects Germline/Somatic alterations  | random     |
       | FDA 510K APPROVED KIT                 | true       |
-      | Laboratory Developed Test (LDT)       | true       |
-      | FDA PMA APPROVED KIT                  | true       |
+      | Laboratory Developed Test (LDT)       | false      |
+      | FDA PMA APPROVED KIT                  | false      |
       | IVD-CE                                | false      |
       | RUO/IUO                               | false      |
       | Turn around time (days)               | 55555      |
