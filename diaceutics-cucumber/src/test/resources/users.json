@@ -6,5 +6,31 @@
     "companyName": "Test lab",
     "firstNameOfTheLegalRepresentative": "viktor",
     "lastNameOfTheLegalRepresentative": "kalanda"
+  },
+
+  "User": {
+    "username": "20200715133719.7bsvuhrz@mailosaur.io",
+    "password": "Testpassword",
+    "type": "Laboratory",
+    "companyName": "Test lab",
+    "firstNameOfTheLegalRepresentative": "first name",
+    "lastNameOfTheLegalRepresentative": "last name"
+  },
+
+  "UserStage": {
+    "username": "20200715152018.7bsvuhrz@mailosaur.io",
+    "password": "Testpassword",
+    "type": "Laboratory",
+    "companyName": "Test lab",
+    "firstNameOfTheLegalRepresentative": "first name",
+    "lastNameOfTheLegalRepresentative": "last name"
+  },
+  "adminUserStage": {
+    "username": "viktor.kalanda@diaceutics.com",
+    "password": "",
+    "type": "Laboratory",
+    "companyName": "Test lab",
+    "firstNameOfTheLegalRepresentative": "first name",
+    "lastNameOfTheLegalRepresentative": "last name"
   }
 }
