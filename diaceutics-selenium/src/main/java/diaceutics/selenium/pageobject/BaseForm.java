@@ -106,6 +106,26 @@ public abstract class BaseForm extends Form {
         return value;
     }
 
+    public String getFieldValue(FormFieldInterface field) {
+        String value = null;
+        switch (field.getFieldType()) {
+            case TEXT:
+                ITextBox textBox = getElementFactory().getTextBox(By.id(field.getLocator()), field.getFriendlyName());
+                value = textBox.getValue();
+                break;
+
+            case COMBOBOX:
+                IComboBox comboBox = getElementFactory().getComboBox(By.id(field.getLocator()), field.getFriendlyName());
+                value = comboBox.getSelectedText();
+                break;
+
+            default:
+                break;
+        }
+
+        return value;
+    }
+
     public boolean isAlertMessageDisplayed(String message) {
         ILabel alertLink = getElementFactory().getLabel(
                 By.xpath(String.format(ALERT_MESSAGE_TEMPLATE, message)), message);

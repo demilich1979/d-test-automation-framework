@@ -20,12 +20,12 @@ public class MyProfilePageSteps {
     }
 
     @Then("MyProfile page is opened")
-    public void MyProfilePageIsOpened() {
+    public void myProfilePageIsOpened() {
         Assert.assertTrue(myProfilePage.isDisplayed(), "MyProfile page should be opened");
     }
 
-    @And("User {string} with following fields is displayed on Identity form on MyProfile page:")
-    public void userAdminUserWithFollowingFieldsIsDisplayedOnIdentityFormOnMyProfilePage(String key, List<String> fields) {
+    @And("Data for user {string} is displayed on the following fields on User Edit Identity Form on MyProfile page:")
+    public void dataForUserAreDisplayedOnTheFollowingFieldsOnUserEditIdentityForm(String key, List<String> fields) {
         User user = XmlFileStore.get(key);
         fields.forEach(field -> {
             String actualValue = myProfilePage.getUserEditIdentityForm().getFieldValue(UserEditIdentityFormFields.getEnumValue(field));
@@ -33,7 +33,7 @@ public class MyProfilePageSteps {
             SoftAssert.getInstance().assertEquals(
                     actualValue,
                     expectedValue,
-                    String.format("Value %s is not correct on Identity form on MyProfile page", actualValue));
+                    String.format("Value %s field is not correct on Identity form on MyProfile page", field));
         });
     }
 }

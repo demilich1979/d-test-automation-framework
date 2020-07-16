@@ -74,18 +74,30 @@ Feature: Marketplace smoke tests
     Given Marketplace Main page is opened
     When I click 'Login' on Marketplace Main page
       Then Login page is opened
-    When I login as 'User' user
+    When I login as 'adminUser' user
       Then Home page is opened
       And User should be logged in
     When I click 'My profile' on user menu on Marketplace header
       Then MyProfile page is opened
-      And User 'User' with following fields is displayed on Identity form on MyProfile page:
+      And Data for user 'adminUser' is displayed on the following fields on User Edit Identity Form on MyProfile page:
         | FIRST NAME                     |
         | LAST NAME                      |
         | WEBSITE                        |
         | Email                          |
         | Phone                          |
         | Country                        |
+        | CITY                           |
+        | ZIP                            |
+        | STATE                          |
+        | ADDRESS STREET NUMBER AND NAME |
+    When I click 'Organization' on user menu on Marketplace header
+      Then Organization page is opened
+    When I click 'General details' on Organization page
+      Then Organization Edit Identity Form on Organization page is opened
+      And Data for user 'adminUser' is displayed on the following fields on Organization Edit Identity Form:
+        | TYPE                           |
+        | COMPANY NAME                   |
+        | COUNTRY                        |
         | CITY                           |
         | ZIP                            |
         | STATE                          |

@@ -17,6 +17,11 @@ public class User extends BaseModel {
     private String zip;
     private String state;
     private String addressStreetNumberAndName;
+    private String organizationCountry;
+    private String organizationCity;
+    private String organizationZip;
+    private String organizationState;
+    private String organizationAddressStreetNumberAndName;
     private String iAcceptTheTermsAndConditions;
     private String iAcceptThePrivacyPolicy;
 }

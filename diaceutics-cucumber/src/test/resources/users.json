@@ -4,7 +4,7 @@
     "password": "Servercor3R",
     "type": "Laboratory",
     "companyName": "Test lab",
-    "firstName": "viktor",
+    "firstName": "victor",
     "lastName": "kalanda",
     "website": "",
     "phone": "",
@@ -12,7 +12,12 @@
     "city": "",
     "zip": "",
     "state": "",
-    "addressStreetNumberAndName": ""
+    "addressStreetNumberAndName": "",
+    "organizationCountry": "",
+    "organizationCity": "",
+    "organizationZip": "",
+    "organizationState": "",
+    "organizationAddressStreetNumberAndName": ""
   },
   "User": {
     "email": "20200715133719.7bsvuhrz@mailosaur.io",
@@ -27,7 +32,12 @@
     "city": "",
     "zip": "",
     "state": "",
-    "addressStreetNumberAndName": ""
+    "addressStreetNumberAndName": "",
+    "organizationCountry": "",
+    "organizationCity": "",
+    "organizationZip": "",
+    "organizationState": "",
+    "organizationAddressStreetNumberAndName": ""
   },
   "UserStage": {
     "email": "20200715152018.7bsvuhrz@mailosaur.io",
