@@ -9,13 +9,14 @@ public class DataReaderHooks {
 
     @Before(order = 1)
     public void getUserInfo() {
-        User user = DataReader.getUserInfoByUserName("adminUser");
-        if (user.getPassword().trim().isEmpty()) {
-            user.setPassword(System.getProperty("password"));
+        User adminUser = DataReader.getUserInfoByUserName("adminUser");
+        User user = DataReader.getUserInfoByUserName("User");
+        if (adminUser.getPassword().trim().isEmpty() || adminUser.getEmail().trim().isEmpty()) {
+            adminUser.setPassword(System.getProperty("password"));
+            adminUser.setPassword(System.getProperty("username"));
         }
-        if (user.getUsername().trim().isEmpty()) {
-            user.setPassword(System.getProperty("username"));
-        }
-        XmlFileStore.store("adminUser", user);
+
+        XmlFileStore.store("adminUser", adminUser);
+        XmlFileStore.store("User", user);
     }
 }

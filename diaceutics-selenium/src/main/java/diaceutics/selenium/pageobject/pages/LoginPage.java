@@ -17,7 +17,7 @@ public class LoginPage extends BaseForm {
     }
 
     public void logInAs(User user) {
-        usernameTxb.clearAndType(user.getUsername());
+        usernameTxb.clearAndType(user.getEmail());
         passwordTxb.clearAndType(user.getPassword());
         continueBtn.clickAndWait();
     }

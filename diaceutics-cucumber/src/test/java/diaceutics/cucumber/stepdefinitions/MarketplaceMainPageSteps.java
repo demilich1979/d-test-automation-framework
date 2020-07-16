@@ -20,7 +20,11 @@ public class MarketplaceMainPageSteps {
 
     @When("I click {string} on Marketplace Main page")
     public void iClickLoginOnMarketplaceMainPage(String buttonName) {
-        marketplaceMainPage.clickByButton(buttonName);
+        marketplaceMainPage.clickByLinkOnTheMiddleOfThePage(buttonName);
     }
 
+    @When("I click link {string} on the bottom of the Marketplace Main page")
+    public void iClickLinkLoginOnTheBottomOfTheMarketplaceMainPage(String linkName) {
+        marketplaceMainPage.clickByLInkOnTheBottomOfThePage(linkName);
+    }
 }

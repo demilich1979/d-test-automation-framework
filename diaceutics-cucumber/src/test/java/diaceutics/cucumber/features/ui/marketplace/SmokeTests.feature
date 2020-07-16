@@ -9,7 +9,7 @@ Feature: Marketplace smoke tests
       Then Home page is opened
       And User should be logged in
 
-  @Marketplace @Smoke
+  @Marketplace
   Scenario: User registration check
     Given Marketplace Main page is opened
     When I click 'Register' on Marketplace Main page
@@ -36,3 +36,57 @@ Feature: Marketplace smoke tests
 #    When I login as 'user' user
 #      Then Home page is opened
 #      And User should be logged in
+
+  @Marketplace
+  Scenario: User Logout Confirmation
+    Given Marketplace Main page is opened
+    When I click 'Login' on Marketplace Main page
+      Then Login page is opened
+    When I login as 'adminUser' user
+      Then Home page is opened
+      And User should be logged in
+    When I click 'Logout' on user menu on Marketplace header
+      Then Marketplace Main page is opened
+      And User should be logout
+
+  @Marketplace
+  Scenario: Checking the links (login, register) on the Marketplace header
+    Given Marketplace Main page is opened
+    When I click 'Login' on Marketplace header
+      Then Login page is opened
+    When I click back on browser
+      Then Marketplace Main page is opened
+    When I click 'Register' on Marketplace header
+      Then Registration page is opened
+
+  @Marketplace
+  Scenario: Checking the links (login, register) on the bottom of the Marketplace page
+    Given Marketplace Main page is opened
+    When I click link 'Login' on the bottom of the Marketplace Main page
+      Then Login page is opened
+    When I click back on browser
+      Then Marketplace Main page is opened
+    When I click link 'Register' on the bottom of the Marketplace Main page
+      Then Registration page is opened
+
+  @Marketplace @Smoke
+  Scenario: Checking the user data
+    Given Marketplace Main page is opened
+    When I click 'Login' on Marketplace Main page
+      Then Login page is opened
+    When I login as 'User' user
+      Then Home page is opened
+      And User should be logged in
+    When I click 'My profile' on user menu on Marketplace header
+      Then MyProfile page is opened
+      And User 'User' with following fields is displayed on Identity form on MyProfile page:
+        | FIRST NAME                     |
+        | LAST NAME                      |
+        | WEBSITE                        |
+        | Email                          |
+        | Phone                          |
+        | Country                        |
+        | CITY                           |
+        | ZIP                            |
+        | STATE                          |
+        | ADDRESS STREET NUMBER AND NAME |
