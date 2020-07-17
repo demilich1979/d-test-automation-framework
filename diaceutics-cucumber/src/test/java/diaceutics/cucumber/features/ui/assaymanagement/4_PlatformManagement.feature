@@ -1,7 +1,14 @@
 Feature: Platform Management
 
   Background:
-    Given Assay Management page is opened
+    Given Marketplace Main page is opened
+    When I click 'Login' on Marketplace Main page
+      Then Login page is opened
+    When I login as 'adminUser' user
+      Then Home page is opened
+      And User should be logged in
+    When I open 'Assay Management' tools
+      Then Assay Management page is opened
     When I put a Lab 'labOne' on search field 'Enter keywords' and press Search icon on Assay Management page
       Then Labs page is opened
       And Lab 'labOne' is displayed in filter results on Labs page

@@ -3,12 +3,10 @@ package diaceutics.cucumber.stepdefinitions;
 import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.cucumber.utilities.XmlFileStore;
-import diaceutics.selenium.enums.pageFields.AddPlatformFormFields;
-import diaceutics.selenium.enums.pageFields.CreateLabPageFields;
-import diaceutics.selenium.enums.pageFields.EditPatientVolumeFields;
-import diaceutics.selenium.enums.pageFields.LogPatientVolumeFields;
+import diaceutics.selenium.enums.pageFields.*;
 import diaceutics.selenium.models.*;
 import diaceutics.selenium.pageobject.pages.LabProfilePage;
+import diaceutics.selenium.utilities.TimeUtil;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -313,5 +311,25 @@ public class LabProfilePageSteps {
     @And("I click Add platform on Add Platform")
     public void iClickAddPlatformOnAddPlatform() {
         labProfilePage.getAddPlatformForm().clickAddPlatform();
+    }
+
+    @When("I fill following fields on Log patient volume form and save as {string} using data from {string}:")
+    public void iFillFollowingFieldsOnLogPatientVolumeFormAndSaveAsVolumeForLab(
+            String volumeKey,
+            String assayKey,
+            List<String> fields) {
+        Assay assay = XmlFileStore.get(assayKey);
+        Volume volume = XmlFileStore.get(volumeKey);
+        String biomarker = labProfilePage.getLogPatientVolumeForm().setFieldValue(
+                LogPatientVolumeFields.getEnumValue(fields.get(0)),
+                assay.getBiomarkers().get(0).getBiomarker());
+
+        String disease = labProfilePage.getLogPatientVolumeForm().setFieldValue(
+                LogPatientVolumeFields.getEnumValue(fields.get(1)),
+                assay.getAssociatedDiseases());
+
+        volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(0)).getModelField(), biomarker);
+        volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(1)).getModelField(), disease);
+        XmlFileStore.store(volumeKey, volume);
     }
 }

@@ -1,7 +1,14 @@
 Feature: Assay Management
 
   Background:
-    Given Assay Management page is opened
+    Given Marketplace Main page is opened
+    When I click 'Login' on Marketplace Main page
+      Then Login page is opened
+    When I login as 'adminUser' user
+      Then Home page is opened
+      And User should be logged in
+    When I open 'Assay Management' tools
+      Then Assay Management page is opened
     When I put a Lab 'labOne' on search field 'Enter keywords' and press Search icon on Assay Management page
       Then Labs page is opened
       And Lab 'labOne' is displayed in filter results on Labs page
@@ -20,11 +27,11 @@ Feature: Assay Management
       | Specimens Tested                      | random                  |
       | Detects Germline/Somatic alterations  | random                  |
       | FDA 510K APPROVED KIT                 | true                    |
-      | Laboratory Developed Test (LDT)       | true                    |
-      | FDA PMA APPROVED KIT                  | true                    |
+      | Laboratory Developed Test (LDT)       | false                   |
+      | FDA PMA APPROVED KIT                  | false                   |
       | IVD-CE                                | false                   |
       | RUO/IUO                               | false                   |
-      | Turn around time (days)               | 55555                   |
+      | Turn around time (days)               | 55                      |
       | Associated diseases                   | random                  |
       | Method                                | random                  |
       | Method description                    | Test Method description |
@@ -33,7 +40,7 @@ Feature: Assay Management
 #      | Send-out or inhouse?                  | Send-out                |
 #      | Send-out Lab                          | random                  |
       | Panel name radio                      | Yes                     |
-      | Panel name                            | Test Panel name         |
+      | Panel name                            | Test Panel              |
       | Accuracy                              | 55                      |
       | Precision                             | 55                      |
       | Sensitivity                           | 55                      |
@@ -43,6 +50,7 @@ Feature: Assay Management
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarker':
       | Biomarker | random |
+      | Variants  | random |
     And I click Save changes on Add Biomarker form
       Then Biomarker 'biomarker' is added to Biomarker & disease grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
@@ -61,7 +69,7 @@ Feature: Assay Management
       | FDA 510K APPROVED KIT           | false     |
       | Laboratory Developed Test (LDT) | false     |
       | FDA PMA APPROVED KIT            | false     |
-      | IVD-CE                          | true      |
+      | IVD-CE                          | false     |
       | RUO/IUO                         | true      |
       | Method                          | random    |
     And I click 'Save' on Edit Assay page
@@ -136,9 +144,9 @@ Feature: Assay Management
       | Assay name                            | Test Assay |
       | Ontologies                            | random     |
       | Detects Germline/Somatic alterations  | random     |
-      | FDA 510K APPROVED KIT                 | true       |
-      | Laboratory Developed Test (LDT)       | true       |
-      | FDA PMA APPROVED KIT                  | true       |
+      | FDA 510K APPROVED KIT                 | false      |
+      | Laboratory Developed Test (LDT)       | false      |
+      | FDA PMA APPROVED KIT                  | false      |
       | IVD-CE                                | true       |
       | RUO/IUO                               | false      |
       | Turn around time (days)               | 555        |
@@ -147,6 +155,7 @@ Feature: Assay Management
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarkerOne':
       | Biomarker | random |
+      | Variants  | random |
     And I click Save changes on Add Biomarker form
       Then Biomarker 'biomarkerOne' is added to Biomarker & disease grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
@@ -157,7 +166,7 @@ Feature: Assay Management
       | Assay name                            | Test Assay |
       | Ontologies                            | random     |
       | Detects Germline/Somatic alterations  | random     |
-      | FDA 510K APPROVED KIT                 | true       |
+      | FDA 510K APPROVED KIT                 | false      |
       | Laboratory Developed Test (LDT)       | false      |
       | FDA PMA APPROVED KIT                  | false      |
       | IVD-CE                                | true       |
@@ -168,6 +177,7 @@ Feature: Assay Management
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarkerTwo':
       | Biomarker | random |
+      | Variants  | random |
     And I click Save changes on Add Biomarker form
       Then Biomarker 'biomarkerTwo' is added to Biomarker & disease grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page

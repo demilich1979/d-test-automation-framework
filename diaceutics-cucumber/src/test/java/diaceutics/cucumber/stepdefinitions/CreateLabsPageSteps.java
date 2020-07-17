@@ -20,7 +20,7 @@ public class CreateLabsPageSteps {
     }
 
     @Then("Create a Lab page is opened")
-    public void checkCreateLabPageIsOpened() {
+    public void createLabsPageIsOpened() {
         Assert.assertTrue(createLabPage.isDisplayed(), "Create a Lab page should be opened");
     }
 

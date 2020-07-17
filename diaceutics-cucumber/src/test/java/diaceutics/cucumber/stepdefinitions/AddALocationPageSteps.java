@@ -25,7 +25,7 @@ public class AddALocationPageSteps {
     }
 
     @Given("Add a location page is opened")
-    public void labProfilesPageIsOpened() {
+    public void labLocationPageIsOpened() {
         Assert.assertTrue(addALocationPage.isDisplayed(), "Add a location page should be opened");
     }
 

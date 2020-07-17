@@ -21,7 +21,7 @@ public class LabsPageSteps {
     }
 
     @Given("Labs page is opened")
-    public void filtersPageIsOpened() {
+    public void labsPageIsOpened() {
         Assert.assertTrue(labsPage.isDisplayed(), "Labs page should be opened");
     }
 

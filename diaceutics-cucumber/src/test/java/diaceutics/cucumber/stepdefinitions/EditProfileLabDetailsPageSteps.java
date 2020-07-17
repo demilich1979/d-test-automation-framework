@@ -27,7 +27,7 @@ public class EditProfileLabDetailsPageSteps {
     }
 
     @Given("Edit Profile Lab Details page is opened")
-    public void labProfilesPageIsOpened() {
+    public void editProfileLabDetailsPageIsOpened() {
         Assert.assertTrue(editProfileLabDetailsPage.isDisplayed(), "Edit Profile Lab Details page should be opened");
     }
 

@@ -12,7 +12,7 @@ public enum AddAnAssayPageFields implements FormFieldInterface {
             "ontologies",
             FieldType.COMBOBOX_JS),
 
-    ScoringMethod("Scoring method",
+    SCORING_METHOD("Scoring method",
             "//div[./label[text()='Scoring method']]",
             "scoringMethod",
             FieldType.COMBOBOX_JS),
@@ -102,12 +102,12 @@ public enum AddAnAssayPageFields implements FormFieldInterface {
             "sensitivity",
             FieldType.NUMBER),
 
-    BatchOrIndividual("Batch or Individual?",
+    BATCH_OR_INDIVIDUAL("Batch or Individual?",
             "//ui-radio-group[./label[.='Batch or Individual?']]",
             "batchOrIndividual",
             FieldType.RADIO),
 
-    VariantsIncluded("Variants included?",
+    VARIANTS_INCLUDED("Variants included?",
             "//ui-radio-group[./label[.='Variants included?']]",
             "variantsIncluded",
             FieldType.RADIO);

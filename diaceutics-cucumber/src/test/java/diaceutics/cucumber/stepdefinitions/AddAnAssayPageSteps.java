@@ -6,6 +6,7 @@ import diaceutics.selenium.enums.pageFields.AddAnAssayPageFields;
 import diaceutics.selenium.enums.pageFields.AddBiomarkerFormFields;
 import diaceutics.selenium.models.Assay;
 import diaceutics.selenium.models.Biomarker;
+import diaceutics.selenium.models.Lab;
 import diaceutics.selenium.pageobject.pages.AddAnAssayPage;
 import diaceutics.selenium.utilities.TimeUtil;
 import io.cucumber.java.en.And;
@@ -30,7 +31,7 @@ public class AddAnAssayPageSteps {
     }
 
     @Given("Add an Assay page is opened")
-    public void labProfilesPageIsOpened() {
+    public void addAnAssayPageIsOpened() {
         Assert.assertTrue(addAnAssayPage.isDisplayed(), "Add an Assay page should be opened");
     }
 
@@ -105,5 +106,46 @@ public class AddAnAssayPageSteps {
     public void fieldPanelNameShouldBeEnabledOnAddAnAssayPage(String field) {
         Assert.assertTrue(addAnAssayPage.isFieldEnabled(AddAnAssayPageFields.getEnumValue(field)),
                 String.format("Field %s should be enabled on Add an Assay page", field));
+    }
+
+    @When("I fill following fields on Add an Assay page and save as {string} for {string}:")
+    public void iFillFollowingFieldsOnAddAnAssayPageAndSaveAsAssayForLab(String assayKey, String labKey, Map<String, String> data) {
+        Lab lab = XmlFileStore.get(labKey);
+        Assay assay = new Assay();
+        data.forEach((field, value) -> {
+            if (field.equals("Assay name")) {
+                value = value + TimeUtil.getTimestamp();
+            }
+            String selectedValue = addAnAssayPage.setFieldValue(AddAnAssayPageFields.getEnumValue(field), value);
+            assay.setReflectionFieldValue(AddAnAssayPageFields.getEnumValue(field).getModelField(), selectedValue);
+
+        });
+
+        lab.addAssay(assay);
+        XmlFileStore.store(assayKey, assay);
+        XmlFileStore.store(labKey, lab);
+    }
+
+    @When("I fill following fields on Add Biomarker form and save as {string} for {string} for {string}:")
+    public void iFillFollowingFieldsOnAddBiomarkerFormAndSaveAsBiomarkerForAssayForLab(
+            String biomarkerKey,
+            String assayKey,
+            String labKey,
+            Map<String, String> data) {
+
+        Lab lab = XmlFileStore.get(labKey);
+        Assay assay = lab.getAssays().get(0);
+        Biomarker biomarker = new Biomarker();
+
+        data.forEach((field, value) -> {
+            String selectedValue = addAnAssayPage.getAddBiomarkerForm().setFieldValue(AddBiomarkerFormFields.getEnumValue(field), value);
+            biomarker.setReflectionFieldValue(AddBiomarkerFormFields.getEnumValue(field).getModelField(), selectedValue);
+        });
+
+        assay.addBiomarker(biomarker);
+        lab.addAssay(assay);
+        scenarioContext.add(biomarkerKey, biomarker);
+        XmlFileStore.store(assayKey, assay);
+        XmlFileStore.store(labKey, lab);
     }
 }
