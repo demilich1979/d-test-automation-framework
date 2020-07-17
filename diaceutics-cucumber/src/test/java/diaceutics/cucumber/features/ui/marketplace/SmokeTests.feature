@@ -5,7 +5,7 @@ Feature: Marketplace smoke tests
     Given Marketplace Main page is opened
     When I click 'Login' on Marketplace Main page
       Then Login page is opened
-    When I login as 'adminUser' user
+    When I login as 'User' user
       Then Home page is opened
       And User should be logged in
 
@@ -69,17 +69,17 @@ Feature: Marketplace smoke tests
     When I click link 'Register' on the bottom of the Marketplace Main page
       Then Registration page is opened
 
-  @Marketplace @Smoke
+  @Marketplace
   Scenario: Checking the user data
     Given Marketplace Main page is opened
     When I click 'Login' on Marketplace Main page
       Then Login page is opened
-    When I login as 'adminUser' user
+    When I login as 'User' user
       Then Home page is opened
       And User should be logged in
     When I click 'My profile' on user menu on Marketplace header
       Then MyProfile page is opened
-      And Data for user 'adminUser' is displayed on the following fields on User Edit Identity Form on MyProfile page:
+      And Data for user 'User' is displayed on the following fields on User Edit Identity Form on MyProfile page:
         | FIRST NAME                     |
         | LAST NAME                      |
         | WEBSITE                        |
@@ -94,7 +94,7 @@ Feature: Marketplace smoke tests
       Then Organization page is opened
     When I click 'General details' on Organization page
       Then Organization Edit Identity Form on Organization page is opened
-      And Data for user 'adminUser' is displayed on the following fields on Organization Edit Identity Form:
+      And Data for user 'User' is displayed on the following fields on Organization Edit Identity Form:
         | TYPE                           |
         | COMPANY NAME                   |
         | COUNTRY                        |
@@ -102,3 +102,16 @@ Feature: Marketplace smoke tests
         | ZIP                            |
         | STATE                          |
         | ADDRESS STREET NUMBER AND NAME |
+
+  @Marketplace @Smoke
+  Scenario: Search form validation
+    Given Marketplace Main page is opened
+    When I fill following fields on Search form on Marketplace Main page and save as 'search template':
+      | Enter a location | Albania |
+      | Type             | random |
+#      | Keywords         | Test   |
+      | Laboratory       | true   |
+      | Pharmaceutical   | true   |
+      | Diagnostic       | false  |
+    And I click Search on Search form on Marketplace Main page
+      Then SearchResults page is opened

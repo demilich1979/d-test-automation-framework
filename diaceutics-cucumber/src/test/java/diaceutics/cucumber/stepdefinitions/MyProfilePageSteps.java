@@ -33,7 +33,7 @@ public class MyProfilePageSteps {
             SoftAssert.getInstance().assertEquals(
                     actualValue,
                     expectedValue,
-                    String.format("Value %s field is not correct on Identity form on MyProfile page", field));
+                    String.format("Value for field %s is not correct on Identity form on MyProfile page", field));
         });
     }
 }

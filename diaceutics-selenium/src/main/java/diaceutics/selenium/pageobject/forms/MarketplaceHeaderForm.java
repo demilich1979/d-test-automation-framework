@@ -16,10 +16,7 @@ public class MarketplaceHeaderForm extends BaseForm {
     }
 
     public void clickByLink(String linkName) {
-        ILink link = getElementFactory().getLink(By.xpath(
-                String.format("//ul[contains(@class,'justify-content-lg-end')]//a[contains(text(),'%s')]", linkName)),
-                linkName);
-
+        ILink link = getElementFactory().getLink(By.xpath(String.format(LINK_TEMPLATE, linkName)), linkName);
         link.clickAndWait();
     }
 
