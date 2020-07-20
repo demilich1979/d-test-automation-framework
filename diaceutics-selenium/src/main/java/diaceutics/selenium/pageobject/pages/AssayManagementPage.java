@@ -3,7 +3,7 @@ package diaceutics.selenium.pageobject.pages;
 import aquality.selenium.elements.interfaces.ILink;
 import diaceutics.selenium.elements.ComboboxJs;
 import diaceutics.selenium.pageobject.BaseForm;
-import diaceutics.selenium.pageobject.forms.HeaderForm;
+import diaceutics.selenium.pageobject.forms.AssayManagementHeaderForm;
 import org.openqa.selenium.By;
 
 public class AssayManagementPage extends BaseForm {
@@ -18,8 +18,8 @@ public class AssayManagementPage extends BaseForm {
         super(By.id("titleArea"), "Assay Management");
     }
 
-    public HeaderForm getHeaderForm() {
-        return new HeaderForm();
+    public AssayManagementHeaderForm getHeaderForm() {
+        return new AssayManagementHeaderForm();
     }
 
     public void clickByCountryLink(String countryName) {

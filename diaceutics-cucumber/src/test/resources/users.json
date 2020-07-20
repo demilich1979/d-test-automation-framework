@@ -1,34 +1,58 @@
 {
   "adminUser": {
-    "username": "viktor.kalanda.test1@gmail.com",
+    "email": "viktor.kalanda.test1@gmail.com",
     "password": "Servercor3R",
     "type": "Laboratory",
     "companyName": "Test lab",
-    "firstNameOfTheLegalRepresentative": "viktor",
-    "lastNameOfTheLegalRepresentative": "kalanda"
+    "firstName": "victor",
+    "lastName": "kalanda",
+    "website": "",
+    "phone": "",
+    "country": "United Kingdom",
+    "city": "",
+    "zip": "",
+    "state": "",
+    "addressStreetNumberAndName": "",
+    "organizationCountry": "",
+    "organizationCity": "",
+    "organizationZip": "",
+    "organizationState": "",
+    "organizationAddressStreetNumberAndName": ""
   },
   "User": {
-    "username": "20200715133719.7bsvuhrz@mailosaur.io",
+    "email": "20200716161416.7bsvuhrz@mailosaur.io",
     "password": "Testpassword",
     "type": "Laboratory",
     "companyName": "Test lab",
-    "firstNameOfTheLegalRepresentative": "first name",
-    "lastNameOfTheLegalRepresentative": "last name"
+    "firstName": "Test first name",
+    "lastName": "Test last name",
+    "website": "",
+    "phone": "",
+    "country": "United Kingdom",
+    "city": "London",
+    "zip": "77777",
+    "state": "",
+    "addressStreetNumberAndName": "Piccadilly",
+    "organizationCountry": "",
+    "organizationCity": "",
+    "organizationZip": "",
+    "organizationState": "",
+    "organizationAddressStreetNumberAndName": ""
   },
   "UserStage": {
-    "username": "20200715152018.7bsvuhrz@mailosaur.io",
+    "email": "20200715152018.7bsvuhrz@mailosaur.io",
     "password": "Testpassword",
     "type": "Laboratory",
-    "companyName": "Test lab",
-    "firstNameOfTheLegalRepresentative": "first name",
-    "lastNameOfTheLegalRepresentative": "last name"
+    "companyName": "Test",
+    "firstName": "first name",
+    "lastName": "last name"
   },
   "adminUserStage": {
-    "username": "viktor.kalanda@diaceutics.com",
+    "email": "viktor.kalanda@diaceutics.com",
     "password": "",
     "type": "Laboratory",
-    "companyName": "Test lab",
-    "firstNameOfTheLegalRepresentative": "first name",
-    "lastNameOfTheLegalRepresentative": "last name"
+    "companyName": "Test",
+    "firstName": "viktor",
+    "lastName": "kalanda"
   }
 }

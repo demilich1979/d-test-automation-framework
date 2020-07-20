@@ -9,15 +9,15 @@ public enum PersonalDetailsFormFields implements FormFieldInterface {
 
     FIRST_NAME_OF_THE_LEGAL_REPRESENTATIVE("FIRST NAME OF THE LEGAL REPRESENTATIVE",
             "user_registration_firstName",
-            "firstNameOfTheLegalRepresentative",
+            "firstName",
             FieldType.TEXT),
 
     LAST_NAME_OF_THE_LEGAL_REPRESENTATIVE("LAST NAME OF THE LEGAL REPRESENTATIVE",
             "user_registration_lastName",
-            "lastNameOfTheLegalRepresentative",
+            "lastName",
             FieldType.TEXT),
 
-    EMAIL("EMAIL", "user_registration_email", "username", FieldType.TEXT),
+    EMAIL("EMAIL", "user_registration_email", "email", FieldType.TEXT),
     NEW_PASSWORD("NEW PASSWORD",
             "user_registration_plainPassword",
             "password",
