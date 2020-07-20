@@ -63,9 +63,9 @@ Feature: Data
       | Time period combobox | 2018 |
       | Time period radio    | q2   |
       | Volume               | 5    |
-    And I fill following fields on Log patient volume form and save as 'volume' using data from 'assay':
-      | Biomarker |
-      | Disease   |
+#    And I fill following fields on Log patient volume form and save as 'volume' using data from 'assay':
+#      | Biomarker |
+#      | Disease   |
     And I click 'Log volume' on Log patient volume form
       Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volume' is displayed on Log patient volume form
     When I click 'Done' on Log patient volume form
@@ -76,10 +76,10 @@ Feature: Data
   Scenario: DIAFE:0032 Lab Mapping Search
     When I click 'Lab Mapping' on Header form
       Then Lab Mapping Search page is opened
-    When I fill following fields on Lab Mapping Search page using data from 'lab':
-      | Country              |
-      | Disease              |
-      | Biomarker / Analogue |
+#    When I fill following fields on Lab Mapping Search page using data from 'lab':
+#      | Country              |
+#      | Disease              |
+#      | Biomarker / Analogue |
     And I fill following fields on Lab Mapping Search page:
       | Year From  | 2017    |
       | Month From | January |

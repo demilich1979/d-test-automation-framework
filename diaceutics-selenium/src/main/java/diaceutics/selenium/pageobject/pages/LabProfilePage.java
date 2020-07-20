@@ -178,7 +178,7 @@ public class LabProfilePage extends BaseForm {
     }
 
     public boolean isAssayAdded(Assay assay) {
-        List<IElement> volumeLink = getElementFactory().findElements(By.xpath
+        List<IElement> assayLink = getElementFactory().findElements(By.xpath
                         (String.format(
                                 ASSAY_TEMPLATE,
                                 assay.getAssayName(),
@@ -186,7 +186,7 @@ public class LabProfilePage extends BaseForm {
                                 assay.getMethod())),
                 ElementType.LINK);
 
-        return volumeLink.size() > 0;
+        return assayLink.size() > 0;
     }
 
     public void clickByAssay(Assay assay) {

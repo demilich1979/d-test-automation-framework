@@ -20,8 +20,6 @@ public class AssayManagementPageSteps {
 
     @Given("Assay Management page is opened")
     public void assayManagementPageIsOpened() {
-        // ToDo: remove after fixed issue
-        AqualityServices.getBrowser().goTo("https://ice-dev.diaceuticscloud.com/profiles/");
         Assert.assertTrue(assayManagementPage.isDisplayed(), "Assay Management page should be opened");
     }
 

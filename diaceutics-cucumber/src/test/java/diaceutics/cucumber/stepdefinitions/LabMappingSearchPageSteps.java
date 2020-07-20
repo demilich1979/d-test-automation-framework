@@ -38,15 +38,15 @@ public class LabMappingSearchPageSteps {
         labMappingSearchPage.clickByButton(buttonName);
     }
 
-    @When("I fill following fields on Lab Mapping Search page using data from {string}:")
-    public void iFillFollowingFieldsOnLabMappingSearchPageUsingDataFromLab(String key, List<String> fields) {
-        Lab lab = XmlFileStore.get(key);
-        String country = lab.getCountry();
-        Assay assay = lab.getAssays().get(0);
-        String disease = assay.getAssociatedDiseases();
-        String biomarker = assay.getBiomarkers().get(0).getBiomarker();
-        labMappingSearchPage.setFieldValue(LabMappingSearchPageFields.getEnumValue(fields.get(0)), country);
-        labMappingSearchPage.setFieldValue(LabMappingSearchPageFields.getEnumValue(fields.get(1)), disease);
-        labMappingSearchPage.setFieldValue(LabMappingSearchPageFields.getEnumValue(fields.get(2)), biomarker);
-    }
+//    @When("I fill following fields on Lab Mapping Search page using data from {string}:")
+//    public void iFillFollowingFieldsOnLabMappingSearchPageUsingDataFromLab(String key, List<String> fields) {
+//        Lab lab = XmlFileStore.get(key);
+//        String country = lab.getCountry();
+//        Assay assay = lab.getAssays().get(0);
+//        String disease = assay.getAssociatedDiseases();
+//        String biomarker = assay.getBiomarkers().get(0).getBiomarker();
+//        labMappingSearchPage.setFieldValue(LabMappingSearchPageFields.getEnumValue(fields.get(0)), country);
+//        labMappingSearchPage.setFieldValue(LabMappingSearchPageFields.getEnumValue(fields.get(1)), disease);
+//        labMappingSearchPage.setFieldValue(LabMappingSearchPageFields.getEnumValue(fields.get(2)), biomarker);
+//    }
 }

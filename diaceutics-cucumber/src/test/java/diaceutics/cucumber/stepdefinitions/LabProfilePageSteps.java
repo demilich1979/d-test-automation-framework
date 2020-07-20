@@ -313,23 +313,23 @@ public class LabProfilePageSteps {
         labProfilePage.getAddPlatformForm().clickAddPlatform();
     }
 
-    @When("I fill following fields on Log patient volume form and save as {string} using data from {string}:")
-    public void iFillFollowingFieldsOnLogPatientVolumeFormAndSaveAsVolumeForLab(
-            String volumeKey,
-            String assayKey,
-            List<String> fields) {
-        Assay assay = XmlFileStore.get(assayKey);
-        Volume volume = XmlFileStore.get(volumeKey);
-        String biomarker = labProfilePage.getLogPatientVolumeForm().setFieldValue(
-                LogPatientVolumeFields.getEnumValue(fields.get(0)),
-                assay.getBiomarkers().get(0).getBiomarker());
-
-        String disease = labProfilePage.getLogPatientVolumeForm().setFieldValue(
-                LogPatientVolumeFields.getEnumValue(fields.get(1)),
-                assay.getAssociatedDiseases());
-
-        volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(0)).getModelField(), biomarker);
-        volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(1)).getModelField(), disease);
-        XmlFileStore.store(volumeKey, volume);
-    }
+//    @When("I fill following fields on Log patient volume form and save as {string} using data from {string}:")
+//    public void iFillFollowingFieldsOnLogPatientVolumeFormAndSaveAsVolumeForLab(
+//            String volumeKey,
+//            String assayKey,
+//            List<String> fields) {
+//        Assay assay = XmlFileStore.get(assayKey);
+//        Volume volume = XmlFileStore.get(volumeKey);
+//        String biomarker = labProfilePage.getLogPatientVolumeForm().setFieldValue(
+//                LogPatientVolumeFields.getEnumValue(fields.get(0)),
+//                assay.getBiomarkers().get(0).getBiomarker());
+//
+//        String disease = labProfilePage.getLogPatientVolumeForm().setFieldValue(
+//                LogPatientVolumeFields.getEnumValue(fields.get(1)),
+//                assay.getAssociatedDiseases());
+//
+//        volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(0)).getModelField(), biomarker);
+//        volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(1)).getModelField(), disease);
+//        XmlFileStore.store(volumeKey, volume);
+//    }
 }

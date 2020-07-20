@@ -148,4 +148,9 @@ public class AddAnAssayPageSteps {
         XmlFileStore.store(assayKey, assay);
         XmlFileStore.store(labKey, lab);
     }
+
+    @And("I click {string} on Add Biomarker form")
+    public void iClickDoneOnAddBiomarkerForm(String buttonName) {
+        addAnAssayPage.getAddBiomarkerForm().clickByButton(buttonName);
+    }
 }
