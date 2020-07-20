@@ -30,7 +30,7 @@ Feature: Marketplace smoke tests
       And I get a mail for the 'user' with a subject 'Your account on DXRX is under moderation'
     When I open Verify Link from 'user' mail with subject 'Verify your email' and confirm registration
       Then Registration Confirmed page is opened
-      And Message 'Your email address was successfully verified.' is displayed Registration Confirmed page
+      And Message 'Your email address was successfully verified.' is displayed on Registration Confirmed page
     When I click Back to dxrx-marketplace on Registration Confirmed page
       Then Login page is opened
 #    When I login as 'user' user
@@ -103,7 +103,7 @@ Feature: Marketplace smoke tests
         | STATE                          |
         | ADDRESS STREET NUMBER AND NAME |
 
-  @Marketplace @Smoke
+  @Marketplace
   Scenario: Search form validation
     Given Marketplace Main page is opened
     When I fill following fields on Search form on Marketplace Main page and save as 'search template':
@@ -115,3 +115,21 @@ Feature: Marketplace smoke tests
       | Diagnostic       | false  |
     And I click Search on Search form on Marketplace Main page
       Then SearchResults page is opened
+
+  @Marketplace @Smoke
+  Scenario: Login required fields validation
+    Given Marketplace Main page is opened
+    When I click 'Login' on Marketplace Main page
+      Then Login page is opened
+    When I click continue on Login page
+      Then Alert message 'Please fill out this field.' is displayed on Login page
+    When I login as 'nonexistentUser' user
+      Then Message 'Wrong email or password' is displayed on Login page
+
+
+  @Marketplace
+  Scenario: Registration form: required fields validation
+    Given Marketplace Main page is opened
+    When I click 'Register' on Marketplace Main page
+      Then Registration page is opened
+    When I click Register on Personal Details form on Registration page
