@@ -51,7 +51,7 @@ public class AddAnAssayPageSteps {
     }
 
     @And("I click {string} on Add an Assay page")
-    public void iClickAddAssayOnAddAnAssayPage(String buttonName) {
+    public void iClickOnAddAnAssayPage(String buttonName) {
         addAnAssayPage.clickByButton(buttonName);
     }
 
@@ -154,11 +154,4 @@ public class AddAnAssayPageSteps {
         addAnAssayPage.getAddBiomarkerForm().clickByButton(buttonName);
     }
 
-    @Then("Biomarker {string} is not displayed in Biomarker grid on Add an Assay page")
-    public void biomarkerBiomarkerIsNotAddedToBiomarkerGridOnAddAnAssayPage(String key) {
-        Biomarker biomarker = scenarioContext.get(key);
-        Assert.assertFalse(addAnAssayPage.isBiomarkerAdded(biomarker),
-                String.format("Biomarker %s should not be displayed in Biomarker grid on Add an Assay page",
-                        biomarker.getBiomarker()));
-    }
 }

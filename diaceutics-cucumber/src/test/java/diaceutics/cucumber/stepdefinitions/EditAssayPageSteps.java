@@ -1,8 +1,10 @@
 package diaceutics.cucumber.stepdefinitions;
 
+import diaceutics.cucumber.utilities.ScenarioContext;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.EditAssayPageFields;
 import diaceutics.selenium.models.Assay;
+import diaceutics.selenium.models.Biomarker;
 import diaceutics.selenium.pageobject.pages.EditAssayPage;
 import diaceutics.selenium.utilities.TimeUtil;
 import io.cucumber.java.en.And;
@@ -11,13 +13,17 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
+import javax.inject.Inject;
 import java.util.Map;
 
 public class EditAssayPageSteps {
 
     private final EditAssayPage editAssayPage;
+    private final ScenarioContext scenarioContext;
 
-    public EditAssayPageSteps() {
+    @Inject
+    public EditAssayPageSteps(ScenarioContext scenarioContext) {
+        this.scenarioContext = scenarioContext;
         editAssayPage = new EditAssayPage();
     }
 
@@ -42,7 +48,7 @@ public class EditAssayPageSteps {
     }
 
     @And("I click {string} on Edit Assay page")
-    public void iClickSaveOnEditAssayPage(String buttonName) {
+    public void iClickOnEditAssayPage(String buttonName) {
         editAssayPage.clickByButton(buttonName);
     }
 
@@ -50,5 +56,21 @@ public class EditAssayPageSteps {
     public void messagePleaseEnterAnAssayNameIsDisplayedOnRequiredFieldsOnEditAssayPage(String message) {
         Assert.assertTrue(editAssayPage.isMessageDisplayedOnRequiredFields(message),
                 String.format("Message %s should be displayed on required fields on Edit Assay page", message));
+    }
+
+    @Then("Biomarker {string} is not displayed in Biomarker grid on Edit Assay page")
+    public void biomarkerBiomarkerIsNotAddedToBiomarkerGridOnEditAssayPage(String key) {
+        Biomarker biomarker = scenarioContext.get(key);
+        Assert.assertFalse(editAssayPage.isBiomarkerAdded(biomarker),
+                String.format("Biomarker %s should not be displayed in Biomarker grid on Add an Assay page",
+                        biomarker.getBiomarker()));
+    }
+
+    @Then("Biomarker {string} is added to Biomarker grid on Edit Assay page")
+    public void biomarkerBiomarkerIsAddedToBiomarkerGridOnEditAssayPage(String key) {
+        Biomarker biomarker = scenarioContext.get(key);
+        Assert.assertTrue(editAssayPage.isBiomarkerAdded(biomarker),
+                String.format("Biomarker %s should be added added to Biomarker grid on Add an Assay page",
+                        biomarker.getBiomarker()));
     }
 }

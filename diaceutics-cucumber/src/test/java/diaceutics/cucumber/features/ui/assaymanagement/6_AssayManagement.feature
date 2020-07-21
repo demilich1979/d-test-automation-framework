@@ -252,16 +252,41 @@ Feature: Assay Management
       | Scoring method         | random                   |
       | Result Format          | random                   |
       | Classification         | Lab developed test (LDT) |
-      Then Biomarker 'biomarker' is not displayed in Biomarker grid on Add an Assay page
-    When I click 'Add Biomarker' on Add an Assay page
+      Then Biomarker 'biomarker' is not displayed in Biomarker grid on Edit Assay page
+    When I click 'Add Biomarker' on Edit Assay page
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarker':
       | Biomarker | random |
       | Variants  | random |
-      And I click Save changes on Add Biomarker form
-      And I click 'Done' on Add Biomarker form
-      Then Biomarker 'biomarker' is added to Biomarker grid on Add an Assay page
+    And I click Save changes on Add Biomarker form
+    And I click 'Done' on Add Biomarker form
+      Then Biomarker 'biomarker' is added to Biomarker grid on Edit Assay page
     When I click 'Save' on Edit Assay page
       Then Lab Profile page is opened
       And 'Lab assay updated.' message is displayed on Lab Profile page
       And Assay 'assay' is displayed in Assays grid on Lab Profile page
+
+  @AssayManagement @Assay
+  Scenario: DIAFE:0029 Check biomarker
+    When I click on 'Add assay' on Lab Profile Page
+    Then Add an Assay page is opened
+    When I fill following fields on Add an Assay page and save as 'assay':
+      | Assay name             | Test Assay              |
+      | Assay description      | Test Assay description  |
+      | Inhouse or send-out?   | Send-out                |
+      | Send-out Lab           | random                  |
+      | Detects                | random                  |
+      | Specimens Tested       | random                  |
+      | Method                 | Real Time PCR           |
+      | Method description     | Test Method description |
+      | Turn around time (TaT) | 5                       |
+      | Ontology               | random                  |
+      | Sensitivity            | 55                      |
+      | Scoring method         | random                  |
+      | Result Format          | random                  |
+      | Classification         | Commercial assay        |
+      | FDA 510K APPROVED KIT  | true                    |
+      | FDA PMA APPROVED KIT   | false                   |
+      | IVD-CE                 | true                    |
+      | RUO/IUO                | false                   |
+      | Commercial Assays      | random                  |
