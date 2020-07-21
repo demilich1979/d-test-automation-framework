@@ -17,6 +17,7 @@ Feature: Marketplace smoke tests
     When I fill following fields on Personal Details form on Registration page and save as 'user':
       | Type                                   | Laboratory      |
       | COMPANY NAME                           | Test lab        |
+      | POSITION WITHIN THE ORGANIZATION       | Test position   |
       | FIRST NAME OF THE LEGAL REPRESENTATIVE | Test first name |
       | LAST NAME OF THE LEGAL REPRESENTATIVE  | Test last name  |
       | EMAIL                                  | @mailosaur.io   |
@@ -31,8 +32,8 @@ Feature: Marketplace smoke tests
     When I open Verify Link from 'user' mail with subject 'Verify your email' and confirm registration
       Then Registration Confirmed page is opened
       And Message 'Your email address was successfully verified.' is displayed on Registration Confirmed page
-    When I click Back to dxrx-marketplace on Registration Confirmed page
-      Then Login page is opened
+#    When I click Back to dxrx-marketplace on Registration Confirmed page
+#      Then Login page is opened
 #    When I login as 'user' user
 #      Then Home page is opened
 #      And User should be logged in
@@ -127,7 +128,7 @@ Feature: Marketplace smoke tests
       Then Message 'Wrong email or password' is displayed on Login page
 
 
-  @Marketplace
+  @Marketplace @NotAutomated
   Scenario: Registration form: required fields validation
     Given Marketplace Main page is opened
     When I click 'Register' on Marketplace Main page
