@@ -58,6 +58,7 @@ public abstract class BaseForm extends Form {
                 break;
 
             case COMBOBOX_JS:
+                labelSmallSpinner.state().waitForNotDisplayed();
                 ComboboxJs comboboxJs = getElementFactory().getCustomElement(
                         ComboboxJs.class, By.xpath(String.format(COMBOBOX_JS_TEMPLATE, field.getLocator())),
                         field.getFriendlyName());

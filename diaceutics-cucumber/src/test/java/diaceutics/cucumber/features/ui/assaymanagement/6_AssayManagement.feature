@@ -20,25 +20,25 @@ Feature: Assay Management
     When I click on 'Add assay' on Lab Profile Page
       Then Add an Assay page is opened
     When I fill following fields on Add an Assay page and save as 'assay':
-      | Assay name             | Test Assay               |
-      | Assay description      | Test Assay description   |
-      | Inhouse or send-out?   | Send-out                 |
-      | Send-out Lab           | random                   |
-      | Detects                | random                   |
-      | Specimens Tested       | random                   |
-      | Method                 | random                   |
-      | Method description     | Test Method description  |
-      | Turn around time (TaT) | 5                        |
-      | Ontology               | random                   |
-      | Sensitivity            | 55                       |
-      | Scoring method         | random                   |
-      | Result Format          | random                   |
-      | Classification         | Commercial assay         |
-      | FDA 510K APPROVED KIT  | true                     |
-      | FDA PMA APPROVED KIT   | false                    |
-      | IVD-CE                 | true                     |
-      | RUO/IUO                | false                    |
-#      | Commercial Assays      | random                   |
+      | Assay name             | Test Assay              |
+      | Assay description      | Test Assay description  |
+      | Inhouse or send-out?   | Send-out                |
+      | Send-out Lab           | random                  |
+      | Detects                | random                  |
+      | Specimens Tested       | random                  |
+      | Method                 | random                  |
+      | Method description     | Test Method description |
+      | Turn around time (TaT) | 5                       |
+      | Ontology               | random                  |
+      | Sensitivity            | 55                      |
+      | Scoring method         | random                  |
+      | Result Format          | random                  |
+      | Classification         | Commercial assay        |
+      | FDA 510K APPROVED KIT  | true                    |
+      | FDA PMA APPROVED KIT   | false                   |
+      | IVD-CE                 | true                    |
+      | RUO/IUO                | false                   |
+#      | Commercial Assays      | random                  |
     And I click 'Add Biomarker' on Add an Assay page
       Then Add Biomarker form is opened
     When I fill following fields on Add Biomarker form and save as 'biomarker':
@@ -46,7 +46,7 @@ Feature: Assay Management
       | Variants  | random |
     And I click Save changes on Add Biomarker form
     And I click 'Done' on Add Biomarker form
-      Then Biomarker 'biomarker' is added to Biomarker & disease grid on Add an Assay page
+      Then Biomarker 'biomarker' is added to Biomarker grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
       Then Lab Profile page is opened
       And 'New lab assay added.' message is displayed on Lab Profile page
@@ -59,18 +59,21 @@ Feature: Assay Management
     When I click Edit Details on Assay description page
       Then Edit Assay page is opened
     When I fill following fields on Edit Assay page and save as 'assay':
-      | Assay name             | New Assay                |
-      | Assay description      | New Assay description    |
-#      | Detects                | random                   |
-      | Specimens Tested       | random                   |
-      | Method                 | random                   |
-      | Method description     | Test Method description  |
-      | Turn around time (TaT) | 5                        |
-      | Ontology               | random                   |
-      | Sensitivity            | 55                       |
-      | Scoring method         | random                   |
-      | Result Format          | random                   |
-      | Classification         | Lab developed test (LDT) |
+      | Assay name             | New Assay               |
+      | Assay description      | New Assay description   |
+      | Specimens Tested       | random                  |
+      | Method                 | random                  |
+      | Method description     | Test Method description |
+      | Turn around time (TaT) | 5                       |
+      | Ontology               | random                  |
+      | Sensitivity            | 55                      |
+      | Scoring method         | random                  |
+      | Result Format          | random                  |
+      | Classification         | Commercial assay        |
+      | FDA 510K APPROVED KIT  | true                    |
+      | FDA PMA APPROVED KIT   | true                    |
+      | IVD-CE                 | true                    |
+      | RUO/IUO                | true                    |
     And I click 'Save' on Edit Assay page
       Then Lab Profile page is opened
       And 'Lab assay updated.' message is displayed on Lab Profile page
@@ -94,6 +97,7 @@ Feature: Assay Management
       And Field 'FDA PMA APPROVED KIT' should be disabled on Add an Assay page
       And Field 'IVD-CE' should be disabled on Add an Assay page
       And Field 'RUO/IUO' should be disabled on Add an Assay page
+      And Field 'Commercial Assays' should be disabled on Add an Assay page
     When I fill following fields on Add an Assay page and save as 'assayOne':
       | Inhouse or send-out? | Not specified |
       Then Field 'Send-out Lab' should be disabled on Add an Assay page
@@ -151,7 +155,7 @@ Feature: Assay Management
       | Variants  | random |
     And I click Save changes on Add Biomarker form
     And I click 'Done' on Add Biomarker form
-      Then Biomarker 'biomarkerOne' is added to Biomarker & disease grid on Add an Assay page
+      Then Biomarker 'biomarkerOne' is added to Biomarker grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
       Then Lab Profile page is opened
     When I click on 'Add assay' on Lab Profile Page
@@ -182,7 +186,7 @@ Feature: Assay Management
       | Variants  | random |
     And I click Save changes on Add Biomarker form
     And I click 'Done' on Add Biomarker form
-      Then Biomarker 'biomarkerTwo' is added to Biomarker & disease grid on Add an Assay page
+      Then Biomarker 'biomarkerTwo' is added to Biomarker grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
       Then Lab Profile page is opened
       And Assay 'assayOne' is displayed in Assays grid on Lab Profile page
@@ -196,3 +200,68 @@ Feature: Assay Management
   Scenario: DIAFE:0027 Check number of assays
     When I count the number of platforms in the 'Assays' grid and save as 'numberOfAssays'
       Then 'numberOfAssays' must be the same as a number stated in the 'Assays' Grid title
+
+  @AssayManagement @Assay
+  Scenario: DIAFE:0028 Check classification selection
+    When I click on 'Add assay' on Lab Profile Page
+      Then Add an Assay page is opened
+    When I fill following fields on Add an Assay page and save as 'assay':
+      | Assay name             | Test Assay              |
+      | Assay description      | Test Assay description  |
+      | Inhouse or send-out?   | Send-out                |
+      | Send-out Lab           | random                  |
+      | Detects                | random                  |
+      | Specimens Tested       | random                  |
+      | Method                 | random                  |
+      | Method description     | Test Method description |
+      | Turn around time (TaT) | 5                       |
+      | Ontology               | random                  |
+      | Sensitivity            | 55                      |
+      | Scoring method         | random                  |
+      | Result Format          | random                  |
+      | Classification         | Commercial assay        |
+      | FDA 510K APPROVED KIT  | true                    |
+      | FDA PMA APPROVED KIT   | false                   |
+      | IVD-CE                 | true                    |
+      | RUO/IUO                | false                   |
+    And I click 'Add Biomarker' on Add an Assay page
+      Then Add Biomarker form is opened
+    When I fill following fields on Add Biomarker form and save as 'biomarker':
+      | Biomarker | random |
+      | Variants  | random |
+    And I click Save changes on Add Biomarker form
+    And I click 'Done' on Add Biomarker form
+      Then Biomarker 'biomarker' is added to Biomarker grid on Add an Assay page
+    When I click 'Add Assay' on Add an Assay page
+      Then Lab Profile page is opened
+      And 'New lab assay added.' message is displayed on Lab Profile page
+      And Assay 'assay' is displayed in Assays grid on Lab Profile page
+    When I click on Assay 'assay' in Assays grid on Lab Profile Page
+      Then Assay description page is opened
+    When I click Edit Details on Assay description page
+      Then Edit Assay page is opened
+    When I fill following fields on Edit Assay page and save as 'assay':
+      | Assay name             | New Assay                |
+      | Assay description      | New Assay description    |
+      | Specimens Tested       | random                   |
+      | Method                 | random                   |
+      | Method description     | Test Method description  |
+      | Turn around time (TaT) | 5                        |
+      | Ontology               | random                   |
+      | Sensitivity            | 55                       |
+      | Scoring method         | random                   |
+      | Result Format          | random                   |
+      | Classification         | Lab developed test (LDT) |
+      Then Biomarker 'biomarker' is not displayed in Biomarker grid on Add an Assay page
+    When I click 'Add Biomarker' on Add an Assay page
+      Then Add Biomarker form is opened
+    When I fill following fields on Add Biomarker form and save as 'biomarker':
+      | Biomarker | random |
+      | Variants  | random |
+      And I click Save changes on Add Biomarker form
+      And I click 'Done' on Add Biomarker form
+      Then Biomarker 'biomarker' is added to Biomarker grid on Add an Assay page
+    When I click 'Save' on Edit Assay page
+      Then Lab Profile page is opened
+      And 'Lab assay updated.' message is displayed on Lab Profile page
+      And Assay 'assay' is displayed in Assays grid on Lab Profile page

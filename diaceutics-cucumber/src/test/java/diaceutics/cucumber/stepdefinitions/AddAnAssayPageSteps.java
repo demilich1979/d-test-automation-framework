@@ -76,11 +76,11 @@ public class AddAnAssayPageSteps {
         addAnAssayPage.getAddBiomarkerForm().clickSaveChanges();
     }
 
-    @And("Biomarker {string} is added to Biomarker & disease grid on Add an Assay page")
+    @And("Biomarker {string} is added to Biomarker grid on Add an Assay page")
     public void biomarkerBiomarkerIsAddedToBiomarkerDiseaseGridOnAddAnAssayPage(String key) {
         Biomarker biomarker = scenarioContext.get(key);
         Assert.assertTrue(addAnAssayPage.isBiomarkerAdded(biomarker),
-                String.format("Biomarker %s should be added added to Biomarker & disease grid on Add an Assay page",
+                String.format("Biomarker %s should be added added to Biomarker grid on Add an Assay page",
                         biomarker.getBiomarker()));
     }
 
@@ -152,5 +152,13 @@ public class AddAnAssayPageSteps {
     @And("I click {string} on Add Biomarker form")
     public void iClickDoneOnAddBiomarkerForm(String buttonName) {
         addAnAssayPage.getAddBiomarkerForm().clickByButton(buttonName);
+    }
+
+    @Then("Biomarker {string} is not displayed in Biomarker grid on Add an Assay page")
+    public void biomarkerBiomarkerIsNotAddedToBiomarkerGridOnAddAnAssayPage(String key) {
+        Biomarker biomarker = scenarioContext.get(key);
+        Assert.assertFalse(addAnAssayPage.isBiomarkerAdded(biomarker),
+                String.format("Biomarker %s should not be displayed in Biomarker grid on Add an Assay page",
+                        biomarker.getBiomarker()));
     }
 }
