@@ -18,7 +18,7 @@ public abstract class BaseForm extends Form {
     public static final String COMBOBOX_JS_TEMPLATE = "%s//span[@class='ng-arrow-wrapper']";
     private static final String TEXT_TEMPLATE = "//input[..//label[text()='%s']]";
     private static final String RADIO_BUTTON_TEMPLATE = "%s//label[contains(@class,'radioOptionContainer')][.//span[text()='%s']]";
-    private static final String ALERT_MESSAGE_TEMPLATE = "//ui-alert//span[contains(text(),'%s')]";
+    private static final String ALERT_MESSAGE_TEMPLATE = "//span[contains(text(),'%s')]";
     private static final String REQUIRED_FIELD_ALERT_MESSAGE_TEMPLATE = "//ui-validation-container//li[contains(text(),'%s')]";
     private static final String TEXT_AREA_TEMPLATE = "//ui-text-area[.//label[text()='%s']]//textarea";
     private static final String CHECKBOX_TEMPLATE = "//ui-checkbox-group//label[contains(text(),'%s')]";

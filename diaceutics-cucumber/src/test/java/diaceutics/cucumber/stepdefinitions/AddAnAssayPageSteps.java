@@ -55,9 +55,10 @@ public class AddAnAssayPageSteps {
         addAnAssayPage.clickByButton(buttonName);
     }
 
-    @Then("Add Biomarker form is opened")
+    @Then("Add Biomarker form is opened on Add an Assay page")
     public void addBiomarkerFormIsOpened() {
-        Assert.assertTrue(addAnAssayPage.getAddBiomarkerForm().isDisplayed(), "Add Biomarker form should be opened");
+        Assert.assertTrue(addAnAssayPage.getAddBiomarkerForm().isDisplayed(),
+                "Add Biomarker form should be opened on Add an Assay page");
     }
 
     @When("I fill following fields on Add Biomarker form and save as {string}:")

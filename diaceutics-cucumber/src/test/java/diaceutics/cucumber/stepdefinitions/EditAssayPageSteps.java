@@ -73,4 +73,30 @@ public class EditAssayPageSteps {
                 String.format("Biomarker %s should be added added to Biomarker grid on Add an Assay page",
                         biomarker.getBiomarker()));
     }
+
+    @Then("Message {string} is displayed on Edit Assay page")
+    public void messageIsDisplayedOnEditAssayPage(String message) {
+        Assert.assertTrue(editAssayPage.isAlertMessageDisplayed(message),
+                String.format("Message %s should be displayed on Edit Assay page", message));
+    }
+
+    @Then("The default biomarker input should not be visible on Edit Assay page")
+    public void theDefaultBiomarkerInputShouldNotBeVisibleOnEditAssayPage() {
+        Assert.assertTrue(editAssayPage.isDefaultBiomarkerInputDisplayed(),
+                "The default biomarker input is visible on Edit Assay page");
+    }
+
+    @Then("Add Biomarker form is opened on Edit Assay page")
+    public void addBiomarkerFormIsOpenedOnEditAssayPage() {
+        Assert.assertTrue(editAssayPage.getAddBiomarkerForm().isDisplayed(),
+                "Add Biomarker form should be opened on Edit Assay page");
+    }
+
+    @And("Commercial assay Biomarkers are added to this assay {string}")
+    public void commercialAssayBiomarkersFromAssayIsDisplayedOnEditAssayPage(String key) {
+        Assay assay = XmlFileStore.get(key);
+        Assert.assertTrue(editAssayPage.isCommercialAssayBiomarkerAdded(assay),
+                String.format("Commercial assay Biomarkers %s should be added to this assay %s",
+                        assay.getCommercialAssays(), assay.getAssayName()));
+    }
 }
