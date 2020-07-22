@@ -69,7 +69,7 @@ public class AddAnAssayPageSteps {
             biomarker.setReflectionFieldValue(AddBiomarkerFormFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
-        scenarioContext.add(key, biomarker);
+        XmlFileStore.store(key, biomarker);
     }
 
     @And("I click Save changes on Add Biomarker form")
@@ -79,7 +79,7 @@ public class AddAnAssayPageSteps {
 
     @And("Biomarker {string} is added to Biomarker grid on Add an Assay page")
     public void biomarkerBiomarkerIsAddedToBiomarkerDiseaseGridOnAddAnAssayPage(String key) {
-        Biomarker biomarker = scenarioContext.get(key);
+        Biomarker biomarker = XmlFileStore.get(key);
         Assert.assertTrue(addAnAssayPage.isBiomarkerAdded(biomarker),
                 String.format("Biomarker %s should be added added to Biomarker grid on Add an Assay page",
                         biomarker.getBiomarker()));

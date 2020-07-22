@@ -60,7 +60,7 @@ public class EditAssayPageSteps {
 
     @Then("Biomarker {string} is not displayed in Biomarker grid on Edit Assay page")
     public void biomarkerBiomarkerIsNotAddedToBiomarkerGridOnEditAssayPage(String key) {
-        Biomarker biomarker = scenarioContext.get(key);
+        Biomarker biomarker = XmlFileStore.get(key);
         Assert.assertFalse(editAssayPage.isBiomarkerAdded(biomarker),
                 String.format("Biomarker %s should not be displayed in Biomarker grid on Add an Assay page",
                         biomarker.getBiomarker()));
@@ -68,7 +68,7 @@ public class EditAssayPageSteps {
 
     @Then("Biomarker {string} is added to Biomarker grid on Edit Assay page")
     public void biomarkerBiomarkerIsAddedToBiomarkerGridOnEditAssayPage(String key) {
-        Biomarker biomarker = scenarioContext.get(key);
+        Biomarker biomarker = XmlFileStore.get(key);
         Assert.assertTrue(editAssayPage.isBiomarkerAdded(biomarker),
                 String.format("Biomarker %s should be added added to Biomarker grid on Add an Assay page",
                         biomarker.getBiomarker()));

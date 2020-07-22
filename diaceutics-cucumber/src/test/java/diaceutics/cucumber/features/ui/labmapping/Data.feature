@@ -47,7 +47,7 @@ Feature: Data
       | Associated diseases                   | random     |
       | Method                                | random     |
     And I click 'Add Biomarker' on Add an Assay page
-      Then Add Biomarker form is opened
+      Then Add Biomarker form is opened on Add an Assay page
     When I fill following fields on Add Biomarker form and save as 'biomarker' for 'assay' for 'lab':
       | Biomarker | random |
       | Variants  | random |

@@ -8,6 +8,7 @@ Feature: Location management
       Then Home page is opened
       And User should be logged in
     When I open 'Assay Management' tools
+    And I select last window
       Then Assay Management page is opened
     When I put a Lab 'labOne' on search field 'Enter keywords' and press Search icon on Assay Management page
       Then Labs page is opened

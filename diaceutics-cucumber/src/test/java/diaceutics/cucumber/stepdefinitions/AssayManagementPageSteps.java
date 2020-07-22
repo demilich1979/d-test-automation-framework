@@ -1,8 +1,6 @@
 package diaceutics.cucumber.stepdefinitions;
 
-import aquality.selenium.browser.AqualityServices;
 import diaceutics.cucumber.utilities.XmlFileStore;
-import diaceutics.selenium.configuration.Configuration;
 import diaceutics.selenium.models.Lab;
 import diaceutics.selenium.pageobject.pages.AssayManagementPage;
 import io.cucumber.java.en.Given;

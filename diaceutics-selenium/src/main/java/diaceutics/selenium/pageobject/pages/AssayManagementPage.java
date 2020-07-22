@@ -15,7 +15,7 @@ public class AssayManagementPage extends BaseForm {
             "All Countries");
 
     public AssayManagementPage() {
-        super(By.id("titleArea"), "Assay Management");
+        super(By.xpath("//h1[.='Assay Management']"), "Assay Management");
     }
 
     public AssayManagementHeaderForm getHeaderForm() {
