@@ -47,12 +47,12 @@ Feature: Data
       | Associated diseases                   | random     |
       | Method                                | random     |
     And I click 'Add Biomarker' on Add an Assay page
-      Then Add Biomarker form is opened
+      Then Add Biomarker form is opened on Add an Assay page
     When I fill following fields on Add Biomarker form and save as 'biomarker' for 'assay' for 'lab':
       | Biomarker | random |
       | Variants  | random |
     And I click Save changes on Add Biomarker form
-      Then Biomarker 'biomarker' is added to Biomarker & disease grid on Add an Assay page
+      Then Biomarker 'biomarker' is added to Biomarker grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
       Then Lab Profile page is opened
       And 'New lab assay added.' message is displayed on Lab Profile page

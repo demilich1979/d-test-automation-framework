@@ -20,7 +20,7 @@ public class RegistrationConfirmedPageSteps {
         Assert.assertTrue(registrationConfirmedPage.isDisplayed(), "Registration Confirmed page should be opened");
     }
 
-    @And("Message {string} is displayed Registration Confirmed page")
+    @And("Message {string} is displayed on Registration Confirmed page")
     public void messagePleaseEnterAValueIsDisplayedRegistrationConfirmedPage(String message) {
         Assert.assertTrue(registrationConfirmedPage.isMessageDisplayed(message),
                 String.format("Message %s should be displayed on Registration Confirmed page", message));

@@ -1,8 +1,6 @@
 package diaceutics.cucumber.stepdefinitions;
 
-import aquality.selenium.browser.AqualityServices;
 import diaceutics.cucumber.utilities.XmlFileStore;
-import diaceutics.selenium.configuration.Configuration;
 import diaceutics.selenium.models.Lab;
 import diaceutics.selenium.pageobject.pages.AssayManagementPage;
 import io.cucumber.java.en.Given;
@@ -20,8 +18,6 @@ public class AssayManagementPageSteps {
 
     @Given("Assay Management page is opened")
     public void assayManagementPageIsOpened() {
-        // ToDo: remove after fixed issue
-        AqualityServices.getBrowser().goTo("https://ice-dev.diaceuticscloud.com/profiles/");
         Assert.assertTrue(assayManagementPage.isDisplayed(), "Assay Management page should be opened");
     }
 

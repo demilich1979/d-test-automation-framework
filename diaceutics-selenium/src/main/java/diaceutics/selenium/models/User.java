@@ -8,6 +8,7 @@ public class User extends BaseModel {
     private String password;
     private String type;
     private String companyName;
+    private String positionWithinTheOrganization;
     private String firstName;
     private String lastName;
     private String verification;

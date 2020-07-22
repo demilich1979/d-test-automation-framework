@@ -9,29 +9,23 @@ import java.util.List;
 public class Assay extends BaseModel {
     private String assayName;
     private String assayDescription;
-    private String ontologies;
-    private String scoringMethod;
+    private String inHouseOrSendOut;
+    private String sendOutLab;
+    private String detects;
     private String specimensTested;
-    private String detectsGermLineSomaticAlterations;
+    private String method;
+    private String methodDescription;
+    private String turnAroundTime;
+    private String ontology;
+    private String sensitivity;
+    private String scoringMethod;
+    private String resultFormat;
+    private String classification;
     private String fda510KApprovedKit;
-    private String laboratoryDevelopedTest;
     private String fdaPmaApprovedKit;
     private String ivdCe;
     private String ruoIuo;
-    private String TurnAroundTime;
-    private String associatedDiseases;
-    private String method;
-    private String methodDescription;
     private String commercialAssays;
-    private String resultFormat;
-    private String sendOutOrInHouse;
-    private String sendOutLab;
-    private String panelNameRadio;
-    private String accuracy;
-    private String precision;
-    private String sensitivity;
-    private String batchOrIndividual;
-    private String variantsIncluded;
     private List<Biomarker> biomarkers = new ArrayList<>();
 
     public void addBiomarker(Biomarker biomarker) {
@@ -40,22 +34,24 @@ public class Assay extends BaseModel {
 
     public String getClassifications() {
         List<String> classifications = new ArrayList<>();
-        if (getLaboratoryDevelopedTest().equals("true")) {
-            classifications.add("Laboratory Developed Test (LDT)");
-        }
-        if (getFda510KApprovedKit().equals("true")) {
-            classifications.add("FDA 510K APPROVED KIT");
-        }
-        if (getRuoIuo().equals("true")) {
-            classifications.add("RUO/IUO");
-        }
-        if (getFdaPmaApprovedKit().equals("true")) {
-            classifications.add("FDA PMA APPROVED KIT");
-        }
-        if (getIvdCe().equals("true")) {
-            classifications.add("IVD-CE");
+        if (classification.equals("Commercial assay")) {
+
+            if (getIvdCe().equals("true")) {
+                classifications.add("IVD-CE");
+            }
+            if (getRuoIuo().equals("true")) {
+                classifications.add("RUO/IUO");
+            }
+            if (getFda510KApprovedKit().equals("true")) {
+                classifications.add("FDA 510K APPROVED KIT");
+            }
+            if (getFdaPmaApprovedKit().equals("true")) {
+                classifications.add("FDA PMA APPROVED KIT");
+            }
+
+            return String.join(",", classifications).replaceAll(",", ", ");
         }
 
-        return String.join(",", classifications).replaceAll(",", ", ");
+        return "Laboratory Developed Test (LDT)";
     }
 }

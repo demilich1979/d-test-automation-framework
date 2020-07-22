@@ -51,13 +51,14 @@ public class AddAnAssayPageSteps {
     }
 
     @And("I click {string} on Add an Assay page")
-    public void iClickAddAssayOnAddAnAssayPage(String buttonName) {
+    public void iClickOnAddAnAssayPage(String buttonName) {
         addAnAssayPage.clickByButton(buttonName);
     }
 
-    @Then("Add Biomarker form is opened")
+    @Then("Add Biomarker form is opened on Add an Assay page")
     public void addBiomarkerFormIsOpened() {
-        Assert.assertTrue(addAnAssayPage.getAddBiomarkerForm().isDisplayed(), "Add Biomarker form should be opened");
+        Assert.assertTrue(addAnAssayPage.getAddBiomarkerForm().isDisplayed(),
+                "Add Biomarker form should be opened on Add an Assay page");
     }
 
     @When("I fill following fields on Add Biomarker form and save as {string}:")
@@ -68,7 +69,7 @@ public class AddAnAssayPageSteps {
             biomarker.setReflectionFieldValue(AddBiomarkerFormFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
-        scenarioContext.add(key, biomarker);
+        XmlFileStore.store(key, biomarker);
     }
 
     @And("I click Save changes on Add Biomarker form")
@@ -76,11 +77,11 @@ public class AddAnAssayPageSteps {
         addAnAssayPage.getAddBiomarkerForm().clickSaveChanges();
     }
 
-    @And("Biomarker {string} is added to Biomarker & disease grid on Add an Assay page")
+    @And("Biomarker {string} is added to Biomarker grid on Add an Assay page")
     public void biomarkerBiomarkerIsAddedToBiomarkerDiseaseGridOnAddAnAssayPage(String key) {
-        Biomarker biomarker = scenarioContext.get(key);
+        Biomarker biomarker = XmlFileStore.get(key);
         Assert.assertTrue(addAnAssayPage.isBiomarkerAdded(biomarker),
-                String.format("Biomarker %s should be added added to Biomarker & disease grid on Add an Assay page",
+                String.format("Biomarker %s should be added added to Biomarker grid on Add an Assay page",
                         biomarker.getBiomarker()));
     }
 
@@ -148,4 +149,10 @@ public class AddAnAssayPageSteps {
         XmlFileStore.store(assayKey, assay);
         XmlFileStore.store(labKey, lab);
     }
+
+    @And("I click {string} on Add Biomarker form")
+    public void iClickDoneOnAddBiomarkerForm(String buttonName) {
+        addAnAssayPage.getAddBiomarkerForm().clickByButton(buttonName);
+    }
+
 }

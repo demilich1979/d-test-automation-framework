@@ -8,6 +8,7 @@ Feature: Find a Lab
       Then Home page is opened
       And User should be logged in
     When I open 'Assay Management' tools
+    And I select last window
       Then Assay Management page is opened
 
   @AssayManagement @FindLab

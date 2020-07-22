@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class MarketplaceMainPage extends BaseForm {
 
-    private static final String LINK_OF_THE_MIDDLE_TEMPLATE = "//a[contains(@class,'btn-primary')][contains(text(),'%s')]";
+    private static final String LINK_OF_THE_MIDDLE_TEMPLATE = "//div[contains(@class,'col-lg-10')]//a[contains(text(),'%s')]";
     private static final String LINK_OF_THE_BOTTOM_TEMPLATE = "//div[@class='pt-2 text-size-default']//a[contains(text(),'%s')]";
     private final IButton categoriesBtn = getElementFactory().getButton(By.id("categories"), "Categories");
     private final IButton searchBtn = getElementFactory().getButton(

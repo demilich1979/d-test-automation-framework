@@ -41,7 +41,6 @@ public enum OrganizationEditIdentityFormFields implements FormFieldInterface {
     private final String modelField;
     private final FieldType fieldType;
 
-
     OrganizationEditIdentityFormFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;

@@ -11,7 +11,6 @@ public enum CreateLabPageFields implements FormFieldInterface {
     private final String modelField;
     private final FieldType fieldType;
 
-
     CreateLabPageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;

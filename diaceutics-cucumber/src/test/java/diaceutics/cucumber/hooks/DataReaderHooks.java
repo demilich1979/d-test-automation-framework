@@ -11,6 +11,7 @@ public class DataReaderHooks {
     public void getUserInfo() {
         User adminUser = DataReader.getUserInfoByUserName("adminUser");
         User user = DataReader.getUserInfoByUserName("User");
+        User nonexistentUser = DataReader.getUserInfoByUserName("nonexistentUser");
         if (adminUser.getPassword().trim().isEmpty() || adminUser.getEmail().trim().isEmpty()) {
             adminUser.setPassword(System.getProperty("password"));
             adminUser.setPassword(System.getProperty("username"));
@@ -18,5 +19,6 @@ public class DataReaderHooks {
 
         XmlFileStore.store("adminUser", adminUser);
         XmlFileStore.store("User", user);
+        XmlFileStore.store("nonexistentUser", nonexistentUser);
     }
 }

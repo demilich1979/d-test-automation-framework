@@ -324,12 +324,12 @@ public class LabProfilePageSteps {
                 LogPatientVolumeFields.getEnumValue(fields.get(0)),
                 assay.getBiomarkers().get(0).getBiomarker());
 
-        String disease = labProfilePage.getLogPatientVolumeForm().setFieldValue(
-                LogPatientVolumeFields.getEnumValue(fields.get(1)),
-                assay.getAssociatedDiseases());
+//        String disease = labProfilePage.getLogPatientVolumeForm().setFieldValue(
+//                LogPatientVolumeFields.getEnumValue(fields.get(1)),
+//                assay.getAssociatedDiseases());
 
         volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(0)).getModelField(), biomarker);
-        volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(1)).getModelField(), disease);
+//        volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(1)).getModelField(), disease);
         XmlFileStore.store(volumeKey, volume);
     }
 }
