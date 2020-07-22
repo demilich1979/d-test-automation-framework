@@ -20,7 +20,7 @@
     "organizationAddressStreetNumberAndName": ""
   },
   "User": {
-    "email": "20200716161416.7bsvuhrz@mailosaur.io",
+    "email": "20200720102014.7bsvuhrz@mailosaur.io",
     "password": "Testpassword",
     "type": "Laboratory",
     "companyName": "Test lab",
@@ -29,10 +29,10 @@
     "website": "",
     "phone": "",
     "country": "United Kingdom",
-    "city": "London",
-    "zip": "77777",
+    "city": "",
+    "zip": "",
     "state": "",
-    "addressStreetNumberAndName": "Piccadilly",
+    "addressStreetNumberAndName": "",
     "organizationCountry": "",
     "organizationCity": "",
     "organizationZip": "",
@@ -54,5 +54,9 @@
     "companyName": "Test",
     "firstName": "viktor",
     "lastName": "kalanda"
+  },
+  "nonexistentUser": {
+    "email": "nonexistent email",
+    "password": "nonexistent password"
   }
 }

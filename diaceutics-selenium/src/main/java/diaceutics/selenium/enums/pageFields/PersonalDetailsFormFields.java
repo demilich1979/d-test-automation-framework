@@ -12,6 +12,11 @@ public enum PersonalDetailsFormFields implements FormFieldInterface {
             "firstName",
             FieldType.TEXT),
 
+    POSITION_WITHIN_THE_ORGANIZATION("POSITION WITHIN THE ORGANIZATION",
+            "user_registration_profession",
+            "positionWithinTheOrganization",
+            FieldType.TEXT),
+
     LAST_NAME_OF_THE_LEGAL_REPRESENTATIVE("LAST NAME OF THE LEGAL REPRESENTATIVE",
             "user_registration_lastName",
             "lastName",
