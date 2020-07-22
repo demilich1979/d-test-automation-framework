@@ -10,7 +10,6 @@ public enum EditPatientVolumeFields implements FormFieldInterface {
     private final String modelField;
     private final FieldType fieldType;
 
-
     EditPatientVolumeFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;

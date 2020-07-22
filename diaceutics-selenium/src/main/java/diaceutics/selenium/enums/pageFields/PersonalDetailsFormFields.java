@@ -46,7 +46,6 @@ public enum PersonalDetailsFormFields implements FormFieldInterface {
     private final String modelField;
     private final FieldType fieldType;
 
-
     PersonalDetailsFormFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;

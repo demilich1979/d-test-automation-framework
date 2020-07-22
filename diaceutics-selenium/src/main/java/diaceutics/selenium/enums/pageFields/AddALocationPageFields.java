@@ -14,7 +14,6 @@ public enum AddALocationPageFields implements FormFieldInterface {
     private final String modelField;
     private final FieldType fieldType;
 
-
     AddALocationPageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;

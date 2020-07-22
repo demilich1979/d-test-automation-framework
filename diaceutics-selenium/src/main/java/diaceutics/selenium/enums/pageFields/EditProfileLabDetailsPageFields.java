@@ -11,7 +11,6 @@ public enum EditProfileLabDetailsPageFields implements FormFieldInterface {
     private final String modelField;
     private final FieldType fieldType;
 
-
     EditProfileLabDetailsPageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;

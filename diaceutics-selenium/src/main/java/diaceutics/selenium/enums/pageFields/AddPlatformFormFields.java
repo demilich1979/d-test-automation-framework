@@ -13,7 +13,6 @@ public enum AddPlatformFormFields implements FormFieldInterface {
     private final String modelField;
     private final FieldType fieldType;
 
-
     AddPlatformFormFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;

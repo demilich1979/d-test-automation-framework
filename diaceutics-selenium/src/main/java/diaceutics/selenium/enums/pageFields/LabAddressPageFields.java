@@ -14,7 +14,6 @@ public enum LabAddressPageFields implements FormFieldInterface {
     private final String modelField;
     private final FieldType fieldType;
 
-
     LabAddressPageFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;
