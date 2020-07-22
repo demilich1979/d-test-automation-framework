@@ -202,7 +202,7 @@ Feature: Assay Management
       Then 'numberOfAssays' must be the same as a number stated in the 'Assays' Grid title
 
   @AssayManagement @Assay
-  Scenario: DIAFE:0028 Check 'Lab developed test (LDT)' classification
+  Scenario: DIAFE:0028 Verification the classification 'Lab developed test (LDT)'
     When I click on Assay 'assay' in Assays grid on Lab Profile Page
       Then Assay description page is opened
     When I click Edit Details on Assay description page
@@ -234,7 +234,7 @@ Feature: Assay Management
       And Assay 'assay' is displayed in Assays grid on Lab Profile page
 
   @AssayManagement @Assay
-  Scenario: DIAFE:0029 Check Commercial assay classification
+  Scenario: DIAFE:0029 Verification the classification 'Commercial assay'
     When I click on Assay 'assay' in Assays grid on Lab Profile Page
       Then Assay description page is opened
     When I click Edit Details on Assay description page

@@ -1,11 +1,16 @@
 package diaceutics.selenium.pageobject.forms;
 
+import aquality.selenium.browser.AqualityServices;
+import aquality.selenium.elements.Attributes;
 import aquality.selenium.elements.interfaces.*;
 import diaceutics.selenium.enums.pageFields.FormFieldInterface;
 import diaceutics.selenium.pageobject.BaseForm;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class PersonalDetailsForm extends BaseForm {
+
+    private static final String CHECKBOX_TEMPLATE = "//label[@for='%s']";
 
     private final IButton registerBtn = getElementFactory().getButton(By.id("button-register"), "Register");
 
@@ -33,7 +38,8 @@ public class PersonalDetailsForm extends BaseForm {
                 break;
 
             case CHECKBOX:
-                ICheckBox checkBox = getElementFactory().getCheckBox(By.xpath(field.getLocator()), field.getFriendlyName());
+                ICheckBox checkBox = getElementFactory().getCheckBox(
+                        By.xpath(String.format(CHECKBOX_TEMPLATE, field.getLocator())), field.getFriendlyName());
                 boolean shouldBeChecked = Boolean.parseBoolean(value);
                 if (shouldBeChecked) {
                     checkBox.click();
@@ -50,6 +56,13 @@ public class PersonalDetailsForm extends BaseForm {
 
     public void clickRegister() {
         registerBtn.clickAndWait();
+    }
+
+    public boolean isErrorContainerDisplayedForField(FormFieldInterface field) {
+//        WebElement element = AqualityServices.getBrowser().getDriver().findElement(By.id(field.getLocator()));
+//        String contents = (String) AqualityServices.getBrowser().getDriver().executeScript("return arguments[0].getAttribute('class');", element);
+        ILabel errorContainerLabel = getElementFactory().getLabel(By.id(field.getLocator()), field.getFriendlyName());
+        return errorContainerLabel.getAttribute(Attributes.CLASS.toString()).contains("is-invalid");
     }
 
 }

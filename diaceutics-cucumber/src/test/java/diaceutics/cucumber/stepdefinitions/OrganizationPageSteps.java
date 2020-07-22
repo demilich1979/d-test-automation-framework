@@ -21,7 +21,7 @@ public class OrganizationPageSteps {
     }
 
     @Then("Organization page is opened")
-    public void OrganizationPageIsOpened() {
+    public void organizationPageIsOpened() {
         Assert.assertTrue(organizationPage.isDisplayed(), "Organization page should be opened");
     }
 

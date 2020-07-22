@@ -22,4 +22,9 @@ public class HomePageSteps {
     public void iOpenAssayManagementTools(String tool) {
         homePage.openTool(tool);
     }
+
+    @When("I click Start a collaboration on Home page")
+    public void iClickStartACollaborationOnHomePage() {
+        homePage.clickStartCollaboration();
+    }
 }
