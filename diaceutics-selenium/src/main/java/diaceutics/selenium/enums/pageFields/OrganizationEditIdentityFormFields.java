@@ -1,7 +1,6 @@
 package diaceutics.selenium.enums.pageFields;
 
 public enum OrganizationEditIdentityFormFields implements FormFieldInterface {
-
     TYPE("TYPE",
             "organization_edit_identity_organization_listingListingCategories",
             "type", FieldType.COMBOBOX),

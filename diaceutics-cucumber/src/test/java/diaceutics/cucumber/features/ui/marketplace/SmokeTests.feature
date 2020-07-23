@@ -169,13 +169,29 @@ Feature: Marketplace smoke tests
     Given Marketplace Main page is opened
     When I click 'Login' on Marketplace Main page
       Then Login page is opened
-    When I login as 'User' user
+    When I login as 'adminUser' user
       Then Home page is opened
       And User should be logged in
     When I click Start a collaboration on Home page
-      Then Add Collaborations page is opened
-
-
+      Then Description collaboration page is opened
+    When I fill following fields on Description of the collaboration page and save as 'collaboration':
+      | TITLE              | Test title        |
+      | Description        | Test description  |
+      | Other requirements | Test requirements |
+      | Type               | Laboratory        |
+    And I add image 'TestImage.png' on Description collaboration page
+      Then Image 'TestImage.png' is added on Description collaboration page
+    When I click 'Proceed to step 2 of 2' on Description collaboration page
+      Then Location of the collaboration page is opened
+    When I fill following fields on Location of the collaboration page and save as 'collaboration':
+      | COUNTRY                           | Austria          |
+      | CITY                              | Test city        |
+      | ZIP                               | Test zip         |
+      | NUMBER                            | Test number      |
+      | ROUTE                             | Test route       |
+      | Additional location information   | Test information |
+      | I accept the Terms and Conditions | true             |
+    And I click 'Publish a collaboration' on Location of the collaboration page
 
     When I click 'Collaborations' on user menu on Marketplace header
     Then Collaborations page is opened

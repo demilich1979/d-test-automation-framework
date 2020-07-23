@@ -5,12 +5,11 @@ import aquality.selenium.elements.Attributes;
 import aquality.selenium.elements.interfaces.*;
 import diaceutics.selenium.enums.pageFields.FormFieldInterface;
 import diaceutics.selenium.pageobject.BaseForm;
+import diaceutics.selenium.pageobject.BaseMarketplaceForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class PersonalDetailsForm extends BaseForm {
-
-    private static final String CHECKBOX_TEMPLATE = "//label[@for='%s']";
 
     private final IButton registerBtn = getElementFactory().getButton(By.id("button-register"), "Register");
 
@@ -18,6 +17,7 @@ public class PersonalDetailsForm extends BaseForm {
         super(By.id("user_registration_firstName"), "Personal Details");
     }
 
+    @Override
     public String setFieldValue(FormFieldInterface field, String value) {
         switch (field.getFieldType()) {
             case TEXT:
@@ -39,7 +39,7 @@ public class PersonalDetailsForm extends BaseForm {
 
             case CHECKBOX:
                 ICheckBox checkBox = getElementFactory().getCheckBox(
-                        By.xpath(String.format(CHECKBOX_TEMPLATE, field.getLocator())), field.getFriendlyName());
+                        By.xpath(String.format(BaseMarketplaceForm.CHECKBOX_TEMPLATE, field.getLocator())), field.getFriendlyName());
                 boolean shouldBeChecked = Boolean.parseBoolean(value);
                 if (shouldBeChecked) {
                     checkBox.click();
