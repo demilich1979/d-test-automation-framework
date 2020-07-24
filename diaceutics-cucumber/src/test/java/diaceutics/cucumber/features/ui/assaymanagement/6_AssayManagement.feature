@@ -258,4 +258,38 @@ Feature: Assay Management
       And 'Lab assay updated.' message is displayed on Lab Profile page
       And Assay 'assay' is displayed in Assays grid on Lab Profile page
 
+  @AssayManagement @Assay
   Scenario: DIAFE:0030 Possibility to add additional values for Commercial Assays
+    When I click on 'Add assay' on Lab Profile Page
+      Then Add an Assay page is opened
+    When I fill following fields on Add an Assay page and save as 'assay':
+      | Method         | Immunohistochemistry |
+      | Classification | Commercial assay     |
+      Then The following values should be available for 'Commercial Assays' field on Add an Assay page:
+        | Roche SP263 RTU     |
+        | Roche SP142         |
+        | Agilent 22C3 RTU    |
+        | Agilent 28-8 RTU    |
+        | Leica 73-10 RTU     |
+        | mAb clone 22C3      |
+        | mAb clone E1L3N     |
+        | mAb clone CAL10     |
+        | mAb clone 28-8      |
+        | mAb clone ZR3       |
+        | mAb clone QR1       |
+        | mAb clone BSR90     |
+        | mAb clone SP142     |
+        | mAb CAL10, API3171  |
+        | mAb QR1, 2-PR292-13 |
+        | mAb clone MXR003    |
+        | mAb clone 73-10     |
+
+  @AssayManagement @Assay
+  Scenario: DIAFE:0031 Possibility to add additional values for Specimens tested
+    When I click on 'Add assay' on Lab Profile Page
+      Then Add an Assay page is opened
+      And The following values should be available for 'Specimens tested' field on Add an Assay page:
+        | Cell Blocks                                       |
+        | Cell Smears                                       |
+        | Cytology samples fixed in formalin                |
+        | Cytology samples fixed in alcohol based fixatives |

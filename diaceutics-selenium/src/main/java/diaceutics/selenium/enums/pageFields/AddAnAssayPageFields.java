@@ -27,7 +27,7 @@ public enum AddAnAssayPageFields implements FormFieldInterface {
             "detects",
             FieldType.COMBOBOX_JS),
 
-    SPECIMENS_TESTED("Specimens Tested",
+    SPECIMENS_TESTED("Specimens tested",
             "//div[./label[text()='Specimens tested']]",
             "specimensTested",
             FieldType.COMBOBOX_JS),

@@ -2,6 +2,8 @@ package diaceutics.selenium.pageobject.pages;
 
 import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.interfaces.IElement;
+import diaceutics.selenium.elements.ComboboxJs;
+import diaceutics.selenium.enums.pageFields.FormFieldInterface;
 import diaceutics.selenium.models.Biomarker;
 import diaceutics.selenium.pageobject.BaseForm;
 import diaceutics.selenium.pageobject.forms.AddBiomarkerForm;
@@ -27,5 +29,12 @@ public class AddAnAssayPage extends BaseForm {
 
         return volumeLink.size() > 0;
     }
+
+    public List<String> getListOptionsFromField(FormFieldInterface field){
+        ComboboxJs comboboxJs = getElementFactory().getCustomElement(
+                ComboboxJs.class, By.xpath(String.format(COMBOBOX_JS_TEMPLATE, field.getLocator())),
+                field.getFriendlyName());
+
+    return comboboxJs.getStringListAllOptions();}
 
 }
