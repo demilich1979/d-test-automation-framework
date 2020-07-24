@@ -17,6 +17,11 @@ public enum AddAnAssayPageFields implements FormFieldInterface {
             "sendOutLab",
             FieldType.COMBOBOX_JS),
 
+    TESTING_PURPOSE("Testing purpose",
+            "//div[./label[text()='Testing purpose']]",
+            "testingPurpose",
+            FieldType.COMBOBOX_JS),
+
     DETECTS("Detects",
             "//div[./label[text()='Detects']]",
             "detects",

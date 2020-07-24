@@ -25,6 +25,7 @@ Feature: Assay Management
       | Assay description      | Test Assay description  |
       | Inhouse or send-out?   | Send-out                |
       | Send-out Lab           | random                  |
+      | Testing purpose        | random                  |
       | Detects                | random                  |
       | Specimens Tested       | random                  |
       | Method                 | random                  |
@@ -62,6 +63,7 @@ Feature: Assay Management
       | Assay name             | New Assay               |
       | Assay description      | New Assay description   |
       | Specimens Tested       | random                  |
+      | Testing purpose        | random                  |
       | Method                 | random                  |
       | Method description     | Test Method description |
       | Turn around time (TaT) | 5                       |
@@ -70,9 +72,9 @@ Feature: Assay Management
       | Scoring method         | random                  |
       | Result Format          | random                  |
       | Classification         | Commercial assay        |
-      | FDA 510K APPROVED KIT  | true                    |
-      | FDA PMA APPROVED KIT   | true                    |
-      | IVD-CE                 | true                    |
+      | FDA 510K APPROVED KIT  | false                   |
+      | FDA PMA APPROVED KIT   | false                   |
+      | IVD-CE                 | false                   |
       | RUO/IUO                | true                    |
     And I click 'Save' on Edit Assay page
       Then Lab Profile page is opened
@@ -255,3 +257,5 @@ Feature: Assay Management
       Then Lab Profile page is opened
       And 'Lab assay updated.' message is displayed on Lab Profile page
       And Assay 'assay' is displayed in Assays grid on Lab Profile page
+
+  Scenario: DIAFE:0030 Possibility to add additional values for Commercial Assays

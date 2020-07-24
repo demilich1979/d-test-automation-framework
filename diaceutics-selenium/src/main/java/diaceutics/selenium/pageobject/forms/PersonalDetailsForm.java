@@ -1,13 +1,11 @@
 package diaceutics.selenium.pageobject.forms;
 
-import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.Attributes;
 import aquality.selenium.elements.interfaces.*;
 import diaceutics.selenium.enums.pageFields.FormFieldInterface;
 import diaceutics.selenium.pageobject.BaseForm;
 import diaceutics.selenium.pageobject.BaseMarketplaceForm;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class PersonalDetailsForm extends BaseForm {
 
@@ -59,8 +57,6 @@ public class PersonalDetailsForm extends BaseForm {
     }
 
     public boolean isErrorContainerDisplayedForField(FormFieldInterface field) {
-//        WebElement element = AqualityServices.getBrowser().getDriver().findElement(By.id(field.getLocator()));
-//        String contents = (String) AqualityServices.getBrowser().getDriver().executeScript("return arguments[0].getAttribute('class');", element);
         ILabel errorContainerLabel = getElementFactory().getLabel(By.id(field.getLocator()), field.getFriendlyName());
         return errorContainerLabel.getAttribute(Attributes.CLASS.toString()).contains("is-invalid");
     }

@@ -22,9 +22,6 @@ public class LocationOfTheCollaborationSteps {
 
     @Then("Location of the collaboration page is opened")
     public void descriptionCollaborationPageIsOpened() {
-//        while (!locationOfTheCollaborationPage.isDisplayed()) {
-//            locationOfTheCollaborationPage.clickByButton("Proceed to step 2 of 2");
-//        }
         Assert.assertTrue(locationOfTheCollaborationPage.isDisplayed(),
                 "Location of the collaboration page should be opened");
     }

@@ -39,15 +39,15 @@ public class DescriptionOfTheCollaborationSteps {
         XmlFileStore.store(key, collaboration);
     }
 
-    @And("I add image {string} on Description collaboration page")
+    @And("I upload image {string} on Description collaboration page")
     public void iAddImageTestImagePngOnDescriptionCollaborationPage(String fileName) {
-        descriptionOfTheCollaborationPage.uploadFile(fileName);
+        descriptionOfTheCollaborationPage.uploadImage(fileName);
 
     }
 
-    @Then("Image {string} is added on Description collaboration page")
-    public void imageIsAddedOnDescriptionCollaborationPage(String image) {
-        Assert.assertTrue(descriptionOfTheCollaborationPage.isImageAdded(image),
+    @Then("Image {string} is uploaded on Description collaboration page")
+    public void imageIsAddedOnDescriptionCollaborationPage(String fileName) {
+        Assert.assertTrue(descriptionOfTheCollaborationPage.isImageUploaded(fileName),
                 "Image should be added on Description collaboration page");
     }
 
