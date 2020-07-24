@@ -30,6 +30,14 @@ public class SoftAssert {
         );
     }
 
+    public void assertFalse(boolean condition,
+                           String message) {
+        performAssert(
+                () -> Assert.assertFalse(condition),
+                message
+        );
+    }
+
     public void assertEquals(Object actual,
                              Object expected,
                              String message) {

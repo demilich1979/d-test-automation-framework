@@ -33,13 +33,12 @@ public enum PersonalDetailsFormFields implements FormFieldInterface {
             "verification", FieldType.TEXT),
 
     I_ACCEPT_THE_TERMS_AND_CONDITIONS("I accept the Terms and Conditions",
-            "//label[@for='user_registration_tac']",
+            "user_registration_tac",
             "iAcceptTheTermsAndConditions", FieldType.CHECKBOX),
 
     I_ACCEPT_THE_PRIVACY_POLICY("I accept the Privacy Policy",
-            "//label[@for='user_registration_rgpd']",
+            "user_registration_rgpd",
             "iAcceptThePrivacyPolicy", FieldType.CHECKBOX);
-
 
     private final String friendlyName;
     private final String locator;

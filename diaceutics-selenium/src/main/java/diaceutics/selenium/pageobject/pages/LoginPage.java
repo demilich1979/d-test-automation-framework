@@ -1,13 +1,10 @@
 package diaceutics.selenium.pageobject.pages;
 
-import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.ITextBox;
 import diaceutics.selenium.models.User;
 import diaceutics.selenium.pageobject.BaseForm;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BaseForm {
 

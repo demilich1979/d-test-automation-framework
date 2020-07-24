@@ -1,8 +1,10 @@
 package diaceutics.selenium.pageobject.forms;
 
+import aquality.selenium.elements.Attributes;
 import aquality.selenium.elements.interfaces.*;
 import diaceutics.selenium.enums.pageFields.FormFieldInterface;
 import diaceutics.selenium.pageobject.BaseForm;
+import diaceutics.selenium.pageobject.BaseMarketplaceForm;
 import org.openqa.selenium.By;
 
 public class PersonalDetailsForm extends BaseForm {
@@ -13,6 +15,7 @@ public class PersonalDetailsForm extends BaseForm {
         super(By.id("user_registration_firstName"), "Personal Details");
     }
 
+    @Override
     public String setFieldValue(FormFieldInterface field, String value) {
         switch (field.getFieldType()) {
             case TEXT:
@@ -33,7 +36,8 @@ public class PersonalDetailsForm extends BaseForm {
                 break;
 
             case CHECKBOX:
-                ICheckBox checkBox = getElementFactory().getCheckBox(By.xpath(field.getLocator()), field.getFriendlyName());
+                ICheckBox checkBox = getElementFactory().getCheckBox(
+                        By.xpath(String.format(BaseMarketplaceForm.CHECKBOX_TEMPLATE, field.getLocator())), field.getFriendlyName());
                 boolean shouldBeChecked = Boolean.parseBoolean(value);
                 if (shouldBeChecked) {
                     checkBox.click();
@@ -50,6 +54,11 @@ public class PersonalDetailsForm extends BaseForm {
 
     public void clickRegister() {
         registerBtn.clickAndWait();
+    }
+
+    public boolean isErrorContainerDisplayedForField(FormFieldInterface field) {
+        ILabel errorContainerLabel = getElementFactory().getLabel(By.id(field.getLocator()), field.getFriendlyName());
+        return errorContainerLabel.getAttribute(Attributes.CLASS.toString()).contains("is-invalid");
     }
 
 }

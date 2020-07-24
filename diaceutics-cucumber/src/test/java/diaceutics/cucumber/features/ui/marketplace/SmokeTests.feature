@@ -118,7 +118,7 @@ Feature: Marketplace smoke tests
       Then SearchResults page is opened
 
   @Marketplace @Smoke
-  Scenario: Login required fields validation
+  Scenario: Validation required fields for the login page
     Given Marketplace Main page is opened
     When I click 'Login' on Marketplace Main page
       Then Login page is opened
@@ -128,9 +128,72 @@ Feature: Marketplace smoke tests
       Then Message 'Wrong email or password' is displayed on Login page
 
 
-  @Marketplace @NotAutomated
-  Scenario: Registration form: required fields validation
+  @Marketplace1
+  Scenario: Validation required fields for the registration page
     Given Marketplace Main page is opened
     When I click 'Register' on Marketplace Main page
       Then Registration page is opened
     When I click Register on Personal Details form on Registration page
+      Then Error container is displayed for following fields:
+        | COMPANY NAME |
+    When I fill following fields on Personal Details form on Registration page and save as 'user':
+      | COMPANY NAME | Test lab |
+    And I click Register on Personal Details form on Registration page
+      Then Error container is not displayed for following fields:
+        | COMPANY NAME |
+      And Error container is displayed for following fields:
+        | POSITION WITHIN THE ORGANIZATION       |
+        | FIRST NAME OF THE LEGAL REPRESENTATIVE |
+        | LAST NAME OF THE LEGAL REPRESENTATIVE  |
+        | EMAIL                                  |
+        | NEW PASSWORD                           |
+        | VERIFICATION                           |
+    When I fill following fields on Personal Details form on Registration page and save as 'user':
+      | POSITION WITHIN THE ORGANIZATION       | Test position   |
+      | FIRST NAME OF THE LEGAL REPRESENTATIVE | Test first name |
+      | LAST NAME OF THE LEGAL REPRESENTATIVE  | Test last name  |
+      | EMAIL                                  | @mailosaur.io   |
+      | NEW PASSWORD                           | Testpassword    |
+      | VERIFICATION                           | Testpassword    |
+    And I click Register on Personal Details form on Registration page
+      Then Error container is not displayed for following fields:
+        | POSITION WITHIN THE ORGANIZATION       |
+        | FIRST NAME OF THE LEGAL REPRESENTATIVE |
+        | LAST NAME OF THE LEGAL REPRESENTATIVE  |
+        | EMAIL                                  |
+        | NEW PASSWORD                           |
+        | VERIFICATION                           |
+
+  @Marketplace
+  Scenario: Possibility to successfully create a Collaboration
+    Given Marketplace Main page is opened
+    When I click 'Login' on Marketplace Main page
+      Then Login page is opened
+    When I login as 'User' user
+      Then Home page is opened
+      And User should be logged in
+    When I click Start a collaboration on Home page
+      Then Description collaboration page is opened
+    When I fill following fields on Description of the collaboration page and save as 'collaboration':
+      | TITLE              | Test title        |
+      | Description        | Test description  |
+      | Other requirements | Test requirements |
+      | Type               | Laboratory        |
+    And I upload image 'TestImage.png' on Description collaboration page
+      Then Image 'TestImage.png' is uploaded on Description collaboration page
+    When I click 'Proceed to step 2 of 2' on Description collaboration page
+      Then Location of the collaboration page is opened
+    When I fill following fields on Location of the collaboration page and save as 'collaboration':
+      | COUNTRY                           | Belarus          |
+      | CITY                              | Minsk            |
+      | ZIP                               | 1100             |
+      | NUMBER                            | 76               |
+      | ROUTE                             | Test route       |
+      | Additional location information   | Test information |
+      | I accept the Terms and Conditions | true             |
+    And I click 'Publish a collaboration' on Location of the collaboration page
+      Then Edit collaboration page is opened
+      And Collaboration 'collaboration' with following fields is displayed on Edit collaboration page
+        | TITLE              |
+        | Description        |
+        | Other requirements |

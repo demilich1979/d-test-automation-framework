@@ -1,5 +1,6 @@
 package diaceutics.cucumber.stepdefinitions;
 
+import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.PersonalDetailsFormFields;
 import diaceutics.selenium.models.User;
@@ -8,9 +9,11 @@ import diaceutics.selenium.utilities.MailUtil;
 import diaceutics.selenium.utilities.TimeUtil;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -46,4 +49,21 @@ public class RegistrationPageSteps {
         registrationPage.getPersonalDetailsForm().clickRegister();
     }
 
+    @Then("Error container is displayed for following fields:")
+    public void errorContainerIsDisplayedForFollowingFields(List<String> fields) {
+        fields.forEach((field) -> {
+            SoftAssert.getInstance().assertTrue(registrationPage.getPersonalDetailsForm().isErrorContainerDisplayedForField(
+                    PersonalDetailsFormFields.getEnumValue(field)),
+                    String.format("Error container for field - %s should be displayed",field));
+        });
+    }
+
+    @Then("Error container is not displayed for following fields:")
+    public void errorContainerIsNotDisplayedForFollowingFields(List<String> fields) {
+        fields.forEach((field) -> {
+            SoftAssert.getInstance().assertFalse(registrationPage.getPersonalDetailsForm().isErrorContainerDisplayedForField(
+                    PersonalDetailsFormFields.getEnumValue(field)),
+                    String.format("Error container for field - %s is displayed",field));
+        });
+    }
 }

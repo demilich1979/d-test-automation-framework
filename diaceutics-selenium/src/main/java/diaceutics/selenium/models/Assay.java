@@ -11,6 +11,7 @@ public class Assay extends BaseModel {
     private String assayDescription;
     private String inHouseOrSendOut;
     private String sendOutLab;
+    private String testingPurpose;
     private String detects;
     private String specimensTested;
     private String method;
