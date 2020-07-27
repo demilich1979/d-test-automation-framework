@@ -27,7 +27,7 @@ Feature: Assay Management
       | Send-out Lab           | random                  |
       | Testing purpose        | random                  |
       | Detects                | random                  |
-      | Specimens Tested       | random                  |
+      | Specimens tested       | random                  |
       | Method                 | random                  |
       | Method description     | Test Method description |
       | Turn around time (TaT) | 5                       |
@@ -62,7 +62,7 @@ Feature: Assay Management
     When I fill following fields on Edit Assay page and save as 'assay':
       | Assay name             | New Assay               |
       | Assay description      | New Assay description   |
-      | Specimens Tested       | random                  |
+      | Specimens tested       | random                  |
       | Testing purpose        | random                  |
       | Method                 | random                  |
       | Method description     | Test Method description |
@@ -141,7 +141,7 @@ Feature: Assay Management
       | Assay name             | New Assay                |
       | Assay description      | New Assay description    |
       | Detects                | random                   |
-      | Specimens Tested       | random                   |
+      | Specimens tested       | random                   |
       | Method                 | random                   |
       | Method description     | Test Method description  |
       | Turn around time (TaT) | 5                        |
@@ -169,7 +169,7 @@ Feature: Assay Management
       | Inhouse or send-out?   | Send-out                |
       | Send-out Lab           | random                  |
       | Detects                | random                  |
-      | Specimens Tested       | random                  |
+      | Specimens tested       | random                  |
       | Method                 | random                  |
       | Method description     | Test Method description |
       | Turn around time (TaT) | 5                       |
@@ -212,7 +212,7 @@ Feature: Assay Management
     When I fill following fields on Edit Assay page and save as 'assay':
       | Assay name             | New Assay                |
       | Assay description      | New Assay description    |
-      | Specimens Tested       | random                   |
+      | Specimens tested       | random                   |
       | Method                 | random                   |
       | Method description     | Test Method description  |
       | Turn around time (TaT) | 5                        |
