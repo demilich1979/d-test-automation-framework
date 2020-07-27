@@ -12,7 +12,8 @@ public enum DescriptionOfTheCollaborationPageFields implements FormFieldInterfac
             "otherRequirements",
             FieldType.TEXT),
 
-    TYPE("Type", "new_listing__step_one_categories", "type", FieldType.COMBOBOX);
+    TYPE("Type", "new_listing__step_one_categories", "type", FieldType.COMBOBOX),
+    ENTER_A_YOUTUBE_URL("Enter a Youtube URL", "video-add-input", "youtubeUrl", FieldType.TEXT);
 
     private final String friendlyName;
     private final String locator;

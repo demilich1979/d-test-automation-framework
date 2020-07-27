@@ -1,36 +1,58 @@
 package diaceutics.selenium.pageobject.pages;
 
 import aquality.selenium.browser.AqualityServices;
+import aquality.selenium.elements.interfaces.IButton;
+import aquality.selenium.elements.interfaces.ILabel;
 import aquality.selenium.elements.interfaces.ILink;
 import diaceutics.selenium.pageobject.BaseMarketplaceForm;
 import diaceutics.selenium.utilities.ResourceUtil;
+import org.apache.commons.io.FilenameUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 
 public class DescriptionOfTheCollaborationPage extends BaseMarketplaceForm {
 
-    private static final String IMAGE_LINK_TEMPLATE = "//div[@class='image-item'][//input[@value='%s']]";
-
-    private final WebElement chooseImage = AqualityServices.getBrowser().getDriver().findElement(
-            By.xpath("//body/input[@type='file'and @accept='.jpg, .gif, .png, .jpeg']"));
+    private static final String FILE_LINK_TEMPLATE = "//div[contains(@class,'item') and @data-filename][//input[@value='%s']]";
+    private static final String INPUT_TEMPLATE = "//body/input[@type='file' and contains(@accept,'%s')]";
+    private static final String ALERT_MESSAGE_TEMPLATE = "//h6[contains(text(),'%s')]";
+    private final ILink videosLink = getElementFactory().getLink(By.id("videos-tab"), "Videos");
+    private final IButton addVideoBtn = getElementFactory().getButton(By.id("video-add-button"), "Add video");
 
     public DescriptionOfTheCollaborationPage() {
         super(By.xpath("//h2[contains(text(),'Describe your collaboration')]"), "Description collaboration");
     }
 
-    public boolean isImageUploaded(String fileName) {
+    public void uploadFile(String fileName) {
+        String extension = FilenameUtils.getExtension(fileName);
+        WebElement chooseFile = AqualityServices.getBrowser().getDriver().findElement(
+                By.xpath(String.format(INPUT_TEMPLATE, extension)));
+
+        AqualityServices.getBrowser().getDriver()
+                .executeScript("return arguments[0].style.visibility = 'visible';", chooseFile);
+
+        chooseFile.sendKeys(ResourceUtil.getResourceUrl(fileName));
+    }
+
+    public boolean isFileUploaded(String fileName) {
         ILink imageLink = getElementFactory().getLink(
-                By.xpath(String.format(IMAGE_LINK_TEMPLATE, fileName)), "Image");
+                By.xpath(String.format(FILE_LINK_TEMPLATE, fileName)), fileName);
 
         return imageLink.state().waitForDisplayed();
     }
 
-    public void uploadImage(String fileName) {
-        AqualityServices.getBrowser().getDriver()
-                .executeScript("return arguments[0].style.visibility = 'visible';", chooseImage);
+    public void clickByVideos() {
+        videosLink.clickAndWait();
+    }
 
-        chooseImage.sendKeys(ResourceUtil.getResourceUrl(fileName));
+    public void clickAddVideo() {
+        addVideoBtn.clickAndWait();
+    }
+
+    @Override
+    public boolean isAlertMessageDisplayed(String message) {
+        ILabel alertLink = getElementFactory().getLabel(
+                By.xpath(String.format(ALERT_MESSAGE_TEMPLATE, message)), message);
+        return alertLink.state().waitForDisplayed();
     }
 }
-

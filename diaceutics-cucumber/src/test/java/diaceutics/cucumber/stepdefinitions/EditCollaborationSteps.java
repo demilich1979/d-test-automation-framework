@@ -7,6 +7,7 @@ import diaceutics.selenium.models.Collaboration;
 import diaceutics.selenium.pageobject.pages.EditCollaborationPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class EditCollaborationSteps {
                 "Edit collaboration page should be opened");
     }
 
-    @And("Collaboration {string} with following fields is displayed on Edit collaboration page")
+    @And("Collaboration {string} with following fields is displayed on Presentation form on Edit collaboration page")
     public void collaborationWithFollowingFieldsIsDisplayedOnEditCollaborationPage(String key, List<String> fields) {
         Collaboration collaboration = XmlFileStore.get(key);
         fields.forEach(field -> {
@@ -40,5 +41,27 @@ public class EditCollaborationSteps {
                     String.format("Value %s for %s is not correct on Edit collaboration page", actualValue, field));
         });
 
+    }
+
+    @When("I click {string} on Edit collaboration page")
+    public void iClickCategoriesOnEditCollaborationPage(String linkName) {
+        editCollaborationPage.clickLink(linkName);
+    }
+
+    @Then("Categories form on Edit collaboration page is opened")
+    public void categoriesFormOnEditCollaborationPageIsOpened() {
+        Assert.assertTrue(editCollaborationPage.getCategoriesOfTheCollaborationForm().isDisplayed(),
+                "Categories form on Edit collaboration page should be opened");
+    }
+
+    @And("Categories are displayed for Collaboration {string} on Categories form on Edit collaboration page")
+    public void categoriesAreDisplayedForCollaborationCollaborationOnCategoriesFormOnEditCollaborationPage(String key) {
+        Collaboration collaboration = XmlFileStore.get(key);
+        String actualValue = editCollaborationPage.getCategoriesOfTheCollaborationForm().getCategories();
+        String expectedValue = collaboration.getReflectionFieldValue("type");
+        SoftAssert.getInstance().assertEquals(
+                actualValue,
+                expectedValue,
+                String.format("Value %s for categories is not correct on Edit collaboration page", actualValue));
     }
 }

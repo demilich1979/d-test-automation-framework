@@ -1,6 +1,6 @@
 Feature: Marketplace smoke tests
 
-  @Marketplace
+  @Marketplace @Smoke
   Scenario: User login verification
     Given Marketplace Main page is opened
     When I click 'Login' on Marketplace Main page
@@ -9,7 +9,7 @@ Feature: Marketplace smoke tests
       Then Home page is opened
       And User should be logged in
 
-  @Marketplace
+  @Marketplace @Smoke
   Scenario: User registration check
     Given Marketplace Main page is opened
     When I click 'Register' on Marketplace Main page
@@ -38,7 +38,7 @@ Feature: Marketplace smoke tests
 #      Then Home page is opened
 #      And User should be logged in
 
-  @Marketplace
+  @Marketplace @Smoke
   Scenario: User Logout Confirmation
     Given Marketplace Main page is opened
     When I click 'Login' on Marketplace Main page
@@ -50,7 +50,7 @@ Feature: Marketplace smoke tests
       Then Marketplace Main page is opened
       And User should be logout
 
-  @Marketplace
+  @Marketplace @Smoke
   Scenario: Checking the links (login, register) on the Marketplace header
     Given Marketplace Main page is opened
     When I click 'Login' on Marketplace header
@@ -60,7 +60,7 @@ Feature: Marketplace smoke tests
     When I click 'Register' on Marketplace header
       Then Registration page is opened
 
-  @Marketplace
+  @Marketplace @Smoke
   Scenario: Checking the links (login, register) on the bottom of the Marketplace page
     Given Marketplace Main page is opened
     When I click link 'Login' on the bottom of the Marketplace Main page
@@ -70,7 +70,7 @@ Feature: Marketplace smoke tests
     When I click link 'Register' on the bottom of the Marketplace Main page
       Then Registration page is opened
 
-  @Marketplace
+  @Marketplace @Smoke
   Scenario: Checking the user data
     Given Marketplace Main page is opened
     When I click 'Login' on Marketplace Main page
@@ -104,7 +104,7 @@ Feature: Marketplace smoke tests
         | STATE                          |
         | ADDRESS STREET NUMBER AND NAME |
 
-  @Marketplace
+  @Marketplace @Smoke
   Scenario: Search form validation
     Given Marketplace Main page is opened
     When I fill following fields on Search form on Marketplace Main page and save as 'search template':
@@ -127,21 +127,20 @@ Feature: Marketplace smoke tests
     When I login as 'nonexistentUser' user
       Then Message 'Wrong email or password' is displayed on Login page
 
-
-  @Marketplace1
+  @Marketplace @Smoke
   Scenario: Validation required fields for the registration page
     Given Marketplace Main page is opened
     When I click 'Register' on Marketplace Main page
       Then Registration page is opened
     When I click Register on Personal Details form on Registration page
-      Then Error container is displayed for following fields:
+      Then Error container is displayed for following fields on Registration page:
         | COMPANY NAME |
     When I fill following fields on Personal Details form on Registration page and save as 'user':
       | COMPANY NAME | Test lab |
     And I click Register on Personal Details form on Registration page
-      Then Error container is not displayed for following fields:
+      Then Error container is not displayed for following fields on Registration page:
         | COMPANY NAME |
-      And Error container is displayed for following fields:
+      And Error container is displayed for following fields on Registration page:
         | POSITION WITHIN THE ORGANIZATION       |
         | FIRST NAME OF THE LEGAL REPRESENTATIVE |
         | LAST NAME OF THE LEGAL REPRESENTATIVE  |
@@ -156,44 +155,10 @@ Feature: Marketplace smoke tests
       | NEW PASSWORD                           | Testpassword    |
       | VERIFICATION                           | Testpassword    |
     And I click Register on Personal Details form on Registration page
-      Then Error container is not displayed for following fields:
+      Then Error container is not displayed for following fields on Registration page:
         | POSITION WITHIN THE ORGANIZATION       |
         | FIRST NAME OF THE LEGAL REPRESENTATIVE |
         | LAST NAME OF THE LEGAL REPRESENTATIVE  |
         | EMAIL                                  |
         | NEW PASSWORD                           |
         | VERIFICATION                           |
-
-  @Marketplace
-  Scenario: Possibility to successfully create a Collaboration
-    Given Marketplace Main page is opened
-    When I click 'Login' on Marketplace Main page
-      Then Login page is opened
-    When I login as 'User' user
-      Then Home page is opened
-      And User should be logged in
-    When I click Start a collaboration on Home page
-      Then Description collaboration page is opened
-    When I fill following fields on Description of the collaboration page and save as 'collaboration':
-      | TITLE              | Test title        |
-      | Description        | Test description  |
-      | Other requirements | Test requirements |
-      | Type               | Laboratory        |
-    And I upload image 'TestImage.png' on Description collaboration page
-      Then Image 'TestImage.png' is uploaded on Description collaboration page
-    When I click 'Proceed to step 2 of 2' on Description collaboration page
-      Then Location of the collaboration page is opened
-    When I fill following fields on Location of the collaboration page and save as 'collaboration':
-      | COUNTRY                           | Belarus          |
-      | CITY                              | Minsk            |
-      | ZIP                               | 1100             |
-      | NUMBER                            | 76               |
-      | ROUTE                             | Test route       |
-      | Additional location information   | Test information |
-      | I accept the Terms and Conditions | true             |
-    And I click 'Publish a collaboration' on Location of the collaboration page
-      Then Edit collaboration page is opened
-      And Collaboration 'collaboration' with following fields is displayed on Edit collaboration page
-        | TITLE              |
-        | Description        |
-        | Other requirements |
