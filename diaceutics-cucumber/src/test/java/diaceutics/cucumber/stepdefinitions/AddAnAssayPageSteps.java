@@ -1,9 +1,11 @@
 package diaceutics.cucumber.stepdefinitions;
 
 import diaceutics.cucumber.utilities.ScenarioContext;
+import diaceutics.cucumber.utilities.SoftAssert;
 import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.AddAnAssayPageFields;
 import diaceutics.selenium.enums.pageFields.AddBiomarkerFormFields;
+import diaceutics.selenium.enums.pageFields.CreateLabPageFields;
 import diaceutics.selenium.models.Assay;
 import diaceutics.selenium.models.Biomarker;
 import diaceutics.selenium.models.Lab;
@@ -16,6 +18,7 @@ import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Map;
 
 
@@ -155,4 +158,13 @@ public class AddAnAssayPageSteps {
         addAnAssayPage.getAddBiomarkerForm().clickByButton(buttonName);
     }
 
+    @Then("The following values should be available for {string} field on Add an Assay page:")
+    public void theFollowingValuesShouldBeAvailableForCommercialAssaysFieldOnAddAnAssayPage(String field, List<String> values) {
+        List<String> options = addAnAssayPage.getListOptionsFromField(AddAnAssayPageFields.getEnumValue(field));
+        values.forEach(value -> {
+            SoftAssert.getInstance().assertTrue(options.contains(value),
+                    String.format("Value %s should be available for %s field on Add an Assay page", value, field));
+        });
+
+    }
 }
