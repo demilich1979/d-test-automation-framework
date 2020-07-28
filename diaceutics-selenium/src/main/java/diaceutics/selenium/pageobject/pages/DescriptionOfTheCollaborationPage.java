@@ -5,6 +5,7 @@ import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.ILabel;
 import aquality.selenium.elements.interfaces.ILink;
 import diaceutics.selenium.pageobject.BaseMarketplaceForm;
+import diaceutics.selenium.utilities.JavaScriptUtil;
 import diaceutics.selenium.utilities.ResourceUtil;
 import org.apache.commons.io.FilenameUtils;
 import org.openqa.selenium.By;
@@ -28,9 +29,7 @@ public class DescriptionOfTheCollaborationPage extends BaseMarketplaceForm {
         WebElement chooseFile = AqualityServices.getBrowser().getDriver().findElement(
                 By.xpath(String.format(INPUT_TEMPLATE, extension)));
 
-        AqualityServices.getBrowser().getDriver()
-                .executeScript("return arguments[0].style.visibility = 'visible';", chooseFile);
-
+        JavaScriptUtil.makeElementStyleVisible(chooseFile);
         chooseFile.sendKeys(ResourceUtil.getResourceUrl(fileName));
     }
 
@@ -43,6 +42,7 @@ public class DescriptionOfTheCollaborationPage extends BaseMarketplaceForm {
 
     public void clickByVideos() {
         videosLink.clickAndWait();
+        videosLink.getJsActions().scrollIntoView();
     }
 
     public void clickAddVideo() {
