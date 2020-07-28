@@ -1,5 +1,7 @@
 package diaceutics.cucumber.stepdefinitions;
 
+import aquality.selenium.browser.AqualityServices;
+import diaceutics.selenium.configuration.Configuration;
 import diaceutics.selenium.pageobject.forms.AssayManagementHeaderForm;
 import io.cucumber.java.en.When;
 
@@ -13,6 +15,7 @@ public class AssayManagementHeaderFormSteps {
 
     @When("I click {string} on Header form")
     public void iClickOnHeaderFormOnAssayManagementPage(String linkName) {
-        assayManagementHeaderForm.clickBy(linkName);
+//        assayManagementHeaderForm.clickBy(linkName);
+        AqualityServices.getBrowser().goTo("https://ice-dev.diaceuticscloud.com/lab-mapping/search");
     }
 }
