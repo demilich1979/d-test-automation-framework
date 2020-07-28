@@ -1,1 +1,1 @@
-return arguments[0].style.visibility = 'visible';
+arguments[0].style.visibility = 'visible';
