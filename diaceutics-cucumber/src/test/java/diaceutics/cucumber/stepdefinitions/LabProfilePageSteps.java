@@ -6,7 +6,6 @@ import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.*;
 import diaceutics.selenium.models.*;
 import diaceutics.selenium.pageobject.pages.LabProfilePage;
-import diaceutics.selenium.utilities.TimeUtil;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -192,14 +191,18 @@ public class LabProfilePageSteps {
 
     @Then("Log patient volume form is opened")
     public void logPatientVolumeFormIsOpenedOnLabProfilePage() {
-        Assert.assertTrue(labProfilePage.getLogPatientVolumeForm().isDisplayed(), "Log patient volume form should be opened");
+        Assert.assertTrue(labProfilePage.getLogPatientVolumeForm().isDisplayed(),
+                "Log patient volume form should be opened");
     }
 
     @When("I fill following fields on Log patient volume form and save as {string}:")
     public void iFillFollowingFieldsOnLogPatientVolumeFormAndSaveAsVolume(String key, Map<String, String> data) {
         Volume volume = new Volume();
         data.forEach((field, value) -> {
-            String selectedValue = labProfilePage.getLogPatientVolumeForm().setFieldValue(LogPatientVolumeFields.getEnumValue(field), value);
+            String selectedValue = labProfilePage.getLogPatientVolumeForm()
+                    .setFieldValue(LogPatientVolumeFields.getEnumValue(field), value);
+
+            selectedValue = field.equals("Volume") && Integer.parseInt(selectedValue) < 50 ? "<50" : selectedValue;
             volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
@@ -207,7 +210,8 @@ public class LabProfilePageSteps {
     }
 
     @Then("Message {string} for {string} is displayed on Log patient volume form")
-    public void messageYourVolumeHasBeenAddedForDiseaseAndBiomarkerForVolumeIsDisplayedOnLogPatientVolumeForm(String messageTemplate, String key) {
+    public void messageYourVolumeHasBeenAddedForDiseaseAndBiomarkerForVolumeIsDisplayedOnLogPatientVolumeForm(
+            String messageTemplate, String key) {
         Volume volume = XmlFileStore.get(key);
         String message = String.format(messageTemplate, volume.getDisease(), volume.getBiomarker());
         Assert.assertTrue(labProfilePage.getLogPatientVolumeForm().isMessageForVolumeDisplayed(message, volume),
@@ -254,14 +258,18 @@ public class LabProfilePageSteps {
 
     @Then("Edit patient volume form is opened")
     public void editPatientVolumeFormIsOpened() {
-        Assert.assertTrue(labProfilePage.getEditPatientVolumeForm().isDisplayed(), "Edit patient volume form should be opened");
+        Assert.assertTrue(labProfilePage.getEditPatientVolumeForm().isDisplayed(),
+                "Edit patient volume form should be opened");
     }
 
     @When("I fill following fields on Edit patient volume form and save as {string}:")
     public void iFillFollowingFieldsOnEditPatientVolumeFormAndSaveAsVolume(String key, Map<String, String> data) {
         Volume volume = XmlFileStore.get(key);
         data.forEach((field, value) -> {
-            String selectedValue = labProfilePage.getEditPatientVolumeForm().setFieldValue(EditPatientVolumeFields.getEnumValue(field), value);
+            String selectedValue = labProfilePage.getEditPatientVolumeForm()
+                    .setFieldValue(EditPatientVolumeFields.getEnumValue(field), value);
+
+            selectedValue = field.equals("Volume") && Integer.parseInt(selectedValue) < 50 ? "<50" : selectedValue;
             volume.setReflectionFieldValue(EditPatientVolumeFields.getEnumValue(field).getModelField(), selectedValue);
         });
 
@@ -274,7 +282,8 @@ public class LabProfilePageSteps {
     }
 
     @Then("Message {string} for {string} is displayed on Edit patient volume form")
-    public void messageVolumeHasBeenAddedForDiseaseAndBiomarkerForVolumeIsDisplayedOnEditPatientVolumeForm(String messageTemplate, String key) {
+    public void messageVolumeHasBeenAddedForDiseaseAndBiomarkerForVolumeIsDisplayedOnEditPatientVolumeForm(
+            String messageTemplate, String key) {
         Volume volume = XmlFileStore.get(key);
         String message = String.format(messageTemplate, volume.getDisease(), volume.getBiomarker());
         Assert.assertTrue(labProfilePage.getEditPatientVolumeForm().isMessageForVolumeDisplayed(message, volume),
@@ -320,16 +329,11 @@ public class LabProfilePageSteps {
             List<String> fields) {
         Assay assay = XmlFileStore.get(assayKey);
         Volume volume = XmlFileStore.get(volumeKey);
-        String biomarker = labProfilePage.getLogPatientVolumeForm().setFieldValue(
-                LogPatientVolumeFields.getEnumValue(fields.get(0)),
-                assay.getBiomarkers().get(0).getBiomarker());
+        String biomarker = assay.getBiomarkers().get(0).getBiomarker();
+        String selectedValue = labProfilePage.getLogPatientVolumeForm()
+                .setFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(0)), biomarker);
 
-//        String disease = labProfilePage.getLogPatientVolumeForm().setFieldValue(
-//                LogPatientVolumeFields.getEnumValue(fields.get(1)),
-//                assay.getAssociatedDiseases());
-
-        volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(0)).getModelField(), biomarker);
-//        volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(1)).getModelField(), disease);
+        volume.setReflectionFieldValue(LogPatientVolumeFields.getEnumValue(fields.get(0)).getModelField(), selectedValue);
         XmlFileStore.store(volumeKey, volume);
     }
 }

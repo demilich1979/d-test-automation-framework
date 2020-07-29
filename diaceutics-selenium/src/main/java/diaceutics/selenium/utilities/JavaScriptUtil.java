@@ -27,4 +27,13 @@ public class JavaScriptUtil {
         }
     }
 
+    public static void scrollHorizontalBarToRight(WebElement element) {
+        try {
+            AqualityServices.getBrowser().executeScript(
+                    new File(ResourceUtil.getResourcePath("scrollHorizontalBarToRight.js")), element);
+        } catch (IOException e) {
+            Logger.getInstance().warn(e.getMessage());
+        }
+    }
+
 }

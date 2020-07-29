@@ -22,18 +22,19 @@ public class Assay extends BaseModel {
     private String scoringMethod;
     private String resultFormat;
     private String classification;
+    private String classifications;
     private String fda510KApprovedKit;
     private String fdaPmaApprovedKit;
     private String ivdCe;
     private String ruoIuo;
-    private String commercialAssays;
+    private String commercialAssays = "Unspecified";
     private List<Biomarker> biomarkers = new ArrayList<>();
 
     public void addBiomarker(Biomarker biomarker) {
         biomarkers.add(biomarker);
     }
 
-    public String getClassifications() {
+    public String addClassifications() {
         List<String> classifications = new ArrayList<>();
         if (classification.equals("Commercial assay")) {
 

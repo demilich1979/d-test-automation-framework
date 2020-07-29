@@ -60,14 +60,6 @@ public class EditAssayPageSteps {
                         biomarker.getBiomarker()));
     }
 
-    @Then("Biomarker {string} is added to Biomarker grid on Edit Assay page")
-    public void biomarkerBiomarkerIsAddedToBiomarkerGridOnEditAssayPage(String key) {
-        Biomarker biomarker = XmlFileStore.get(key);
-        Assert.assertTrue(editAssayPage.isBiomarkerAdded(biomarker),
-                String.format("Biomarker %s should be added added to Biomarker grid on Add an Assay page",
-                        biomarker.getBiomarker()));
-    }
-
     @Then("Message {string} is displayed on Edit Assay page")
     public void messageIsDisplayedOnEditAssayPage(String message) {
         Assert.assertTrue(editAssayPage.isAlertMessageDisplayed(message),

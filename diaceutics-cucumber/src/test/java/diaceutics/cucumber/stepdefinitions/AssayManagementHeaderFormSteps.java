@@ -16,6 +16,6 @@ public class AssayManagementHeaderFormSteps {
     @When("I click {string} on Header form")
     public void iClickOnHeaderFormOnAssayManagementPage(String linkName) {
 //        assayManagementHeaderForm.clickBy(linkName);
-        AqualityServices.getBrowser().goTo("https://ice-dev.diaceuticscloud.com/lab-mapping/search");
+        AqualityServices.getBrowser().goTo("https://www.dev.dxrx.io/en/mappings/lab/");
     }
 }

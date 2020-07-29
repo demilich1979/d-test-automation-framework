@@ -17,7 +17,7 @@ Feature: Volume Management
       Then Lab Profile page is opened
 
   @AssayManagement @VolumeManagement
-  Scenario: DIAFE:0030 Possibility to add a volume to the existing lab
+  Scenario: DIAFE:0032 Possibility to add a volume to the existing lab
     When I click on 'Add volume' on Lab Profile Page
       Then Log patient volume form is opened
     When I fill following fields on Log patient volume form and save as 'volume':
@@ -33,7 +33,7 @@ Feature: Volume Management
       And Volume 'volume' is added to Volumes grid on Lab Profile page
 
   @AssayManagement @VolumeManagement
-  Scenario: DIAFE:0031 Volume duplication impossibility
+  Scenario: DIAFE:0033 Volume duplication impossibility
     When I click on 'Add volume' on Lab Profile Page
       Then Log patient volume form is opened
     When I fill following fields on Log patient volume form using data from 'volume':
@@ -46,13 +46,13 @@ Feature: Volume Management
       Then Message 'A volume already exists for this criteria and time period.' is displayed on Log patient volume form
 
   @AssayManagement @VolumeManagement
-  Scenario: DIAFE:0032 Possibility to edit volumes
+  Scenario: DIAFE:0034 Possibility to edit volumes
     When I click on Edit button for the 'volume' volume on Lab Profile Page
       Then Edit patient volume form is opened
     When I fill following fields on Edit patient volume form and save as 'volume':
       | Disease              | random |
       | Biomarker            | random |
-      | Volume               | 4      |
+      | Volume               | 51     |
     And I click 'Update volume' on Edit patient volume form
       Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volume' is displayed on Edit patient volume form
     When I click 'Done' on Edit patient volume form
@@ -60,7 +60,7 @@ Feature: Volume Management
       And Volume 'volume' is added to Volumes grid on Lab Profile page
 
   @AssayManagement @VolumeManagement
-  Scenario: DIAFE:0033 Possibility to sort volumes
+  Scenario: DIAFE:0035 Possibility to sort volumes
     When I click on 'Add volume' on Lab Profile Page
       Then Log patient volume form is opened
     When I fill following fields on Log patient volume form and save as 'volumeOne':
@@ -68,7 +68,7 @@ Feature: Volume Management
       | Time period radio    | q4     |
       | Disease              | random |
       | Biomarker            | random |
-      | Volume               | 5      |
+      | Volume               | 50     |
     And I click 'Log volume' on Log patient volume form
       Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volumeOne' is displayed on Log patient volume form
     When I click 'Done' on Log patient volume form
@@ -81,7 +81,7 @@ Feature: Volume Management
       | Time period radio    | q3     |
       | Disease              | random |
       | Biomarker            | random |
-      | Volume               | 5      |
+      | Volume               | 49     |
     And I click 'Log volume' on Log patient volume form
       Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volumeTwo' is displayed on Log patient volume form
     When I click 'Done' on Log patient volume form

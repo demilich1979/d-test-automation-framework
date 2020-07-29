@@ -1,4 +1,4 @@
-Feature: Data
+Feature: Lab Mapping Search
 
   Background:
     Given Marketplace Main page is opened
@@ -33,9 +33,11 @@ Feature: Data
       | Name     |
       | URL      |
       | Lab type |
+
+  @LabMapping
+  Scenario: DIAFE:0036 non-US labs ag-grid filtering verification
     When I click on 'Add assay' on Lab Profile Page
       Then Add an Assay page is opened
-#    When I fill following fields on Add an Assay page and save as 'assay' for 'lab':
     When I fill following fields on Add an Assay page and save as 'assay':
       | Assay name             | Test Assay              |
       | Assay description      | Test Assay description  |
@@ -58,36 +60,30 @@ Feature: Data
       | RUO/IUO                | false                   |
     And I click 'Add Biomarker' on Add an Assay page
       Then Add Biomarker form is opened on Add an Assay page
-#    When I fill following fields on Add Biomarker form and save as 'biomarker' for 'assay' for 'lab':
-    When I fill following fields on Add Biomarker form and save as 'biomarker':
+    When I fill following fields on Add Biomarker form and save to 'assay':
       | Biomarker | random |
       | Variants  | random |
     And I click Save changes on Add Biomarker form
     And I click 'Done' on Add Biomarker form
-      Then Biomarker 'biomarker' is added to Biomarker grid on Add an Assay page
+      Then Biomarker from 'assay' is added to Biomarker grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
       Then Lab Profile page is opened
       And 'New lab assay added.' message is displayed on Lab Profile page
       And Assay 'assay' is displayed in Assays grid on Lab Profile page
-#    And I fill following fields on Log patient volume form and save as 'volume' using data from 'assay':
-#      | Biomarker |
-#      | Disease   |
     When I click on 'Add volume' on Lab Profile Page
-    Then Log patient volume form is opened
+      Then Log patient volume form is opened
     When I fill following fields on Log patient volume form and save as 'volume':
       | Time period combobox | 2018   |
       | Time period radio    | q2     |
       | Disease              | random |
-      | Biomarker            | random |
-      | Volume               | 5      |
+      | Volume               | 120    |
+    And I fill following fields on Log patient volume form and save as 'volume' using data from 'assay':
+      | Biomarker |
     And I click 'Log volume' on Log patient volume form
-    Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volume' is displayed on Log patient volume form
+      Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volume' is displayed on Log patient volume form
     When I click 'Done' on Log patient volume form
-    Then Lab Profile page is opened
-    And Volume 'volume' is added to Volumes grid on Lab Profile page
-
-  @LabMapping
-  Scenario: DIAFE:0032 Lab Mapping Search
+      Then Lab Profile page is opened
+      And Volume 'volume' is added to Volumes grid on Lab Profile page
     When I click 'Lab Mapping' on Header form
       Then Lab Mapping Search page is opened
     When I fill following fields on Lab Mapping Search page using data from 'volume':
@@ -101,23 +97,51 @@ Feature: Data
       | Month To   | July    |
     And I click 'Start' on Lab Mapping Search page
       Then Lab Mapping Results page is opened
-      And Lab 'lab' is displayed in Ag Grid on Lab Mapping Results page
-    When I click by 'lab' in Ag Grid on Lab Mapping Results page
-    Then Assay 'assay' with following fields is displayed on Lab Mapping Results page:
-      | Name                                 |
-      | Description                          |
-#      | Biomarkers                           |
-      | Where is it performed?               |
-      | Send-out Lab                         |
-      | Detects Germline/Somatic alterations |
-      | Specimens tested                     |
-      | Method                               |
-      | Method description                   |
-      | Commercial Assays                    |
-#      | Classification                       |
-      | Turnaround Time                      |
-      | Ontology                             |
-      | Sensitivity                          |
-      | Result Format                        |
+      And Lab 'lab' is displayed on Lab Mapping Results page
+    When I click by 'lab' on Lab Mapping Results page
+      When Assay 'assay' with following fields is displayed on Lab Mapping Results page:
+        | Name                                 |
+        | Description                          |
+        | Biomarkers                           |
+        | Where is it performed?               |
+        | Send-out Lab                         |
+        | Detects Germline/Somatic alterations |
+        | Specimens tested                     |
+        | Method                               |
+        | Method description                   |
+        | Commercial Assays                    |
+        | Classification                       |
+        | Turnaround Time                      |
+        | Ontology                             |
+        | Sensitivity                          |
+        | Result Format                        |
 
-
+  @LabMapping
+  Scenario: DIAFE:0037 Possibility to display labs which have volumes but no assays
+    When I click on 'Add volume' on Lab Profile Page
+      Then Log patient volume form is opened
+    When I fill following fields on Log patient volume form and save as 'volume':
+      | Time period combobox | 2018   |
+      | Time period radio    | q2     |
+      | Disease              | random |
+      | Biomarker            | random |
+      | Volume               | 12     |
+    And I click 'Log volume' on Log patient volume form
+      Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volume' is displayed on Log patient volume form
+    When I click 'Done' on Log patient volume form
+      Then Lab Profile page is opened
+    And Volume 'volume' is added to Volumes grid on Lab Profile page
+    When I click 'Lab Mapping' on Header form
+      Then Lab Mapping Search page is opened
+    When I fill following fields on Lab Mapping Search page using data from 'volume':
+      | Disease              |
+      | Biomarker / Analogue |
+    And I fill following fields on Lab Mapping Search page:
+      | Country    | Albania |
+      | Year From  | 2017    |
+      | Month From | January |
+      | Year To    | 2020    |
+      | Month To   | July    |
+    And I click 'Start' on Lab Mapping Search page
+      Then Lab Mapping Results page is opened
+      And Lab 'lab' is displayed on Lab Mapping Results page

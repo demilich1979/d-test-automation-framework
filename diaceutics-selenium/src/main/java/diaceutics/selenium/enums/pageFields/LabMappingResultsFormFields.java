@@ -1,12 +1,9 @@
-package diaceutics.selenium.enums.gridColumns;
+package diaceutics.selenium.enums.pageFields;
 
-import diaceutics.selenium.enums.pageFields.FieldType;
-import diaceutics.selenium.enums.pageFields.FormFieldInterface;
-
-public enum LabMappingResultsGridColumns implements FormFieldInterface {
+public enum LabMappingResultsFormFields implements FormFieldInterface {
     NAME("Name", "name", "assayName", FieldType.TEXT),
     DESCRIPTION("Description", "description", "assayDescription", FieldType.TEXT),
-    BIOMARKER("Biomarkers", "readableBiomarkers", "biomarker", FieldType.TEXT),
+    BIOMARKER("Biomarkers", "readableBiomarkers", "biomarkers", FieldType.TEXT),
     WHERE_IS_IT_PERFORMED("Where is it performed?", "readableSendout", "inHouseOrSendOut", FieldType.TEXT),
     SEND_OUT_LAB("Send-out Lab", "sendOutLabName", "sendOutLab", FieldType.TEXT),
     DETECTS("Detects Germline/Somatic alterations", "readableDetectGermlineSomatics", "detects", FieldType.TEXT),
@@ -14,7 +11,7 @@ public enum LabMappingResultsGridColumns implements FormFieldInterface {
     METHOD("Method", "readableMethod", "method", FieldType.TEXT),
     METHOD_DESCRIPTION("Method description", "methodDescription", "methodDescription", FieldType.TEXT),
     COMMERCIAL_ASSAYS("Commercial Assays", "readableCommercialAssay", "commercialAssays", FieldType.TEXT),
-    CLASSIFICATION("Classification", "3", "classification", FieldType.TEXT),
+    CLASSIFICATION("Classification", "3", "classifications", FieldType.TEXT),
     TURN_AROUND_TIME("Turnaround Time", "readableTat", "turnAroundTime", FieldType.TEXT),
     ONTOLOGY("Ontology", "4", "ontology", FieldType.TEXT),
     SENSITIVITY("Sensitivity", "readableSensitivity", "sensitivity", FieldType.TEXT),
@@ -25,7 +22,7 @@ public enum LabMappingResultsGridColumns implements FormFieldInterface {
     private final String modelField;
     private final FieldType fieldType;
 
-    LabMappingResultsGridColumns(String friendlyName, String locator, String modelField, FieldType fieldType) {
+    LabMappingResultsFormFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;
         this.modelField = modelField;
@@ -48,14 +45,14 @@ public enum LabMappingResultsGridColumns implements FormFieldInterface {
         return fieldType;
     }
 
-    public static LabMappingResultsGridColumns getEnumValue(String friendlyName) {
-        LabMappingResultsGridColumns labMappingResultsGridColumns = null;
-        for (LabMappingResultsGridColumns constant : LabMappingResultsGridColumns.values()) {
+    public static LabMappingResultsFormFields getEnumValue(String friendlyName) {
+        LabMappingResultsFormFields labMappingResultsFormFields = null;
+        for (LabMappingResultsFormFields constant : LabMappingResultsFormFields.values()) {
             if (constant.getFriendlyName().equals(friendlyName)) {
-                labMappingResultsGridColumns = constant;
+                labMappingResultsFormFields = constant;
                 break;
             }
         }
-        return labMappingResultsGridColumns;
+        return labMappingResultsFormFields;
     }
 }
