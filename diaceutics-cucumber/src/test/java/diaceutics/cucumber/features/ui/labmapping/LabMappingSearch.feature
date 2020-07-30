@@ -97,9 +97,9 @@ Feature: Lab Mapping Search
       | Month To   | July    |
     And I click 'Start' on Lab Mapping Search page
       Then Lab Mapping Results page is opened
-      And Lab 'lab' is displayed on Lab Mapping Results page
-    When I click by 'lab' on Lab Mapping Results page
-      When Assay 'assay' with following fields is displayed on Lab Mapping Results page:
+      And Lab 'lab' is displayed in AG-Grid Lab summary on Lab Mapping Results page
+    When I click by 'lab' in AG-Grid Lab summary on Lab Mapping Results page
+      When Assay 'assay' with following fields is displayed in AG-Grid Lab summary on Lab Mapping Results page:
         | Name                                 |
         | Description                          |
         | Biomarkers                           |
@@ -116,7 +116,7 @@ Feature: Lab Mapping Search
         | Sensitivity                          |
         | Result Format                        |
 
-  @LabMapping
+  @LabMapping1
   Scenario: DIAFE:0037 Possibility to display labs which have volumes but no assays
     When I click on 'Add volume' on Lab Profile Page
       Then Log patient volume form is opened
@@ -144,4 +144,5 @@ Feature: Lab Mapping Search
       | Month To   | July    |
     And I click 'Start' on Lab Mapping Search page
       Then Lab Mapping Results page is opened
-      And Lab 'lab' is displayed on Lab Mapping Results page
+      And Lab 'lab' is displayed in AG-Grid Lab summary on Lab Mapping Results page
+      And Label 'No Assays recorded' is displayed for Lab 'lab' in AG-Grid Lab summary on Lab Mapping Results page

@@ -1,39 +1,22 @@
 package diaceutics.selenium.utilities;
 
 import aquality.selenium.browser.AqualityServices;
-import aquality.selenium.core.logging.Logger;
+import diaceutics.selenium.enums.javaScript.JavaScript;
 import org.openqa.selenium.WebElement;
 
-import java.io.File;
-import java.io.IOException;
-
 public class JavaScriptUtil {
+
     public static boolean waitForAngular() {
-        try {
             return Boolean.parseBoolean(AqualityServices
-                    .getBrowser().executeScript(new File(ResourceUtil.getResourcePath("waitForAngular.js"))).toString());
-        } catch (IOException e) {
-            Logger.getInstance().warn(e.getMessage());
-            return false;
-        }
+                    .getBrowser().executeScript(JavaScript.WAIT_FOR_ANGULAR.getScript()).toString());
     }
 
     public static void makeElementStyleVisible(WebElement element) {
-        try {
-            AqualityServices.getBrowser().executeScript(
-                    new File(ResourceUtil.getResourcePath("makeElementStyleVisible.js")), element);
-        } catch (IOException e) {
-            Logger.getInstance().warn(e.getMessage());
-        }
+            AqualityServices.getBrowser().executeScript(JavaScript.MAKE_ELEMENT_STYLE_VISIBLE.getScript(), element);
     }
 
     public static void scrollHorizontalBarToRight(WebElement element) {
-        try {
-            AqualityServices.getBrowser().executeScript(
-                    new File(ResourceUtil.getResourcePath("scrollHorizontalBarToRight.js")), element);
-        } catch (IOException e) {
-            Logger.getInstance().warn(e.getMessage());
-        }
+            AqualityServices.getBrowser().executeScript(JavaScript.SCROLL_HORIZONTAL_BAR_TO_RIGHT.getScript(), element);
     }
 
 }

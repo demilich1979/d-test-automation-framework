@@ -1,6 +1,6 @@
 package diaceutics.selenium.enums.pageFields;
 
-public enum LabMappingResultsFormFields implements FormFieldInterface {
+public enum AGGridLabSummaryFormFields implements FormFieldInterface {
     NAME("Name", "name", "assayName", FieldType.TEXT),
     DESCRIPTION("Description", "description", "assayDescription", FieldType.TEXT),
     BIOMARKER("Biomarkers", "readableBiomarkers", "biomarkers", FieldType.TEXT),
@@ -22,7 +22,7 @@ public enum LabMappingResultsFormFields implements FormFieldInterface {
     private final String modelField;
     private final FieldType fieldType;
 
-    LabMappingResultsFormFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
+    AGGridLabSummaryFormFields(String friendlyName, String locator, String modelField, FieldType fieldType) {
         this.friendlyName = friendlyName;
         this.locator = locator;
         this.modelField = modelField;
@@ -45,14 +45,14 @@ public enum LabMappingResultsFormFields implements FormFieldInterface {
         return fieldType;
     }
 
-    public static LabMappingResultsFormFields getEnumValue(String friendlyName) {
-        LabMappingResultsFormFields labMappingResultsFormFields = null;
-        for (LabMappingResultsFormFields constant : LabMappingResultsFormFields.values()) {
+    public static AGGridLabSummaryFormFields getEnumValue(String friendlyName) {
+        AGGridLabSummaryFormFields agGridLabSummaryFormFields = null;
+        for (AGGridLabSummaryFormFields constant : AGGridLabSummaryFormFields.values()) {
             if (constant.getFriendlyName().equals(friendlyName)) {
-                labMappingResultsFormFields = constant;
+                agGridLabSummaryFormFields = constant;
                 break;
             }
         }
-        return labMappingResultsFormFields;
+        return agGridLabSummaryFormFields;
     }
 }

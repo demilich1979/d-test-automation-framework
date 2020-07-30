@@ -15,29 +15,30 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 
-public class LabMappingResultsForm extends BaseForm {
+public class AGGridLabSummaryForm extends BaseForm {
 
     private static final String COLUMN_TEMPLATE = "//div[@col-id='%s' and not(contains(@class,'ag-header-cell'))]";
-    private static final String LAB_TEMPLATE =
-            "//span[contains(@class,'ag-cell-wrapper')][.//app-lab-name-grouped-cell-renderer/span[.='%s']]//span[@class='ag-group-contracted']";
+    private static final String LAB_TEMPLATE = "//span[contains(@class,'ag-cell-wrapper')][.//app-lab-name-grouped-cell-renderer/span[.='%s']]";
+    private static final String LAB_EXPANDED_TEMPLATE = LAB_TEMPLATE + "//span[@class='ag-group-contracted']";
+    private static final String LAB_LABEL_TEMPLATE = LAB_TEMPLATE + "//abbr[.='%s']";
 
     private final WebElement horizontalScrollBar = AqualityServices.getBrowser().getDriver().findElement(
             By.className("ag-body-horizontal-scroll-viewport"));
 
-    public LabMappingResultsForm() {
+    public AGGridLabSummaryForm() {
         super(By.id("labMappingResultsContainer"), "lab Mapping Results");
     }
 
-    public boolean isLabDisplayed(String labName) {
+    public boolean isLabDisplayed(Lab lab) {
         labelLargeSpinner.state().waitForNotDisplayed();
         List<IElement> labLink = getElementFactory().findElements(By.xpath
-                (String.format(LAB_TEMPLATE, labName)), ElementType.LINK);
+                (String.format(LAB_TEMPLATE, lab.getName())), ElementType.LINK);
         return labLink.size() > 0;
     }
 
-    public void clickByLab(Lab lab) {
+    public void clickByExpandedLab(Lab lab) {
         ILink labLink = getElementFactory().getLink(By.xpath
-                (String.format(LAB_TEMPLATE, lab.getName())), lab.getName());
+                (String.format(LAB_EXPANDED_TEMPLATE, lab.getName())), lab.getName());
         labLink.clickAndWait();
     }
 
@@ -50,6 +51,13 @@ public class LabMappingResultsForm extends BaseForm {
             JavaScriptUtil.scrollHorizontalBarToRight(horizontalScrollBar);
         }
         return textBox.getText();
+    }
+
+    public boolean isLabelDisplayedForLab(String label, Lab lab) {
+        List<IElement> labLabel = getElementFactory().findElements(By.xpath
+                (String.format(LAB_LABEL_TEMPLATE, lab.getName(), label)), ElementType.LABEL);
+
+        return labLabel.size() > 0;
     }
 
 }

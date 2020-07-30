@@ -95,3 +95,37 @@ Feature: Volume Management
       Then Data in 'Biomarker' column on 'Volumes' Grid sorted according to alphabet
     When I sort data by alphabet in 'Volume' column on 'Volumes' Grid
       Then Data in 'Volume' column on 'Volumes' Grid sorted according to alphabet
+
+  @AssayManagement @VolumeManagement
+  Scenario: DIAFE:0036 Data validation in Volume field with values <50
+    When I click on 'Add volume' on Lab Profile Page
+    Then Log patient volume form is opened
+    When I fill following fields on Log patient volume form and save as 'volume':
+      | Time period combobox | random |
+      | Time period radio    | q4     |
+      | Disease              | random |
+      | Biomarker            | random |
+    And I set random value from 1 to 49 for field 'Volume' on Log patient volume form and save for 'volume'
+    And I click 'Log volume' on Log patient volume form
+      Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volume' is displayed on Log patient volume form
+    When I click 'Done' on Log patient volume form
+      Then Lab Profile page is opened
+      And Volume 'volume' is added to Volumes grid on Lab Profile page
+      And Value '<50' for Volume 'volume' is displayed in 'Volume' column in 'Volumes' Grid on Lab Profile page
+
+  @AssayManagement @VolumeManagement
+  Scenario: DIAFE:0037 Data validation in Volume field with values >50
+    When I click on 'Add volume' on Lab Profile Page
+      Then Log patient volume form is opened
+    When I fill following fields on Log patient volume form and save as 'volume':
+      | Time period combobox | random |
+      | Time period radio    | q4     |
+      | Disease              | random |
+      | Biomarker            | random |
+    And I set random value from 50 to 100 for field 'Volume' on Log patient volume form and save for 'volume'
+    And I click 'Log volume' on Log patient volume form
+      Then Message 'Your volume has been added for disease "%s" and biomarker "%s"' for 'volume' is displayed on Log patient volume form
+    When I click 'Done' on Log patient volume form
+      Then Lab Profile page is opened
+      And Volume 'volume' is added to Volumes grid on Lab Profile page
+      And Value from Volume 'volume' is displayed in 'Volume' column in 'Volumes' Grid on Lab Profile page

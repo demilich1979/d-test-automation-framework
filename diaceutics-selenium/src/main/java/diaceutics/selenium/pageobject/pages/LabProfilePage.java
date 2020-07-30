@@ -196,4 +196,16 @@ public class LabProfilePage extends BaseForm {
         assayLink.clickAndWait();
     }
 
+    public String getValueFromColumnForVolume(String gridName, String column, Volume volume) {
+        Grid volumesGrid = new Grid(String.format(GRID_TEMPLATE, gridName));
+        String rowLocator=String.format(
+                VOLUME_TEMPLATE,
+                volume.getTimePeriod(),
+                volume.getBiomarker(),
+                volume.getDisease(),
+                volume.getVolume());
+
+        return volumesGrid.getValueFromColumn(column,rowLocator);
+    }
+
 }
