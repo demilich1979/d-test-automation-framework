@@ -116,7 +116,7 @@ Feature: Lab Mapping Search
         | Sensitivity                          |
         | Result Format                        |
 
-  @LabMapping1
+  @LabMapping
   Scenario: DIAFE:0037 Possibility to display labs which have volumes but no assays
     When I click on 'Add volume' on Lab Profile Page
       Then Log patient volume form is opened
