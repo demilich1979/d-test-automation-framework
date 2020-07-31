@@ -1,7 +1,9 @@
 package diaceutics.selenium.models;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class Collaboration extends BaseModel {
     //Description
@@ -9,6 +11,8 @@ public class Collaboration extends BaseModel {
     private String description;
     private String otherRequirements;
     private String type;
+    //media
+    private String youtubeUrl;
     //location
     private String country;
     private String city;

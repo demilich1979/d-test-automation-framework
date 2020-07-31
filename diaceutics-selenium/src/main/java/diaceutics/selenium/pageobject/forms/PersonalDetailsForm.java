@@ -1,13 +1,11 @@
 package diaceutics.selenium.pageobject.forms;
 
-import aquality.selenium.elements.Attributes;
 import aquality.selenium.elements.interfaces.*;
 import diaceutics.selenium.enums.pageFields.FormFieldInterface;
-import diaceutics.selenium.pageobject.BaseForm;
 import diaceutics.selenium.pageobject.BaseMarketplaceForm;
 import org.openqa.selenium.By;
 
-public class PersonalDetailsForm extends BaseForm {
+public class PersonalDetailsForm extends BaseMarketplaceForm {
 
     private final IButton registerBtn = getElementFactory().getButton(By.id("button-register"), "Register");
 
@@ -54,11 +52,6 @@ public class PersonalDetailsForm extends BaseForm {
 
     public void clickRegister() {
         registerBtn.clickAndWait();
-    }
-
-    public boolean isErrorContainerDisplayedForField(FormFieldInterface field) {
-        ILabel errorContainerLabel = getElementFactory().getLabel(By.id(field.getLocator()), field.getFriendlyName());
-        return errorContainerLabel.getAttribute(Attributes.CLASS.toString()).contains("is-invalid");
     }
 
 }

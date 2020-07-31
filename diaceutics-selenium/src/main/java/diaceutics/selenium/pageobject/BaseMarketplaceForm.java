@@ -1,7 +1,9 @@
 package diaceutics.selenium.pageobject;
 
+import aquality.selenium.elements.Attributes;
 import aquality.selenium.elements.interfaces.ICheckBox;
 import aquality.selenium.elements.interfaces.IComboBox;
+import aquality.selenium.elements.interfaces.ILabel;
 import aquality.selenium.elements.interfaces.ITextBox;
 import diaceutics.selenium.enums.pageFields.FormFieldInterface;
 import org.openqa.selenium.By;
@@ -44,6 +46,11 @@ public abstract class BaseMarketplaceForm extends BaseForm {
         }
 
         return value;
+    }
+
+    public boolean isErrorContainerDisplayedForField(FormFieldInterface field) {
+        ILabel errorContainerLabel = getElementFactory().getLabel(By.id(field.getLocator()), field.getFriendlyName());
+        return errorContainerLabel.getAttribute(Attributes.CLASS.toString()).contains("is-invalid");
     }
 
 }

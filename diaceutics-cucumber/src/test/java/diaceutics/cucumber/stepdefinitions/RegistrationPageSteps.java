@@ -49,21 +49,17 @@ public class RegistrationPageSteps {
         registrationPage.getPersonalDetailsForm().clickRegister();
     }
 
-    @Then("Error container is displayed for following fields:")
+    @Then("Error container is displayed for following fields on Registration page:")
     public void errorContainerIsDisplayedForFollowingFields(List<String> fields) {
-        fields.forEach((field) -> {
-            SoftAssert.getInstance().assertTrue(registrationPage.getPersonalDetailsForm().isErrorContainerDisplayedForField(
-                    PersonalDetailsFormFields.getEnumValue(field)),
-                    String.format("Error container for field - %s should be displayed",field));
-        });
+        fields.forEach((field) -> SoftAssert.getInstance().assertTrue(registrationPage.getPersonalDetailsForm()
+                        .isErrorContainerDisplayedForField(PersonalDetailsFormFields.getEnumValue(field)),
+                String.format("Error container for field - %s should be displayed", field)));
     }
 
-    @Then("Error container is not displayed for following fields:")
+    @Then("Error container is not displayed for following fields on Registration page:")
     public void errorContainerIsNotDisplayedForFollowingFields(List<String> fields) {
-        fields.forEach((field) -> {
-            SoftAssert.getInstance().assertFalse(registrationPage.getPersonalDetailsForm().isErrorContainerDisplayedForField(
-                    PersonalDetailsFormFields.getEnumValue(field)),
-                    String.format("Error container for field - %s is displayed",field));
-        });
+        fields.forEach((field) -> SoftAssert.getInstance().assertFalse(registrationPage.getPersonalDetailsForm()
+                        .isErrorContainerDisplayedForField(PersonalDetailsFormFields.getEnumValue(field)),
+                String.format("Error container for field - %s is displayed", field)));
     }
 }
