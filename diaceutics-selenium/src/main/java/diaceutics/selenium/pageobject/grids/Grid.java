@@ -3,6 +3,8 @@ package diaceutics.selenium.pageobject.grids;
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.ElementType;
 import aquality.selenium.elements.interfaces.IElement;
+import aquality.selenium.elements.interfaces.ILabel;
+import aquality.selenium.elements.interfaces.ILink;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
@@ -22,9 +24,7 @@ public class Grid {
         List<IElement> columnLinks = getElementFactory().findElements(By.xpath
                 (String.format("%s//th", locator)), ElementType.LINK);
         List<String> columns = new ArrayList<>();
-        columnLinks.forEach(option -> {
-            columns.add(option.getText());
-        });
+        columnLinks.forEach(option -> columns.add(option.getText()));
         return columns;
     }
 
@@ -32,9 +32,7 @@ public class Grid {
         List<IElement> valueLinks = getElementFactory().findElements(By.xpath
                 (String.format("%s//td[count(//th[.='%s']/preceding-sibling::*)+1]", locator, columnName)), ElementType.LINK);
         List<String> values = new ArrayList<>();
-        valueLinks.forEach(option -> {
-            values.add(option.getText());
-        });
+        valueLinks.forEach(option -> values.add(option.getText()));
         return values;
     }
 
@@ -53,5 +51,13 @@ public class Grid {
         List<String> tmp = getValuesFromColumn(columnName);
         Collections.sort(tmp);
         return getValuesFromColumn(columnName).equals(tmp);
+    }
+
+    public String getValueFromColumn(String column, String rowLocator) {
+        ILabel labUrlLink = getElementFactory().getLabel(By.xpath(
+                String.format("%s%s//td[count(//th[.='%s']/preceding-sibling::*)+1]", locator, rowLocator, column)),
+                "value");
+
+        return labUrlLink.getText();
     }
 }

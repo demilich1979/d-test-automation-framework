@@ -31,6 +31,9 @@ public abstract class BaseForm extends Form {
     public final ILabel labelSmallSpinner = getElementFactory().getLabel(
             By.xpath("//ui-spinner[contains(@class,'small')]"), "Small Spinner");
 
+    public final ILabel labelLargeSpinner = getElementFactory().getLabel(
+            By.xpath("//ui-spinner[contains(@class,'large')]"), "Large Spinner");
+
     protected BaseForm(By locator, String name) {
         super(locator, name);
     }

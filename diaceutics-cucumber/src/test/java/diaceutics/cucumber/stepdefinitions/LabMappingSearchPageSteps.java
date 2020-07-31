@@ -4,6 +4,7 @@ import diaceutics.cucumber.utilities.XmlFileStore;
 import diaceutics.selenium.enums.pageFields.LabMappingSearchPageFields;
 import diaceutics.selenium.models.Assay;
 import diaceutics.selenium.models.Lab;
+import diaceutics.selenium.models.Volume;
 import diaceutics.selenium.pageobject.pages.LabMappingSearchPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -40,13 +41,10 @@ public class LabMappingSearchPageSteps {
 
     @When("I fill following fields on Lab Mapping Search page using data from {string}:")
     public void iFillFollowingFieldsOnLabMappingSearchPageUsingDataFromLab(String key, List<String> fields) {
-        Lab lab = XmlFileStore.get(key);
-        String country = lab.getCountry();
-        Assay assay = lab.getAssays().get(0);
-//        String disease = assay.getAssociatedDiseases();
-        String biomarker = assay.getBiomarkers().get(0).getBiomarker();
-        labMappingSearchPage.setFieldValue(LabMappingSearchPageFields.getEnumValue(fields.get(0)), country);
-//        labMappingSearchPage.setFieldValue(LabMappingSearchPageFields.getEnumValue(fields.get(1)), disease);
-        labMappingSearchPage.setFieldValue(LabMappingSearchPageFields.getEnumValue(fields.get(2)), biomarker);
+        Volume volume = XmlFileStore.get(key);
+        String disease = volume.getDisease();
+        String biomarker = volume.getBiomarker();
+        labMappingSearchPage.setFieldValue(LabMappingSearchPageFields.getEnumValue(fields.get(0)), disease);
+        labMappingSearchPage.setFieldValue(LabMappingSearchPageFields.getEnumValue(fields.get(1)), biomarker);
     }
 }

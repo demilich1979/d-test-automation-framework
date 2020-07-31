@@ -42,12 +42,12 @@ Feature: Assay Management
       | RUO/IUO                | false                   |
     And I click 'Add Biomarker' on Add an Assay page
       Then Add Biomarker form is opened on Add an Assay page
-    When I fill following fields on Add Biomarker form and save as 'biomarker':
+    When I fill following fields on Add Biomarker form and save to 'assay':
       | Biomarker | random |
       | Variants  | random |
     And I click Save changes on Add Biomarker form
     And I click 'Done' on Add Biomarker form
-      Then Biomarker 'biomarker' is added to Biomarker grid on Add an Assay page
+      Then Biomarker from 'assay' is added to Biomarker grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
       Then Lab Profile page is opened
       And 'New lab assay added.' message is displayed on Lab Profile page
@@ -152,12 +152,12 @@ Feature: Assay Management
       | Classification         | Lab developed test (LDT) |
     And I click 'Add Biomarker' on Add an Assay page
       Then Add Biomarker form is opened on Add an Assay page
-    When I fill following fields on Add Biomarker form and save as 'biomarkerOne':
+    When I fill following fields on Add Biomarker form and save to 'assayOne':
       | Biomarker | random |
       | Variants  | random |
     And I click Save changes on Add Biomarker form
     And I click 'Done' on Add Biomarker form
-      Then Biomarker 'biomarkerOne' is added to Biomarker grid on Add an Assay page
+      Then Biomarker from 'assayOne' is added to Biomarker grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
       Then Lab Profile page is opened
       And Assay 'assayOne' is displayed in Assays grid on Lab Profile page
@@ -184,12 +184,12 @@ Feature: Assay Management
       | RUO/IUO                | false                   |
     And I click 'Add Biomarker' on Add an Assay page
       Then Add Biomarker form is opened on Add an Assay page
-    When I fill following fields on Add Biomarker form and save as 'biomarkerTwo':
+    When I fill following fields on Add Biomarker form and save to 'assayTwo':
       | Biomarker | random |
       | Variants  | random |
     And I click Save changes on Add Biomarker form
     And I click 'Done' on Add Biomarker form
-      Then Biomarker 'biomarkerTwo' is added to Biomarker grid on Add an Assay page
+      Then Biomarker from 'assayTwo' is added to Biomarker grid on Add an Assay page
     When I click 'Add Assay' on Add an Assay page
       Then Lab Profile page is opened
       And Assay 'assayTwo' is displayed in Assays grid on Lab Profile page
@@ -224,12 +224,12 @@ Feature: Assay Management
       Then Biomarker 'biomarker' is not displayed in Biomarker grid on Edit Assay page
     When I click 'Add Biomarker' on Edit Assay page
       Then Add Biomarker form is opened on Edit Assay page
-    When I fill following fields on Add Biomarker form and save as 'biomarker':
+    When I fill following fields on Add Biomarker form and save to 'assay':
       | Biomarker | random |
       | Variants  | random |
     And I click Save changes on Add Biomarker form
     And I click 'Done' on Add Biomarker form
-      Then Biomarker 'biomarker' is added to Biomarker grid on Edit Assay page
+      Then Biomarker from 'assay' is added to Biomarker grid on Add an Assay page
     When I click 'Save' on Edit Assay page
       Then Lab Profile page is opened
       And 'Lab assay updated.' message is displayed on Lab Profile page

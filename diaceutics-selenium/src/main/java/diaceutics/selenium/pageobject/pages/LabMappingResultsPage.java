@@ -1,7 +1,7 @@
 package diaceutics.selenium.pageobject.pages;
 
 import diaceutics.selenium.pageobject.BaseForm;
-import diaceutics.selenium.pageobject.grids.AgGrid;
+import diaceutics.selenium.pageobject.forms.AGGridLabSummaryForm;
 import org.openqa.selenium.By;
 
 public class LabMappingResultsPage extends BaseForm {
@@ -10,7 +10,7 @@ public class LabMappingResultsPage extends BaseForm {
         super(By.id("labMappingResultsContainer"), "lab Mapping Results");
     }
 
-    public AgGrid getAgGrid() {
-        return new AgGrid();
+    public AGGridLabSummaryForm getLabMappingResultsGrid() {
+        return new AGGridLabSummaryForm();
     }
 }
