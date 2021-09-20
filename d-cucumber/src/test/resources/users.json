@@ -1,6 +1,6 @@
 {
   "adminUser": {
-    "email": "viktor.kalanda.test1@gmail.com",
+    "email": "viktor.test1@gmail.com",
     "password": "Servercor3R",
     "type": "Laboratory",
     "companyName": "Test lab",
@@ -48,7 +48,7 @@
     "lastName": "last name"
   },
   "adminUserStage": {
-    "email": "viktor.kalanda@diaceutics.com",
+    "email": "viktor.@d.com",
     "password": "",
     "type": "Laboratory",
     "companyName": "Test",
