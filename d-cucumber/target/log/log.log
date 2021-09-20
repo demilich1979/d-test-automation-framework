@@ -1,0 +1,8 @@
+2020-06-17 15:05:41 INFO  - Setting browser start arguments from JSON file: window-size=1920,1080 --no-sandbox --disable-popup-blocking --disable-gpu
+2020-06-17 15:05:44 INFO  - Browser 'CHROME' ready...
+2020-06-17 15:05:44 INFO  - Navigate to url - 'https://ice-dev.diaceuticscloud.com/profiles/'
+2020-06-17 15:05:48 INFO  - Button 'Create a Lab' :: Clicking
+2020-06-17 15:05:50 INFO  - Wait until is present in state displayed using "locator": By.xpath: //h1[text()='Create a Lab']
+2020-06-17 15:05:50 INFO  - Text Field 'Name' :: Clearing
+2020-06-17 15:05:50 INFO  - Text Field 'Name' :: Typing 'Peter Parker'
+2020-06-17 15:05:50 INFO  - Closing browser

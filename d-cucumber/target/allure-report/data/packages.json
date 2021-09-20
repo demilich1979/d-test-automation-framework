@@ -1,0 +1,22 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "name" : "packages",
+  "children" : [ {
+    "name" : "src.test.java.diaceutics.cucumber.features.CreateLab_feature.Create a Lab",
+    "children" : [ {
+      "name" : "DIAFE:0001 Possibility to successfully create an unspecified lab",
+      "uid" : "a3e40d50ae64f4e",
+      "parentUid" : "f54875090a352f0739bbf5bc2f303df2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1592395539612,
+        "stop" : 1592395550832,
+        "duration" : 11220
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "src.test.java.diaceutics.cucumber.features.CreateLab_feature.Create a Lab"
+  } ]
+}

@@ -1,0 +1,116 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2020-06-17T12:05:39.492Z",
+        "before": [
+          {
+            "result": {
+              "duration": 898197000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "diaceutics.cucumber.hooks.ApiHooks.before()"
+            }
+          }
+        ],
+        "line": 4,
+        "name": "DIAFE:0001 Possibility to successfully create an unspecified lab",
+        "description": "",
+        "id": "create-a-lab;diafe:0001-possibility-to-successfully-create-an-unspecified-lab",
+        "after": [
+          {
+            "result": {
+              "duration": 3063000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "diaceutics.cucumber.hooks.ScreenshotHooks.takeScreenshot(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 84465000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "diaceutics.cucumber.hooks.BrowserHooks.closeBrowser()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 7872308000,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "Lab Profile is opened",
+            "match": {
+              "location": "diaceutics.cucumber.stepdefinitions.LabProfilePageSteps.labProfilePageIsOpened()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1886167000,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I open Create a Lab page",
+            "match": {
+              "location": "diaceutics.cucumber.stepdefinitions.LabProfilePageSteps.openCreateLabPage()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 71956000,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "Create a Lab page is opened",
+            "match": {
+              "location": "diaceutics.cucumber.stepdefinitions.CreateLabsPageSteps.cleckCreateLabPageIsOpened()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 389118000,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "I fill first Create a Lab form using following data:",
+            "match": {
+              "location": "diaceutics.cucumber.stepdefinitions.CreateLabsPageSteps.fillCreateLabPage(diaceutics.selenium.models.CreateLabInfo)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "Name",
+                  "Peter Parker"
+                ]
+              }
+            ],
+            "keyword": "When "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@smoke"
+          }
+        ]
+      }
+    ],
+    "name": "Create a Lab",
+    "description": "",
+    "id": "create-a-lab",
+    "keyword": "Feature",
+    "uri": "file:src/test/java/diaceutics/cucumber/features/CreateLab.feature",
+    "tags": []
+  }
+]

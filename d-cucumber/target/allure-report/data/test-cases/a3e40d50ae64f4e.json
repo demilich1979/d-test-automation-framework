@@ -1,0 +1,186 @@
+{
+  "uid" : "a3e40d50ae64f4e",
+  "name" : "DIAFE:0001 Possibility to successfully create an unspecified lab",
+  "fullName" : "Create a Lab: DIAFE:0001 Possibility to successfully create an unspecified lab",
+  "historyId" : "ea1300c0ce0e763f0417f0dacb873aba",
+  "time" : {
+    "start" : 1592395539612,
+    "stop" : 1592395550832,
+    "duration" : 11220
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "diaceutics.cucumber.hooks.ApiHooks.before()",
+    "time" : {
+      "start" : 1592395539614,
+      "stop" : 1592395540512,
+      "duration" : 898
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given  Lab Profile is opened",
+      "time" : {
+        "start" : 1592395540514,
+        "stop" : 1592395548391,
+        "duration" : 7877
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When  I open Create a Lab page",
+      "time" : {
+        "start" : 1592395548392,
+        "stop" : 1592395550280,
+        "duration" : 1888
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then  Create a Lab page is opened",
+      "time" : {
+        "start" : 1592395550280,
+        "stop" : 1592395550352,
+        "duration" : 72
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When  I fill first Create a Lab form using following data:",
+      "time" : {
+        "start" : 1592395550352,
+        "stop" : 1592395550742,
+        "duration" : 390
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "e5221b4650805009",
+        "name" : "Data table",
+        "source" : "e5221b4650805009.csv",
+        "type" : "text/tab-separated-values",
+        "size" : 18
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "diaceutics.cucumber.hooks.ScreenshotHooks.takeScreenshot(io.cucumber.java.Scenario)",
+    "time" : {
+      "start" : 1592395550742,
+      "stop" : 1592395550745,
+      "duration" : 3
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "diaceutics.cucumber.hooks.BrowserHooks.closeBrowser()",
+    "time" : {
+      "start" : 1592395550745,
+      "stop" : 1592395550829,
+      "duration" : 84
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "host",
+    "value" : "senyuks-a"
+  }, {
+    "name" : "thread",
+    "value" : "79335@senyuks-a.TestNG-PoolService-0(16)"
+  }, {
+    "name" : "feature",
+    "value" : "Create a Lab"
+  }, {
+    "name" : "story",
+    "value" : "DIAFE:0001 Possibility to successfully create an unspecified lab"
+  }, {
+    "name" : "suite",
+    "value" : "Create a Lab"
+  }, {
+    "name" : "testClass",
+    "value" : "DIAFE:0001 Possibility to successfully create an unspecified lab"
+  }, {
+    "name" : "framework",
+    "value" : "cucumber4jvm"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "gherkin_uri",
+    "value" : "file:///Users/s.senyuk/Documents/diaceutics-test-automation-framework/diaceutics-cucumber/src/test/java/diaceutics/cucumber/features/CreateLab.feature"
+  }, {
+    "name" : "package",
+    "value" : "src.test.java.diaceutics.cucumber.features.CreateLab_feature.Create a Lab"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ "smoke" ]
+  },
+  "source" : "a3e40d50ae64f4e.json",
+  "parameterValues" : [ ]
+}

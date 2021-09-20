@@ -1,0 +1,26 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "senyuks-a",
+    "children" : [ {
+      "name" : "79335@senyuks-a.TestNG-PoolService-0(16)",
+      "children" : [ {
+        "name" : "DIAFE:0001 Possibility to successfully create an unspecified lab",
+        "uid" : "a3e40d50ae64f4e",
+        "parentUid" : "456593c42c8601c492cbcfe214314adc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1592395539612,
+          "stop" : 1592395550832,
+          "duration" : 11220
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "456593c42c8601c492cbcfe214314adc"
+    } ],
+    "uid" : "1fc686da83404d5630c88d4375395557"
+  } ]
+}

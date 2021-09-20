@@ -1,0 +1,9 @@
+diaceutics/selenium/configuration/Configuration.class
+diaceutics/selenium/configuration/Environment.class
+diaceutics/selenium/utilities/IScreenshotProvider.class
+diaceutics/selenium/utilities/ScreenshotProvider.class
+diaceutics/selenium/forms/pages/CreateLabPage.class
+diaceutics/selenium/utilities/TimeUtil.class
+diaceutics/selenium/forms/BaseAppForm.class
+diaceutics/selenium/models/CreateLabInfo.class
+diaceutics/selenium/forms/pages/LabProfilePage.class

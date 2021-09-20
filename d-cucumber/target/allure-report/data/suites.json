@@ -1,0 +1,22 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "Create a Lab",
+    "children" : [ {
+      "name" : "DIAFE:0001 Possibility to successfully create an unspecified lab",
+      "uid" : "a3e40d50ae64f4e",
+      "parentUid" : "04a0e1bf4e21c2d19ddabc1d83b0315f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1592395539612,
+        "stop" : 1592395550832,
+        "duration" : 11220
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "04a0e1bf4e21c2d19ddabc1d83b0315f"
+  } ]
+}

@@ -1,0 +1,11 @@
+/Users/s.senyuk/Documents/diaceutics-test-automation-framework/diaceutics-cucumber/src/test/java/diaceutics/cucumber/objectfactory/CustomObjectFactory.java
+/Users/s.senyuk/Documents/diaceutics-test-automation-framework/diaceutics-cucumber/src/test/java/diaceutics/cucumber/transformations/DataTableTypeTransformations.java
+/Users/s.senyuk/Documents/diaceutics-test-automation-framework/diaceutics-cucumber/src/test/java/diaceutics/cucumber/stepdefinitions/LabProfilePageSteps.java
+/Users/s.senyuk/Documents/diaceutics-test-automation-framework/diaceutics-cucumber/src/test/java/diaceutics/cucumber/hooks/ScreenshotHooks.java
+/Users/s.senyuk/Documents/diaceutics-test-automation-framework/diaceutics-cucumber/src/test/java/diaceutics/cucumber/utilities/ScenarioContext.java
+/Users/s.senyuk/Documents/diaceutics-test-automation-framework/diaceutics-cucumber/src/test/java/diaceutics/cucumber/runners/TestRunner.java
+/Users/s.senyuk/Documents/diaceutics-test-automation-framework/diaceutics-cucumber/src/test/java/diaceutics/cucumber/hooks/ApiHooks.java
+/Users/s.senyuk/Documents/diaceutics-test-automation-framework/diaceutics-cucumber/src/test/java/diaceutics/cucumber/stepdefinitions/ApiSteps.java
+/Users/s.senyuk/Documents/diaceutics-test-automation-framework/diaceutics-cucumber/src/test/java/diaceutics/cucumber/stepdefinitions/CreateLabsPageSteps.java
+/Users/s.senyuk/Documents/diaceutics-test-automation-framework/diaceutics-cucumber/src/test/java/diaceutics/cucumber/objectfactory/ServiceModule.java
+/Users/s.senyuk/Documents/diaceutics-test-automation-framework/diaceutics-cucumber/src/test/java/diaceutics/cucumber/hooks/BrowserHooks.java

@@ -1,0 +1,11 @@
+[ {
+  "uid" : "a3e40d50ae64f4e",
+  "name" : "DIAFE:0001 Possibility to successfully create an unspecified lab",
+  "time" : {
+    "start" : 1592395539612,
+    "stop" : 1592395550832,
+    "duration" : 11220
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

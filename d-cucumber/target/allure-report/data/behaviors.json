@@ -1,0 +1,26 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "Create a Lab",
+    "children" : [ {
+      "name" : "DIAFE:0001 Possibility to successfully create an unspecified lab",
+      "children" : [ {
+        "name" : "DIAFE:0001 Possibility to successfully create an unspecified lab",
+        "uid" : "a3e40d50ae64f4e",
+        "parentUid" : "4ef7d1d10713fbf042b65503d38b27a5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1592395539612,
+          "stop" : 1592395550832,
+          "duration" : 11220
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "4ef7d1d10713fbf042b65503d38b27a5"
+    } ],
+    "uid" : "06baab6527707a7ab85e094a54475eb5"
+  } ]
+}
